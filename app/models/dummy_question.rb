@@ -1,2 +1,0 @@
-class DummyQuestion < ApplicationRecord
-end

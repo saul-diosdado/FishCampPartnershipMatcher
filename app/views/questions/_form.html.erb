@@ -1,0 +1,27 @@
+<%= error_messages_for(f.object) %>
+
+<p>
+    <%= f.label(:question) %>
+    <br>
+    <%= f.text_area(:question) %>
+</p>
+
+<p>
+    <%= f.label(:type) %>
+    <%= f.select :type, ["Short Answer", "True/False", "Numeric", "Multiple Choice"], {:id => "type-selector"} %>
+</p>
+
+<div id="choices-container">
+
+</div>
+
+<p>
+    <%= f.label :choices %>
+        <% @question.choices&.each do |choice| %>
+            <%= f.text_field :choices, 
+                            name: 'thing[choices][]', 
+                            value: choice %>
+        <% end %>
+</p>
+
+<%= javascript_pack_tag "dynamic_choices" %>

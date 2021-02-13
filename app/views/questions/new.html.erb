@@ -1,0 +1,8 @@
+<%= link_to("Home", questions_path()) %>
+<h1>Add New Question</h1>
+<%= form_for(@question) do |f| %>
+    <%= render(:partial => "form", :locals => {:f => f}) %>
+    <p>
+        <%= f.submit("Create Question") %>
+    </p>
+<% end %>

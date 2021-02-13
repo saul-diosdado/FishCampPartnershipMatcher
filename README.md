@@ -1,5 +1,7 @@
 # README
 
+[Ruby Naming Conventions](https://gist.github.com/iangreenleaf/b206d09c587e8fc6399e)
+
 This README would normally document whatever steps are necessary to get the
 application up and running.
 

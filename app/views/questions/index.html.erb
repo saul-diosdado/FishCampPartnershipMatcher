@@ -1,1 +1,26 @@
-<p>Hello</p>
+<div class="question-index">
+  <% flash.each do |key, value| %>
+    <div class="flash-notice <%= key %>"><%= value %></div>
+  <% end %>
+  <h2>Questions</h2>
+
+  <%= link_to("Create New Question", new_question_path) %>
+
+  <table class="listing" summary="Question List">
+    <tr class="header">
+      <th>ID</th>
+      <th>Question</th>
+    </tr>
+    <% @questions.each do |question| %>
+      <tr>
+        <td><%= question.id %></td>
+        <td><%= question.question %></td>
+        <td class="actions">
+          <%= link_to("Show", question_path(question)) %>
+          <%= link_to("Edit", edit_question_path(question)) %>
+          <%= link_to("Delete", delete_question_path(question)) %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+</div>

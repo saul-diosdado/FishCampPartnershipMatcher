@@ -43,7 +43,7 @@ class QuestionsController < ApplicationController
         redirect_to(questions_path, {:flash => {:red => "Question removed successfully."}})
     end
 
-    private def book_params
-        params.require(:question).permit(:text)
+    private def question_params
+        params.require(:question).permit(:question)
     end
 end

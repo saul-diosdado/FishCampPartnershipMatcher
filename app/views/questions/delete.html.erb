@@ -1,0 +1,9 @@
+<%= link_to("Home", questions_path()) %>
+<h1>Delete Question</h1>
+<%= form_for(@question, :method => "delete") do |f| %>
+    <p>Are you sure you want to permanently delete this question?</p>
+    <p><%= @question.question %></p>
+    <p>
+        <%= f.submit("Delete Question") %>
+    </p>
+<% end %>

@@ -1,25 +1,30 @@
 <%= error_messages_for(f.object) %>
 
-<p>
-    <%= f.label(:question) %>
-    <br>
-    <%= f.text_area(:question) %>
-</p>
+<formm>
+    <div class="form-group">
+        <%= f.label(:question) %>
+        <br>
+        <%= f.text_area(:question) %>
+    </div>
 
-<p>
-    <%= f.label(:question_type) %>
-    <%= f.select :question_type, ["Short Answer", "True/False", "Numeric", "Multiple Choice"], {:id => "type-selector"} %>
-</p>
+    <p>
+        <%= f.label(:question_type) %>
+        <%= f.select :question_type, ["Short Answer", "True/False", "Numeric", "Multiple Choice"], {:id => "type-selector"} %>
+    </p>
 
-<div id="buttons-container"></div>
-<div id="choices-container"></div>
+    <!-- Form for adding choices -->
+    <div class="form-group">
+        <div id="multiple-choice-form">
+            <%= f.fields_for :choices do |choice| %>
+                <%= render "choice_fields", f: choice %>
+            <% end %>
 
-<p>
-        <% @question.choices&.each do |choice| %>
-            <%= f.text_field :choices, 
-                            name: 'thing[choices][]', 
-                            value: choice %>
-        <% end %>
-</p>
+            <div class="links">
+                <%= link_to_add_association "Add Choice", f, :choices %>
+            </div>
+        </div>
+    </div>
+</form>
 
-<%= javascript_pack_tag "dynamic_choices" %>
+<%= javascript_pack_tag "dynamic_choices.js" %>
+

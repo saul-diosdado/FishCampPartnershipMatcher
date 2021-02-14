@@ -13,6 +13,7 @@ class QuestionsController < ApplicationController
 
     def create
         @question = Question.new(question_params)
+
         if @question.save
             redirect_to(questions_path, {:flash => {:green => "Question created successfully."}})
         else
@@ -44,6 +45,6 @@ class QuestionsController < ApplicationController
     end
 
     private def question_params
-        params.require(:question).permit(:question, :question_type, :choices)
+        params.require(:question).permit(:question, :question_type, choices_attributes:[:id, :content, :_destroy])
     end
 end

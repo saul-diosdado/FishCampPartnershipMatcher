@@ -7,16 +7,14 @@
 </p>
 
 <p>
-    <%= f.label(:type) %>
-    <%= f.select :type, ["Short Answer", "True/False", "Numeric", "Multiple Choice"], {:id => "type-selector"} %>
+    <%= f.label(:question_type) %>
+    <%= f.select :question_type, ["Short Answer", "True/False", "Numeric", "Multiple Choice"], {:id => "type-selector"} %>
 </p>
 
-<div id="choices-container">
-
-</div>
+<div id="buttons-container"></div>
+<div id="choices-container"></div>
 
 <p>
-    <%= f.label :choices %>
         <% @question.choices&.each do |choice| %>
             <%= f.text_field :choices, 
                             name: 'thing[choices][]', 

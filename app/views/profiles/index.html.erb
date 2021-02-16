@@ -1,0 +1,34 @@
+
+<div class="profile_index">
+<% flash.each do |key, value| %>
+    <div class="flash-notice <%= key %>"><%= value %></div>
+  <% end %>
+<h1>Welcome to FishCamp Partnership Matcher!</h1>
+
+<h2>Profiles</h2>
+
+<%= link_to("Create New Profile", new_profile_path) %><br/>
+
+<table class="listing" summary="Own Profile">
+    <% @profiles.each do |profile| %>
+        <tr>
+			<td><% if current_user.email.eql? profile.email %>
+					<%= link_to("View Your Profile", profile_path(profile)) %>
+				<% end %>
+			</td>
+        </tr>
+    <% end %>
+</table>
+
+<table class="listing" summary="Profile List">
+    <tr class="header">
+        <th>Name</th>
+    </tr>
+    <% @profiles.each do |profile| %>
+        <tr>
+            <td><%= profile.name%></td>
+            <td><%= link_to("Show", profile_path(profile)) %></td>
+        </tr>
+    <% end %>
+</table>
+</div>

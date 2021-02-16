@@ -1,0 +1,20 @@
+<%= link_to("Home", profiles_path()) %>
+<h1>Edit your profile!</h1>
+
+<%= form_for(@profile) do |f| %>
+    Name: <%= f.text_field(:name) %> <br>
+    Email: <%= f.text_field(:email, readonly: 'readonly') %> <br>
+    Phonenumber: <%= f.text_field(:phonenumber) %> <br>
+    Snapchat: <%= f.text_field(:snapchat) %> <br>
+    Instagram: <%= f.text_field(:instagram) %> <br>
+    Facebook: <%= f.text_field(:facebook) %> <br>
+    Twitter: <%= f.text_field(:twitter) %> <br>
+    PTAnimal: <%= f.text_field(:ptanimal) %> <br>
+    PTTrueColors: <%= f.text_field(:pttruecolors) %> <br>
+    PTMyersBriggs: <%= f.text_field(:ptmyersbriggs) %> <br>
+    About Me: <%= f.text_field(:aboutme) %> <br>
+    <%= f.hidden_field :approvedchair, value: false %>
+    Gender (Check if M, leave blank if F): <%= f.check_box(:gender) %> <br>
+    <%= f.hidden_field :user_id, value: current_user.id %>
+    <%= f.submit "Save Profile" %>
+<% end %>

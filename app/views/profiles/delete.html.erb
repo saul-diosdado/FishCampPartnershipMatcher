@@ -1,0 +1,8 @@
+<%= link_to("Home", profiles_path()) %>
+<h1>Delete your profile!</h1>
+<%= form_for(@profile, :method => "delete") do |f| %>
+    <p>Are you sure you want to permanently delete your profile?</p>
+    <p>
+        <%= f.submit("Delete Profile") %>
+    </p>
+<% end %>

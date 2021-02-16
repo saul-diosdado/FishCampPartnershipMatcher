@@ -15,7 +15,7 @@ class QuestionsController < ApplicationController
         @question = Question.new(question_params)
 
         if @question.save
-            redirect_to(questions_path, {:flash => {:green => "Question created successfully."}})
+            redirect_to(questions_path, {:flash => {:success => "Question created successfully."}})
         else
             render("new")
         end
@@ -28,7 +28,7 @@ class QuestionsController < ApplicationController
     def update
         @question = Question.find(params[:id])
         if @question.update(question_params)
-            redirect_to(questions_path, {:flash => {:green => "Question updated successfully."}})
+            redirect_to(questions_path, {:flash => {:success => "Question updated successfully."}})
         else
             render("edit")
         end
@@ -41,7 +41,7 @@ class QuestionsController < ApplicationController
     def destroy
         @question = Question.find(params[:id])
         @question.destroy
-        redirect_to(questions_path, {:flash => {:red => "Question removed successfully."}})
+        redirect_to(questions_path, {:flash => {:success => "Question removed successfully."}})
     end
 
     private def question_params

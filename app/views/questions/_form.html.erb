@@ -1,30 +1,25 @@
 <%= error_messages_for(f.object) %>
 
-<formm>
-    <div class="form-group">
-        <%= f.label(:question) %>
-        <br>
-        <%= f.text_area(:question) %>
-    </div>
+<!-- Form for Create/Update a question. -->
+<div class="form-group">
+  <%= f.label(:question) %>
+  <br>
+  <%= f.text_area(:question, class: "form-control", rows: "4") %>
+  <%= f.label(:question_type) %>
+  <br>
+  <%= f.select(:question_type, ["Short Answer", "True/False", "Numeric", "Multiple Choice"], class: "form-control") %>
+</div>
 
-    <p>
-        <%= f.label(:question_type) %>
-        <%= f.select :question_type, ["Short Answer", "True/False", "Numeric", "Multiple Choice"], {:id => "type-selector"} %>
-    </p>
+<!-- Form for adding choices -->
+<div class="form-group" id="multiple-choice-form">
+  <%= f.fields_for :choices do |choice| %>
+    <%= render(:partial => "choice_fields", :locals => {:f => choice}) %>
+  <% end %>
 
-    <!-- Form for adding choices -->
-    <div class="form-group">
-        <div id="multiple-choice-form">
-            <%= f.fields_for :choices do |choice| %>
-                <%= render "choice_fields", f: choice %>
-            <% end %>
-
-            <div class="links">
-                <%= link_to_add_association "Add Choice", f, :choices %>
-            </div>
-        </div>
-    </div>
-</form>
+  <div class="links">
+    <%= link_to_add_association("Add Choice", f, :choices, class: "btn btn-success") %>
+  </div>
+</div>
 
 <%= javascript_pack_tag "dynamic_choices.js" %>
 

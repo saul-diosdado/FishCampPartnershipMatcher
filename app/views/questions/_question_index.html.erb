@@ -4,7 +4,6 @@
   <div class="card-header d-flex justify-content-between">
     <h5>Question <%= question.id %></h5>
     <div class="form-inline">
-      <%= link_to("Show", question_path(question), class: "btn btn-info btn-sm") %>
       <%= link_to("Edit", edit_question_path(question), class: "btn btn-primary btn-sm ml-2") %>
       <%= link_to("Delete", delete_question_path(question), class: "btn btn-danger btn-sm ml-2") %>
     </div>
@@ -12,11 +11,6 @@
   <!-- Card Body -->
   <div class="card-body">
     <h5 class="card-title"><%= question.question %></h5>
-    <% question.choices.each do |choice| %>
-      <div class="form-check disabled mb-2">
-          <input class="form-check-input" type="radio" disabled>
-          <label class="form-check-label"><%= choice.content %></label>
-      </div>
-    <% end %>
+    <%= render(:partial => get_partial(question), :locals => {:question => question}) %>
   </div>
 </div>

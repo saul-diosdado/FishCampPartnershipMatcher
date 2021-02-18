@@ -35,7 +35,7 @@ class QuestionsController < ApplicationController
     end
 
     def delete
-        @question = Question.find(params[:id])
+        @question = Question.find(params[:id])  
     end
 
     def destroy

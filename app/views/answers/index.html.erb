@@ -1,0 +1,57 @@
+
+<h1 class="heading">Fish Camp: Partner Preference Form</h1>
+<p class="notice"><%= flash[:notice] %></p>
+
+<table class="questions-table">
+    <thead>
+    <tr>
+        <th class="index">Number</th>
+        <th>Question</th>
+        <th>Preview</th>
+        <th class="actions">Actions</th>
+    </tr>
+    </thead>
+    
+    <tbody>
+    <% row_num = 0 %>
+    <% @questions.each do |question| %>
+    <% row_num = row_num + 1 %>
+    <tr>
+        <td class="index"><%= row_num %></td>
+        <td><%= question.question %></td>
+        <td>
+            <%= 
+                if @answers.exists?(:question_id => question.id)
+                    answer = @answers.where(:question_id => question.id).first
+
+                    case question.question_type
+                    when "Multiple Choice"
+                        "Unimplemented"
+                    when "True/False"
+                        "Unimplemented"
+                    when "Numeric"
+                        "Unimplemented"
+                    else
+                        answer.short_answer
+                    end
+                else
+                    "Unanswered"
+                end
+            %>
+        </td>
+        <td class="actions">
+            <% if @answers.exists?(:question_id => question.id) %>
+                <% answer = @answers.where(:question_id => question.id).first %>
+                <%= link_to("Edit", edit_answer_path(answer, :question => question.question)) %>
+                <%= link_to("Delete Response", delete_answer_path(answer, :question => question.question)) %>
+            <% else %>
+                <%= link_to("Add Response", new_answer_path(:question_id => question.id, :question => question.question, :answer_type => question.question_type)) %>
+            <% end %>
+        </td>
+    </tr>
+    <% end %>
+    </tbody>
+
+</table>
+
+<%= link_to("Next Page", preferences_path) %>

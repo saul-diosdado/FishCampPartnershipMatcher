@@ -1,0 +1,2 @@
+class PreferenceForm < ApplicationRecord
+end

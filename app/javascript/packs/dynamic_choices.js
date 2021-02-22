@@ -1,8 +1,13 @@
-let choicesContainer = document.getElementById("choices-container");
-let typeSelector = document.getElementById("question_type");
+let multipleChoiceForm = document.getElementById("multiple-choice-form");
+let typeSelector = document.getElementById("question_question_type");
 
-typeSelector.addEventListener("change", () => {
+showHideMultipleChoice();
+typeSelector.addEventListener("change", showHideMultipleChoice);
+
+function showHideMultipleChoice() {
     if (typeSelector.value === "Multiple Choice") {
-
+        multipleChoiceForm.style.display = "block";
+    } else {
+        multipleChoiceForm.style.display = "none";
     }
-});
+}

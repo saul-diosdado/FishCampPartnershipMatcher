@@ -1,0 +1,6 @@
+<% question.choices.each do |choice| %>
+  <div class="form-check my-2">
+    <input type="radio" name="multiple-choice-<%= question.id %>" class="form-check-input" disabled>
+    <label class="form-check-label"><%= choice.content %></label>
+  </div>
+<% end %>

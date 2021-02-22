@@ -1,0 +1,16 @@
+<!-- Card layout for each question plus CRUD for each. -->
+<div class="card mb-4">
+  <!-- Card Header -->
+  <div class="card-header d-flex justify-content-between">
+    <h5>Question <%= question.id %></h5>
+    <div class="form-inline">
+      <%= link_to("Edit", edit_question_path(question), class: "btn btn-primary btn-sm ml-2") %>
+      <%= link_to("Delete", delete_question_path(question), class: "btn btn-danger btn-sm ml-2") %>
+    </div>
+  </div>
+  <!-- Card Body -->
+  <div class="card-body">
+    <h5 class="card-title"><%= question.question %></h5>
+    <%= render(:partial => get_partial(question), :locals => {:question => question}) %>
+  </div>
+</div>

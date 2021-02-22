@@ -1,0 +1,61 @@
+<%= link_to("Home", profiles_path()) %>
+
+<div class="profile show">
+<% if current_user.email.eql? @profile.email %>
+	<h2>Your Profile</h2>
+<%else%>
+	<h2> Chair Profile </h2>
+<% end %>
+
+  <table summary="Profile view">
+    <tr>
+      <th>Name</th>
+      <td><%= @profile.name %></td>
+    </tr>
+    <tr>
+      <th>Email</th>
+      <td><%= @profile.email %></td>
+    </tr>
+    <tr>
+      <th>Phone Number</th>
+      <td><%= @profile.phonenumber %></td>
+    </tr>
+    <tr>
+      <th>Snapchat</th>
+      <td><%= @profile.snapchat %></td>
+    </tr>
+    <tr>
+      <th>Instagram</th>
+      <td><%= @profile.instagram %></td>
+    </tr>
+	<tr>
+      <th>Facebook</th>
+      <td><%= @profile.facebook %></td>
+    </tr>
+	<tr>
+      <th>Twitter</th>
+      <td><%= @profile.twitter %></td>
+    </tr>
+	<tr>
+      <th> Animal</th>
+      <td><%= @profile.ptanimal %></td>
+    </tr>
+	<tr>
+      <th> True Colors</th>
+      <td><%= @profile.pttruecolors %></td>
+    </tr>
+	<tr>
+      <th>Myers Briggs</th>
+      <td><%= @profile.ptmyersbriggs %></td>
+    </tr>
+	<tr>
+      <th>About Me</th>
+      <td><%= @profile.aboutme %></td>
+    </tr>
+	
+  </table>
+  
+<% if current_user.email.eql? @profile.email %>
+	<%= link_to("Edit", edit_profile_path(@profile)) %><br/>
+	<%= link_to("Delete", delete_profile_path(@profile)) %>
+<% end %>

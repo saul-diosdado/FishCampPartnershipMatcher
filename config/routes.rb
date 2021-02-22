@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
-
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-  resources :questions do
+  root 'profiles#index'
+  resources :profiles do 
     member do
       get :delete
     end
@@ -18,8 +17,10 @@ Rails.application.routes.draw do
       get :delete
     end
   end
-  
+
+  resources :questions do
+    member do
+      get :delete
+    end
+  end
 end
-
-
-

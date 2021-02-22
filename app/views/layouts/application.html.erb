@@ -10,7 +10,20 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body class="container">
-      <%= yield %>
+  <body>
+  <header>
+    <% if signed_in? %>
+        Signed in as: <%= current_user.email %>
+        <%= button_to "Sign out", sign_out_path, method: :delete %>
+    <% end %>
+  </header>
+    <!--
+    <div id="flash">
+      <% flash.each do |key, value| %>
+        <div class="flash <%= key %>"><%= value %></div>
+      <% end %>
+    </div>
+    -->
+    <%= yield %>
   </body>
 </html>

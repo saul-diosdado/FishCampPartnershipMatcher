@@ -1,0 +1,7 @@
+@import "bootstrap/scss/bootstrap";
+
+@include media-breakpoint-up(lg) {
+  .container {
+      width: 50%
+  }
+}

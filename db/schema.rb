@@ -18,7 +18,6 @@ ActiveRecord::Schema.define(version: 2021_02_19_001026) do
   create_table "answers", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "question_id"
-    t.string "answer_type"
     t.text "short_answer"
     t.boolean "true_false"
     t.integer "numeric"
@@ -78,7 +77,8 @@ ActiveRecord::Schema.define(version: 2021_02_19_001026) do
 
   create_table "questions", force: :cascade do |t|
     t.text "question"
-    t.string "question_type"
+    t.string "type"
+    t.string "choices", array: true
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

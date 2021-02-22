@@ -9,7 +9,7 @@ class AnswersController < ApplicationController
 
   def new
     @answer = Answer.new(:user_id => $user_id, :question_id => params[:question_id], :answer_type => params[:answer_type])
-    @question = params[:question]
+    @question = Question.find(params[:question_id])
   end
 
   def create
@@ -24,7 +24,7 @@ class AnswersController < ApplicationController
 
   def edit
     @answer = Answer.find(params[:id])
-    @question = params[:question] 
+    @question = Question.find(params[:question_id])
   end
 
   def update
@@ -53,6 +53,6 @@ class AnswersController < ApplicationController
   private
 
     def answers_params
-      params.require(:answer).permit(:user_id, :question_id, :answer_type, :short_answer, :true_false, :numeric)
+      params.require(:answer).permit(:user_id, :question_id, :answer_type, :short_answer, :true_false, :numeric, :multiple_choice)
     end
 end

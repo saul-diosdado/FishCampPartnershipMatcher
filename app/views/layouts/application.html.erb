@@ -10,7 +10,7 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
+  <body class="container">
   <header>
     <% if signed_in? %>
         Signed in as: <%= current_user.email %>

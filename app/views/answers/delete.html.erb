@@ -1,0 +1,10 @@
+
+<h2 class="heading">Delete Response</h2>
+
+<%= form_for(@answer, :method => 'delete') do |f| %>
+
+    <p> Are you sure that you wish to permanently delete your response to question: <%= @question %></p>
+    <%= link_to("Go Back", answers_path) %>
+    <%= f.submit("Delete Response") %>
+    
+<% end %>

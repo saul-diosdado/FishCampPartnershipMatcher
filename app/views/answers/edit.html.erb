@@ -1,0 +1,22 @@
+
+<h2 class="heading">Edit Response</h2>
+
+<p><%= @question %> </p>
+<%= form_for(@answer) do |f| %>
+
+    <%= f.hidden_field(:user_id, value: @answer.user_id) %>
+    <%= f.hidden_field(:question_id, value: @answer.question_id) %>
+    <%= f.hidden_field(:answer_type, value: @answer.answer_type) %>
+    
+    <% case @answer.answer_type %>
+    <% when "Multiple Choice" %>
+    <% when "True/False" %>
+    <% when "Numeric" %>
+    <% else %>
+        <%= f.text_area(:short_answer, :cols => "100", :rows => "10") %>
+    <% end %>
+
+    <%= link_to("Go Back", answers_path) %>
+    <%= f.submit("Save") %>
+
+<% end %>

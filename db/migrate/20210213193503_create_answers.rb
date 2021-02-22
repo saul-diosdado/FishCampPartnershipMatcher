@@ -3,6 +3,7 @@ class CreateAnswers < ActiveRecord::Migration[6.1]
     create_table :answers do |t|
       t.belongs_to :user
       t.belongs_to :question
+      t.string :answer_type
       t.text :short_answer
       t.boolean :true_false
       t.integer :numeric

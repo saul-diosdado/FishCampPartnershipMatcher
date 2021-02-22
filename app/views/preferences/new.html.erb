@@ -1,0 +1,21 @@
+<h2 class="heading">Add New Preference</h2>
+
+<p>Add instructions here...</p>
+<%= form_for(@pref) do |f| %>
+
+    <%= f.hidden_field(:selector_id, value: @pref.selector_id) %>
+    <%= f.hidden_field(:pref_type, value: @pref.pref_type) %>
+ 
+    <p>Select Chair</p>
+    <%= f.collection_select(:selected_id, @users.order(:email), :id, :email) %>
+
+    <p>Rating</p>
+    <%= f.select :rating, [1, 2, 3, 4, 5]%>
+
+    <p>Explain why you gave this person this rating?</p>
+    <%= f.text_area(:why, :cols => "100", :rows => "10") %>
+
+    <%= link_to("Go Back", preferences_path) %>
+    <%= f.submit("Save") %>
+
+<% end %>

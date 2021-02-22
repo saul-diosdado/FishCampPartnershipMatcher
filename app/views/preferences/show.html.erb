@@ -1,0 +1,85 @@
+<h2 class="heading">Review Responses Before Submitting</h2>
+
+<div class="questionnaire-review">
+    <h3>Questionnaire</h3>
+    <table class="questions-table">
+        <thead>
+        <tr>
+            <th class="index">Number</th>
+            <th>Question</th>
+            <th>Response</th>
+        </tr>
+        </thead>
+        
+        <tbody>
+        <% row_num = 0 %>
+        <% @questions.each do |question| %>
+        <% row_num = row_num + 1%>
+        <tr>
+            <td class="index"><%= row_num %></td>
+            <td><%= question.question %></td>
+            <td>
+                <%= 
+                    if @answers.exists?(:question_id => question.id)
+                        answer = @answers.where(:question_id => question.id).first
+
+                        case question.question_type
+                        when "Multiple Choice"
+                            "Unimplemented"
+                        when "True/False"
+                            "Unimplemented"
+                        when "Numeric"
+                            "Unimplemented"
+                        else
+                            answer.short_answer
+                        end
+                    else
+                        "Unanswered"
+                    end
+                %>
+            </td>
+        </tr>
+        <% end %>
+        </tbody>
+    </table>
+</div>
+<div class="pref-review">
+    <h3>Preferences</h3>
+    <table class="questions-table">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Rating</th>
+            <th>Why</th>
+        </tr>
+        </thead>
+        
+        <tbody>
+        <% @prefs.each do |pref| %>
+        <tr>
+            <td><%= @users.where(:id => pref.selected_id).first.email %></td>
+            <td><%= pref.pref_type %></td>
+            <td><%= pref.rating %></td>
+            <td><%= pref.why %></td>
+        </tr>
+        <% end %>
+
+        <% @antiprefs.each do |anti| %>
+        <tr>
+            <td><%= @users.where(:id => anti.selected_id).first.email %></td>
+            <td><%= anti.pref_type %></td>
+            <td><%= anti.rating %></td>
+            <td><%= anti.why %></td>
+        </tr>
+        <% end %>
+        </tbody>
+    </table>
+</div>
+
+<p>
+    Are you sure that you want to submit this form? </br>
+    Completed forms can NOT be changed following their submission.
+</p>
+<%= link_to("Go Back", preferences_path) %>
+<%= link_to("Complete Submission", '#') %>

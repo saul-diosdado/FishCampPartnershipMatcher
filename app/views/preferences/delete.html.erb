@@ -1,0 +1,9 @@
+<h2 class="heading">Delete Preference</h2>
+
+<%= form_for(@pref, :method => 'delete') do |f| %>
+
+    <p> Are you sure that you wish to permanently delete your <%= @pref.pref_type %> of <%= @user.email %></p>
+    <%= link_to("Go Back", answers_path) %>
+    <%= f.submit("Delete Preference") %>
+
+<% end %>

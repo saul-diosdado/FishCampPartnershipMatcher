@@ -1,0 +1,6 @@
+<% question.choices.each do |choice| %>
+  <div class="form-check mx-4">
+    <%= f.radio_button(:multiple_choice, choice.content, class: "form-check-input") %>
+    <%= f.label(choice.content, class: "form-check-label") %>
+  </div>
+<% end %>

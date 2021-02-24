@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 2021_02_19_001026) do
     t.text "short_answer"
     t.boolean "true_false"
     t.integer "numeric"
+    t.string "multiple_choice"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["question_id"], name: "index_answers_on_question_id"

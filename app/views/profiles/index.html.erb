@@ -12,6 +12,7 @@ h3.centered {
     width: 25em;
 }
 
+<<<<<<< HEAD
 h1.margined {
 	padding-top: 40px;
 	padding-bottom: 40px;
@@ -61,4 +62,31 @@ h1.margined {
 			</div>
 		<% end %>
 	</table>
+=======
+<h2>Profiles</h2>
+<%= link_to("Create New Profile", new_profile_path, class: "btn btn-success") %><br/>
+
+<table class="listing" summary="Own Profile">
+    <% @profiles.each do |profile| %>
+        <tr>
+			<td><% if current_user.email.eql? profile.email %>
+					<%= link_to("View Your Profile", profile_path(profile), class: "btn btn-primary") %>
+				<% end %>
+			</td>
+        </tr>
+    <% end %>
+</table>
+
+<table class="listing" summary="Profile List">
+    <tr class="header">
+        <th>Name</th>
+    </tr>
+    <% @profiles.each do |profile| %>
+        <tr>
+            <td><%= profile.name%></td>
+            <td><%= link_to("Show", profile_path(profile), class: "btn btn-light btn-sm") %></td>
+        </tr>
+    <% end %>
+</table>
+>>>>>>> 2dab46f54ed3c049ac0724573073aac93c6dcb56
 </div>

@@ -1,25 +1,18 @@
 class ProfilesController < ApplicationController
+  before_action :require_login
+
   def index
-    if !signed_in?
-      render('loggedout')
-    end
-    @profiles = Profile.all
     user_id = current_user.id
+    @profiles = Profile.all
     if Profile.find_by user_id: user_id
       render('index2')
     end
   end
 
   def index2
-    if !signed_in?
-      render('loggedout')
-    end
   end
 
   def new
-    if !signed_in?
-      render('loggedout')
-    end
     user_id = current_user.id
     @profile = Profile.new
   end
@@ -28,7 +21,7 @@ class ProfilesController < ApplicationController
     filter = p
     @profile = Profile.new(profile_params)
     if @profile.save!
-      redirect_to(profiles_path, {:flash => {:green => "Profile created successfully."}})
+      redirect_to(profiles_path, {:flash => {:green => 'Profile created successfully.'}})
     else
       render('new')
     end
@@ -36,9 +29,6 @@ class ProfilesController < ApplicationController
 
   def edit
 	@profile = Profile.find(params[:id])
-    if !signed_in?
-      render('loggedout')
-    end
   end
   
   def update
@@ -52,9 +42,6 @@ class ProfilesController < ApplicationController
 
   def show
     @profile = Profile.find(params[:id])
-    if !signed_in?
-      render('loggedout')
-    end
   end
  
   def delete

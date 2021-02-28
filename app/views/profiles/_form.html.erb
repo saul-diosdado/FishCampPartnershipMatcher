@@ -1,0 +1,48 @@
+<!-- Form to Create/Edit a Profile -->
+<div class="form-group">
+        <%= f.label( :name, "Name:", class: "col-md-4 col-form-label") %>
+        <br>
+        <%= f.text_field(:name, class: "col-md-6 form-control") %>
+        <br>
+        <%= f.label(:email, "Email:", class: "col-md-4 col-form-label") %>
+        <br>
+        <%= f.text_field(:email, value: current_user.email, readonly: 'readonly', class: "col-md-6 form-control") %>
+        <br>
+        <%= f.label(:phonenumber, "Phonenumber:", class: "col-md-4 col-form-label") %>
+        <br>
+        <%= f.text_field(:phonenumber, class: "col-md-6 form-control") %>
+        <br>
+        <%= f.label(:snapchat, "Snapchat:", class: "col-md-4 col-form-label") %>
+        <br>
+        <%= f.text_field(:snapchat, class: "col-md-6 form-control") %>
+        <br>
+        <%= f.label(:instagram, "Instagram:", class: "col-md-4 col-form-label") %>
+        <br>
+        <%= f.text_field(:instagram, class: "col-md-6 form-control") %>
+        <br>
+        <%= f.label(:facebook, "Facebook:", class: "col-md-4 col-form-label") %>
+        <br>
+        <%= f.text_field(:facebook, class: "col-md-6 form-control") %>
+        <br>
+        <%= f.label(:twitter, "Twitter:", class: "col-md-4 col-form-label") %>
+        <br>
+        <%= f.text_field(:twitter, class: "col-md-6 form-control") %>
+        <br>
+        <%= f.label(:ptanimal, "PTAnimal:", class: "col-md-4 col-form-label") %>
+        <br>
+        <%= f.text_field(:ptanimal, class: "col-md-6 form-control") %>
+        <br>
+        <%= f.label(:pttruecolors, "PTTrueColors:", class: "col-md-4 col-form-label") %>
+        <br>
+        <%= f.text_field(:pttruecolors, class: "col-md-6 form-control") %>
+        <br>
+        <%= f.label(:ptmyersbriggs, "PTMyersBriggs:", class: "col-md-4 col-form-label") %>
+        <br>
+        <%= f.text_field(:ptmyersbriggs, class: "col-md-6 form-control") %>
+        <br>
+        <%= f.label(:aboutme, "About Me:", class: "col-md-4 col-form-label") %>
+        <br>
+        <%= f.text_field(:aboutme, class: "col-lg-10 form-control") %>
+        <br>
+        <%= f.check_box(:gender, class: "checkbox") %> Check if M, leave blank if F
+</div>

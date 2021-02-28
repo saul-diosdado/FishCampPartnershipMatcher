@@ -1,24 +1,18 @@
 {
   "RSpec": {
     "coverage": {
-      "/mnt/c/Users/sdbsn/Documents/Github/FishCampPartnershipMatcher/spec/models/question_spec.rb": {
+      "/mnt/c/Users/cindy/FishCampPartnershipMatcher/spec/models/profile_spec.rb": {
         "lines": [
           1,
           null,
           null,
           1,
           1,
-          1,
-          null,
-          null,
-          1,
-          1,
+          4,
           null,
           null,
           null,
-          1,
-          1,
-          1,
+          null,
           null,
           null,
           1,
@@ -27,11 +21,12 @@
           null,
           1,
           1,
+          1,
           null,
           null,
-          null,
-          null,
-          null,
+          1,
+          1,
+          1,
           null,
           null,
           1,
@@ -44,42 +39,38 @@
           1,
           1,
           1,
+          0,
+          0,
+          0,
+          0,
+          null,
+          null,
           1,
-          1,
-          1,
-          1,
+          0,
+          0,
+          0,
+          null,
+          null,
+          null,
           null,
           null,
           1,
           1,
-          1,
-          1,
-          1,
-          null,
-          null,
-          null,
-          null,
+          0,
+          0,
+          0,
+          0,
           null,
           1,
-          1,
-          1,
-          1,
-          1,
-          1,
-          1,
-          null,
-          null,
-          1,
-          1,
-          1,
-          1,
-          1,
-          1,
+          0,
+          0,
+          0,
+          0,
           null,
           null
         ]
       },
-      "/mnt/c/Users/sdbsn/Documents/Github/FishCampPartnershipMatcher/spec/rails_helper.rb": {
+      "/mnt/c/Users/cindy/FishCampPartnershipMatcher/spec/rails_helper.rb": {
         "lines": [
           null,
           1,
@@ -144,10 +135,11 @@
           1,
           null,
           null,
-          null
+          null,
+          1
         ]
       },
-      "/mnt/c/Users/sdbsn/Documents/Github/FishCampPartnershipMatcher/config/environment.rb": {
+      "/mnt/c/Users/cindy/FishCampPartnershipMatcher/config/environment.rb": {
         "lines": [
           null,
           1,
@@ -156,7 +148,7 @@
           1
         ]
       },
-      "/mnt/c/Users/sdbsn/Documents/Github/FishCampPartnershipMatcher/config/application.rb": {
+      "/mnt/c/Users/cindy/FishCampPartnershipMatcher/config/application.rb": {
         "lines": [
           1,
           null,
@@ -182,7 +174,7 @@
           null
         ]
       },
-      "/mnt/c/Users/sdbsn/Documents/Github/FishCampPartnershipMatcher/config/boot.rb": {
+      "/mnt/c/Users/cindy/FishCampPartnershipMatcher/config/boot.rb": {
         "lines": [
           1,
           null,
@@ -190,7 +182,7 @@
           1
         ]
       },
-      "/mnt/c/Users/sdbsn/Documents/Github/FishCampPartnershipMatcher/config/environments/test.rb": {
+      "/mnt/c/Users/cindy/FishCampPartnershipMatcher/config/environments/test.rb": {
         "lines": [
           1,
           null,
@@ -254,7 +246,7 @@
           null
         ]
       },
-      "/mnt/c/Users/sdbsn/Documents/Github/FishCampPartnershipMatcher/config/initializers/application_controller_renderer.rb": {
+      "/mnt/c/Users/cindy/FishCampPartnershipMatcher/config/initializers/application_controller_renderer.rb": {
         "lines": [
           null,
           null,
@@ -266,7 +258,7 @@
           null
         ]
       },
-      "/mnt/c/Users/sdbsn/Documents/Github/FishCampPartnershipMatcher/config/initializers/assets.rb": {
+      "/mnt/c/Users/cindy/FishCampPartnershipMatcher/config/initializers/assets.rb": {
         "lines": [
           null,
           null,
@@ -284,7 +276,7 @@
           null
         ]
       },
-      "/mnt/c/Users/sdbsn/Documents/Github/FishCampPartnershipMatcher/config/initializers/backtrace_silencers.rb": {
+      "/mnt/c/Users/cindy/FishCampPartnershipMatcher/config/initializers/backtrace_silencers.rb": {
         "lines": [
           null,
           null,
@@ -296,14 +288,14 @@
           1
         ]
       },
-      "/mnt/c/Users/sdbsn/Documents/Github/FishCampPartnershipMatcher/config/initializers/clearance.rb": {
+      "/mnt/c/Users/cindy/FishCampPartnershipMatcher/config/initializers/clearance.rb": {
         "lines": [
           1,
           1,
           null
         ]
       },
-      "/mnt/c/Users/sdbsn/Documents/Github/FishCampPartnershipMatcher/config/initializers/content_security_policy.rb": {
+      "/mnt/c/Users/cindy/FishCampPartnershipMatcher/config/initializers/content_security_policy.rb": {
         "lines": [
           null,
           null,
@@ -337,7 +329,7 @@
           null
         ]
       },
-      "/mnt/c/Users/sdbsn/Documents/Github/FishCampPartnershipMatcher/config/initializers/cookies_serializer.rb": {
+      "/mnt/c/Users/cindy/FishCampPartnershipMatcher/config/initializers/cookies_serializer.rb": {
         "lines": [
           null,
           null,
@@ -346,7 +338,7 @@
           1
         ]
       },
-      "/mnt/c/Users/sdbsn/Documents/Github/FishCampPartnershipMatcher/config/initializers/filter_parameter_logging.rb": {
+      "/mnt/c/Users/cindy/FishCampPartnershipMatcher/config/initializers/filter_parameter_logging.rb": {
         "lines": [
           null,
           null,
@@ -356,7 +348,7 @@
           null
         ]
       },
-      "/mnt/c/Users/sdbsn/Documents/Github/FishCampPartnershipMatcher/config/initializers/inflections.rb": {
+      "/mnt/c/Users/cindy/FishCampPartnershipMatcher/config/initializers/inflections.rb": {
         "lines": [
           null,
           null,
@@ -376,7 +368,7 @@
           null
         ]
       },
-      "/mnt/c/Users/sdbsn/Documents/Github/FishCampPartnershipMatcher/config/initializers/mime_types.rb": {
+      "/mnt/c/Users/cindy/FishCampPartnershipMatcher/config/initializers/mime_types.rb": {
         "lines": [
           null,
           null,
@@ -384,7 +376,7 @@
           null
         ]
       },
-      "/mnt/c/Users/sdbsn/Documents/Github/FishCampPartnershipMatcher/config/initializers/permissions_policy.rb": {
+      "/mnt/c/Users/cindy/FishCampPartnershipMatcher/config/initializers/permissions_policy.rb": {
         "lines": [
           null,
           null,
@@ -399,7 +391,7 @@
           null
         ]
       },
-      "/mnt/c/Users/sdbsn/Documents/Github/FishCampPartnershipMatcher/config/initializers/wrap_parameters.rb": {
+      "/mnt/c/Users/cindy/FishCampPartnershipMatcher/config/initializers/wrap_parameters.rb": {
         "lines": [
           null,
           null,
@@ -417,7 +409,7 @@
           null
         ]
       },
-      "/mnt/c/Users/sdbsn/Documents/Github/FishCampPartnershipMatcher/config/routes.rb": {
+      "/mnt/c/Users/cindy/FishCampPartnershipMatcher/config/routes.rb": {
         "lines": [
           1,
           1,
@@ -447,7 +439,7 @@
           null
         ]
       },
-      "/mnt/c/Users/sdbsn/Documents/Github/FishCampPartnershipMatcher/app/helpers/answers_helper.rb": {
+      "/mnt/c/Users/cindy/FishCampPartnershipMatcher/app/helpers/answers_helper.rb": {
         "lines": [
           1,
           null,
@@ -473,127 +465,57 @@
           null
         ]
       },
-      "/mnt/c/Users/sdbsn/Documents/Github/FishCampPartnershipMatcher/app/helpers/application_helper.rb": {
+      "/mnt/c/Users/cindy/FishCampPartnershipMatcher/app/helpers/application_helper.rb": {
         "lines": [
           1,
           null,
           1,
-          5,
+          0,
           null,
           null,
           1,
-          12,
           0,
-          12,
-          1,
-          11,
+          0,
+          0,
+          0,
+          0,
           0,
           null,
-          11,
+          0,
           null,
           null,
           null,
           null
         ]
       },
-      "/mnt/c/Users/sdbsn/Documents/Github/FishCampPartnershipMatcher/app/helpers/preferences_helper.rb": {
+      "/mnt/c/Users/cindy/FishCampPartnershipMatcher/app/helpers/preferences_helper.rb": {
         "lines": [
           1,
           null
         ]
       },
-      "/mnt/c/Users/sdbsn/Documents/Github/FishCampPartnershipMatcher/app/helpers/profiles_helper.rb": {
+      "/mnt/c/Users/cindy/FishCampPartnershipMatcher/app/helpers/profiles_helper.rb": {
         "lines": [
           1,
           null
         ]
       },
-      "/mnt/c/Users/sdbsn/Documents/Github/FishCampPartnershipMatcher/app/helpers/questions_helper.rb": {
+      "/mnt/c/Users/cindy/FishCampPartnershipMatcher/app/helpers/questions_helper.rb": {
         "lines": [
           1,
           null
         ]
       },
-      "/mnt/c/Users/sdbsn/Documents/Github/FishCampPartnershipMatcher/app/models/question.rb": {
+      "/mnt/c/Users/cindy/FishCampPartnershipMatcher/app/models/profile.rb": {
         "lines": [
           1,
           1,
           null,
           1,
-          1,
-          null,
           null
         ]
       },
-      "/mnt/c/Users/sdbsn/Documents/Github/FishCampPartnershipMatcher/app/models/application_record.rb": {
-        "lines": [
-          1,
-          1,
-          null
-        ]
-      },
-      "/mnt/c/Users/sdbsn/Documents/Github/FishCampPartnershipMatcher/app/models/choice.rb": {
-        "lines": [
-          1,
-          1,
-          null
-        ]
-      },
-      "/mnt/c/Users/sdbsn/Documents/Github/FishCampPartnershipMatcher/app/controllers/questions_controller.rb": {
-        "lines": [
-          1,
-          1,
-          3,
-          null,
-          null,
-          1,
-          0,
-          null,
-          null,
-          1,
-          4,
-          null,
-          null,
-          1,
-          4,
-          null,
-          4,
-          3,
-          null,
-          1,
-          null,
-          null,
-          null,
-          1,
-          0,
-          null,
-          null,
-          1,
-          0,
-          0,
-          0,
-          null,
-          0,
-          null,
-          null,
-          null,
-          1,
-          0,
-          null,
-          null,
-          1,
-          0,
-          0,
-          0,
-          null,
-          null,
-          1,
-          4,
-          null,
-          null
-        ]
-      },
-      "/mnt/c/Users/sdbsn/Documents/Github/FishCampPartnershipMatcher/app/controllers/application_controller.rb": {
+      "/mnt/c/Users/cindy/FishCampPartnershipMatcher/app/models/application_record.rb": {
         "lines": [
           1,
           1,
@@ -601,6 +523,6 @@
         ]
       }
     },
-    "timestamp": 1614523151
+    "timestamp": 1614539831
   }
 }

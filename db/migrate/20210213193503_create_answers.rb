@@ -7,6 +7,7 @@ class CreateAnswers < ActiveRecord::Migration[6.1]
       t.text :short_answer
       t.boolean :true_false
       t.integer :numeric
+      t.string :multiple_choice
 
       t.timestamps
     end

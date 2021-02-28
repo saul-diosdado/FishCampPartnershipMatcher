@@ -55,7 +55,7 @@
 	
   </table>
   
-<% if current_user.email.eql? @profile.email %>
+<% if current_user.id.eql? @profile.user_id %>
 	<%= link_to("Edit", edit_profile_path(@profile)) %><br/>
 	<%= link_to("Delete", delete_profile_path(@profile)) %>
 <% end %>

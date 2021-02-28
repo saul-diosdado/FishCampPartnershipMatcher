@@ -1,34 +1,66 @@
 
-<div class="profile_index">
-<% flash.each do |key, value| %>
-    <div class="flash-notice <%= key %>"><%= value %></div>
-  <% end %>
-<h1>Welcome to FishCamp Partnership Matcher!</h1>
+<style>
+.card {
+	display: inline-block;
+	margin-left: 10px;
+	margin-right: 10px;
+}
 
-<h2>Profiles</h2>
+h3.centered {
+ 	margin-left: auto;
+    margin-right: auto;
+	padding-bottom: 40px;
+    width: 25em;
+}
 
-<%= link_to("Create New Profile", new_profile_path) %><br/>
+h1.margined {
+	padding-top: 40px;
+	padding-bottom: 40px;
+}
 
-<table class="listing" summary="Own Profile">
-    <% @profiles.each do |profile| %>
-        <tr>
-			<td><% if current_user.email.eql? profile.email %>
-					<%= link_to("View Your Profile", profile_path(profile)) %>
+</style>
+
+<%# nav bar %>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">Navbar</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  
+   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+		<div class="navbar-nav">
+		  <% @profiles.each do |profile| %>
+				<% if current_user.email.eql? profile.email %>
+					<div class="btn btn-light"> <%= link_to("View Your Profile", profile_path(profile), :class => "btn", style: "color: dark grey") %></div>
 				<% end %>
-			</td>
-        </tr>
-    <% end %>
-</table>
+		  <% end %>
+		  <div class="btn btn-light"> <%= link_to("Create New Profile", new_profile_path, :class => "btn", style: "color: dark grey") %><br/></div>
+		</div>
+   </div>
+</nav>
 
-<table class="listing" summary="Profile List">
-    <tr class="header">
-        <th>Name</th>
-    </tr>
-    <% @profiles.each do |profile| %>
-        <tr>
-            <td><%= profile.name%></td>
-            <td><%= link_to("Show", profile_path(profile)) %></td>
-        </tr>
-    <% end %>
-</table>
+<div class="profile_index">
+	<div class = "container-fluid">
+		<% flash.each do |key, value| %>
+			<div class="flash-notice <%= key %>"><%= value %></div>
+		  <% end %>
+		<h1 style = "text-align: center" class = "margined">Welcome to FishCamp Partnership Matcher!</h1>
+
+		<h3 class = "centered"> Below are all of your fellow Fish Camp chairs. Click on a profile below to connect with one of your potential partners!</h2>
+	</div>
+
+	<table class="listing" summary="Profile List">
+		<% @profiles.each do |profile| %>
+			<div class="card" style="width: 18rem;">
+				<div class="card-body">
+					<h5 class="card-title"><%= profile.name%></h5>
+						<p class="card-text">Not sure what exactly will go in here yet. May be an optional bio or contact information.</p>
+						<div class="btn btn-secondary btn-sm"> <%= link_to("View Profile", profile_path(profile), :class => "btn", style: "color: white") %></div>
+				</div>
+			</div>
+		<% end %>
+	</table>
+
+
+
 </div>

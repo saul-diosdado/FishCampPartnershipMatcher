@@ -1,5 +1,4 @@
 class PreferencesController < ApplicationController
-  
   $user_id = 1
   $form_id = 1
 

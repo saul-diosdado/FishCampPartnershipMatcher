@@ -1,6 +1,6 @@
 class AnswersController < ApplicationController
-
   $user_id = 1
+  $form_id = 1
 
   def index
     @questions = Question.order('id ASC')

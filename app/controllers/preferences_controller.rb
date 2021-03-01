@@ -1,23 +1,20 @@
 class PreferencesController < ApplicationController
-  
-  $user_id = 1
-  $form_id = 1
 
   def index
-    @form = PreferenceForm.find($form_id)
-    @users = User.where(:role => "Chair", :approved => TRUE).where.not(:id => $user_id)
-    @prefs = Preference.where(:selector_id => $user_id, :pref_type => "Preference")
-    @antiprefs = Preference.where(:selector_id => $user_id, :pref_type => "Anti-Preference")
+    @form = PreferenceForm.find(params[:form_id])
+    @users = User.where(:role => "Chair", :approved => TRUE).where.not(:id => params[:user_id])
+    @prefs = Preference.where(:selector_id => params[:user_id], :pref_type => "Preference")
+    @antiprefs = Preference.where(:selector_id => params[:user_id], :pref_type => "Anti-Preference")
   end
 
   def show
-    @form = PreferenceForm.find($form_id)
-    @users = User.where(:role => "Chair", :approved => TRUE).where.not(:id => $user_id)
-    @prefs = Preference.where(:selector_id => $user_id, :pref_type => "Preference")
-    @antiprefs = Preference.where(:selector_id => $user_id, :pref_type => "Anti-Preference")
+    @form = PreferenceForm.find(params[:form_id])
+    @users = User.where(:role => "Chair", :approved => TRUE).where.not(:id => params[:user_id])
+    @prefs = Preference.where(:selector_id => params[:user_id], :pref_type => "Preference")
+    @antiprefs = Preference.where(:selector_id => params[:user_id], :pref_type => "Anti-Preference")
 
     @questions = Question.order('id ASC')
-    @answers = Answer.where(:user_id => $user_id)
+    @answers = Answer.where(:user_id => params[:user_id])
 
     error_id = 0
     @questions.each do |question|
@@ -48,8 +45,8 @@ class PreferencesController < ApplicationController
   end
 
   def new
-    @users = User.where(:role => "Chair", :approved => TRUE).where.not(:id => $user_id)
-    @pref = Preference.new(:selector_id => $user_id, :pref_type => params[:pref_type])
+    @users = User.where(:role => "Chair", :approved => TRUE).where.not(:id => params[:user_id])
+    @pref = Preference.new(:selector_id => params[:user_id], :pref_type => params[:pref_type])
   end
 
   def create
@@ -64,7 +61,7 @@ class PreferencesController < ApplicationController
 
   def edit
     @pref = Preference.find(params[:id])
-    @users = User.where(:role => "Chair", :approved => TRUE).where.not(:id => $user_id)
+    @users = User.where(:role => "Chair", :approved => TRUE).where.not(:id => params[:user_id])
   end
 
   def update

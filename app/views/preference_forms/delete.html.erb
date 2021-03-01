@@ -1,0 +1,9 @@
+<%= link_to("Back", questions_path()) %>
+<h1>Delete Form</h1>
+<%= form_for(@form, :method => "delete") do |f| %>
+  <p>Are you sure you want to permanently delete this form?</p>
+  <%= render(:partial => "preference_form_show", :locals => {:form => @form, :questions => @questions}) %>
+  <div>
+    <%= f.submit("Delete Form", class: "btn btn-danger") %>
+  </div>
+<% end %>

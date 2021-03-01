@@ -28,7 +28,7 @@
                 <%= link_to("Edit", edit_answer_path(answer, :question_id => question.id)) %>
                 <%= link_to("Delete Response", delete_answer_path(answer, :question_id => question.id)) %>
             <% else %>
-                <%= link_to("Add Response", new_answer_path(:question_id => question.id)) %>
+                <%= link_to("Add Response", new_answer_path(:question_id => question.id, :form_id => question.preference_form_id, :question_type => question.question_type)) %>
             <% end %>
         </td>
     </tr>
@@ -37,4 +37,4 @@
 
 </table>
 
-<%= link_to("Next Page", preferences_path) %>
+<%= link_to("Next Page", preferences_path(:form_id => @form_id, :user_id => $user_id)) %>

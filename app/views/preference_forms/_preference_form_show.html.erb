@@ -1,0 +1,17 @@
+<!-- Card view for a question -->
+<div class="card mb-4">
+  <!-- Card Header -->
+  <div class="card-header d-flex justify-content-between">
+    <h5><%= form.title %></h5>
+  </div>
+  <!-- Card Body -->
+  <div class="card-body">
+    <p>Creator: <%= form.creator_id %><p>
+    <% if (form.active ==  TRUE) %>
+      <p>Status: Public</p>
+    <% else %>
+      <p>Status: Private</p>
+    <% end %>
+    <p>Creation Date: <%= form.created_at %></p>
+  </div>
+</div>

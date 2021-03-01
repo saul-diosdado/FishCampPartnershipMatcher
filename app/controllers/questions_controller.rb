@@ -1,6 +1,9 @@
 class QuestionsController < ApplicationController
+    $form_id = 1
+    
     def index
-        @questions = Question.all
+        @form_id = params[:form_id]
+        @questions = Question.where(:preference_form_id => @form_id)
     end
 
     def show
@@ -8,6 +11,7 @@ class QuestionsController < ApplicationController
     end
 
     def new
+        @form_id = params[:form_id]
         @question = Question.new
     end
 
@@ -15,7 +19,7 @@ class QuestionsController < ApplicationController
         @question = Question.new(question_params)
 
         if @question.save
-            redirect_to(questions_path, {:flash => {:success => "Question created successfully."}})
+            redirect_to(questions_path(:form_id => @question.preference_form_id), {:flash => {:success => "Question created successfully."}})
         else
             render("new")
         end
@@ -28,7 +32,7 @@ class QuestionsController < ApplicationController
     def update
         @question = Question.find(params[:id])
         if @question.update(question_params)
-            redirect_to(questions_path, {:flash => {:success => "Question updated successfully."}})
+            redirect_to(questions_path(:form_id => @question.preference_form_id), {:flash => {:success => "Question updated successfully."}})
         else
             render("edit")
         end
@@ -40,11 +44,14 @@ class QuestionsController < ApplicationController
 
     def destroy
         @question = Question.find(params[:id])
+        form_id = @question.preference_form_id
+
         @question.destroy
-        redirect_to(questions_path, {:flash => {:success => "Question removed successfully."}})
+
+        redirect_to(questions_path(:form_id => form_id), {:flash => {:success => "Question removed successfully."}})
     end
 
     private def question_params
-        params.require(:question).permit(:question, :question_type, choices_attributes:[:id, :content, :_destroy])
+        params.require(:question).permit(:preference_form_id, :question, :question_type, choices_attributes:[:id, :content, :_destroy])
     end
 end

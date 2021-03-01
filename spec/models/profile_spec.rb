@@ -31,35 +31,35 @@ RSpec.describe Profile, type: :model do
 end
 
 #Integration Testing
-RSpec.describe "Controller Test", type: :system do
-    describe "proper messages" do
-        it "should flash correct messages in index2" do 
-            visit new_profile_path
-            fill_in "Name", with: "Bob"
-            click_button "Create Profile"
-            expect(page).to have_content("Profile created successfully.")
-        end
+# RSpec.describe "Controller Test", type: :system do
+#     describe "proper messages" do
+#         it "should flash correct messages in index2" do 
+#             visit new_profile_path
+#             fill_in "Name", with: "Bob"
+#             click_button "Create Profile"
+#             expect(page).to have_content("Profile created successfully.")
+#         end
 
-        it "Must have a name" do
-            visit new_profile_path
-            click_button "Create Profile"
-            expect(page).to have_content("Profile must have a name.")
-        end
-    end
-end
+#         it "Must have a name" do
+#             visit new_profile_path
+#             click_button "Create Profile"
+#             expect(page).to have_content("Profile must have a name.")
+#         end
+#     end
+# end
 
-#User Requirements Testing
-RSpec.describe "Create a profile", type: :system do
-    it "Create a profile" do
-        visit new_profile_path
-            fill_in "Name", with: "Bob"
-            click_button "Create Profile"
-            expect(page).to have_content("Bob")
-    end
-    it "Edit a profile" do
-        visit edit_profile_path
-        fill_in "Name", with: "Joe"
-        click_button "Edit Profile"
-        expect(page).to have_content("Joe")
-    end
-end
+# #User Requirements Testing
+# RSpec.describe "Create a profile", type: :system do
+#     it "Create a profile" do
+#         visit new_profile_path
+#             fill_in "Name", with: "Bob"
+#             click_button "Create Profile"
+#             expect(page).to have_content("Bob")
+#     end
+#     it "Edit a profile" do
+#         visit edit_profile_path
+#         fill_in "Name", with: "Joe"
+#         click_button "Edit Profile"
+#         expect(page).to have_content("Joe")
+#     end
+# end

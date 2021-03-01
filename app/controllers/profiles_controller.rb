@@ -17,6 +17,8 @@ class ProfilesController < ApplicationController
     @profile = Profile.new
   end
 
+
+
   def create
     filter = p
     @profile = Profile.new(profile_params)

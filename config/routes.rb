@@ -1,9 +1,6 @@
 Rails.application.routes.draw do
-  get 'preference_forms/index'
-  get 'preference_forms/new'
-  get 'preference_forms/edit'
-  get 'preference_forms/delete'
   root 'profiles#index'
+  
   resources :profiles do 
     member do
       get :delete
@@ -33,5 +30,7 @@ Rails.application.routes.draw do
       get :delete
     end
   end
+
+  resources :public_forms, only: [:index]
 end
 

@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 2021_02_19_001026) do
   create_table "answers", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "question_id"
+    t.bigint "preference_form_id"
     t.string "answer_type"
     t.text "short_answer"
     t.boolean "true_false"
@@ -25,6 +26,7 @@ ActiveRecord::Schema.define(version: 2021_02_19_001026) do
     t.string "multiple_choice"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["preference_form_id"], name: "index_answers_on_preference_form_id"
     t.index ["question_id"], name: "index_answers_on_question_id"
     t.index ["user_id"], name: "index_answers_on_user_id"
   end

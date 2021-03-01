@@ -40,6 +40,8 @@ class PreferenceFormsController < ApplicationController
     redirect_to(preference_forms_path, {:flash => {:success => "Form deleted successfully."}})
   end
 
+  
+
   private def form_params
     params.require(:preference_form).permit(:id, :title, :num_prefs, :num_antiprefs, :active)
   end

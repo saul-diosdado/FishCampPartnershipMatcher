@@ -3,9 +3,12 @@
 <% end %>
 
 <h1>Questions</h1>
-<%= link_to("Create New Question", new_question_path, class: "btn btn-success mt-2 mb-4") %>
+<%= link_to("Create New Question", new_question_path(:form_id => @form_id), class: "btn btn-success mt-2 mb-4") %>
 
-
+<% question_num = 1 %>
 <% @questions.each do |question| %>
-  <%= render(:partial => "question_index", :locals => {:question => question}) %>
+  <%= render(:partial => "question_index", :locals => {:question => question, :question_num => question_num}) %>
+  <% question_num = question_num + 1 %>
 <% end %>
+
+<%= link_to("Done", preference_forms_path, class: "btn btn-success mt-2 mb-4") %>

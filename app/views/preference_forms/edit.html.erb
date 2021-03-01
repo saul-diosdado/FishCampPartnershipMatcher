@@ -1,0 +1,8 @@
+<h1>Edit Form</h1>
+<%= form_for(@form) do |f| %>
+  <%= render(:partial => "form", :locals => {:f => f,:form_id => @form.id}) %>
+  <p>
+    <%= link_to("Back", preference_forms_path) %>
+    <%= f.submit("Update Form", class: "btn btn-primary") %>
+  </p>
+<% end %>

@@ -1,0 +1,31 @@
+<% flash.each do |key, value| %>
+  <div class="alert alert-<%= key %>"><%= value %></div>
+<% end %>
+
+<h1 class="my-4">Partnership Matching</h1>
+
+<table class="table table-striped table-hover">
+  <thead>
+      <tr>
+      <th scope="col">#</th>
+      <th scope="col">Chair #1</th>
+      <th scope="col">Chair #2</th>
+      <th scope="col">Action</th>
+      </tr>
+  </thead>
+  <tbody>
+    <!-- Unmatched Chairs at the top of the table -->
+    <% unmatched_num = 1 %>
+    <% @unmatched_chairs.each do |chair| %>
+      <%= render(:partial => "unmatched_chair_table_row", :locals => {:chair => chair, :unmatched_num => unmatched_num}) %>
+      <% unmatched_num = unmatched_num + 1 %>
+    <% end %>
+
+    <!-- All existing matches at the bottom of the table -->
+    <% match_num = 1 %>
+    <% @matches.each do |match| %>
+      <%= render(:partial => "matched_table_row", :locals => {:match => match, :matched_num => match_num}) %>
+      <% match_num = match_num + 1 %>
+    <% end %>
+  </tbody>
+</table>

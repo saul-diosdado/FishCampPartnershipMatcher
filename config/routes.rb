@@ -31,6 +31,12 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :matches do
+    member do
+      get :delete
+    end
+  end
+
   resources :public_forms, only: [:index]
 end
 

@@ -1,9 +1,12 @@
+# frozen_string_literal: true
+
+# Controller for allowing directors to create questions on a specific preference form.
 class QuestionsController < ApplicationController
   $form_id = 1
-  
+
   def index
     @form_id = params[:form_id]
-    @questions = Question.where(:preference_form_id => @form_id)
+    @questions = Question.where(preference_form_id: @form_id)
   end
 
   def show
@@ -19,9 +22,10 @@ class QuestionsController < ApplicationController
     @question = Question.new(question_params)
 
     if @question.save
-      redirect_to(questions_path(:form_id => @question.preference_form_id), {:flash => {:success => "Question created successfully."}})
+      redirect_to(questions_path(form_id: @question.preference_form_id),
+                  { flash: { success: 'Question created successfully.' } })
     else
-      render("new")
+      render('new')
     end
   end
 
@@ -32,14 +36,15 @@ class QuestionsController < ApplicationController
   def update
     @question = Question.find(params[:id])
     if @question.update(question_params)
-      redirect_to(questions_path(:form_id => @question.preference_form_id), {:flash => {:success => "Question updated successfully."}})
+      redirect_to(questions_path(form_id: @question.preference_form_id),
+                  { flash: { success: 'Question updated successfully.' } })
     else
-      render("edit")
+      render('edit')
     end
   end
 
   def delete
-    @question = Question.find(params[:id])  
+    @question = Question.find(params[:id])
   end
 
   def destroy
@@ -48,10 +53,13 @@ class QuestionsController < ApplicationController
 
     @question.destroy
 
-    redirect_to(questions_path(:form_id => form_id), {:flash => {:success => "Question removed successfully."}})
+    redirect_to(questions_path(form_id: form_id), { flash: { success: 'Question removed successfully.' } })
   end
 
-  private def question_params
-    params.require(:question).permit(:preference_form_id, :question, :question_type, choices_attributes:[:id, :content, :_destroy])
+  private
+
+  def question_params
+    params.require(:question).permit(:preference_form_id, :question, :question_type,
+                                     choices_attributes: %i[id content _destroy])
   end
 end

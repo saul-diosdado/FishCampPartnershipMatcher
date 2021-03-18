@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
   root 'profiles#index'
-  
-  resources :profiles do 
+
+  resources :profiles do
     member do
       get :delete
     end
@@ -39,4 +41,3 @@ Rails.application.routes.draw do
 
   resources :public_forms, only: [:index]
 end
-

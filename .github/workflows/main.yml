@@ -22,6 +22,13 @@ jobs:
         options: --entrypoint redis-server
 
     steps:
+      - uses: actions/checkout@v2
+      - uses: akhileshns/heroku-deploy@v3.0.0
+        with:
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          heroku_app_name: "your_app_name"
+          heroku_email: "your e-mail address associated with Heroku"
+          usedocker: true
       - uses: actions/checkout@v1
       - name: Setup Ruby
         uses: actions/setup-ruby@v1

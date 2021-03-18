@@ -1,11 +1,12 @@
-
+<!-- Renders the delete form -->
 <h2 class="heading">Delete Response</h2>
-
 <%= form_for(@answer, :method => 'delete') do |f| %>
+    <!-- Saves the preference_form_id to be passed to redirect -->
     <%= f.hidden_field(:form_id, value: @answer.preference_form_id) %>
 
-    <p> Are you sure that you wish to permanently delete your response to question: <%= @question %></p>
-    <%= link_to("Go Back", answers_path(:user_id => $user_id, :form_id => @answer.preference_form_id)) %>
-    <%= f.submit("Delete Response") %>
-    
+    <!-- Final deletion warning -->
+    <p> Are you sure that you wish to permanently delete your response to question: <%= @question.question %></p>
+    <!-- Delete and back buttons -->
+    <%= link_to("Back to Answers", answers_path(:user_id => current_user.id, :form_id => @answer.preference_form_id), class: "btn btn-secondary mt-2 mb-4") %>
+    <%= f.submit("Delete Response", class: "btn btn-danger mt-2 mb-4") %>
 <% end %>

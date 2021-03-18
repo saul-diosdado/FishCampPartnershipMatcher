@@ -17,13 +17,15 @@ class ProfilesController < ApplicationController
     @profile = Profile.new
   end
 
+
+
   def create
     filter = p
     @profile = Profile.new(profile_params)
-    if @profile.save!
+    if @profile.save
       redirect_to(profiles_path, {:flash => {:green => 'Profile created successfully.'}})
     else
-      render('new')
+      redirect_to(new_profile_path, {:flash => {:red => 'Profile must have a name.'}})
     end
   end
 
@@ -36,7 +38,7 @@ class ProfilesController < ApplicationController
 	if @profile.update(profile_params)
 		redirect_to(profiles_path, {:flash => {:green => 'Profile updated succesfully.'}})
 	else
-		render('edit')
+		redirect_to(edit_profile_path, {:flash => {:red => 'Profile did not update successfully.'}})
 	end
   end
 

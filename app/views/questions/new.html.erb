@@ -1,7 +1,7 @@
-<%= link_to("Home", questions_path()) %>
+<%= link_to("Questions", questions_path) %>
 <h1>Add New Question</h1>
 <%= form_for(@question) do |f| %>
-    <%= render(:partial => "form", :locals => {:f => f}) %>
+    <%= render(:partial => "form", :locals => {:f => f, :form_id => @form_id}) %>
     <p>
         <%= f.submit("Submit", class: "btn btn-primary my-1") %>
     </p>

@@ -1,0 +1,24 @@
+<%= error_messages_for(f.object) %>
+
+<!-- Form for Create/Update a question. -->
+<div class="form-group">
+  <%= f.label(:title, class: "col-md-4 col-form-label") %>
+  <div class="col-md-6">
+    <%= f.text_field(:title, class: "form-control") %>
+  </div>
+</div>
+<div class="form-group">
+  <p>Warning: Setting form to public will make it visible to chairs.</p>
+  <%= f.label(:active, "Visibility") %>
+  <%= f.select(:active, [["Private", FALSE], ["Public", TRUE]], class: "form-control") %>
+</div>
+<div class="form-group">
+  <%= f.label(:num_prefs, "Number of Preferences") %>
+  <%= f.select(:num_prefs, [1,2,3,4,5,6,7,8,9,10], class: "form-control") %>
+</div>
+<div class="form-group">
+  <%= f.label(:num_antiprefs, "Number of Anti-Preferences") %>
+  <%= f.select(:num_antiprefs, [1,2,3,4,5,6,7,8,9,10], class: "form-control") %>
+</div>
+
+

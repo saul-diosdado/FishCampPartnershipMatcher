@@ -2,10 +2,12 @@
 <%= form_for(@answer) do |f| %>
     <%= f.hidden_field(:user_id, value: @answer.user_id) %>
     <%= f.hidden_field(:question_id, value: @answer.question_id) %>
+    <%= f.hidden_field(:preference_form_id, value: @answer.preference_form_id) %>
     <%= f.hidden_field(:answer_type, value: @answer.answer_type) %>
+    <%= f.hidden_field(:form_id, value: @answer.preference_form_id) %>
 
     <%= render(:partial => "question", :locals => {:question => @question, :f => f}) %>   
 
-    <%= link_to("Go Back", answers_path) %>
+    <%= link_to("Go Back", answers_path(:user_id => $user_id, :form_id => @answer.preference_form_id)) %>
     <%= f.submit("Save") %>
 <% end %>

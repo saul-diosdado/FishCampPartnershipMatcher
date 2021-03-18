@@ -1,6 +1,8 @@
 <%= error_messages_for(f.object) %>
 
 <!-- Form for Create/Update a question. -->
+<%= f.hidden_field(:preference_form_id, :value => form_id) %>
+
 <div class="form-group">
   <%= f.label(:question) %>
   <br>

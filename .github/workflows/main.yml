@@ -1,7 +1,12 @@
 name: CI/CD
-on: [push, pull_request]
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
 
     services:
@@ -22,13 +27,6 @@ jobs:
         options: --entrypoint redis-server
 
     steps:
-      - uses: actions/checkout@v2
-      - uses: akhileshns/heroku-deploy@v3.0.0
-        with:
-          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-          heroku_app_name: "fish-camp-partnership-matcher"
-          heroku_email: "sdbsns825@gmail.com"
-          usedocker: true
       - uses: actions/checkout@v1
       - name: Setup Ruby
         uses: actions/setup-ruby@v1
@@ -51,3 +49,14 @@ jobs:
           bundle exec rake db:create
           bundle exec rake db:migrate
           bundle exec rspec .
+
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: akhileshns/heroku-deploy@v3.0.0
+        with:
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          heroku_app_name: "your_app_name"
+          heroku_email: "your e-mail address associated with Heroku"
+          usedocker: true

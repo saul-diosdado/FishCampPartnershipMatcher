@@ -45,7 +45,7 @@ jobs:
           RAILS_MASTER_SECRET: :${secrets.RAILS_MASTER_SECRET}
         run: |
           sudo apt-get -yqq install libpq-dev
-          sudo yarn add github:nathanvda/cocoon#c24ba53
+          sudo yarn add github:nathanvda/cocoon
           gem install bundler
           bundle install --jobs 4 --retry 3
           bundle exec rake db:create

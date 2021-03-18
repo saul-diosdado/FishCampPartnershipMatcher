@@ -27,7 +27,7 @@ jobs:
         options: --entrypoint redis-server
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v1
       - name: Setup Ruby
         uses: actions/setup-ruby@v1
         with:
@@ -42,6 +42,7 @@ jobs:
           RAILS_ENV: test
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: postgres
+          RAILS_MASTER_SECRET: :${secrets.RAILS_MASTER_SECRET}
         run: |
           sudo apt-get -yqq install libpq-dev
           gem install bundler

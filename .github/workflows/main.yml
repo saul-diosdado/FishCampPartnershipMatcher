@@ -6,7 +6,7 @@ on:
     branches: [main]
 
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
 
     services:
@@ -50,6 +50,9 @@ jobs:
           bundle exec rake db:migrate
           bundle exec rspec .
 
+  build:
+    runs-on: ubuntu-latest
+    steps:
       - uses: actions/checkout@v2
       - uses: akhileshns/heroku-deploy@v3.0.0
         with:

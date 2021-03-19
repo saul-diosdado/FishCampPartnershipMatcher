@@ -27,7 +27,24 @@ class MatchesController < ApplicationController
   end
 
   def edit
-    @match = Match.find(params[:user_id])
+    @match = Match.find(params[:id])
+    @info = Profile.all
+    
+    @questions = Question.all
+
+    @selector = Profile.where(user_id: @match.user_id).first
+    @selector_preferences = Preference.where(selector_id: @match.user_id, pref_type: 'Preference')
+    @selector_anti_preferences = Preference.where(selector_id: @match.user_id, pref_type: 'Anti-Preference')
+    @selector_answers = Answer.where(user_id: @match.user_id)
+    
+    @selected = Profile.where(user_id: @match.matched_id).first
+    @selector_preferences = Preference.where(selector_id: @match.user_id, pref_type: 'Preference')
+    @selector_anti_preferences = Preference.where(selector_id: @match.user_id, pref_type: 'Anti-Preference')
+    @selector_answers = Answer.where(user_id: @match.user_id)
+
+    if @match.matched_id != nil
+      # if they had a match, put that match on top
+    end
   end
 
   def update

@@ -22,7 +22,7 @@
         <td> <%= @info.where(user_id: chair.user_id).first.name %> </td>
         <td> N/A </td>
         <td>
-          <%= link_to("Find Match", edit_match_path(:user_id => chair.user_id), class: "btn btn-success btn-sm") %>
+          <%= link_to("Find Match", edit_match_path(chair), class: "btn btn-success btn-sm") %>
         </td>
       </tr>
       <% unmatched_num = unmatched_num + 1 %>

@@ -20,6 +20,10 @@ class ProfilesController < ApplicationController
     filter = p
     @profile = Profile.new(profile_params)
     if @profile.save
+      # Create an entry in the Match table for each user.
+      match = Match.new(user_id: profile_params[:user_id])
+      match.save(validate: false)
+      
       redirect_to(profiles_path, { flash: { green: 'Profile created successfully.' } })
     else
       redirect_to(new_profile_path, { flash: { red: 'Profile must have a name.' } })

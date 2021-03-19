@@ -17,15 +17,28 @@
     <!-- Unmatched Chairs at the top of the table -->
     <% unmatched_num = 1 %>
     <% @unmatched_chairs.each do |chair| %>
-      <%= render(:partial => "unmatched_chair_table_row", :locals => {:chair => chair, :unmatched_num => unmatched_num}) %>
+      <tr>
+        <th scope="row"> <%= unmatched_num %> </th>
+        <td> <%= @info.where(user_id: chair.user_id).first.name %> </td>
+        <td> N/A </td>
+        <td>
+          <%= link_to("Find Match", edit_match_path(:user_id => chair.user_id), class: "btn btn-success btn-sm") %>
+        </td>
+      </tr>
       <% unmatched_num = unmatched_num + 1 %>
     <% end %>
 
     <!-- All existing matches at the bottom of the table -->
-    <% match_num = 1 %>
-    <% @matches.each do |match| %>
-      <%= render(:partial => "matched_table_row", :locals => {:match => match, :matched_num => match_num}) %>
-      <% match_num = match_num + 1 %>
+    <% matched_num = 1 %>
+    <% @matched_chairs.each do |chair| %>
+      <tr>
+        <th scope="row"> <%= matched_num %> </th>
+        <td> <%= @info.where(user_id: chair.user_id).first.name %> </td>
+        <td> <%= @info.where(user_id: chair.matched_id).first.name %> </td>
+        <td>
+          <%= link_to("Edit Match", edit_match_path(:user_id => chair.user_id), class: "btn btn-success btn-sm") %>
+        </td>
+      </tr>
+      <% matched_num = matched_num + 1 %>
     <% end %>
-  </tbody>
 </table>

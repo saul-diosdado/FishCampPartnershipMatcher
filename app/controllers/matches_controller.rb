@@ -1,14 +1,11 @@
 class MatchesController < ApplicationController
 
   def index
-    # TDOO: Figure out some way in which everytime a new user is added to the Users table
-    # a new entry in Matches table is also created with matcher_id = user_id
-    
-    # All of the chairs that have not been matched with another chair.
-    @unmatched_chairs = Match.all.where(matched_id: nil)
+    @unmatched_chairs = Match.where(matched_id: nil)
 
-    # Used to display all of the confirmed matches at the bottom of the page.
-    @matches = Match.all
+    @matched_chairs = Match.where.not(matched_id: nil)
+
+    @info = Profile.all
   end
 
   def show
@@ -17,8 +14,6 @@ class MatchesController < ApplicationController
 
   def new
     @match = Match.new
-
-    user_prefs = User.join(Preference.all.where(selector_id: user_id))
   end
 
   def create
@@ -32,7 +27,7 @@ class MatchesController < ApplicationController
   end
 
   def edit
-    @match = Match.find(params[:id])
+    @match = Match.find(params[:user_id])
   end
 
   def update

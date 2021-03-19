@@ -62,7 +62,7 @@ class PreferencesController < ApplicationController
 
   def edit
     @pref = Preference.find(params[:id])
-    @users = User.where(:role => "Chair", :approved => TRUE).where.not(:id => params[:user_id])
+    @users = User.where(role: 'Chair', approved: TRUE).where.not(id: params[:user_id])
   end
 
   def update

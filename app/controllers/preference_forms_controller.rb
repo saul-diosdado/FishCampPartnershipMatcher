@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class PreferenceFormsController < ApplicationController
   def index
     @forms = PreferenceForm.all
@@ -48,9 +50,9 @@ class PreferenceFormsController < ApplicationController
     @form = PreferenceForm.new(form_params)
 
     if @form.save
-      redirect_to(questions_path(:form_id => @form.id), {:flash => {:success => "Form settings added successfully."}})
+      redirect_to(questions_path(form_id: @form.id), { flash: { success: 'Form settings added successfully.' } })
     else
-      render("new")
+      render('new')
     end
   end
 
@@ -61,9 +63,9 @@ class PreferenceFormsController < ApplicationController
   def update
     @form = PreferenceForm.find(params[:id])
     if @form.update(form_params)
-      redirect_to(preference_forms_path, {:flash => {:success => "Form settings updated successfully."}})
+      redirect_to(preference_forms_path, { flash: { success: 'Form settings updated successfully.' } })
     else
-      render("edit")
+      render('edit')
     end
   end
 
@@ -74,10 +76,8 @@ class PreferenceFormsController < ApplicationController
   def destroy
     @form = PreferenceForm.find(params[:id])
     @form.destroy
-    redirect_to(preference_forms_path, {:flash => {:success => "Form deleted successfully."}})
+    redirect_to(preference_forms_path, { flash: { success: 'Form deleted successfully.' } })
   end
-
-  
 
   private def form_params
     params.require(:preference_form).permit(:id, :title, :num_prefs, :num_antiprefs, :active)

@@ -32,5 +32,11 @@ Rails.application.routes.draw do
   end
 
   resources :public_forms, only: [:index]
+
+  resources :personalities, only: [:index]
+  get 'personalities/myersBriggs'
+  get 'personalities/conflictManagement'
+  get 'personalities/trueColors'
+  get 'personalities/enneagram'
 end
 

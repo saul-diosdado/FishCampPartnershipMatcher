@@ -1,0 +1,10 @@
+<h1>Welcome to the personalities page!</h1>
+
+<% flash.each do |key, value| %>
+	<div class="flash-notice <%= key %>"><%= value %></div>
+<% end %>
+
+<p> <%= link_to("Myers Briggs", "personalities/myersBriggs") %> </p>
+<p> <%= link_to("Conflict Management", "personalities/conflictManagement") %> </p>
+<p> <%= link_to("True Colors", "personalities/trueColors") %> </p>
+<p> <%= link_to("Enneagram", "personalities/enneagram") %> </p>

@@ -30,15 +30,19 @@
         <br>
         <%= f.label(:ptanimal, "PTAnimal:", class: "col-md-4 col-form-label") %>
         <br>
-        <%= f.text_field(:ptanimal, class: "col-md-6 form-control") %>
+        <%= f.select(:ptanimal, ["-", "The Collaborative Owl", "The Avoidant Turtle", "The Comprimising Fox", "The Competitive Shark", "The Acommodating Teddy Bear"], class: "form-control") %>
         <br>
         <%= f.label(:pttruecolors, "PTTrueColors:", class: "col-md-4 col-form-label") %>
         <br>
-        <%= f.text_field(:pttruecolors, class: "col-md-6 form-control") %>
+        <%= f.select(:pttruecolors, ["-", "Orange", "Gold", "Green", "Blue"], class: "form-control") %>
         <br>
         <%= f.label(:ptmyersbriggs, "PTMyersBriggs:", class: "col-md-4 col-form-label") %>
         <br>
-        <%= f.text_field(:ptmyersbriggs, class: "col-md-6 form-control") %>
+        <%= f.select(:ptmyersbriggs, ["-", "INFP", "ENFP", "INFJ", "ENFJ", "INTJ", "ENTJ", "INTP", "ENTP", "ISFP", "ESFP", "ISTP", "ESTP", "ISFJ", "ESFJ", "ISTJ", "ESTJ"], class: "form-control") %>
+        <br>
+        <%= f.label(:enneagram, "Enneagram:", class: "col-md-4 col-form-label") %>
+        <br>
+        <%= f.select(:enneagram, ["-", "Reformer", "Helper", "Achiever", "Individualist", "Investigator", "Loyalist", "Enthusiast", "Challenger", "Peacemaker"], class: "form-control") %>
         <br>
         <%= f.label(:aboutme, "About Me:", class: "col-md-4 col-form-label") %>
         <br>

@@ -1,3 +1,4 @@
+<!-- Renders the multiple choice responses -->
 <% question.choices.each do |choice| %>
   <div class="form-check mx-4">
     <%= f.radio_button(:multiple_choice, choice.content, class: "form-check-input") %>

@@ -1,12 +1,9 @@
-<!-- Card layout for each question plus CRUD for each. -->
+<!-- Card layout for each question. -->
 <div class="card mb-4">
-  <!-- Card Header -->
-  <div class="card-header d-flex justify-content-between">
-    <h5>Question <%= question.id %></h5>
-  </div>
   <!-- Card Body -->
   <div class="card-body">
     <h5 class="card-title"><%= question.question %></h5>
+    <!-- Renders the question type partial -->
     <%= render(:partial => get_partial(question), :locals => {:question => question, :f => f}) %>
   </div>
 </div>

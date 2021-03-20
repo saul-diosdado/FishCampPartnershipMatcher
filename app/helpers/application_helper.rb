@@ -40,6 +40,11 @@ module ApplicationHelper
 
   # Given an Answer object, return the corresponding answer based on the original question type.
   def get_answer(answer)
+    # In case the Chair did not answer this question.
+    if answer == nil
+      return "No response provided."
+    end
+
     case answer.answer_type
     when "Multiple Choice"  # If multiple choice, show selected answer.
       answer.multiple_choice

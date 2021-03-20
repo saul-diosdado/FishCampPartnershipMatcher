@@ -36,12 +36,9 @@ class MatchesController < ApplicationController
     @selector_preferences = Preference.where(selector_id: @match.user_id, pref_type: 'Preference')
     @selector_anti_preferences = Preference.where(selector_id: @match.user_id, pref_type: 'Anti-Preference')
     @selector_answers = Answer.where(user_id: @match.user_id)
-    
-    @selected = Profile.where(user_id: @match.matched_id).first
-    @selector_preferences = Preference.where(selector_id: @match.user_id, pref_type: 'Preference')
-    @selector_anti_preferences = Preference.where(selector_id: @match.user_id, pref_type: 'Anti-Preference')
-    @selector_answers = Answer.where(user_id: @match.user_id)
 
+    helpers.generate_prospects(@match.user_id)
+    
     if @match.matched_id != nil
       # if they had a match, put that match on top
     end
@@ -49,7 +46,14 @@ class MatchesController < ApplicationController
 
   def update
     @match = Match.find(params[:id])
+
+    # Check if this Chair already had an existing match.
+    if @match.matched_id != nil
+      helpers.unmatch_existing_match(@match.matched_id)
+    end
+
     if @match.update(match_params)
+      helpers.create_match(params[:matched_id], params[:user_id])
       redirect_to(mathces_path({:flash => {:success => "Match updated successfully."}}))
     else
       render("edit")

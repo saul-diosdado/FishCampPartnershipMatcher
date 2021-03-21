@@ -1,12 +1,16 @@
 # frozen_string_literal: true
 
 class ProfilesController < ApplicationController
+  #user must be logged in to access any views
   before_action :require_login
 
   def index
     user_id = current_user.id
     @profiles = Profile.all
-    render('index2') if Profile.find_by user_id: user_id
+    #If user has already created a profile, brings them to a second index
+    if Profile.find_by user_id: user_id
+      render('index2')
+    end
   end
 
   def index2; end
@@ -53,10 +57,8 @@ class ProfilesController < ApplicationController
     redirect_to(profiles_path, { flash: { red: 'Profile deleted successfully.' } })
   end
 
-  def loggedout; end
-
-  private def profile_params
-    params.require(:profile).permit(:name, :email, :phonenumber, :snapchat, :instagram, :facebook, :twitter,
-                                    :ptanimal, :pttruecolors, :ptmyersbriggs, :aboutme, :approvedchair, :gender, :user_id)
+  #defined valid parameters for creating a profile
+  private def profile_params() 
+    params.require(:profile).permit(:name, :email, :phonenumber, :snapchat, :instagram, :facebook, :twitter, :ptanimal, :pttruecolors, :ptmyersbriggs, :enneagram, :aboutme, :approvedchair, :gender, :user_id)
   end
 end

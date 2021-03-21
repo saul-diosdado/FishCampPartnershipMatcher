@@ -40,4 +40,6 @@ Rails.application.routes.draw do
   get 'personalities/conflictManagement'
   get 'personalities/trueColors'
   get 'personalities/enneagram'
+  get 'personalities/conflictManagementFox'
+
 end

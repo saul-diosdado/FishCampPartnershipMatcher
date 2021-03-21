@@ -1,9 +1,11 @@
 class ProfilesController < ApplicationController
+  #user must be logged in to access any views
   before_action :require_login
 
   def index
     user_id = current_user.id
     @profiles = Profile.all
+    #If user has already created a profile, brings them to a second index
     if Profile.find_by user_id: user_id
       render('index2')
     end
@@ -16,8 +18,6 @@ class ProfilesController < ApplicationController
     user_id = current_user.id
     @profile = Profile.new
   end
-
-
 
   def create
     filter = p
@@ -56,9 +56,7 @@ class ProfilesController < ApplicationController
     redirect_to(profiles_path, {:flash => {:red => 'Profile deleted successfully.'}})
   end
 
-  def loggedout
-  end
-
+  #defined valid parameters for creating a profile
   private def profile_params() 
     params.require(:profile).permit(:name, :email, :phonenumber, :snapchat, :instagram, :facebook, :twitter, :ptanimal, :pttruecolors, :ptmyersbriggs, :enneagram, :aboutme, :approvedchair, :gender, :user_id)
   end

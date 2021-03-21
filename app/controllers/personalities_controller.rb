@@ -1,7 +1,16 @@
 class PersonalitiesController < ApplicationController
+  #user must be logged in to access any views
+  before_action :require_login
+
   def index
     user_id = current_user.id
     @profile = Profile.find_by user_id: user_id
+    if (@profile.ptanimal == "The Compromising Fox")
+      render("indexFox")
+    end
+  end
+
+  def indexFox
   end
 
   def myersBriggs
@@ -30,66 +39,82 @@ class PersonalitiesController < ApplicationController
       idealMatches = ["ENFJ", "ENTJ"]
       @idealMatches = ReturnMatches(idealMatches)
       @goodMatches = ReturnMatchesDouble(idealMatches, top8)
+      @goodMatches = @goodMatches.where.not(user_id: user_id)
       when "ENFP"
       idealMatches = ["INFJ", "INTJ"]
       @idealMatches = ReturnMatches(idealMatches)
       @goodMatches = ReturnMatchesDouble(idealMatches, top8)
+      @goodMatches = @goodMatches.where.not(user_id: user_id)
       when "INFJ"
       idealMatches = ["ENFP", "ENTP"]
       @idealMatches = ReturnMatches(idealMatches)
       @goodMatches = ReturnMatchesDouble(idealMatches, top8)
+      @goodMatches = @goodMatches.where.not(user_id: user_id)
       when "ENFJ"
       idealMatches = ["INFP", "ISFP"]
       @idealMatches = ReturnMatches(idealMatches)
       @goodMatches = ReturnMatchesDouble(idealMatches, top8)
+      @goodMatches = @goodMatches.where.not(user_id: user_id)
       when "INTJ"
       idealMatches = ["ENFP", "ENTP"]
       @idealMatches = ReturnMatches(idealMatches)
       @goodMatches = ReturnMatchesDouble(idealMatches, top8)
+      @goodMatches = @goodMatches.where.not(user_id: user_id)
       when "ENTJ"
       idealMatches = ["INFP", "INTP"]
       @idealMatches = ReturnMatches(idealMatches)
       @goodMatches = ReturnMatchesDouble(idealMatches, top8)
+      @goodMatches = @goodMatches.where.not(user_id: user_id)
       when "INTP"
       idealMatches = ["ENTJ", "ESTJ"]
       @idealMatches = ReturnMatches(idealMatches)
       @goodMatches = ReturnMatchesDouble(idealMatches, top8)
+      @goodMatches = @goodMatches.where.not(user_id: user_id)
       when "ENTP"
       idealMatches = ["INFJ", "INTJ"]
       @idealMatches = ReturnMatches(idealMatches)
       @goodMatches = ReturnMatchesDouble(idealMatches, top8)
+      @goodMatches = @goodMatches.where.not(user_id: user_id)
       when "ISFP"
       idealMatches = ["ENFJ", "ESFJ", "ESTJ"]
       @idealMatches = ReturnMatches(idealMatches)
       @goodMatches = ReturnMatchesDouble(idealMatches, middle4)
+      @goodMatches = @goodMatches.where.not(user_id: user_id)
       when "ESFP"
       idealMatches = ["ISFJ", "ISTJ"]
       @idealMatches = ReturnMatches(idealMatches)
       @goodMatches = ReturnMatchesDouble(idealMatches, middle4)
+      @goodMatches = @goodMatches.where.not(user_id: user_id)
       when "ISTP"
       idealMatches = ["ESFJ", "ESTJ"]
       @idealMatches = ReturnMatches(idealMatches)
       @goodMatches = ReturnMatchesDouble(idealMatches, middle4)
+      @goodMatches = @goodMatches.where.not(user_id: user_id)
       when "ESTP"
       idealMatches = ["ISFJ", "ISTJ"]
       @idealMatches = ReturnMatches(idealMatches)
       @goodMatches = ReturnMatchesDouble(idealMatches, middle4)
+      @goodMatches = @goodMatches.where.not(user_id: user_id)
       when "ISFJ"
       idealMatches = ["ESFP", "ESTP"]
       @idealMatches = ReturnMatches(idealMatches)
       @goodMatches = ReturnMatches(bottom4)
+      @goodMatches = @goodMatches.where.not(user_id: user_id)
       when "ESFJ"
       idealMatches = ["ISFP", "ISTP"]
       @idealMatches = ReturnMatches(idealMatches)
       @goodMatches = ReturnMatches(bottom4)
+      @goodMatches = @goodMatches.where.not(user_id: user_id)
       when "ISTJ"
       idealMatches = ["ESFP", "ESTP"]
       @idealMatches = ReturnMatches(idealMatches)
       @goodMatches = ReturnMatches(bottom4)
+      @goodMatches = @goodMatches.where.not(user_id: user_id)
       when "ESTJ"
       idealMatches = ["INTP", "ISFP", "ISTP"]
       @idealMatches = ReturnMatches(idealMatches)
       @goodMatches = ReturnMatches(bottom4)
+      @goodMatches = @goodMatches.where.not(user_id: user_id)
       else
         redirect_to(personalities_path, {:flash => {:red => 'Profile must have MB test filled out to view this page.'}})
     end
@@ -102,17 +127,11 @@ class PersonalitiesController < ApplicationController
     crType = @userProfile.ptanimal
     #Returns a list of users who have the same conflict animal as the user
     @sameCM = Profile.where(ptanimal: crType)
-    @foxCM = nil
-    if (crType != "The Compromising Fox")
-      #Returns a list of users who have the fox conflict animal
-      @foxCM = Profile.where(ptanimal: "The Compromising Fox")
-    end
+    @sameCM = @sameCM.where.not(user_id: user_id)
+    #list of fox types as foxes can be paired with anybody
+    @foxCM = Profile.where(ptanimal: "The Compromising Fox")
     #Depending on the user's conflict animal, returns a list of users who have the opposite type
     case crType
-    when "The Compromising Fox"
-      allAnimals = ["The Competitive Shark", "The Collaborative Owl", "The Avoidant Turtle", "The Accommodating Teddy Bear"]
-      @oppositeMatches = Profile.where(ptanimal: Allanimals)
-      @message = "As a Fox, you can match with anybody!"
     when "The Competitive Shark"
       oppositeAnimal = ["The Accommodating Teddy Bear"]
       @oppositeMatches = Profile.where(ptanimal: oppositeAnimal)
@@ -130,8 +149,24 @@ class PersonalitiesController < ApplicationController
       @oppositeMatches = Profile.where(ptanimal: oppositeAnimal)
       @message = "As a Teddy Bear, your best matches are sharks!"
     else
-      redirect_to(personalities_path, {:flash => {:red => 'Profile must have result of Conflict Resolution test filled out to view this page.'}})
+      redirect_to(personalities_path, {:flash => {:red => 'Profile must have result of Conflict Management test filled out to view this page.'}})
     end
+  end
+
+  def conflictManagementFox
+    #Because foxes can match with all types of animals, they have their own page displaying all of them
+    user_id = current_user.id
+    @userProfile = Profile.find_by user_id: user_id
+    crType = @userProfile.ptanimal
+    #Returns a list of users who have the same conflict animal as the user
+    @sameCM = Profile.where(ptanimal: crType)
+    @sameCM = @sameCM.where.not(user_id: user_id)
+    #Stores every animal outside of fox in their own arrays
+    @sharks = Profile.where(ptanimal: "The Competitive Shark")
+    @owls = Profile.where(ptanimal: "The Collaborative Owl")
+    @turtles = Profile.where(ptanimal: "The Avoidant Turtle")
+    @bears = Profile.where(ptanimal: "The Accommodating Teddy Bear")
+    @message = "As a Fox, you can match with anybody!"
   end
 
   def trueColors
@@ -143,6 +178,7 @@ class PersonalitiesController < ApplicationController
     case userTC
     when "Blue"
       @sameProfiles = Profile.where(pttruecolors: userTC)
+      @sameProfiles = @sameProfiles.where.not(user_id: user_id)
       @otherProfiles1 = Profile.where(pttruecolors: "Gold")
       @otherProfiles1color = "Gold"
       @otherProfiles2 = Profile.where(pttruecolors: "Green")
@@ -151,6 +187,7 @@ class PersonalitiesController < ApplicationController
       @otherProfiles3color = "Orange"
     when "Gold"
       @sameProfiles = Profile.where(pttruecolors: userTC)
+      @sameProfiles = @sameProfiles.where.not(user_id: user_id)
       @otherProfiles1 = Profile.where(pttruecolors: "Blue")
       @otherProfiles1color = "Blue"
       @otherProfiles2 = Profile.where(pttruecolors: "Green")
@@ -159,6 +196,7 @@ class PersonalitiesController < ApplicationController
       @otherProfiles3color = "Orange"
     when "Green"
       @sameProfiles = Profile.where(pttruecolors: userTC)
+      @sameProfiles = @sameProfiles.where.not(user_id: user_id)
       @otherProfiles1 = Profile.where(pttruecolors: "Blue")
       @otherProfiles1color = "Blue"
       @otherProfiles2 = Profile.where(pttruecolors: "Gold")
@@ -167,6 +205,7 @@ class PersonalitiesController < ApplicationController
       @otherProfiles3color = "Orange"
     when "Orange"
       @sameProfiles = Profile.where(pttruecolors: userTC)
+      @sameProfiles = @sameProfiles.where.not(user_id: user_id)
       @otherProfiles1 = Profile.where(pttruecolors: "Gold")
       @otherProfiles1color = "Gold"
       @otherProfiles2 = Profile.where(pttruecolors: "Green")
@@ -187,47 +226,47 @@ class PersonalitiesController < ApplicationController
     case userEnneagram
     when "Reformer"
       #Type 1
-      #Ideal matches are types 4 and 7
+      @m = "Your ideal matches are Invidualists and Enthusiasts!"
       bestTypes = ["Individualist", "Enthusiast"]
       @bestMatches = Profile.where(enneagram: bestTypes)
     when "Helper"
       #Type 2
-      #Ideal Matches are types 4 and 8
+      @m = "Your ideal matches are Invidualists and Challengers!"
       bestTypes = ["Individualist", "Challenger"]
       @bestMatches = Profile.where(enneagram: bestTypes)
     when "Achiever"
       #Type 3
-      #Ideal Matches are types 6 and 9
+      @m = "Your ideal matches are Loyalists and Peacemakers!"
       bestTypes = ["Loyalist", "Peacemaker"]
       @bestMatches = Profile.where(enneagram: bestTypes)
     when "Individualist"
       #Type 4
-      #Ideal Matches are types 1 and 2
+      @m = "Your ideal matches are Reformers and Helpers!"
       bestTypes = ["Reformer", "Helper"]
       @bestMatches = Profile.where(enneagram: bestTypes)
     when "Investigator"
       #Type 5
-      #Ideal Matches are types 7 and 8
+      @m = "Your ideal matches are Enthusiasts and Challengers!"
       bestTypes = ["Enthusiast", "Challenger"]
       @bestMatches = Profile.where(enneagram: bestTypes)
     when "Loyalist"
       #Type 6
-      #Ideal Matches are types 3 and 9
+      @m = "Your ideal matches are Achievers and Peacemakers!"
       bestTypes = ["Achiever", "Peacemaker"]
       @bestMatches = Profile.where(enneagram: bestTypes)
     when "Enthusiast"
       #Type 7
-      #Ideal Matches are types 1 and 5
+      @m = "Your ideal matches are Reformers and Investigators!"
       bestTypes = ["Reformer", "Investigator"]
       @bestMatches = Profile.where(enneagram: bestTypes)
     when "Challenger"
       #Type 8
-      #Ideal Matches are types 2 and 5
+      @m = "Your ideal matches are Helpers and Investigators!"
       bestTypes = ["Helper", "Investigator"]
       @bestMatches = Profile.where(enneagram: bestTypes)
     when "Peacemaker"
       #Type 9
-      #Ideal Matches are types 3 and 6
+      @m = "Your ideal matches are Acheivers and Loyalists!"
       bestTypes = ["Achiever", "Loyalist"]
       @bestMatches = Profile.where(enneagram: bestTypes)
     else

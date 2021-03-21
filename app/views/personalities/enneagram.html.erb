@@ -4,7 +4,7 @@
 
 <h1>Your type is: <%= @userProfile.enneagram %></h1>
 
-<h1> Ideal matches: </h1>
+<h1><%= @m %></h1>
 <table class="listing" summary="Ideal matches list">
     <% @bestMatches.each do |bestMatch| %>
         <div class="card-body">

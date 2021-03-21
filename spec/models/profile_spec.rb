@@ -1,39 +1,41 @@
-require "rails_helper"
+# frozen_string_literal: true
 
-#Profile Model Unit Test
+require 'rails_helper'
+
+# Profile Model Unit Test
 RSpec.describe Profile, type: :model do
-    subject {
-        described_class.new(
-            email: "blah@gmail.com",
-            name: "Billy Joe",
-            user_id: 21
-        )
-    }
+  subject do
+    described_class.new(
+      email: 'blah@gmail.com',
+      name: 'Billy Joe',
+      user_id: 21
+    )
+  end
 
-    it "is valid with valid attributes" do
-        expect(subject).to be_valid
-    end
+  it 'is valid with valid attributes' do
+    expect(subject).to be_valid
+  end
 
-    it "is not valid without an email" do
-        subject.email = nil
-        expect(subject).to_not be_valid
-    end
+  it 'is not valid without an email' do
+    subject.email = nil
+    expect(subject).to_not be_valid
+  end
 
-    it "is not valid without an name" do
-        subject.name = nil
-        expect(subject).to_not be_valid
-    end
+  it 'is not valid without an name' do
+    subject.name = nil
+    expect(subject).to_not be_valid
+  end
 
-    it "is not valid without an user_id" do
-        subject.user_id = nil
-        expect(subject).to_not be_valid
-    end
+  it 'is not valid without an user_id' do
+    subject.user_id = nil
+    expect(subject).to_not be_valid
+  end
 end
 
-#Integration Testing
+# Integration Testing
 # RSpec.describe "Controller Test", type: :system do
 #     describe "proper messages" do
-#         it "should flash correct messages in index2" do 
+#         it "should flash correct messages in index2" do
 #             visit new_profile_path
 #             fill_in "Name", with: "Bob"
 #             click_button "Create Profile"

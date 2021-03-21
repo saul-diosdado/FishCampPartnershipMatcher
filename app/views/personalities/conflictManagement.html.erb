@@ -1,3 +1,39 @@
 <p> <%= link_to("Home", personalities_path) %> </p>
-<h1>Personalities#conflictManagement</h1>
 
+<h3> Hello! This page will display the chairs who have the same conflict management animal as you, as well as the conflict management animal
+opposite to you (your ideal type), as well as the fox animal type as they can be paired up with anybody </h3>
+
+<h1> Your Type: <%= @userProfile.ptanimal %> </h1>
+
+<h1> Profiles with the same type: </h1>
+<table class="listing" summary="Same Type List">
+    <% @sameCM.each do |same| %>
+        <div class="card-body">
+			<h5 class="card-title"><%= same.name%></h5>
+				<p class="card-text"><%= same.ptanimal %></p>
+				<div class="btn btn-secondary btn-sm"> <%= link_to("View Profile", profile_path(same), :class => "btn", style: "color: white") %></div>
+		</div>
+    <% end %>
+</table>
+
+<h1> Profiles with the Fox CM type: </h1>
+<table class="listing" summary="Same Type List">
+    <% @foxCM.each do |fox| %>
+        <div class="card-body">
+			<h5 class="card-title"><%= fox.name%></h5>
+				<p class="card-text"><%= fox.ptanimal %></p>
+				<div class="btn btn-secondary btn-sm"> <%= link_to("View Profile", profile_path(fox), :class => "btn", style: "color: white") %></div>
+		</div>
+    <% end %>
+</table>
+
+<h1> Profiles with the opposite CM type: </h1>
+<table class="listing" summary="Same Type List">
+    <% @oppositeMatches.each do |opposite| %>
+        <div class="card-body">
+			<h5 class="card-title"><%= opposite.name%></h5>
+				<p class="card-text"><%= opposite.ptanimal %></p>
+				<div class="btn btn-secondary btn-sm"> <%= link_to("View Profile", profile_path(opposite), :class => "btn", style: "color: white") %></div>
+		</div>
+    <% end %>
+</table>

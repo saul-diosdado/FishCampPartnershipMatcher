@@ -1,3 +1,27 @@
 <p> <%= link_to("Home", personalities_path) %> </p>
-<h1>Personalities#myersBriggs</h1>
-<p>Find me in app/views/personalities/myersBriggs.html.erb</p>
+
+<h3> Hello! This page will display a list of your ideal matches based off of the results of your myers Briggs personality test! </h3>
+
+<h1> Your Personality Type: <%= @userProfile.ptmyersbriggs %> </h1>
+
+<h1> Ideal Matches: </h1>
+<table class="listing" summary="Ideal Match List">
+    <% @idealMatches.each do |idealMatch| %>
+        <div class="card-body">
+			<h5 class="card-title"><%= idealMatch.name%></h5>
+				<p class="card-text"><%= idealMatch.ptmyersbriggs %></p>
+				<div class="btn btn-secondary btn-sm"> <%= link_to("View Profile", profile_path(idealMatch), :class => "btn", style: "color: white") %></div>
+		</div>
+    <% end %>
+</table>
+
+<h1> Good Matches: </h1>
+<table class="listing" summary="Ideal Match List">
+    <% @goodMatches.each do |goodMatch| %>
+        <div class="card-body">
+			<h5 class="card-title"><%= goodMatch.name%></h5>
+				<p class="card-text"><%= goodMatch.ptmyersbriggs %></p>
+				<div class="btn btn-secondary btn-sm"> <%= link_to("View Profile", profile_path(goodMatch), :class => "btn", style: "color: white") %></div>
+		</div>
+    <% end %>
+</table>

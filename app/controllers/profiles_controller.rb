@@ -24,7 +24,7 @@ class ProfilesController < ApplicationController
     filter = p
     @profile = Profile.new(profile_params)
     if @profile.save
-      redirect_to(profiles_path, { flash: { green: 'Profile created successfully.' } })
+      redirect_to(profiles_path, { flash: { green: "Created #{@profile.name} successfully." } })
     else
       redirect_to(new_profile_path, { flash: { red: 'Profile must have a name.' } })
     end
@@ -37,7 +37,7 @@ class ProfilesController < ApplicationController
   def update
     @profile = Profile.find(params[:id])
     if @profile.update(profile_params)
-      redirect_to(profiles_path, { flash: { green: 'Profile updated succesfully.' } })
+      redirect_to(profiles_path, { flash: { green: "Profile #{@profile.name} updated succesfully." } })
     else
       redirect_to(edit_profile_path, { flash: { red: 'Profile did not update successfully.' } })
     end

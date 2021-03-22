@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -14,10 +12,8 @@
 
 ActiveRecord::Schema.define(version: 2021_03_21_205844) do
 
-
-ActiveRecord::Schema.define(version: 20_210_219_001_026) do
   # These are extensions that must be enabled in order to support this database
-  enable_extension 'plpgsql'
+  enable_extension "plpgsql"
 
   create_table "answers", force: :cascade do |t|
     t.bigint "user_id"
@@ -31,12 +27,12 @@ ActiveRecord::Schema.define(version: 20_210_219_001_026) do
     t.index ["user_id"], name: "index_answers_on_user_id"
   end
 
-  create_table 'choices', force: :cascade do |t|
-    t.text 'content'
-    t.bigint 'question_id', null: false
-    t.datetime 'created_at', precision: 6, null: false
-    t.datetime 'updated_at', precision: 6, null: false
-    t.index ['question_id'], name: 'index_choices_on_question_id'
+  create_table "choices", force: :cascade do |t|
+    t.text "content"
+    t.bigint "question_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["question_id"], name: "index_choices_on_question_id"
   end
 
   create_table "preference_forms", force: :cascade do |t|
@@ -88,19 +84,19 @@ ActiveRecord::Schema.define(version: 20_210_219_001_026) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table 'users', force: :cascade do |t|
-    t.string 'email'
-    t.string 'password'
-    t.string 'role'
-    t.boolean 'approved'
-    t.datetime 'created_at', precision: 6, null: false
-    t.datetime 'updated_at', precision: 6, null: false
-    t.string 'encrypted_password', limit: 128
-    t.string 'confirmation_token', limit: 128
-    t.string 'remember_token', limit: 128
-    t.index ['email'], name: 'index_users_on_email'
-    t.index ['remember_token'], name: 'index_users_on_remember_token'
+  create_table "users", force: :cascade do |t|
+    t.string "email"
+    t.string "password"
+    t.string "role"
+    t.boolean "approved"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "encrypted_password", limit: 128
+    t.string "confirmation_token", limit: 128
+    t.string "remember_token", limit: 128
+    t.index ["email"], name: "index_users_on_email"
+    t.index ["remember_token"], name: "index_users_on_remember_token"
   end
 
-  add_foreign_key 'choices', 'questions'
+  add_foreign_key "choices", "questions"
 end

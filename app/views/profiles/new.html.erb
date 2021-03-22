@@ -44,7 +44,7 @@
 		<p class="card-text">Tell us a little bit about yourself.</p>
 		<%= form_for(@profile) do |f| %>
 			<%= render(:partial => "form", :locals => {:f => f}) %>
-			<%= f.hidden_field(:approvedchair, value: false) %>
+            <!-- Grabs user's current id to link to profile -->
 			<%= f.hidden_field(:user_id, value: current_user.id) %>
 			<%= f.submit("Create Profile", class: "btn btn-sm", id: "create-button") %>
 		<% end %>

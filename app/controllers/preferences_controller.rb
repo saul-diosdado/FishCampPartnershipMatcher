@@ -1,29 +1,28 @@
-class PreferencesController < ApplicationController
+# frozen_string_literal: true
 
+class PreferencesController < ApplicationController
   def index
     @form = PreferenceForm.find(params[:form_id])
-    @users = User.where(:role => "Chair", :approved => TRUE).where.not(:id => params[:user_id])
-    @prefs = Preference.where(:selector_id => params[:user_id], :pref_type => "Preference")
-    @antiprefs = Preference.where(:selector_id => params[:user_id], :pref_type => "Anti-Preference")
+    @users = User.where(role: 'Chair', approved: TRUE).where.not(id: params[:user_id])
+    @prefs = Preference.where(selector_id: params[:user_id], pref_type: 'Preference')
+    @antiprefs = Preference.where(selector_id: params[:user_id], pref_type: 'Anti-Preference')
   end
 
   def show
     @form = PreferenceForm.find(params[:form_id])
-    @users = User.where(:role => "Chair", :approved => TRUE).where.not(:id => params[:user_id])
-    @prefs = Preference.where(:selector_id => params[:user_id], :pref_type => "Preference")
-    @antiprefs = Preference.where(:selector_id => params[:user_id], :pref_type => "Anti-Preference")
+    @users = User.where(role: 'Chair', approved: TRUE).where.not(id: params[:user_id])
+    @prefs = Preference.where(selector_id: params[:user_id], pref_type: 'Preference')
+    @antiprefs = Preference.where(selector_id: params[:user_id], pref_type: 'Anti-Preference')
 
     @questions = Question.order('id ASC')
-    @answers = Answer.where(:user_id => params[:user_id])
+    @answers = Answer.where(user_id: params[:user_id])
 
     error_id = 0
     @questions.each do |question|
-      if @answers.exists?(:question_id => question.id) == false
-          error_id = 1
-      end
+      error_id = 1 if @answers.exists?(question_id: question.id) == false
     end
 
-    if error_id == 0
+    if error_id.zero?
       if @prefs.size < @form.num_prefs
         error_id = 2
       elsif @antiprefs.size < @form.num_antiprefs
@@ -36,17 +35,19 @@ class PreferencesController < ApplicationController
       flash[:notice] = 'FORM NOT COMPLETE. Please answer all questions before submitting.'
       redirect_to(answers_path)
     when 2
-      flash[:notice] = 'FORM NOT COMPLETE. Missing one or more preferences. Use the "Add Preference" button to complete the form.'
+      flash[:notice] =
+        'FORM NOT COMPLETE. Missing one or more preferences. Use the "Add Preference" button to complete the form.'
       redirect_to(preferences_path)
     when 3
-      flash[:notice] = 'FORM NOT COMPLETE. Missing one or more anti-preferences. Use the "Add Anti-Preference" button to complete the form.'
+      flash[:notice] =
+        'FORM NOT COMPLETE. Missing one or more anti-preferences. Use the "Add Anti-Preference" button to complete the form.'
       redirect_to(preferences_path)
     end
   end
 
   def new
-    @users = User.where(:role => "Chair", :approved => TRUE).where.not(:id => params[:user_id])
-    @pref = Preference.new(:selector_id => params[:user_id], :pref_type => params[:pref_type])
+    @users = User.where(role: 'Chair', approved: TRUE).where.not(id: params[:user_id])
+    @pref = Preference.new(selector_id: params[:user_id], pref_type: params[:pref_type])
   end
 
   def create
@@ -61,7 +62,7 @@ class PreferencesController < ApplicationController
 
   def edit
     @pref = Preference.find(params[:id])
-    @users = User.where(:role => "Chair", :approved => TRUE).where.not(:id => params[:user_id])
+    @users = User.where(role: 'Chair', approved: TRUE).where.not(id: params[:user_id])
   end
 
   def update
@@ -82,15 +83,13 @@ class PreferencesController < ApplicationController
 
   def destroy
     @pref = Preference.find(params[:id])
-    if @pref.destroy
-      flash[:notice] = 'Preference Deleted'
-    end
+    flash[:notice] = 'Preference Deleted' if @pref.destroy
     redirect_to(preferences_path)
   end
 
   private
 
-    def preferences_params
-      params.require(:preference).permit(:selector_id, :selected_id, :pref_type, :rating, :why)
-    end
+  def preferences_params
+    params.require(:preference).permit(:selector_id, :selected_id, :pref_type, :rating, :why)
+  end
 end

@@ -1,0 +1,18 @@
+<p> <%= link_to("Home", personalities_path) %> </p>
+
+<h1> Your Type: <%= @userProfile.ptanimal %> </h1>
+
+<h3> <%= @message %> </h3>
+
+<h1> Profiles with the same type: </h1>
+<table class="listing" summary="Same Type List">
+    <% @sameCM.each do |same| %>
+        <div class="card-body">
+			<h5 class="card-title"><%= same.name%></h5>
+				<p class="card-text"><%= same.ptanimal %></p>
+				<div class="btn btn-secondary btn-sm"> <%= link_to("View Profile", profile_path(same), :class => "btn", style: "color: white") %></div>
+		</div>
+    <% end %>
+</table>
+
+<!-- Several tables listing the CM types other than foxes -->

@@ -1,61 +1,105 @@
-<%= link_to("Home", profiles_path()) %>
 
-<div class="profile show">
-<% if current_user.email.eql? @profile.email %>
-	<h2>Your Profile</h2>
-<%else%>
-	<h2> Chair Profile </h2>
-<% end %>
+<style>
+	.card {
+		display: inline-block;
+		margin-left: 10px;
+		margin-right: 10px;
+		margin-top: 25px;
+		width: 500px;
+		opacity: 0.75;
+		background-repeat: no-repeat;
+		background-color: maroon;
+		border: 20px solid rgba(0, 0, 0, 0.2);
+	}
+	#card-button {
+			border: 4px solid rgba(0, 0, 0, 0.2);
+	}
+	#home-button{
+		border: 4px solid rgba(0, 0, 0, 0.2);
+		margin:5px;
+		background color: lightSlateGrey;
+	}
+	#edit-button{
+		border: 4px solid rgba(0, 0, 0, 0.2);
+		margin: 5px;
+		background color: lightSlateGrey;
 
-  <table summary="Profile view">
-    <tr>
-      <th>Name</th>
-      <td><%= @profile.name %></td>
-    </tr>
-    <tr>
-      <th>Email</th>
-      <td><%= @profile.email %></td>
-    </tr>
-    <tr>
-      <th>Phone Number</th>
-      <td><%= @profile.phonenumber %></td>
-    </tr>
-    <tr>
-      <th>Snapchat</th>
-      <td><%= @profile.snapchat %></td>
-    </tr>
-    <tr>
-      <th>Instagram</th>
-      <td><%= @profile.instagram %></td>
-    </tr>
-	<tr>
-      <th>Facebook</th>
-      <td><%= @profile.facebook %></td>
-    </tr>
-	<tr>
-      <th>Twitter</th>
-      <td><%= @profile.twitter %></td>
-    </tr>
-	<tr>
-      <th> Animal</th>
-      <td><%= @profile.ptanimal %></td>
-    </tr>
-	<tr>
-      <th> True Colors</th>
-      <td><%= @profile.pttruecolors %></td>
-    </tr>
-	<tr>
-      <th>Myers Briggs</th>
-      <td><%= @profile.ptmyersbriggs %></td>
-    </tr>
-	<tr>
-      <th>About Me</th>
-      <td><%= @profile.aboutme %></td>
-    </tr>
+	}
+	#delete-button{
+		border: 4px solid rgba(0, 0, 0, 0.2);
+		margin: 5px;
+		background color: lightSlateGrey;
+
+	}
+	body {
+		background-color: wheat;
+		width: 100%;
+		background-position: center;
+		background-repeat: no-repeat;
+		background-size: cover;
+	}
 	
-  </table>
-  
+</style>
+<div class="profile show">
+
+<div class="card text-white mb-3" margin:20px;">
+	<div class="card-body">
+		<% if current_user.email.eql? @profile.email %>
+			<h3 class="card-title">Your Profile</h3>
+			<p class="card-text">Feel free to update any information.</p>
+		<%else%>
+			<h3> <%= @profile.name %> </h3>
+		<% end %>
+		<table summary="Profile view">
+			<tr>
+			  <th>Email</th>
+			  <td><%= @profile.email %></td>
+			</tr>
+			<tr>
+			  <th>Phone Number</th>
+			  <td><%= @profile.phonenumber %></td>
+			</tr>
+			<tr>
+			  <th>Snapchat</th>
+			  <td><%= @profile.snapchat %></td>
+			</tr>
+			<tr>
+			  <th>Instagram</th>
+			  <td><%= @profile.instagram %></td>
+			</tr>
+			<tr>
+			  <th>Facebook</th>
+			  <td><%= @profile.facebook %></td>
+			</tr>
+			<tr>
+			  <th>Twitter</th>
+			  <td><%= @profile.twitter %></td>
+			</tr>
+			<tr>
+			  <th> Animal</th>
+			  <td><%= @profile.ptanimal %></td>
+			</tr>
+			<tr>
+			  <th> True Colors</th>
+			  <td><%= @profile.pttruecolors %></td>
+			</tr>
+			<tr>
+			  <th>Myers Briggs</th>
+			  <td><%= @profile.ptmyersbriggs %></td>
+			</tr>
+			<tr>
+			  <th>About Me</th>
+			  <td><%= @profile.aboutme %></td>
+			</tr>
+		</table>
+	</div>					
+</div>
+
+<br>
+
+<div id="home-button" class="btn btn-sm" > <%= link_to("Home", profiles_path(), :class => "btn") %></div>
 <% if current_user.id.eql? @profile.user_id %>
-	<%= link_to("Edit", edit_profile_path(@profile)) %><br/>
-	<%= link_to("Delete", delete_profile_path(@profile)) %>
-<% end %>
+	<div id="edit-button" class="btn btn-sm" > <%= link_to("Edit", edit_profile_path(@profile), :class => "btn") %></div>
+	<div id="delete-button" class="btn btn-sm" > <%= link_to("Delete", delete_profile_path(@profile), :class => "btn") %></div>
+<%end%>
+<br>

@@ -54,7 +54,7 @@ RSpec.describe Answer, type: :model do
     expect(@answer).to be_valid
   end
 
-  it 'checks that a question can be read' do
+  it 'checks that a answer can be read' do
     expect(Answer.last).to eq(@answer)
   end
 
@@ -69,79 +69,74 @@ end
 RSpec.describe 'Controller Test', type: :system do
   describe 'proper messages' do
     it 'should flash correct message in index' do
-      visit new_question_path
-      fill_in 'Question', with: 'Is this a question?'
-      click_button 'Submit'
-      expect(page).to have_content('Question created successfully.')
-    end
+      visit new_profile_path
+      click_link "Sign up"
+      fill_in "user[email]", with: "g@gmail.com"
+      fill_in "Password", with: "12345"
+      click_button "Sign up"
 
-    it "can't be blank" do
-      visit new_question_path
-      select 'True/False', from: 'Question type'
+      visit preference_forms_path
+      click_link "Create New Form"
+      fill_in 'preference_form_title', with: 'test form'
+      select 'Public', from: 'preference_form[active]'
+      click_button "Add Question"
+
+      click_link 'Create New Question'
+      fill_in 'question[question]', with: 'q1'
       click_button 'Submit'
-      expect(page).to have_content("Question can't be blank")
+
+      visit public_forms_path
+      click_link 'Open'
+      click_link 'Add Response'
+      fill_in 'answer[short_answer]', with: 'A1'
+      click_button 'Save Response'
+      expect(page).to have_content('Response Saved.')
+
+      click_link 'Edit'
+      fill_in 'answer[short_answer]', with: 'A2'
+      click_button 'Save Response'
+      expect(page).to have_content('Response Updated.')
+
+      click_link 'Delete Response'
+      click_button 'Delete Response'
+      expect(page).to have_content('Response Deleted.')
     end
   end
 end
 
 # Acceptance Test User Requirement
-RSpec.describe 'Questionnaire director', type: :system do
-  it 'creates short answer question' do
-    visit new_question_path
-    fill_in 'Question', with: 'Example question 1?'
-    select 'Short Answer', from: 'Question type'
+RSpec.describe 'User actions', type: :system do
+  it 'create, edit, and delete answers' do
+    visit new_profile_path
+    click_link "Sign up"
+    fill_in "user[email]", with: "g@gmail.com"
+    fill_in "Password", with: "12345"
+    click_button "Sign up"
+
+    visit preference_forms_path
+    click_link "Create New Form"
+    fill_in 'preference_form_title', with: 'test form'
+    select 'Public', from: 'preference_form[active]'
+    click_button "Add Question"
+
+    click_link 'Create New Question'
+    fill_in 'question[question]', with: 'q1'
     click_button 'Submit'
-    expect(page).to have_content('Question created successfully.')
-  end
 
-  it 'creates numeric question' do
-    visit new_question_path
-    fill_in 'Question', with: 'Example question 2?'
-    select 'Numeric', from: 'Question type'
-    click_button 'Submit'
-    expect(page).to have_content('Question created successfully.')
-  end
+    visit public_forms_path
+    click_link 'Open'
+    click_link 'Add Response'
+    fill_in 'answer[short_answer]', with: 'A1'
+    click_button 'Save Response'
+    expect(page).to have_content('A1')
 
-  it 'creates true/false question' do
-    visit new_question_path
-    fill_in 'Question', with: 'Example question 3?'
-    select 'True/False', from: 'Question type'
-    click_button 'Submit'
-    expect(page).to have_content('Question created successfully.')
-  end
+    click_link 'Edit'
+    fill_in 'answer[short_answer]', with: 'A2'
+    click_button 'Save Response'
+    expect(page).to have_content('A2')
 
-  it 'creates multiple choice question' do
-    visit new_question_path
-    fill_in 'Question', with: 'Example question 4?'
-    select 'Multiple Choice', from: 'Question type'
-    click_button 'Submit'
-    expect(page).to have_content('Question created successfully.')
-  end
-end
-
-RSpec.describe 'Questionnaire director 2', type: :system do
-  it 'edits question' do
-    visit edit_question_path(Question.last)
-    fill_in 'Question', with: 'Edited this question?'
-    click_button 'Update Question'
-    expect(page).to have_content('Question updated successfully.')
-  end
-
-  it 'show question' do
-    visit question_path(Question.last)
-    expect(page).to have_content(Question.last.question)
-  end
-
-  it 'deletes question' do
-    visit delete_question_path(Question.last)
-    click_button 'Delete Question'
-    expect(page).to have_content('Question removed successfully.')
-  end
-
-  it 'makes invalid edit' do
-    visit edit_question_path(Question.last)
-    fill_in 'Question', with: ''
-    click_button 'Update Question'
-    expect(page).to have_content("Question can't be blank")
+    click_link 'Delete Response'
+    click_button 'Delete Response'
+    expect(page).to have_no_content('A2')
   end
 end

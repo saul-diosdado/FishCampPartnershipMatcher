@@ -1,11 +1,13 @@
 <!-- Form to Create/Edit a Profile -->
 <div class="form-group">
+        <!-- series of labels with corresponding fields to retrieve all information for a profile -->
         <%= f.label( :name, "Name:", class: "col-md-4 col-form-label") %>
         <br>
         <%= f.text_field(:name, class: "col-md-6 form-control") %>
         <br>
         <%= f.label(:email, "Email:", class: "col-md-4 col-form-label") %>
         <br>
+        <!-- immutable as it must be tied to the user's email -->
         <%= f.text_field(:email, value: current_user.email, readonly: 'readonly', class: "col-md-6 form-control") %>
         <br>
         <%= f.label(:phonenumber, "Phonenumber:", class: "col-md-4 col-form-label") %>
@@ -30,19 +32,27 @@
         <br>
         <%= f.label(:ptanimal, "PTAnimal:", class: "col-md-4 col-form-label") %>
         <br>
-        <%= f.text_field(:ptanimal, class: "col-md-6 form-control") %>
+        <%= f.select(:ptanimal, ["-", "The Collaborative Owl", "The Avoidant Turtle", "The Compromising Fox", "The Competitive Shark", "The Accommodating Teddy Bear"], class: "form-control") %>
         <br>
         <%= f.label(:pttruecolors, "PTTrueColors:", class: "col-md-4 col-form-label") %>
         <br>
-        <%= f.text_field(:pttruecolors, class: "col-md-6 form-control") %>
+        <%= f.select(:pttruecolors, ["-", "Orange", "Gold", "Green", "Blue"], class: "form-control") %>
         <br>
         <%= f.label(:ptmyersbriggs, "PTMyersBriggs:", class: "col-md-4 col-form-label") %>
         <br>
-        <%= f.text_field(:ptmyersbriggs, class: "col-md-6 form-control") %>
+        <%= f.select(:ptmyersbriggs, ["-", "INFP", "ENFP", "INFJ", "ENFJ", "INTJ", "ENTJ", "INTP", "ENTP", "ISFP", "ESFP", "ISTP", "ESTP", "ISFJ", "ESFJ", "ISTJ", "ESTJ"], class: "form-control") %>
+        <br>
+        <%= f.label(:enneagram, "Enneagram:", class: "col-md-4 col-form-label") %>
+        <br>
+        <%= f.select(:enneagram, ["-", "Reformer", "Helper", "Achiever", "Individualist", "Investigator", "Loyalist", "Enthusiast", "Challenger", "Peacemaker"], class: "form-control") %>
         <br>
         <%= f.label(:aboutme, "About Me:", class: "col-md-4 col-form-label") %>
         <br>
         <%= f.text_field(:aboutme, class: "col-lg-10 form-control") %>
         <br>
-        <%= f.check_box(:gender, class: "checkbox") %> Check if M, leave blank if F
+        <%= f.label(:gender, "Gender:", class: "col-md-4 col-form-label") %>
+        <br>
+        <%= f.select(:gender, ["Male", "Female", "Non-binary"], class: "form-control") %>
+        <!-- hidden fields to grab user's id and whether or not they are an approved chair -->
+        <%= f.hidden_field(:approvedchair, value: false, readonly: 'readonly') %>
 </div>

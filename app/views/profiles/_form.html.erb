@@ -55,5 +55,4 @@
         <%= f.select(:gender, ["Male", "Female", "Non-binary"], class: "form-control") %>
         <!-- hidden fields to grab user's id and whether or not they are an approved chair -->
         <%= f.hidden_field(:approvedchair, value: false, readonly: 'readonly') %>
-        <%= f.hidden_field(:user_id, value: current_user.id, readonly: 'readonly') %>
 </div>

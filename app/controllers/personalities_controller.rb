@@ -139,7 +139,7 @@ class PersonalitiesController < ApplicationController
     when "The Collaborative Owl"
       oppositeAnimal = ["The Avoidant Turtle"]
       @oppositeMatches = Profile.where(ptanimal: oppositeAnimal)
-      @message = "As an Owl, your best matches are turtles!!"
+      @message = "As an Owl, your best matches are turtles!"
     when "The Avoidant Turtle"
       oppositeAnimal = ["The Collaborative Owl"]
       @oppositeMatches = Profile.where(ptanimal: oppositeAnimal)

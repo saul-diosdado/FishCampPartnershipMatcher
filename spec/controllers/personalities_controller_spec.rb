@@ -76,8 +76,8 @@ RSpec.describe "Controller Test", type: :system do
 end
 #Ensure the matching algorithm is registering their personality type correctly for Myers Briggs
 RSpec.describe "Controller Test", type: :system do
-    describe "Should give user information about their personality results" do
-        it "Show user their own personality type MB" do
+    describe "Should give user information about their personality results MB" do
+        it "Show user their own personality type ENFP" do
             visit new_profile_path
             click_link "Sign up"
             fill_in "user[email]", with: "g@gmail.com"
@@ -95,8 +95,8 @@ RSpec.describe "Controller Test", type: :system do
 end
 #Ensure the matching algorithm is registering their personality type correctly for Conflict Management
 RSpec.describe "Controller Test", type: :system do
-    describe "Should give user information about their personality results" do
-        it "Show user their own personality type CM" do
+    describe "Should give user information about their personality results Conflict Management" do
+        it "Show user their own personality type Shark" do
             visit new_profile_path
             click_link "Sign up"
             fill_in "user[email]", with: "h@gmail.com"
@@ -110,12 +110,68 @@ RSpec.describe "Controller Test", type: :system do
             click_link "Conflict Management"
             expect(page).to have_content("As a Shark, your best matches are teddy bears!")
         end
+        it "Show user their own personality type Fox" do
+            visit new_profile_path
+            click_link "Sign up"
+            fill_in "user[email]", with: "h@gmail.com"
+            fill_in "Password", with: "12345"
+            click_button "Sign up"
+            visit new_profile_path
+            fill_in "Name", with: "h"
+            select "The Compromising Fox", from: "profile[ptanimal]"
+            click_button "Create Profile"
+            visit personalities_path
+            click_link "Conflict Management"
+            expect(page).to have_content("As a Shark, your best matches are teddy bears!")
+        end
+        it "Show user their own personality type Teddy Bear" do
+            visit new_profile_path
+            click_link "Sign up"
+            fill_in "user[email]", with: "h@gmail.com"
+            fill_in "Password", with: "12345"
+            click_button "Sign up"
+            visit new_profile_path
+            fill_in "Name", with: "h"
+            select "The Accommodating Teddy Bear", from: "profile[ptanimal]"
+            click_button "Create Profile"
+            visit personalities_path
+            click_link "Conflict Management"
+            expect(page).to have_content("As a Shark, your best matches are teddy bears!")
+        end
+        it "Show user their own personality type Owl" do
+            visit new_profile_path
+            click_link "Sign up"
+            fill_in "user[email]", with: "h@gmail.com"
+            fill_in "Password", with: "12345"
+            click_button "Sign up"
+            visit new_profile_path
+            fill_in "Name", with: "h"
+            select "The Collaborative Owl", from: "profile[ptanimal]"
+            click_button "Create Profile"
+            visit personalities_path
+            click_link "Conflict Management"
+            expect(page).to have_content("As a Shark, your best matches are teddy bears!")
+        end
+        it "Show user their own personality type Turtle" do
+            visit new_profile_path
+            click_link "Sign up"
+            fill_in "user[email]", with: "h@gmail.com"
+            fill_in "Password", with: "12345"
+            click_button "Sign up"
+            visit new_profile_path
+            fill_in "Name", with: "h"
+            select "The Avoidant Turtle", from: "profile[ptanimal]"
+            click_button "Create Profile"
+            visit personalities_path
+            click_link "Conflict Management"
+            expect(page).to have_content("As a Shark, your best matches are teddy bears!")
+        end
     end
 end
 #Ensure the matching algorithm is registering their personality type correctly for True Colors
 RSpec.describe "Controller Test", type: :system do
-    describe "Should give user information about their personality results" do
-        it "Show user their own personality type TC" do
+    describe "Should give user information about their personality results True Colors" do
+        it "Show user their own personality type Gold" do
             visit new_profile_path
             click_link "Sign up"
             fill_in "user[email]", with: "i@gmail.com"
@@ -133,8 +189,8 @@ RSpec.describe "Controller Test", type: :system do
 end
 #Ensure the matching algorithm is registering their personality type correctly for Enneagram
 RSpec.describe "Controller Test", type: :system do
-    describe "Should give user information about their personality results" do
-        it "Show user their own personality type EN" do
+    describe "Should give user information about their personality results Enneagram" do
+        it "Show user their own personality type Enthusiast" do
             visit new_profile_path
             click_link "Sign up"
             fill_in "user[email]", with: "j@gmail.com"

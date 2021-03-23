@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_21_205844) do
+ActiveRecord::Schema.define(version: 2021_03_23_000647) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -18,15 +18,11 @@ ActiveRecord::Schema.define(version: 2021_03_21_205844) do
   create_table "answers", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "question_id"
-    t.bigint "preference_form_id"
-    t.string "answer_type"
     t.text "short_answer"
     t.boolean "true_false"
     t.integer "numeric"
-    t.string "multiple_choice"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["preference_form_id"], name: "index_answers_on_preference_form_id"
     t.index ["question_id"], name: "index_answers_on_question_id"
     t.index ["user_id"], name: "index_answers_on_user_id"
   end
@@ -39,25 +35,10 @@ ActiveRecord::Schema.define(version: 2021_03_21_205844) do
     t.index ["question_id"], name: "index_choices_on_question_id"
   end
 
-  create_table "matches", force: :cascade do |t|
-    t.bigint "user_id"
-    t.bigint "matched_id"
-    t.bigint "preference_form_id"
-    t.bigint "prospects_ids", default: [], array: true
-    t.decimal "prospects_pref_averages", default: [], array: true
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["matched_id"], name: "index_matches_on_matched_id"
-    t.index ["preference_form_id"], name: "index_matches_on_preference_form_id"
-    t.index ["user_id"], name: "index_matches_on_user_id"
-  end
-
   create_table "preference_forms", force: :cascade do |t|
     t.bigint "creator_id"
-    t.string "title"
     t.integer "num_prefs"
     t.integer "num_antiprefs"
-    t.boolean "active"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["creator_id"], name: "index_preference_forms_on_creator_id"
@@ -66,13 +47,11 @@ ActiveRecord::Schema.define(version: 2021_03_21_205844) do
   create_table "preferences", force: :cascade do |t|
     t.bigint "selector_id"
     t.bigint "selected_id"
-    t.bigint "preference_form_id"
     t.string "pref_type"
     t.integer "rating"
     t.text "why"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["preference_form_id"], name: "index_preferences_on_preference_form_id"
     t.index ["selected_id"], name: "index_preferences_on_selected_id"
     t.index ["selector_id"], name: "index_preferences_on_selector_id"
   end
@@ -98,12 +77,21 @@ ActiveRecord::Schema.define(version: 2021_03_21_205844) do
   end
 
   create_table "questions", force: :cascade do |t|
-    t.bigint "preference_form_id"
     t.text "question"
-    t.string "question_type"
+    t.string "type"
+    t.string "choices", array: true
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["preference_form_id"], name: "index_questions_on_preference_form_id"
+  end
+
+  create_table "roles", force: :cascade do |t|
+    t.string "name"
+    t.string "resource_type"
+    t.bigint "resource_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id"
+    t.index ["resource_type", "resource_id"], name: "index_roles_on_resource"
   end
 
   create_table "users", force: :cascade do |t|
@@ -120,7 +108,13 @@ ActiveRecord::Schema.define(version: 2021_03_21_205844) do
     t.index ["remember_token"], name: "index_users_on_remember_token"
   end
 
+  create_table "users_roles", id: false, force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "role_id"
+    t.index ["role_id"], name: "index_users_roles_on_role_id"
+    t.index ["user_id", "role_id"], name: "index_users_roles_on_user_id_and_role_id"
+    t.index ["user_id"], name: "index_users_roles_on_user_id"
+  end
+
   add_foreign_key "choices", "questions"
-  add_foreign_key "matches", "preference_forms"
-  add_foreign_key "matches", "users"
 end

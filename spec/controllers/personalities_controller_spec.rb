@@ -48,7 +48,7 @@ RSpec.describe "Controller Test", type: :system do
             visit new_profile_path
             fill_in "Name", with: "i"
             select "ENFJ", from: "profile[ptmyersbriggs]"
-            select "The Collaborative Owl", from: "profile[ptanimal]"
+            select "The Compromising Fox", from: "profile[ptanimal]"
             select "Enthusiast", from: "profile[enneagram]"
             click_button "Create Profile"
             visit personalities_path
@@ -74,9 +74,10 @@ RSpec.describe "Controller Test", type: :system do
         end
     end
 end
-#Ensure the matching algorithm is registering their personality type correctly
+
+#Ensure the matching algorithm is registering their personality type correctly for Myers Briggs
 RSpec.describe "Controller Test", type: :system do
-    describe "Should give user information about their personality results" do
+    describe "Should give user information about their personality results for Myers Briggs" do
         it "Show user their own personality type MB" do
             visit new_profile_path
             click_link "Sign up"
@@ -91,7 +92,12 @@ RSpec.describe "Controller Test", type: :system do
             click_link "Myers Briggs"
             expect(page).to have_content("Your Personality Type: ENFP")
         end
+    end
+end
 
+#Ensure the matching algorithm is registering their personality type correctly for Conflict Management
+RSpec.describe "Controller Test", type: :system do
+    describe "Should give user information about their personality results for Conflict Management" do
         it "Show user their own personality type CM" do
             visit new_profile_path
             click_link "Sign up"
@@ -106,7 +112,11 @@ RSpec.describe "Controller Test", type: :system do
             click_link "Conflict Management"
             expect(page).to have_content("As a Shark, your best matches are teddy bears!")
         end
-
+    end
+end
+#Ensure the matching algorithm is registering their personality type correctly for True Colors
+RSpec.describe "Controller Test", type: :system do
+    describe "Should give user information about their personality results for True Colors" do
         it "Show user their own personality type TC" do
             visit new_profile_path
             click_link "Sign up"
@@ -121,7 +131,11 @@ RSpec.describe "Controller Test", type: :system do
             click_link "True Colors"
             expect(page).to have_content("Users who have the same color as you (Gold):")
         end
-
+    end
+end
+#Ensure the matching algorithm is registering their personality type correctly for Enneagram
+RSpec.describe "Controller Test", type: :system do
+    describe "Should give user information about their personality results for Enneagram" do
         it "Show user their own personality type EN" do
             visit new_profile_path
             click_link "Sign up"

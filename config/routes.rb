@@ -1,6 +1,18 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  namespace :admin do
+      resources :answers
+      resources :choices
+      resources :preferences
+      resources :preference_forms
+      resources :profiles
+      resources :questions
+      resources :roles
+      resources :users
+
+      root to: "answers#index"
+    end
   root 'profiles#index'
 
   resources :profiles do

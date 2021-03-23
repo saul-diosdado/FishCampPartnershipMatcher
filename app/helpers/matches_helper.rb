@@ -73,6 +73,10 @@ module MatchesHelper
     # We need to modify the selected Chair's match entry.
     selected_match = Match.where(user_id: matched_id).first
 
+    if selected_match == nil
+      return
+    end
+
     # Check if the person who we selected already had a partner. Unmatch them if so.
     if selected_match.matched_id != nil
       unmatch_existing_match(matched_id)

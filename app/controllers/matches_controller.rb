@@ -59,7 +59,9 @@ class MatchesController < ApplicationController
 
     if @match.update(match_params)
       helpers.create_match(params[:matched_id], params[:user_id])
-      redirect_to(mathces_path({:flash => {:success => "Match updated successfully."}}))
+      redirect_to(matches_path({:flash => {:success => "Match updated successfully."}}))
+    else
+      render("edit")
     end
   end
 

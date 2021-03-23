@@ -30,13 +30,13 @@
 
     <!-- All existing matches at the bottom of the table -->
     <% matched_num = 1 %>
-    <% @matched_chairs.each do |chair| %>
+    <% @matched_chairs.each do |matched_chair| %>
       <tr>
         <th scope="row"> <%= matched_num %> </th>
-        <td> <%= @info.where(user_id: chair.user_id).first.name %> </td>
-        <td> <%= @info.where(user_id: chair.matched_id).first.name %> </td>
+        <td> <%= @info.where(user_id: matched_chair.user_id).first.name %> </td>
+        <td> <%= @info.where(user_id: matched_chair.matched_id).first.name %> </td>
         <td>
-          <%= link_to("Edit Match", edit_match_path(:user_id => chair.user_id), class: "btn btn-success btn-sm") %>
+          <%= link_to("Edit Match", edit_match_path(matched_chair), class: "btn btn-success btn-sm") %>
         </td>
       </tr>
       <% matched_num = matched_num + 1 %>

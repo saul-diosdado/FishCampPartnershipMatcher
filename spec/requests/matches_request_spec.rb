@@ -1,5 +1,6 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-RSpec.describe "Matches", type: :request do
-
+RSpec.describe 'Matches', type: :request do
 end

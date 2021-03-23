@@ -5,8 +5,8 @@ class User < ApplicationRecord
   include Clearance::User
 
   after_initialize :assign_default_role, if: :new_record?
-  
+
   def assign_default_role
-    self.add_role(:chair)
+    add_role(:chair)
   end
 end

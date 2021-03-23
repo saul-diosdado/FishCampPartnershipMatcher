@@ -11,14 +11,10 @@ class UserDashboard < Administrate::BaseDashboard
     roles: Field::HasMany,
     id: Field::Number,
     email: Field::String,
-    password: Field::String,
     role: Field::String,
     approved: Field::Boolean,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
-    encrypted_password: Field::String,
-    confirmation_token: Field::String,
-    remember_token: Field::String,
   }.freeze
 
   # COLLECTION_ATTRIBUTES
@@ -30,7 +26,6 @@ class UserDashboard < Administrate::BaseDashboard
     role
     id
     email
-    password
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
@@ -38,28 +33,19 @@ class UserDashboard < Administrate::BaseDashboard
   SHOW_PAGE_ATTRIBUTES = %i[
     id
     email
-    password
     role
     approved
     created_at
     updated_at
-    encrypted_password
-    confirmation_token
-    remember_token
   ].freeze
 
   # FORM_ATTRIBUTES
   # an array of attributes that will be displayed
   # on the model's form (`new` and `edit`) pages.
   FORM_ATTRIBUTES = %i[
-    roles
     email
-    password
     role
     approved
-    encrypted_password
-    confirmation_token
-    remember_token
   ].freeze
 
   # COLLECTION_FILTERS
@@ -77,7 +63,4 @@ class UserDashboard < Administrate::BaseDashboard
   # Overwrite this method to customize how users are displayed
   # across all pages of the admin dashboard.
   #
-  # def display_resource(user)
-  #   "User ##{user.id}"
-  # end
 end

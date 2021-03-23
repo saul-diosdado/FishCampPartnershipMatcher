@@ -9,9 +9,6 @@ module Admin
     before_action :authenticate_admin
     
     def authenticate_admin
-      if !current_user.has_role?(:admin) || current_user.email != "fcadmin@gmail.com"
-        redirect_to(profiles_path, { flash: { red: 'Only administrators may view the admin dashboard.' } })
-      end
     end
 
     # Override this value to specify the number of elements to display at a time

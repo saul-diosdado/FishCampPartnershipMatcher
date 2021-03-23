@@ -1,4 +1,6 @@
-require "administrate/base_dashboard"
+# frozen_string_literal: true
+
+require 'administrate/base_dashboard'
 
 class AnswerDashboard < Administrate::BaseDashboard
   # ATTRIBUTE_TYPES
@@ -15,7 +17,7 @@ class AnswerDashboard < Administrate::BaseDashboard
     true_false: Field::Boolean,
     numeric: Field::Number,
     created_at: Field::DateTime,
-    updated_at: Field::DateTime,
+    updated_at: Field::DateTime
   }.freeze
 
   # COLLECTION_ATTRIBUTES

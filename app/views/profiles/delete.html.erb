@@ -1,8 +1,44 @@
-<%= link_to("Home", profiles_path()) %>
-<h1>Delete your profile!</h1>
-<%= form_for(@profile, :method => "delete") do |f| %>
-    <p>Are you sure you want to permanently delete your profile?</p>
-    <p>
-        <%= f.submit("Delete Profile") %>
-    </p>
-<% end %>
+<style>
+	.card {
+		display: inline-block;
+		margin-left: 10px;
+		margin-right: 10px;
+		width: 250px;
+		height: 440px;
+		opacity: 0.75;
+		background-repeat: no-repeat;
+		background-color: maroon;
+		border: 20px solid rgba(0, 0, 0, 0.2);
+	}
+	#home-button{
+		border: 4px solid rgba(0, 0, 0, 0.2);
+		margin:5px;
+		background color: lightSlateGrey;
+	}
+	#delete-button{
+		border: 4px solid rgba(0, 0, 0, 0.2);
+		margin:5px;
+		background color: lightSlateGrey;
+	}
+	body {
+		background-color: wheat;
+		width: 100%;
+		background-position: center;
+		background-repeat: no-repeat;
+		background-size: cover;
+	}
+</style>
+
+<div class="card text-white mb-3" style="width: 18rem; margin:20px; left: 30%">
+	<div class="card-body">
+		<%= form_for(@profile, :method => "delete") do |f| %>
+			<p>Are you <b>sure</b> you want to <b>permanently</b> delete your profile?</p>
+			<p>This action can't be undone</p>
+			<p>
+				<div id="home-button" class="btn btn-sm" style="background-color:lightSlateGrey"> <%= link_to("Cancel", profiles_path(), :class => "btn") %></div>
+				<%= f.submit("Delete Profile", class: "btn btn-sm", id: "delete-button", style: "background-color:lightSlateGrey") %>
+			</p>
+		<% end %>
+	</div>
+</div>
+<br>

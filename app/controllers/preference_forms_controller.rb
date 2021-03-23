@@ -5,6 +5,45 @@ class PreferenceFormsController < ApplicationController
     @forms = PreferenceForm.all
   end
 
+  def show
+    @form = PreferenceForm.find(params[:id])
+    @users = User.where(role: 'Chair', approved: TRUE).where.not(id: current_user.id)
+    @prefs = Preference.where(preference_form_id: @form.id, selector_id: current_user.id,
+                              pref_type: 'Preference')
+    @antiprefs = Preference.where(preference_form_id: @form.id, selector_id: params[:user_id],
+                                  pref_type: 'Anti-Preference')
+
+    @questions = Question.order('id ASC')
+    @answers = Answer.where(user_id: params[:user_id])
+
+    error_id = 0
+    @questions.each do |question|
+      error_id = 1 if @answers.exists?(question_id: question.id) == false
+    end
+
+    if error_id.zero?
+      if @prefs.size < @form.num_prefs
+        error_id = 2
+      elsif @antiprefs.size < @form.num_antiprefs
+        error_id = 3
+      end
+    end
+
+    case error_id
+    when 1
+      flash[:notice] = 'FORM NOT COMPLETE. Please answer all questions before submitting.'
+      redirect_to(answers_path)
+    when 2
+      flash[:notice] =
+        'FORM NOT COMPLETE. Missing one or more preferences. Use the "Add Preference" button to complete the form.'
+      redirect_to(preferences_path)
+    when 3
+      flash[:notice] =
+        'FORM NOT COMPLETE. Missing one or more anti-preferences. Use the "Add Anti-Preference" button to complete the form.'
+      redirect_to(preferences_path)
+    end
+  end
+
   def new
     @form = PreferenceForm.new
   end

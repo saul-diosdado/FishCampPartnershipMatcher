@@ -2,6 +2,6 @@
 
 require 'rails_helper'
 
-RSpec.describe 'public_forms/index.html.erb', type: :view do
+RSpec.describe Match, type: :model do
   pending "add some examples to (or delete) #{__FILE__}"
 end

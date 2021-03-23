@@ -81,5 +81,5 @@
     Are you sure that you want to submit this form? </br>
     Completed forms can NOT be changed following their submission.
 </p>
-<%= link_to("Go Back", preferences_path) %>
+<%= link_to("Go Back", preferences_path(:form_id => @form.id)) %>
 <%= link_to("Complete Submission", '#') %>

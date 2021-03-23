@@ -2,16 +2,16 @@
 
 # Allows users to answer all questions in a question form.
 class AnswersController < ApplicationController
-  $user_id = 1
+  before_action :require_login
 
   def index
-    @form_id = params[:form_id]
-    @questions = Question.where(preference_form_id: @form_id).order('id ASC')
-    @answers = Answer.where(user_id: $user_id)
+    @form = PreferenceForm.find(params[:form_id])
+    @questions = Question.where(preference_form_id: @form.id).order('id ASC')
+    @answers = Answer.where(user_id: current_user.id)
   end
 
   def new
-    @answer = Answer.new(user_id: $user_id, question_id: params[:question_id],
+    @answer = Answer.new(user_id: current_user.id, question_id: params[:question_id],
                          preference_form_id: params[:form_id], answer_type: params[:question_type])
     @question = Question.find(params[:question_id])
   end
@@ -19,8 +19,8 @@ class AnswersController < ApplicationController
   def create
     @answer = Answer.new(answers_params)
     if @answer.save
-      flash[:notice] = 'Response Saved'
-      redirect_to(answers_path(user_id: $user_id, form_id: @answer.preference_form_id))
+      redirect_to(answers_path(user_id: current_user.id, form_id: @answer.preference_form_id),
+                  { flash: { success: 'Response Saved.' } })
     else
       render('new')
     end
@@ -34,8 +34,8 @@ class AnswersController < ApplicationController
   def update
     @answer = Answer.find(params[:id])
     if @answer.update(answers_params)
-      flash[:notice] = 'Response Updated'
-      redirect_to(answers_path(user_id: $user_id, form_id: @answer.preference_form_id))
+      redirect_to(answers_path(user_id: current_user.id, form_id: @answer.preference_form_id),
+                  { flash: { success: 'Response Updated.' } })
     else
       render('new')
     end
@@ -43,13 +43,15 @@ class AnswersController < ApplicationController
 
   def delete
     @answer = Answer.find(params[:id])
-    @question = params[:question]
+    @question = Question.find(params[:question_id])
   end
 
   def destroy
     @answer = Answer.find(params[:id])
-    flash[:notice] = 'Response Deleted' if @answer.destroy
-    redirect_to(answers_path(user_id: $user_id, form_id: @answer.preference_form_id))
+    return unless @answer.destroy
+
+    redirect_to(answers_path(user_id: current_user.id, form_id: @answer.preference_form_id),
+                { flash: { success: 'Response Deleted.' } })
   end
 
   private

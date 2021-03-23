@@ -6,22 +6,28 @@ AllCops:
     - "tmp/**/*"
     - "vendor/**/*"
     - ".git/**/*"
+    - "bin/**/*"
+    - "spec/**/*"
+    - "app/controllers/personalities_controller.rb"
+    - "app/views/personalities/**"
+    - "db/schema.rb"
+    - "app/dashboards/**"
 
   SuggestExtensions: false
 
 Layout/EndOfLine:
   Enabled: false
-# Metrics/AbcSize:
-#   Max: 42
+
+Metrics/AbcSize:
+  Max: 90
 
 # Configuration parameters: CountComments, CountAsOne, ExcludedMethods, IgnoredMethods.
 # IgnoredMethods: refine
 Metrics/BlockLength:
   Max: 100
 
-# # Configuration parameters: IgnoredMethods.
-# Metrics/CyclomaticComplexity:
-#   Max: 9
+Metrics/CyclomaticComplexity:
+  Max: 15
 
 # Configuration parameters: CountComments, CountAsOne, ExcludedMethods, IgnoredMethods.
 Metrics/MethodLength:
@@ -29,10 +35,8 @@ Metrics/MethodLength:
 
 # Configuration parameters: IgnoredMethods.
 Metrics/PerceivedComplexity:
-  Max: 10
-# # Offense count: 3
-# # Cop supports --auto-correct.
-# # Configuration parameters: AutoCorrect, AllowHeredoc, AllowURI, URISchemes, IgnoreCopDirectives, IgnoredPatterns.
-# # URISchemes: http, https
-# Layout/LineLength:
-#   Max: 200
+  Max: 20
+
+# URISchemes: http, https
+Layout/LineLength:
+  Max: 150

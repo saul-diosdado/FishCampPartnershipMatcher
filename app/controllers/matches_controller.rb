@@ -38,6 +38,11 @@ class MatchesController < ApplicationController
     @selector_answers = Answer.where(user_id: @match.user_id)
 
     helpers.generate_prospects(@match.user_id)
+
+    @selected = Profile.where(user_id: @match.prospects_ids)
+    @selected_preferences = Preference.where(selector_id: @match.prospects_ids).where(pref_type: 'Preference')
+    @selected_anti_preferences = Preference.where(selector_id: @match.prospects_ids).where(pref_type: 'Anti-Preference')
+    @selected_answers = Answer.where(user_id: @match.prospects_ids)
     
     if @match.matched_id != nil
       # if they had a match, put that match on top
@@ -55,8 +60,6 @@ class MatchesController < ApplicationController
     if @match.update(match_params)
       helpers.create_match(params[:matched_id], params[:user_id])
       redirect_to(mathces_path({:flash => {:success => "Match updated successfully."}}))
-    else
-      render("edit")
     end
   end
 

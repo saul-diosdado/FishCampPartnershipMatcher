@@ -30,7 +30,7 @@ module MatchesHelper
         end
       end
 
-      i = prospect_avgs.size() - 1
+      i = prospects_avgs.size() - 1
       while i > 1 && prospect_added
         if prospects_avgs[i] > prospects_avgs[i - 1]
           # Parallel swap.

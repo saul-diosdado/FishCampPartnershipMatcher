@@ -77,6 +77,20 @@ end
 #Ensure the matching algorithm is registering their personality type correctly for Myers Briggs
 RSpec.describe "Controller Test", type: :system do
     describe "Should give user information about their personality results MB" do
+        it "Show user their own personality type INFP" do
+            visit new_profile_path
+            click_link "Sign up"
+            fill_in "user[email]", with: "g@gmail.com"
+            fill_in "Password", with: "12345"
+            click_button "Sign up"
+            visit new_profile_path
+            fill_in "Name", with: "g"
+            select "INFP", from: "profile[ptmyersbriggs]"
+            click_button "Create Profile"
+            visit personalities_path
+            click_link "Myers Briggs"
+            expect(page).to have_content("Your Personality Type: INFP")
+        end
         it "Show user their own personality type ENFP" do
             visit new_profile_path
             click_link "Sign up"
@@ -90,6 +104,202 @@ RSpec.describe "Controller Test", type: :system do
             visit personalities_path
             click_link "Myers Briggs"
             expect(page).to have_content("Your Personality Type: ENFP")
+        end
+        it "Show user their own personality type INFJ" do
+            visit new_profile_path
+            click_link "Sign up"
+            fill_in "user[email]", with: "g@gmail.com"
+            fill_in "Password", with: "12345"
+            click_button "Sign up"
+            visit new_profile_path
+            fill_in "Name", with: "g"
+            select "INFJ", from: "profile[ptmyersbriggs]"
+            click_button "Create Profile"
+            visit personalities_path
+            click_link "Myers Briggs"
+            expect(page).to have_content("Your Personality Type: INFJ")
+        end
+        it "Show user their own personality type ENFJ" do
+            visit new_profile_path
+            click_link "Sign up"
+            fill_in "user[email]", with: "g@gmail.com"
+            fill_in "Password", with: "12345"
+            click_button "Sign up"
+            visit new_profile_path
+            fill_in "Name", with: "g"
+            select "ENFJ", from: "profile[ptmyersbriggs]"
+            click_button "Create Profile"
+            visit personalities_path
+            click_link "Myers Briggs"
+            expect(page).to have_content("Your Personality Type: ENFJ")
+        end
+        it "Show user their own personality type INTJ" do
+            visit new_profile_path
+            click_link "Sign up"
+            fill_in "user[email]", with: "g@gmail.com"
+            fill_in "Password", with: "12345"
+            click_button "Sign up"
+            visit new_profile_path
+            fill_in "Name", with: "g"
+            select "INTJ", from: "profile[ptmyersbriggs]"
+            click_button "Create Profile"
+            visit personalities_path
+            click_link "Myers Briggs"
+            expect(page).to have_content("Your Personality Type: INTJ")
+        end
+        it "Show user their own personality type ENTJ" do
+            visit new_profile_path
+            click_link "Sign up"
+            fill_in "user[email]", with: "g@gmail.com"
+            fill_in "Password", with: "12345"
+            click_button "Sign up"
+            visit new_profile_path
+            fill_in "Name", with: "g"
+            select "ENTJ", from: "profile[ptmyersbriggs]"
+            click_button "Create Profile"
+            visit personalities_path
+            click_link "Myers Briggs"
+            expect(page).to have_content("Your Personality Type: ENTJ")
+        end
+        it "Show user their own personality type INTP" do
+            visit new_profile_path
+            click_link "Sign up"
+            fill_in "user[email]", with: "g@gmail.com"
+            fill_in "Password", with: "12345"
+            click_button "Sign up"
+            visit new_profile_path
+            fill_in "Name", with: "g"
+            select "INTP", from: "profile[ptmyersbriggs]"
+            click_button "Create Profile"
+            visit personalities_path
+            click_link "Myers Briggs"
+            expect(page).to have_content("Your Personality Type: INTP")
+        end
+        it "Show user their own personality type ENTP" do
+            visit new_profile_path
+            click_link "Sign up"
+            fill_in "user[email]", with: "g@gmail.com"
+            fill_in "Password", with: "12345"
+            click_button "Sign up"
+            visit new_profile_path
+            fill_in "Name", with: "g"
+            select "ENTP", from: "profile[ptmyersbriggs]"
+            click_button "Create Profile"
+            visit personalities_path
+            click_link "Myers Briggs"
+            expect(page).to have_content("Your Personality Type: ENTP")
+        end
+        it "Show user their own personality type ISFP" do
+            visit new_profile_path
+            click_link "Sign up"
+            fill_in "user[email]", with: "g@gmail.com"
+            fill_in "Password", with: "12345"
+            click_button "Sign up"
+            visit new_profile_path
+            fill_in "Name", with: "g"
+            select "ISFP", from: "profile[ptmyersbriggs]"
+            click_button "Create Profile"
+            visit personalities_path
+            click_link "Myers Briggs"
+            expect(page).to have_content("Your Personality Type: ISFP")
+        end
+        it "Show user their own personality type ESFP" do
+            visit new_profile_path
+            click_link "Sign up"
+            fill_in "user[email]", with: "g@gmail.com"
+            fill_in "Password", with: "12345"
+            click_button "Sign up"
+            visit new_profile_path
+            fill_in "Name", with: "g"
+            select "ESFP", from: "profile[ptmyersbriggs]"
+            click_button "Create Profile"
+            visit personalities_path
+            click_link "Myers Briggs"
+            expect(page).to have_content("Your Personality Type: ESFP")
+        end
+        it "Show user their own personality type ISTP" do
+            visit new_profile_path
+            click_link "Sign up"
+            fill_in "user[email]", with: "g@gmail.com"
+            fill_in "Password", with: "12345"
+            click_button "Sign up"
+            visit new_profile_path
+            fill_in "Name", with: "g"
+            select "ISTP", from: "profile[ptmyersbriggs]"
+            click_button "Create Profile"
+            visit personalities_path
+            click_link "Myers Briggs"
+            expect(page).to have_content("Your Personality Type: ISTP")
+        end
+        it "Show user their own personality type ESTP" do
+            visit new_profile_path
+            click_link "Sign up"
+            fill_in "user[email]", with: "g@gmail.com"
+            fill_in "Password", with: "12345"
+            click_button "Sign up"
+            visit new_profile_path
+            fill_in "Name", with: "g"
+            select "ESTP", from: "profile[ptmyersbriggs]"
+            click_button "Create Profile"
+            visit personalities_path
+            click_link "Myers Briggs"
+            expect(page).to have_content("Your Personality Type: ESTP")
+        end
+        it "Show user their own personality type ISFJ" do
+            visit new_profile_path
+            click_link "Sign up"
+            fill_in "user[email]", with: "g@gmail.com"
+            fill_in "Password", with: "12345"
+            click_button "Sign up"
+            visit new_profile_path
+            fill_in "Name", with: "g"
+            select "ISFJ", from: "profile[ptmyersbriggs]"
+            click_button "Create Profile"
+            visit personalities_path
+            click_link "Myers Briggs"
+            expect(page).to have_content("Your Personality Type: ISFJ")
+        end
+        it "Show user their own personality type ESFJ" do
+            visit new_profile_path
+            click_link "Sign up"
+            fill_in "user[email]", with: "g@gmail.com"
+            fill_in "Password", with: "12345"
+            click_button "Sign up"
+            visit new_profile_path
+            fill_in "Name", with: "g"
+            select "ESFJ", from: "profile[ptmyersbriggs]"
+            click_button "Create Profile"
+            visit personalities_path
+            click_link "Myers Briggs"
+            expect(page).to have_content("Your Personality Type: ESFJ")
+        end
+        it "Show user their own personality type ISTJ" do
+            visit new_profile_path
+            click_link "Sign up"
+            fill_in "user[email]", with: "g@gmail.com"
+            fill_in "Password", with: "12345"
+            click_button "Sign up"
+            visit new_profile_path
+            fill_in "Name", with: "g"
+            select "ISTJ", from: "profile[ptmyersbriggs]"
+            click_button "Create Profile"
+            visit personalities_path
+            click_link "Myers Briggs"
+            expect(page).to have_content("Your Personality Type: ISTJ")
+        end
+        it "Show user their own personality type ESTJ" do
+            visit new_profile_path
+            click_link "Sign up"
+            fill_in "user[email]", with: "g@gmail.com"
+            fill_in "Password", with: "12345"
+            click_button "Sign up"
+            visit new_profile_path
+            fill_in "Name", with: "g"
+            select "ESTJ", from: "profile[ptmyersbriggs]"
+            click_button "Create Profile"
+            visit personalities_path
+            click_link "Myers Briggs"
+            expect(page).to have_content("Your Personality Type: ESTJ")
         end
     end
 end
@@ -122,7 +332,7 @@ RSpec.describe "Controller Test", type: :system do
             click_button "Create Profile"
             visit personalities_path
             click_link "Conflict Management"
-            expect(page).to have_content("As a Shark, your best matches are teddy bears!")
+            expect(page).to have_content("As a Fox, you can match with anybody!")
         end
         it "Show user their own personality type Teddy Bear" do
             visit new_profile_path
@@ -136,7 +346,7 @@ RSpec.describe "Controller Test", type: :system do
             click_button "Create Profile"
             visit personalities_path
             click_link "Conflict Management"
-            expect(page).to have_content("As a Shark, your best matches are teddy bears!")
+            expect(page).to have_content("As a Teddy Bear, your best matches are sharks!")
         end
         it "Show user their own personality type Owl" do
             visit new_profile_path
@@ -150,7 +360,7 @@ RSpec.describe "Controller Test", type: :system do
             click_button "Create Profile"
             visit personalities_path
             click_link "Conflict Management"
-            expect(page).to have_content("As a Shark, your best matches are teddy bears!")
+            expect(page).to have_content("As an Owl, your best matches are turtles!")
         end
         it "Show user their own personality type Turtle" do
             visit new_profile_path
@@ -164,7 +374,7 @@ RSpec.describe "Controller Test", type: :system do
             click_button "Create Profile"
             visit personalities_path
             click_link "Conflict Management"
-            expect(page).to have_content("As a Shark, your best matches are teddy bears!")
+            expect(page).to have_content("As a Turtle, your best matches are owls!")
         end
     end
 end
@@ -190,6 +400,90 @@ end
 #Ensure the matching algorithm is registering their personality type correctly for Enneagram
 RSpec.describe "Controller Test", type: :system do
     describe "Should give user information about their personality results Enneagram" do
+        it "Show user their own personality type Reformer" do
+            visit new_profile_path
+            click_link "Sign up"
+            fill_in "user[email]", with: "j@gmail.com"
+            fill_in "Password", with: "12345"
+            click_button "Sign up"
+            visit new_profile_path
+            fill_in "Name", with: "j"
+            select "Reformer", from: "profile[enneagram]"
+            click_button "Create Profile"
+            visit personalities_path
+            click_link "Enneagram"
+            expect(page).to have_content("Your ideal matches are Invidualists and Enthusiasts!")
+        end
+        it "Show user their own personality type Helper" do
+            visit new_profile_path
+            click_link "Sign up"
+            fill_in "user[email]", with: "j@gmail.com"
+            fill_in "Password", with: "12345"
+            click_button "Sign up"
+            visit new_profile_path
+            fill_in "Name", with: "j"
+            select "Helper", from: "profile[enneagram]"
+            click_button "Create Profile"
+            visit personalities_path
+            click_link "Enneagram"
+            expect(page).to have_content("Your ideal matches are Invidualists and Challengers")
+        end
+        it "Show user their own personality type Achiever" do
+            visit new_profile_path
+            click_link "Sign up"
+            fill_in "user[email]", with: "j@gmail.com"
+            fill_in "Password", with: "12345"
+            click_button "Sign up"
+            visit new_profile_path
+            fill_in "Name", with: "j"
+            select "Achiever", from: "profile[enneagram]"
+            click_button "Create Profile"
+            visit personalities_path
+            click_link "Enneagram"
+            expect(page).to have_content("Your ideal matches are Loyalists and Peacemakers!")
+        end
+        it "Show user their own personality type Individualist" do
+            visit new_profile_path
+            click_link "Sign up"
+            fill_in "user[email]", with: "j@gmail.com"
+            fill_in "Password", with: "12345"
+            click_button "Sign up"
+            visit new_profile_path
+            fill_in "Name", with: "j"
+            select "Individualist", from: "profile[enneagram]"
+            click_button "Create Profile"
+            visit personalities_path
+            click_link "Enneagram"
+            expect(page).to have_content("Your ideal matches are Reformers and Helpers!")
+        end
+        it "Show user their own personality type Investigator" do
+            visit new_profile_path
+            click_link "Sign up"
+            fill_in "user[email]", with: "j@gmail.com"
+            fill_in "Password", with: "12345"
+            click_button "Sign up"
+            visit new_profile_path
+            fill_in "Name", with: "j"
+            select "Investigator", from: "profile[enneagram]"
+            click_button "Create Profile"
+            visit personalities_path
+            click_link "Enneagram"
+            expect(page).to have_content("Your ideal matches are Enthusiasts and Challengers!")
+        end
+        it "Show user their own personality type Loyalist" do
+            visit new_profile_path
+            click_link "Sign up"
+            fill_in "user[email]", with: "j@gmail.com"
+            fill_in "Password", with: "12345"
+            click_button "Sign up"
+            visit new_profile_path
+            fill_in "Name", with: "j"
+            select "Loyalist", from: "profile[enneagram]"
+            click_button "Create Profile"
+            visit personalities_path
+            click_link "Enneagram"
+            expect(page).to have_content("Your ideal matches are Achievers and Peacemakers!")
+        end
         it "Show user their own personality type Enthusiast" do
             visit new_profile_path
             click_link "Sign up"
@@ -203,6 +497,34 @@ RSpec.describe "Controller Test", type: :system do
             visit personalities_path
             click_link "Enneagram"
             expect(page).to have_content("Your ideal matches are Reformers and Investigators!")
+        end
+        it "Show user their own personality type Challenger" do
+            visit new_profile_path
+            click_link "Sign up"
+            fill_in "user[email]", with: "j@gmail.com"
+            fill_in "Password", with: "12345"
+            click_button "Sign up"
+            visit new_profile_path
+            fill_in "Name", with: "j"
+            select "Challenger", from: "profile[enneagram]"
+            click_button "Create Profile"
+            visit personalities_path
+            click_link "Enneagram"
+            expect(page).to have_content("Your ideal matches are Helpers and Investigators!")
+        end
+        it "Show user their own personality type Peacemaker" do
+            visit new_profile_path
+            click_link "Sign up"
+            fill_in "user[email]", with: "j@gmail.com"
+            fill_in "Password", with: "12345"
+            click_button "Sign up"
+            visit new_profile_path
+            fill_in "Name", with: "j"
+            select "Peacemaker", from: "profile[enneagram]"
+            click_button "Create Profile"
+            visit personalities_path
+            click_link "Enneagram"
+            expect(page).to have_content("Your ideal matches are Acheivers and Loyalists!")
         end
     end
 end

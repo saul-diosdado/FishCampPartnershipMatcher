@@ -1,4 +1,6 @@
-require "administrate/base_dashboard"
+# frozen_string_literal: true
+
+require 'administrate/base_dashboard'
 
 class ProfileDashboard < Administrate::BaseDashboard
   # ATTRIBUTE_TYPES
@@ -26,7 +28,7 @@ class ProfileDashboard < Administrate::BaseDashboard
     user_id: Field::Number,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
-    enneagram: Field::String,
+    enneagram: Field::String
   }.freeze
 
   # COLLECTION_ATTRIBUTES

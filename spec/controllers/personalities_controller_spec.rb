@@ -48,7 +48,7 @@ RSpec.describe "Controller Test", type: :system do
             visit new_profile_path
             fill_in "Name", with: "i"
             select "ENFJ", from: "profile[ptmyersbriggs]"
-            select "The Collaborative Owl", from: "profile[ptanimal]"
+            select "The Compromising Fox", from: "profile[ptanimal]"
             select "Enthusiast", from: "profile[enneagram]"
             click_button "Create Profile"
             visit personalities_path
@@ -305,11 +305,11 @@ RSpec.describe "Controller Test", type: :system do
 end
 #Ensure the matching algorithm is registering their personality type correctly for Conflict Management
 RSpec.describe "Controller Test", type: :system do
-    describe "Should give user information about their personality results Conflict Management" do
+    describe "Should give user information about their personality results for Conflict Management" do
         it "Show user their own personality type Shark" do
             visit new_profile_path
             click_link "Sign up"
-            fill_in "user[email]", with: "h@gmail.com"
+            fill_in "user[email]", with: "h1@gmail.com"
             fill_in "Password", with: "12345"
             click_button "Sign up"
             visit new_profile_path

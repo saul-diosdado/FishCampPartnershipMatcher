@@ -16,6 +16,9 @@ class ProfilesController < ApplicationController
   def index2; end
 
   def new
+    if !current_user.has_role? :chair
+      redirect_to(profiles_path, { flash: { red: 'Must be a chair to create a profile.' } })
+    end
     user_id = current_user.id
     @profile = Profile.new
   end

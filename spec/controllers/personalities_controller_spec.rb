@@ -91,24 +91,24 @@ RSpec.describe "Controller Test", type: :system do
             click_link "Myers Briggs"
             expect(page).to have_content("Your Personality Type: INFP")
         end
-        it "Show user their own personality type ENFP" do
+        it "Show user a match ENFP" do
             visit new_profile_path
             click_link "Sign up"
-            fill_in "user[email]", with: "g@gmail.com"
+            fill_in "user[email]", with: "h@gmail.com"
             fill_in "Password", with: "12345"
             click_button "Sign up"
             visit new_profile_path
-            fill_in "Name", with: "g"
+            fill_in "Name", with: "h"
             select "ENFP", from: "profile[ptmyersbriggs]"
             click_button "Create Profile"
             visit personalities_path
             click_link "Myers Briggs"
-            expect(page).to have_content("Your Personality Type: ENFP")
+            expect(page).to have_content("INFP")
         end
-        it "Show user their own personality type INFJ" do
+        it "Show user a match INFJ" do
             visit new_profile_path
             click_link "Sign up"
-            fill_in "user[email]", with: "g@gmail.com"
+            fill_in "user[email]", with: "g1@gmail.com"
             fill_in "Password", with: "12345"
             click_button "Sign up"
             visit new_profile_path
@@ -117,26 +117,26 @@ RSpec.describe "Controller Test", type: :system do
             click_button "Create Profile"
             visit personalities_path
             click_link "Myers Briggs"
-            expect(page).to have_content("Your Personality Type: INFJ")
+            expect(page).to have_content("ENFP")
         end
-        it "Show user their own personality type ENFJ" do
+        it "Show user a match ENFJ" do
             visit new_profile_path
             click_link "Sign up"
-            fill_in "user[email]", with: "g@gmail.com"
+            fill_in "user[email]", with: "h1@gmail.com"
             fill_in "Password", with: "12345"
             click_button "Sign up"
             visit new_profile_path
-            fill_in "Name", with: "g"
+            fill_in "Name", with: "h"
             select "ENFJ", from: "profile[ptmyersbriggs]"
             click_button "Create Profile"
             visit personalities_path
             click_link "Myers Briggs"
-            expect(page).to have_content("Your Personality Type: ENFJ")
+            expect(page).to have_content("INFJ")
         end
-        it "Show user their own personality type INTJ" do
+        it "Show user a match INTJ" do
             visit new_profile_path
             click_link "Sign up"
-            fill_in "user[email]", with: "g@gmail.com"
+            fill_in "user[email]", with: "g2@gmail.com"
             fill_in "Password", with: "12345"
             click_button "Sign up"
             visit new_profile_path
@@ -145,26 +145,26 @@ RSpec.describe "Controller Test", type: :system do
             click_button "Create Profile"
             visit personalities_path
             click_link "Myers Briggs"
-            expect(page).to have_content("Your Personality Type: INTJ")
+            expect(page).to have_content("ENFJ")
         end
-        it "Show user their own personality type ENTJ" do
+        it "Show user a match ENTJ" do
             visit new_profile_path
             click_link "Sign up"
-            fill_in "user[email]", with: "g@gmail.com"
+            fill_in "user[email]", with: "h2@gmail.com"
             fill_in "Password", with: "12345"
             click_button "Sign up"
             visit new_profile_path
-            fill_in "Name", with: "g"
+            fill_in "Name", with: "h"
             select "ENTJ", from: "profile[ptmyersbriggs]"
             click_button "Create Profile"
             visit personalities_path
             click_link "Myers Briggs"
-            expect(page).to have_content("Your Personality Type: ENTJ")
+            expect(page).to have_content("INTJ")
         end
-        it "Show user their own personality type INTP" do
+        it "Show user a match INTP" do
             visit new_profile_path
             click_link "Sign up"
-            fill_in "user[email]", with: "g@gmail.com"
+            fill_in "user[email]", with: "g3@gmail.com"
             fill_in "Password", with: "12345"
             click_button "Sign up"
             visit new_profile_path
@@ -173,26 +173,26 @@ RSpec.describe "Controller Test", type: :system do
             click_button "Create Profile"
             visit personalities_path
             click_link "Myers Briggs"
-            expect(page).to have_content("Your Personality Type: INTP")
+            expect(page).to have_content("ENTJ")
         end
-        it "Show user their own personality type ENTP" do
+        it "Show user a match ENTP" do
             visit new_profile_path
             click_link "Sign up"
-            fill_in "user[email]", with: "g@gmail.com"
+            fill_in "user[email]", with: "h3@gmail.com"
             fill_in "Password", with: "12345"
             click_button "Sign up"
             visit new_profile_path
-            fill_in "Name", with: "g"
+            fill_in "Name", with: "h"
             select "ENTP", from: "profile[ptmyersbriggs]"
             click_button "Create Profile"
             visit personalities_path
             click_link "Myers Briggs"
-            expect(page).to have_content("Your Personality Type: ENTP")
+            expect(page).to have_content("INTP")
         end
-        it "Show user their own personality type ISFP" do
+        it "Show user a match ISFP" do
             visit new_profile_path
             click_link "Sign up"
-            fill_in "user[email]", with: "g@gmail.com"
+            fill_in "user[email]", with: "g4@gmail.com"
             fill_in "Password", with: "12345"
             click_button "Sign up"
             visit new_profile_path
@@ -201,26 +201,26 @@ RSpec.describe "Controller Test", type: :system do
             click_button "Create Profile"
             visit personalities_path
             click_link "Myers Briggs"
-            expect(page).to have_content("Your Personality Type: ISFP")
+            expect(page).to have_content("ENFJ")
         end
-        it "Show user their own personality type ESFP" do
+        it "Show user a match ESFP" do
             visit new_profile_path
             click_link "Sign up"
-            fill_in "user[email]", with: "g@gmail.com"
+            fill_in "user[email]", with: "h4@gmail.com"
             fill_in "Password", with: "12345"
             click_button "Sign up"
             visit new_profile_path
-            fill_in "Name", with: "g"
+            fill_in "Name", with: "h"
             select "ESFP", from: "profile[ptmyersbriggs]"
             click_button "Create Profile"
             visit personalities_path
             click_link "Myers Briggs"
-            expect(page).to have_content("Your Personality Type: ESFP")
+            expect(page).to have_content("INTJ")
         end
-        it "Show user their own personality type ISTP" do
+        it "Show user a match ISTP" do
             visit new_profile_path
             click_link "Sign up"
-            fill_in "user[email]", with: "g@gmail.com"
+            fill_in "user[email]", with: "g5@gmail.com"
             fill_in "Password", with: "12345"
             click_button "Sign up"
             visit new_profile_path
@@ -229,26 +229,26 @@ RSpec.describe "Controller Test", type: :system do
             click_button "Create Profile"
             visit personalities_path
             click_link "Myers Briggs"
-            expect(page).to have_content("Your Personality Type: ISTP")
+            expect(page).to have_content("INTJ")
         end
-        it "Show user their own personality type ESTP" do
+        it "Show user a match ESTP" do
             visit new_profile_path
             click_link "Sign up"
-            fill_in "user[email]", with: "g@gmail.com"
+            fill_in "user[email]", with: "h5@gmail.com"
             fill_in "Password", with: "12345"
             click_button "Sign up"
             visit new_profile_path
-            fill_in "Name", with: "g"
+            fill_in "Name", with: "h"
             select "ESTP", from: "profile[ptmyersbriggs]"
             click_button "Create Profile"
             visit personalities_path
             click_link "Myers Briggs"
-            expect(page).to have_content("Your Personality Type: ESTP")
+            expect(page).to have_content("INTJ")
         end
-        it "Show user their own personality type ISFJ" do
+        it "Show user a match ISFJ" do
             visit new_profile_path
             click_link "Sign up"
-            fill_in "user[email]", with: "g@gmail.com"
+            fill_in "user[email]", with: "g6@gmail.com"
             fill_in "Password", with: "12345"
             click_button "Sign up"
             visit new_profile_path
@@ -257,26 +257,26 @@ RSpec.describe "Controller Test", type: :system do
             click_button "Create Profile"
             visit personalities_path
             click_link "Myers Briggs"
-            expect(page).to have_content("Your Personality Type: ISFJ")
+            expect(page).to have_content("ESFP")
         end
-        it "Show user their own personality type ESFJ" do
+        it "Show user a match ESFJ" do
             visit new_profile_path
             click_link "Sign up"
-            fill_in "user[email]", with: "g@gmail.com"
+            fill_in "user[email]", with: "h6@gmail.com"
             fill_in "Password", with: "12345"
             click_button "Sign up"
             visit new_profile_path
-            fill_in "Name", with: "g"
+            fill_in "Name", with: "h"
             select "ESFJ", from: "profile[ptmyersbriggs]"
             click_button "Create Profile"
             visit personalities_path
             click_link "Myers Briggs"
-            expect(page).to have_content("Your Personality Type: ESFJ")
+            expect(page).to have_content("ISFP")
         end
-        it "Show user their own personality type ISTJ" do
+        it "Show user a match ISTJ" do
             visit new_profile_path
             click_link "Sign up"
-            fill_in "user[email]", with: "g@gmail.com"
+            fill_in "user[email]", with: "g7@gmail.com"
             fill_in "Password", with: "12345"
             click_button "Sign up"
             visit new_profile_path
@@ -285,21 +285,21 @@ RSpec.describe "Controller Test", type: :system do
             click_button "Create Profile"
             visit personalities_path
             click_link "Myers Briggs"
-            expect(page).to have_content("Your Personality Type: ISTJ")
+            expect(page).to have_content("ESFP")
         end
-        it "Show user their own personality type ESTJ" do
+        it "Show user a match ESTJ" do
             visit new_profile_path
             click_link "Sign up"
-            fill_in "user[email]", with: "g@gmail.com"
+            fill_in "user[email]", with: "h7@gmail.com"
             fill_in "Password", with: "12345"
             click_button "Sign up"
             visit new_profile_path
-            fill_in "Name", with: "g"
+            fill_in "Name", with: "h"
             select "ESTJ", from: "profile[ptmyersbriggs]"
             click_button "Create Profile"
             visit personalities_path
             click_link "Myers Briggs"
-            expect(page).to have_content("Your Personality Type: ESTJ")
+            expect(page).to have_content("ISFP")
         end
     end
 end
@@ -320,10 +320,10 @@ RSpec.describe "Controller Test", type: :system do
             click_link "Conflict Management"
             expect(page).to have_content("As a Shark, your best matches are teddy bears!")
         end
-        it "Show user their own personality type Fox" do
+        it "Show user a match Fox" do
             visit new_profile_path
             click_link "Sign up"
-            fill_in "user[email]", with: "h@gmail.com"
+            fill_in "user[email]", with: "h1@gmail.com"
             fill_in "Password", with: "12345"
             click_button "Sign up"
             visit new_profile_path
@@ -332,12 +332,12 @@ RSpec.describe "Controller Test", type: :system do
             click_button "Create Profile"
             visit personalities_path
             click_link "Conflict Management"
-            expect(page).to have_content("As a Fox, you can match with anybody!")
+            expect(page).to have_content("The Competitive Shark")
         end
-        it "Show user their own personality type Teddy Bear" do
+        it "Show user a match Teddy Bear" do
             visit new_profile_path
             click_link "Sign up"
-            fill_in "user[email]", with: "h@gmail.com"
+            fill_in "user[email]", with: "h2@gmail.com"
             fill_in "Password", with: "12345"
             click_button "Sign up"
             visit new_profile_path
@@ -346,12 +346,12 @@ RSpec.describe "Controller Test", type: :system do
             click_button "Create Profile"
             visit personalities_path
             click_link "Conflict Management"
-            expect(page).to have_content("As a Teddy Bear, your best matches are sharks!")
+            expect(page).to have_content("The Competitive Shark")
         end
         it "Show user their own personality type Owl" do
             visit new_profile_path
             click_link "Sign up"
-            fill_in "user[email]", with: "h@gmail.com"
+            fill_in "user[email]", with: "h3@gmail.com"
             fill_in "Password", with: "12345"
             click_button "Sign up"
             visit new_profile_path
@@ -362,10 +362,10 @@ RSpec.describe "Controller Test", type: :system do
             click_link "Conflict Management"
             expect(page).to have_content("As an Owl, your best matches are turtles!")
         end
-        it "Show user their own personality type Turtle" do
+        it "Show user a match Turtle" do
             visit new_profile_path
             click_link "Sign up"
-            fill_in "user[email]", with: "h@gmail.com"
+            fill_in "user[email]", with: "h4@gmail.com"
             fill_in "Password", with: "12345"
             click_button "Sign up"
             visit new_profile_path
@@ -374,7 +374,7 @@ RSpec.describe "Controller Test", type: :system do
             click_button "Create Profile"
             visit personalities_path
             click_link "Conflict Management"
-            expect(page).to have_content("As a Turtle, your best matches are owls!")
+            expect(page).to have_content("The Collaborative Owl")
         end
     end
 end

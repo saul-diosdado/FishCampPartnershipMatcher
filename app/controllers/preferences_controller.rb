@@ -1,11 +1,15 @@
+# frozen_string_literal: true
+
 class PreferencesController < ApplicationController
   before_action :require_login
 
   def index
     @form = PreferenceForm.find(params[:form_id])
-    @users = User.where(:role => "Chair", :approved => TRUE).where.not(:id => current_user.id)
-    @prefs = Preference.where(:preference_form_id => @form.id, :selector_id => current_user.id, :pref_type => "Preference")
-    @antiprefs = Preference.where(:preference_form_id => @form.id, :selector_id => current_user.id, :pref_type => "Anti-Preference")
+    @users = User.where(role: 'Chair', approved: TRUE).where.not(id: current_user.id)
+    @prefs = Preference.where(preference_form_id: @form.id, selector_id: current_user.id,
+                              pref_type: 'Preference')
+    @antiprefs = Preference.where(preference_form_id: @form.id, selector_id: current_user.id,
+                                  pref_type: 'Anti-Preference')
   end
 
   # def show
@@ -46,15 +50,16 @@ class PreferencesController < ApplicationController
   # end
 
   def new
-    @users = User.where(:role => "Chair", :approved => TRUE).where.not(:id => current_user.id)
-    @pref = Preference.new(:preference_form_id => params[:form_id], :selector_id => current_user.id, :pref_type => params[:pref_type])
+    @users = User.where(role: 'Chair', approved: TRUE).where.not(id: current_user.id)
+    @pref = Preference.new(preference_form_id: params[:form_id], selector_id: current_user.id,
+                           pref_type: params[:pref_type])
   end
 
   def create
     @pref = Preference.new(preferences_params)
     if @pref.save
       flash[:notice] = 'Preference Saved'
-      redirect_to(preferences_path(:form_id => @pref.preference_form_id, :user_id => @pref.selector_id))
+      redirect_to(preferences_path(form_id: @pref.preference_form_id, user_id: @pref.selector_id))
     else
       render('new')
     end
@@ -69,7 +74,7 @@ class PreferencesController < ApplicationController
     @pref = Preference.find(params[:id])
     if @pref.update(preferences_params)
       flash[:notice] = 'Preference Updated'
-      redirect_to(preferences_path(:form_id => @pref.preference_form_id, :user_id => @pref.selector_id))
+      redirect_to(preferences_path(form_id: @pref.preference_form_id, user_id: @pref.selector_id))
     else
       render('new')
     end
@@ -86,15 +91,13 @@ class PreferencesController < ApplicationController
     form_id = @pref.preference_form_id
     user_id = @pref.selector_id
 
-    if @pref.destroy
-      flash[:notice] = 'Preference Deleted'
-    end
-    redirect_to(preferences_path(:form_id => form_id, :user_id => user_id))
+    flash[:notice] = 'Preference Deleted' if @pref.destroy
+    redirect_to(preferences_path(form_id: form_id, user_id: user_id))
   end
 
   private
 
-    def preferences_params
-      params.require(:preference).permit(:preference_form_id, :selector_id, :selected_id, :pref_type, :rating, :why)
-    end
+  def preferences_params
+    params.require(:preference).permit(:preference_form_id, :selector_id, :selected_id, :pref_type, :rating, :why)
+  end
 end

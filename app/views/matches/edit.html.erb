@@ -10,7 +10,7 @@
   <div id="carouselExampleControls" class="col-6 carousel slide" data-ride="carousel" data-interval="false">
     <div class="carousel-inner">
       <% prospect_count = 0 %>
-      <% @match.prospects_ids.each do |prospect_id| %>
+      <% @prospects_ids.each do |prospect_id| %>
         <% prospect_count = prospect_count + 1 %>
         <% if prospect_count == 1 %>
           <div class="carousel-item active">

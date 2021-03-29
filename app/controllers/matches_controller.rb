@@ -29,7 +29,19 @@ class MatchesController < ApplicationController
 
   def edit
     @match = Match.find(params[:id])
-    helpers.generate_prospects(@match.user_id)
+
+    # An array of ids of all of the potential matches for this Chair.
+    @prospects_ids = []
+    # Don't run the matching algorithm if the Chair already has prospects saved.
+    if !@match.prospects_ids.empty?
+      @prospects_ids = @match.prospects_ids
+      puts "---------------------------------------------------------------"
+    else
+      # Run the matching algoritm to generate prospects and then save them to the database.
+      helpers.generate_prospects(@match.user_id)
+      @match.prospects_ids = @prospects_ids
+      @match.save(validate: false)
+    end
 
     @profiles = Profile.all
     @questions = Question.all

@@ -7,7 +7,6 @@ module MatchesHelper
     user_prefs = Preference.where(selector_id: user_id)
     prefed_user = Preference.where(selected_id: user_id)
 
-    prospects_ids = []
     prospects_avgs = []
 
     # First, get all of the people that I preffed and they preffed me.
@@ -19,13 +18,13 @@ module MatchesHelper
         if pref.pref_type.eql?('Preference') && mutual.pref_type.eql?('Preference')
           avg = mutual.rating + pref.rating / 2
           prospects_avgs.push(avg)
-          prospects_ids.push(pref.selector_id)
+          @prospects_ids.push(pref.selector_id)
           prospect_added = true
         end
       elsif pref.pref_type.eql?('Preference')
         # Same as averaged with zero and weighted down to be below 1.
         prospects_avgs.push(pref.rating / 10)
-        prospects_ids.push(pref.selector_id)
+        @prospects_ids.push(pref.selector_id)
         prospect_added = true
       end
 
@@ -35,7 +34,7 @@ module MatchesHelper
           # Parallel swap.
           prospects_avgs[i - 1] = prospects_avgs[i]
           prospects_avgs[i] = prosects_avgs[i - 1]
-          prospects_ids[i], prospects_ids[i - 1] = prospects_ids[i - 1], prospects_ids[i]
+          @prospects_ids[i], @prospects_ids[i - 1] = @prospects_ids[i - 1], @prospects_ids[i]
         end
         i -= 1
       end
@@ -49,7 +48,7 @@ module MatchesHelper
 
       if pref.pref_type.eql?('Preference')
         prospects_avgs.push(pref.rating / 10)
-        prospects_ids.push(pref.selected_id)
+        @prospects_ids.push(pref.selected_id)
       end
 
       i = prospects_avgs.size - 1
@@ -58,15 +57,11 @@ module MatchesHelper
           # Parallel swap.
           prospects_avgs[i - 1] = prospects_avgs[i]
           prospects_avgs[i] = prosects_avgs[i - 1]
-          prospects_ids[i], prospects_ids[i - 1] = prospects_ids[i - 1], prospects_ids[i]
+          @prospects_ids[i], @prospects_ids[i - 1] = @prospects_ids[i - 1], @prospects_ids[i]
         end
         i -= 1
       end
     end
-
-    # Save the newly generated prospects to the user's match entry.
-    selector_match.prospects_ids = prospects_ids
-    selector_match.save(validate: false)
   end
 
   # When User A selects User B as a match, we need to update User B's Match entry to have A as a partner.

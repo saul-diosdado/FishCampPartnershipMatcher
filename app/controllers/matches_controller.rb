@@ -11,6 +11,19 @@ class MatchesController < ApplicationController
 
   def show
     @match = Match.find(params[:id])
+
+    @profiles = Profile.all
+    @questions = Question.all
+
+    @selector = Profile.where(user_id: @match.user_id).first
+    @selector_preferences = Preference.where(selector_id: @match.user_id, pref_type: 'Preference')
+    @selector_anti_preferences = Preference.where(selector_id: @match.user_id, pref_type: 'Anti-Preference')
+    @selector_answers = Answer.where(user_id: @match.user_id)
+
+    @selected = Profile.where(user_id: @match.matched_id).first
+    @selected_preferences = Preference.where(selector_id: @match.matched_id, pref_type: 'Preference')
+    @selected_anti_preferences = Preference.where(selector_id: @match.matched_id, pref_type: 'Anti-Preference')
+    @selected_answers = Answer.where(user_id: @match.matched_id)
   end
 
   def new
@@ -32,29 +45,31 @@ class MatchesController < ApplicationController
 
     # An array of ids of all of the potential matches for this Chair.
     @prospects_ids = []
-    # Don't run the matching algorithm if the Chair already has prospects saved.
-    if !@match.prospects_ids.empty?
-      @prospects_ids = @match.prospects_ids
-      puts "---------------------------------------------------------------"
-    else
-      # Run the matching algoritm to generate prospects and then save them to the database.
-      helpers.generate_prospects(@match.user_id)
-      @match.prospects_ids = @prospects_ids
-      @match.save(validate: false)
-    end
+    helpers.generate_prospects(@match.user_id)
+
+    # # Don't run the matching algorithm if the Chair already has prospects saved.
+    # if !@match.prospects_ids.empty?
+    #   @prospects_ids = @match.prospects_ids
+    # else
+    #   # Run the matching algoritm to generate prospects and then save them to the database.
+    #   helpers.generate_prospects(@match.user_id)
+    #   @match.prospects_ids = @prospects_ids
+    #   @match.save(validate: false)
+    # end
 
     @profiles = Profile.all
     @questions = Question.all
+    @matches = Match.all
 
     @selector = Profile.where(user_id: @match.user_id).first
     @selector_preferences = Preference.where(selector_id: @match.user_id, pref_type: 'Preference')
     @selector_anti_preferences = Preference.where(selector_id: @match.user_id, pref_type: 'Anti-Preference')
     @selector_answers = Answer.where(user_id: @match.user_id)
 
-    @selected = Profile.where(user_id: @match.prospects_ids)
-    @selected_preferences = Preference.where(selector_id: @match.prospects_ids).where(pref_type: 'Preference')
-    @selected_anti_preferences = Preference.where(selector_id: @match.prospects_ids).where(pref_type: 'Anti-Preference')
-    @selected_answers = Answer.where(user_id: @match.prospects_ids)
+    @selected = Profile.where(user_id: @prospects_ids)
+    @selected_preferences = Preference.where(selector_id: @prospects_ids).where(pref_type: 'Preference')
+    @selected_anti_preferences = Preference.where(selector_id: @prospects_ids).where(pref_type: 'Anti-Preference')
+    @selected_answers = Answer.where(user_id: @prospects_ids)
   end
 
   def update

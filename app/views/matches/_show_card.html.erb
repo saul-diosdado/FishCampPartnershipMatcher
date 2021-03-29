@@ -1,7 +1,7 @@
 <div class="card">
   <div class="card-header d-flex flex-row justify-content-between">
     <div>
-      <h2><%= @selector.name %></h2>
+      <h2><%= chair.name %></h2>
       <% if @match.matched_id != nil %>
         <h6>Partner: <%= @profiles.where(user_id: @match.matched_id).first.name %>
       <% else %>
@@ -14,7 +14,7 @@
     <!-- Preferences -->
     <li class="list-group-item">
       <h4 class="mb-3">Preferences</h4>
-      <% @selector_preferences.each do |preference| %>
+      <% preferences.each do |preference| %>
         <div class="form-inline">
           <h6><%= @profiles.where(user_id: preference.selected_id).first.name %></h6>
           <h6 class="text-primary ml-2"><%= preference.rating %></h6>
@@ -26,7 +26,7 @@
     <!-- Anti-Preferences -->
     <li class="list-group-item">
       <h4 class="mb-3">Anti-Preferences</h4>
-      <% @selector_anti_preferences.each do |anti_preference| %>
+      <% anti_preferences.each do |anti_preference| %>
         <div class="form-inline">
           <h6 class="text-danger"><%= @profiles.where(user_id: anti_preference.selected_id).first.name %></h6>
         </div>
@@ -40,7 +40,7 @@
       <% question_num = 1 %>
       <% @questions.each do |question| %>
         <h6><%= question_num %>. <%= question.question %></h6>
-        <p><%= get_answer(@selector_answers.where(question_id: question.id).first) %></p>
+        <p><%= get_answer(answers.where(question_id: question.id).first) %></p>
         <% question_num = question_num + 1 %>
       <% end %>
     </li>

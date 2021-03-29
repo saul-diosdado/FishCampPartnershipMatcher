@@ -5,13 +5,29 @@
   <%= f.hidden_field(:preference_form_id, value: @match.preference_form_id) %>
   <%= f.hidden_field(:matched_id, value: prospect_id) %>
   <div class="card">
-    <div class="card-header d-flex flex-column">
-      <h2 class="mb-4"><%= @selected.where(user_id: prospect_id).first.name %></h2>
-      <% if @match.matched_id != prospect_id %>
-        <%= f.submit("Match", class: "btn btn-success btn-block my-1") %>
-      <% else %>
-        <%= f.submit("Current Match", class: "disabled btn btn-secondary btn-block my-1", disabled: true) %>
-      <% end%>
+    <div class="card-header d-flex flex-row justify-content-between">
+      <div>
+        <h2><%= @selected.where(user_id: prospect_id).first.name %></h2>
+        <% prospect_match_entry = @matches.where(user_id: prospect_id).first %>
+        <% if prospect_match_entry.matched_id != nil %>
+          <h6>Partner: <%= @profiles.where(user_id: prospect_match_entry.matched_id).first.name %>
+        <% else %>
+          <h6>Partner: N/A</h6>
+        <% end %>        
+      </div>
+      <div class="d-flex align-items-center">
+        <!-- If the prospect already has a partner, display a button that allows the user to see that partner's card -->
+        <% if prospect_match_entry.matched_id != nil && prospect_match_entry.matched_id != @match.user_id %>
+          <%= link_to("View Partner", match_path(prospect_match_entry), class: "btn btn-primary btn-lg my-1") %>
+        <% end %>
+
+        <!-- If the selector is already matched to a particular prospect, do not allow the user to click match on them -->
+        <% if @match.matched_id != prospect_id %>
+          <%= f.submit("Match", class: "btn btn-success btn-lg mx-1 my-1") %>
+        <% else %>
+          <%= f.submit("Current Match", class: "disabled btn btn-secondary btn-lg mx-1 my-1", disabled: true) %>
+        <% end%>
+      </div>
     </div>
 
     <ul class="list-group list-group-flush">

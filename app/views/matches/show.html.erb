@@ -1,0 +1,13 @@
+<h1 class="my-4">Viewing Match</h1>
+
+<div class="row">
+  <!-- Selector Card -->
+  <div class="col-6">
+    <%= render(:partial => "show_card", :locals => {chair: @selector, preferences: @selector_preferences, anti_preferences: @selector_anti_preferences, answers: @selector_answers}) %>
+  </div>
+
+  <!-- Selected Card -->
+  <div class="col-6">
+    <%= render(:partial => "show_card", :locals => {chair: @selected, preferences: @selected_preferences, anti_preferences: @selected_anti_preferences, answers: @selected_answers}) %>
+  </div>
+</div>

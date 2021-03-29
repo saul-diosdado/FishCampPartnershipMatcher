@@ -183,8 +183,54 @@ RSpec.describe "Controller Test", type: :system do
             click_button "Create Profile"
             visit personalities_path
             click_link "True Colors"
-            expect(page).to have_content("Users who have the same color as you (Gold):")
+            expect(page).to have_content("Your True Color: Gold")
         end
+		
+		it "Show user their own personality type Green" do
+            visit new_profile_path
+            click_link "Sign up"
+            fill_in "user[email]", with: "i@gmail.com"
+            fill_in "Password", with: "12345"
+            click_button "Sign up"
+            visit new_profile_path
+            fill_in "Name", with: "i"
+            select "Green", from: "profile[pttruecolors]"
+            click_button "Create Profile"
+            visit personalities_path
+            click_link "True Colors"
+            expect(page).to have_content("Your True Color: Green")
+        end
+		
+		it "Show user their own personality type Orange" do
+            visit new_profile_path
+            click_link "Sign up"
+            fill_in "user[email]", with: "i@gmail.com"
+            fill_in "Password", with: "12345"
+            click_button "Sign up"
+            visit new_profile_path
+            fill_in "Name", with: "i"
+            select "Orange", from: "profile[pttruecolors]"
+            click_button "Create Profile"
+            visit personalities_path
+            click_link "True Colors"
+            expect(page).to have_content("Your True Color: Orange")
+        end
+		
+		it "Show user their own personality type Blue" do
+            visit new_profile_path
+            click_link "Sign up"
+            fill_in "user[email]", with: "i@gmail.com"
+            fill_in "Password", with: "12345"
+            click_button "Sign up"
+            visit new_profile_path
+            fill_in "Name", with: "i"
+            select "Blue", from: "profile[pttruecolors]"
+            click_button "Create Profile"
+            visit personalities_path
+            click_link "True Colors"
+            expect(page).to have_content("Your True Color: Blue")
+        end
+		
     end
 end
 #Ensure the matching algorithm is registering their personality type correctly for Enneagram

@@ -6,7 +6,7 @@ class MatchesController < ApplicationController
 
     @matched_chairs = Match.where.not(matched_id: nil)
 
-    @info = Profile.all
+    @profiles = Profile.all
   end
 
   def show
@@ -29,16 +29,15 @@ class MatchesController < ApplicationController
 
   def edit
     @match = Match.find(params[:id])
-    @info = Profile.all
+    helpers.generate_prospects(@match.user_id)
 
+    @profiles = Profile.all
     @questions = Question.all
 
     @selector = Profile.where(user_id: @match.user_id).first
     @selector_preferences = Preference.where(selector_id: @match.user_id, pref_type: 'Preference')
     @selector_anti_preferences = Preference.where(selector_id: @match.user_id, pref_type: 'Anti-Preference')
     @selector_answers = Answer.where(user_id: @match.user_id)
-
-    helpers.generate_prospects(@match.user_id)
 
     @selected = Profile.where(user_id: @match.prospects_ids)
     @selected_preferences = Preference.where(selector_id: @match.prospects_ids).where(pref_type: 'Preference')
@@ -50,11 +49,12 @@ class MatchesController < ApplicationController
     @match = Match.find(params[:id])
 
     # Check if this Chair already had an existing match.
-    helpers.unmatch_existing_match(@match.matched_id) unless @match.matched_id.nil?
+    helpers.unmatch_existing_match(@match.user_id, @match.matched_id) unless @match.matched_id == nil
 
     if @match.update(match_params)
-      helpers.create_match(params[:matched_id], params[:user_id])
-      redirect_to(matches_path({ flash: { success: 'Match updated successfully.' } }))
+      helpers.update_selected_match(@match.matched_id, @match.user_id)
+      # Once update occurs, this Chair's Match entry will contain their new partner. Update that partner's Match entry.
+      redirect_to(matches_path(), { flash: { success: 'Match updated successfully.' } })
     else
       render('edit')
     end
@@ -74,6 +74,6 @@ class MatchesController < ApplicationController
   private
 
   def match_params
-    params.require(:match).permit(:user_id, :matched_id, :preference_form_id, :prospects_ids, :prospects_pref_averages)
+    params.require(:match).permit(:id, :user_id, :matched_id, :preference_form_id, :prospects_ids, :prospects_pref_averages)
   end
 end

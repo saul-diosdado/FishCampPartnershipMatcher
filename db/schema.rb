@@ -88,13 +88,13 @@ ActiveRecord::Schema.define(version: 2021_03_23_000647) do
     t.string "ptanimal"
     t.string "pttruecolors"
     t.string "ptmyersbriggs"
+    t.string "enneagram"
     t.string "aboutme"
     t.boolean "approvedchair"
     t.string "gender"
     t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "enneagram"
   end
 
   create_table "questions", force: :cascade do |t|

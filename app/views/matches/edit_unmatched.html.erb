@@ -9,22 +9,7 @@
 
 <%= link_to("Back", matches_path(), class: "btn btn-primary btn-sm mt-2 mb-2") %>
 <div class="d-flex justify-content-between align-items-center">
-  <h1 class="mb-4">Find Match</h1>
-  <div class="form-inline">
-    <%= link_to("Unmatched Chairs", match_edit_unmatched_path(@match), class: "btn btn-secondary") %>
-    <div class="dropdown ml-2">
-      <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Search by name
-      </button>
-      <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-        <% @profiles.each do |chair| %>
-          <% if chair.user_id != @match.user_id %>
-            <%= link_to(chair.name, match_edit_search_path(@match, :user_id => chair.user_id), class: "dropdown-item", type: "button") %>
-          <% end %>
-        <% end %>
-      </div>
-    </div>
-  </div>
+  <h1 class="mb-4">Showing All Unmatched Chairs</h1>
 </div>
 
 <div class="row">

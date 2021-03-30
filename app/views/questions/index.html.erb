@@ -2,7 +2,7 @@
   <div class="alert alert-<%= key %>"><%= value %></div>
 <% end %>
 
-<h1>Questions</h1>
+<h1 class="mt-4">Questions</h1>
 <%= link_to("Create New Question", new_question_path(:form_id => @form_id), class: "btn btn-success mt-2 mb-4") %>
 
 <% question_num = 1 %>

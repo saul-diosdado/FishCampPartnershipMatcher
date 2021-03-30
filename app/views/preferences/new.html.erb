@@ -1,31 +1,32 @@
 <!-- Form to make new preference -->
-<h2 class="heading">Add New Preference</h2>
+<h2 class="my-4">Add New Preference</h2>
+<div class="card">
+    <div class="card-body">
+        <%= form_for(@pref) do |f| %>
 
-<p>Add instructions here...</p>
-<%= form_for(@pref) do |f| %>
+            <div>
+                <!-- Save given fields -->
+                <%= f.hidden_field(:preference_form_id, value: @pref.preference_form_id) %>
+                <%= f.hidden_field(:selector_id, value: @pref.selector_id) %>
+                <%= f.hidden_field(:pref_type, value: @pref.pref_type) %>
+            
+                <!-- List of other chairs -->
+                <p>Select Chair  <%= f.collection_select(:selected_id, @profiles.order(:name), :user_id, :name) %></p>
 
-    <div>
-        <!-- Save given fields -->
-        <%= f.hidden_field(:preference_form_id, value: @pref.preference_form_id) %>
-        <%= f.hidden_field(:selector_id, value: @pref.selector_id) %>
-        <%= f.hidden_field(:pref_type, value: @pref.pref_type) %>
-    
-        <!-- List of other chairs -->
-        <p>Select Chair</p>
-        <%= f.collection_select(:selected_id, @users, :id, :email) %>
+                <!-- Rate the selected chair -->
+                <p>Rating  <%= f.select :rating, [1, 2, 3, 4, 5] %></p>
 
-        <!-- Rate the selected chair -->
-        <p>Rating</p>
-        <%= f.select :rating, [1, 2, 3, 4, 5] %>
+                <!-- Provide an explanation in the text box. -->
+                <p></br>Explain why you gave this person this rating?</p>
+                <%= f.text_area(:why, :cols => "100", :rows => "10") %>
+            </div>
+            <div> 
+                <!-- Save the form, or go back -->
+                <p></p>
+                <%= link_to("Back to Preferences", preferences_path(:user_id => @pref.selector_id, :form_id => @pref.preference_form_id), class: "btn btn-secondary btn-sm ml-2") %>
+                <%= f.submit("Save", class: "btn btn-success btn-sm ml-2") %>
+            </div>
 
-        <!-- Provide an explanation in the text box. -->
-        <p>Explain why you gave this person this rating?</p>
-        <%= f.text_area(:why, :cols => "100", :rows => "10") %>
+        <% end %>
     </div>
-    <div> 
-        <!-- Save the form, or go back -->
-        <%= link_to("Back to Preferences", preferences_path(:user_id => @pref.selector_id, :form_id => @pref.preference_form_id), class: "btn btn-secondary btn-sm ml-2") %>
-        <%= f.submit("Save", class: "btn btn-success btn-sm ml-2") %>
-    </div>
-
-<% end %>
+</div>

@@ -2,33 +2,39 @@
 <% flash.each do |key, value| %>
   <div class="alert alert-<%= key %>"><%= value %></div>
 <% end %>
+<div class="container-x1">
+  <h1 class="my-4"><%= @form.title %></h1>
+  <!-- Form instructions -->
+  <div class="card mb-4">
+    <div class="card-header">
+      <h5><b>INSTRUCTIONS</b></h5>
+      <p>
+        Fill out the required information for each question. Use the <b>"Add Response"</b> button to answer
+        a selected question. Press the <b>"Save"</b> button to save your responses.
+        Use the <b>"Edit"</b> button to revise any previously answered question. The <b>"Delete"</b> button
+        allows you to start a question over from scratch. <b style="color:red;">WARNING:</b> If a response is deleted it can NOT 
+        be retrieved later. </br> </br> 
+        This form can be resumed later, so feel free to exit if needed. Once finished, use the <b>"Next Page"</b> button 
+        to fill out the preferences portion of the form.
+      </p>
+    </div>
+  </div>
 
-<h1><%= @form.title %></h1>
-<!-- Form instructions -->
-<p>
-INSTRUCTIONS: For each question, fill out the required information. If a question has not been answered,
-you will see the word "Unanswered" in that question's preview column. Use the "Add Response" button to select 
-and answer a question. Press the "Save" button to save your responses. </br> </br>
-You can use the "Edit" button to revise any previously answered question and to start a question over from scratch, 
-use the "Delete Response" button. WARNING: Using the "Delete Response" button completely erases that response and can NOT 
-be retrieved later. This form can be resumed later, so feel free to exit if needed. Once finished, use the "Next Page" button 
-to fill out the preferences portion of the form.
-</p>
-
-<!-- Table of questions and answers -->
-<table class="table">
-    <tbody>
-    <!-- Compute the question number -->
-    <% row_num = 0 %>
-    <% @questions.each do |question| %>
-    <% row_num = row_num + 1 %>
-    <tr>
-        <!-- render answer partial -->
-        <%= render(:partial => "answer_index", :locals => {:row_num => row_num, :question => question}) %>
-    </tr>
-    <% end %>
-    </tbody>
-</table>
-<!-- Link to preferences page -->
-<%= link_to("Back to Forms", public_forms_path, class: "btn btn-secondary mt-2 mb-4") %>
-<%= link_to("Next Page", preferences_path(:form_id => @form.id, :user_id => current_user.id), class: "btn btn-success mt-2 mb-4") %>
+  <!-- Table of questions and answers -->
+  <table class="table">
+      <tbody>
+      <!-- Compute the question number -->
+      <% row_num = 0 %>
+      <% @questions.each do |question| %>
+      <% row_num = row_num + 1 %>
+      <tr>
+          <!-- render answer partial -->
+          <%= render(:partial => "answer_index", :locals => {:row_num => row_num, :question => question}) %>
+      </tr>
+      <% end %>
+      </tbody>
+  </table>
+  <!-- Link to preferences page -->
+  <%= link_to("Back to Forms", public_forms_path, class: "btn btn-secondary mt-2 mb-4") %>
+  <%= link_to("Next Page", preferences_path(:form_id => @form.id, :user_id => current_user.id), class: "btn btn-success mt-2 mb-4") %>
+<div>

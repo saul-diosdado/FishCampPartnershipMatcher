@@ -1,34 +1,42 @@
 # frozen_string_literal: true
 
 class PreferenceFormsController < ApplicationController
+  before_action :require_login
+  
   def index
     @forms = PreferenceForm.all
   end
 
   def show
     @form = PreferenceForm.find(params[:id])
-    @users = User.where(role: 'Chair', approved: TRUE).where.not(id: current_user.id)
+    @user = User.find(current_user.id)
     @prefs = Preference.where(preference_form_id: @form.id, selector_id: current_user.id,
                               pref_type: 'Preference')
     @antiprefs = Preference.where(preference_form_id: @form.id, selector_id: params[:user_id],
                                   pref_type: 'Anti-Preference')
 
-    @questions = Question.order('id ASC')
-    @answers = Answer.where(user_id: params[:user_id])
+    @questions = Question.where(preference_form_id: @form.id)
+    @answers = Answer.where(user_id: params[:user_id], preference_form_id: @form.id)
 
+    # Checks if the form was complete before allowing the user to review responses.
     error_id = 0
+
+    # Checks if all the questions were answered.
     @questions.each do |question|
       error_id = 1 if @answers.exists?(question_id: question.id) == false
     end
 
     if error_id.zero?
       if @prefs.size < @form.num_prefs
+        # Checks if there were enough preferences made.
         error_id = 2
       elsif @antiprefs.size < @form.num_antiprefs
+        # Checks if there were enough anti-preferences made
         error_id = 3
       end
     end
 
+    # Takes the correct action based on the found error.
     case error_id
     when 1
       flash[:notice] = 'FORM NOT COMPLETE. Please answer all questions before submitting.'

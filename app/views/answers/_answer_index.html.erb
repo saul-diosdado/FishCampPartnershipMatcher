@@ -8,7 +8,7 @@
       <% if @answers.exists?(:question_id => question.id) %>
           <% answer = @answers.where(:question_id => question.id).first %>
           <%= link_to("Edit", edit_answer_path(answer, :question_id => question.id), class: "btn btn-primary btn-sm ml-2") %>
-          <%= link_to("Delete Response", delete_answer_path(answer, :question_id => question.id), class: "btn btn-danger btn-sm ml-2") %>
+          <%= link_to("Delete", delete_answer_path(answer, :question_id => question.id), class: "btn btn-danger btn-sm ml-2") %>
       <% else %>
           <!-- Else, allow them to add a response to the question. -->
           <%= link_to("Add Response", new_answer_path(:question_id => question.id, :form_id => question.preference_form_id, :question_type => question.question_type), class: "btn btn-primary btn-sm ml-2") %>

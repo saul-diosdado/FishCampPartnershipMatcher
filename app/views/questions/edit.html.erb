@@ -1,8 +1,8 @@
-<%= link_to("Home", questions_path()) %>
+<%= link_to("Back", questions_path(:form_id => @question.preference_form_id), class: "btn btn-primary btn-sm mt-2 mb-2") %>
 <h1>Edit Question</h1>
 <%= form_for(@question) do |f| %>
   <%= render(:partial => "form", :locals => {:f => f,:form_id => @question.preference_form_id}) %>
   <p>
-    <%= f.submit("Update Question", class: "btn btn-primary") %>
+    <%= f.submit("Update Question", class: "btn btn-success") %>
   </p>
 <% end %>

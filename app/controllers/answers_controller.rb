@@ -7,7 +7,7 @@ class AnswersController < ApplicationController
   def index
     @form = PreferenceForm.find(params[:form_id])
     @questions = Question.where(preference_form_id: @form.id).order('id ASC')
-    @answers = Answer.where(user_id: current_user.id)
+    @answers = Answer.where(user_id: current_user.id, preference_form_id: @form.id)
   end
 
   def new

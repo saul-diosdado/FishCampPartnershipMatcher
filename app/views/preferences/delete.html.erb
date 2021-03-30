@@ -3,7 +3,7 @@
 
 <%= form_for(@pref, :method => 'delete') do |f| %>
 
-    <p> Are you sure that you wish to permanently delete your <%= @pref.pref_type %> of <%= @user.email %></p>
+    <p> Are you sure that you wish to permanently delete your <%= @pref.pref_type %> for <%= @profile.name %></p>
     <%= link_to("Back to Preferences", preferences_path(:user_id => @pref.selector_id, :form_id => @pref.preference_form_id), class: "btn btn-secondary btn-sm ml-2") %>
     <%= f.submit("Delete Preference", class: "btn btn-danger btn-sm ml-2") %>
 

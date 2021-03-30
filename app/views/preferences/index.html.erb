@@ -29,7 +29,7 @@ make changes to the form. Press the "Submit" button when complete.
     <tbody>
     <% @prefs.each do |pref| %> <!-- Displays all preferences in the top half of the table -->
     <tr>
-        <td><%= @users.where(:id => pref.selected_id).first.email %></td>
+        <td><%= @profiles.where(user_id: pref.selected_id).first.name %></td>
         <td><%= pref.pref_type %></td>
         <td><%= pref.rating %></td>
         <td><%= pref.why %></td>
@@ -43,7 +43,7 @@ make changes to the form. Press the "Submit" button when complete.
 
     <% @antiprefs.each do |anti| %> <!-- Displays all anti-preferences in the top half of the table -->
     <tr>
-        <td><%= @users.where(:id => anti.selected_id).first.email %></td>
+        <td><%= @profiles.where(user_id: anti.selected_id).first.name %></td>
         <td><%= anti.pref_type %></td>
         <td><%= anti.rating %></td>
         <td><%= anti.why %></td>
@@ -64,6 +64,8 @@ make changes to the form. Press the "Submit" button when complete.
                 <% if @prefs.where(:pref_type => "Preference").size < @form.num_prefs %> <!-- If the user has used all prefs, remove the button. -->
                     <%= link_to("Add Pref", new_preference_path(:form_id => @form.id, :pref_type => "Preference"), class: "btn btn-primary btn-sm ml-2") %>
                 <% end %>
+
+                
                 <% if @antiprefs.where(:pref_type => "Anti-Preference").size < @form.num_antiprefs %> <!-- If the user has used all anti-prefs, remove the button. -->
                     <%= link_to("Add Anti-Pref", new_preference_path(:form_id => @form.id, :pref_type => "Anti-Preference"), class: "btn btn-primary btn-sm ml-2") %>
                 <% end %>

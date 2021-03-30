@@ -12,7 +12,7 @@
     
         <!-- List of other chairs -->
         <p>Select Chair</p>
-        <%= f.collection_select(:selected_id, @users, :id, :email) %>
+        <%= f.collection_select(:selected_id, @profiles.order(:name), :user_id, :name) %>
 
         <!-- Rate the selected chair -->
         <p>Rating</p>

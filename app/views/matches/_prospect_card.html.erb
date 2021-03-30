@@ -1,0 +1,69 @@
+<!-- Same across all of the prospects -->
+<%= form_for(@match) do |f| %>
+  <%= f.hidden_field(:id, value: @match.id) %>
+  <%= f.hidden_field(:user_id, value: @match.user_id) %>
+  <%= f.hidden_field(:preference_form_id, value: @match.preference_form_id) %>
+  <%= f.hidden_field(:matched_id, value: prospect_id) %>
+  <div class="card">
+    <div class="card-header d-flex flex-row justify-content-between">
+      <div>
+        <h2><%= @selected.where(user_id: prospect_id).first.name %></h2>
+        <% prospect_match_entry = @matches.where(user_id: prospect_id).first %>
+        <% if prospect_match_entry.matched_id != nil %>
+          <h6>Partner: <%= @profiles.where(user_id: prospect_match_entry.matched_id).first.name %>
+        <% else %>
+          <h6>Partner: N/A</h6>
+        <% end %>        
+      </div>
+      <div class="d-flex align-items-center">
+        <!-- If the prospect already has a partner, display a button that allows the user to see that partner's card -->
+        <% if prospect_match_entry.matched_id != nil && prospect_match_entry.matched_id != @match.user_id %>
+          <%= link_to("View Partner", match_path(prospect_match_entry), class: "btn btn-primary btn-lg my-1") %>
+        <% end %>
+
+        <!-- If the selector is already matched to a particular prospect, do not allow the user to click match on them -->
+        <% if @match.matched_id != prospect_id %>
+          <%= f.submit("Match", class: "btn btn-success btn-lg mx-1 my-1") %>
+        <% else %>
+          <%= f.submit("Current Match", class: "disabled btn btn-secondary btn-lg mx-1 my-1", disabled: true) %>
+        <% end%>
+      </div>
+    </div>
+
+    <ul class="list-group list-group-flush">
+      <!-- Preferences -->
+      <li class="list-group-item">
+        <h4 class="mb-3">Preferences</h4>
+        <% @selected_preferences.where(selector_id: prospect_id).each do |preference| %>
+          <div class="form-inline">
+            <h6><%= @profiles.where(user_id: preference.selected_id).first.name %></h6>
+            <h6 class="text-primary ml-2"><%= preference.rating %></h6>
+          </div>
+          <p> <%= preference.why %> </p>
+        <% end %>
+      </li>
+
+      <!-- Anti-Preferences -->
+      <li class="list-group-item">
+        <h4 class="mb-3">Anti-Preferences</h4>
+        <% @selected_anti_preferences.where(selector_id: prospect_id).each do |anti_preference| %>
+          <div class="form-inline">
+            <h6 class="text-danger"><%= @profiles.where(user_id: anti_preference.selected_id).first.name %></h6>
+          </div>
+          <p><%= anti_preference.why %></p>
+        <% end %>
+      </li>
+
+      <!-- Responses -->
+      <li class="list-group-item">
+        <h4 class="mb-3">Responses</h4>
+        <% question_num = 1 %>
+        <% @questions.each do |question| %>
+          <h6><%= question_num %>. <%= question.question %></h6>
+          <p><%= get_answer(@selected_answers.where(user_id: prospect_id, question_id: question.id).first) %></p>
+          <% question_num = question_num + 1 %>
+        <% end %>
+      </li>
+    </ul>
+  </div>
+<% end %>

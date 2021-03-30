@@ -49,6 +49,9 @@ Rails.application.routes.draw do
     member do
       get :delete
     end
+
+    get 'edit_search'
+    get 'edit_unmatched'
   end
 
   resources :public_forms, only: [:index]

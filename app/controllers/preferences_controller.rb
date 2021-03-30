@@ -50,9 +50,9 @@ class PreferencesController < ApplicationController
   # end
 
   def new
-    @users = User.where(role: 'Chair', approved: TRUE).where.not(id: current_user.id)
-    @pref = Preference.new(preference_form_id: params[:form_id], selector_id: current_user.id,
-                           pref_type: params[:pref_type])
+    @users = User.where(:role => "Chair", :approved => TRUE).where.not(:id => current_user.id)
+    @profiles = Profile.all
+    @pref = Preference.new(:preference_form_id => params[:form_id], :selector_id => current_user.id, :pref_type => params[:pref_type])
   end
 
   def create
@@ -67,6 +67,7 @@ class PreferencesController < ApplicationController
 
   def edit
     @pref = Preference.find(params[:id])
+    @profiles = Profile.all
     @users = User.where(role: 'Chair', approved: TRUE).where.not(id: params[:user_id])
   end
 

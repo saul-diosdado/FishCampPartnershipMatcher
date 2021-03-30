@@ -14,9 +14,10 @@ class CreateProfiles < ActiveRecord::Migration[6.1]
       t.string :ptanimal
       t.string :pttruecolors
       t.string :ptmyersbriggs
+      t.string :enneagram
       t.string :aboutme
       t.boolean :approvedchair
-      t.boolean :gender
+      t.string :gender
       t.bigint :user_id
 
       t.timestamps

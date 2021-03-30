@@ -7,7 +7,6 @@ module MatchesHelper
     user_prefs = Preference.where(selector_id: user_id)
     prefed_user = Preference.where(selected_id: user_id)
 
-    prospects_ids = []
     prospects_avgs = []
 
     # First, get all of the people that I preffed and they preffed me.
@@ -19,13 +18,13 @@ module MatchesHelper
         if pref.pref_type.eql?('Preference') && mutual.pref_type.eql?('Preference')
           avg = mutual.rating + pref.rating / 2
           prospects_avgs.push(avg)
-          prospects_ids.push(pref.selector_id)
+          @prospects_ids.push(pref.selector_id)
           prospect_added = true
         end
       elsif pref.pref_type.eql?('Preference')
         # Same as averaged with zero and weighted down to be below 1.
         prospects_avgs.push(pref.rating / 10)
-        prospects_ids.push(pref.selector_id)
+        @prospects_ids.push(pref.selector_id)
         prospect_added = true
       end
 
@@ -35,7 +34,7 @@ module MatchesHelper
           # Parallel swap.
           prospects_avgs[i - 1] = prospects_avgs[i]
           prospects_avgs[i] = prosects_avgs[i - 1]
-          prospects_ids[i], prospects_ids[i - 1] = prospects_ids[i - 1], prospects_ids[i]
+          @prospects_ids[i], @prospects_ids[i - 1] = @prospects_ids[i - 1], @prospects_ids[i]
         end
         i -= 1
       end
@@ -49,7 +48,7 @@ module MatchesHelper
 
       if pref.pref_type.eql?('Preference')
         prospects_avgs.push(pref.rating / 10)
-        prospects_ids.push(pref.selected_id)
+        @prospects_ids.push(pref.selected_id)
       end
 
       i = prospects_avgs.size - 1
@@ -58,35 +57,44 @@ module MatchesHelper
           # Parallel swap.
           prospects_avgs[i - 1] = prospects_avgs[i]
           prospects_avgs[i] = prosects_avgs[i - 1]
-          prospects_ids[i], prospects_ids[i - 1] = prospects_ids[i - 1], prospects_ids[i]
+          @prospects_ids[i], @prospects_ids[i - 1] = @prospects_ids[i - 1], @prospects_ids[i]
         end
         i -= 1
       end
     end
-
-    # Save the newly generated prospects to the user's match entry.
-    selector_match.prospects_ids = prospects_ids
-    selector_match.save(validate: false)
   end
 
-  # Didn't have an existing match.
-  def create_match(user_id, matched_id)
+  # When User A selects User B as a match, we need to update User B's Match entry to have A as a partner.
+  #
+  # @params selected_id User B's ID
+  # @params user_id User A's ID
+  def update_selected_match(selected_id, user_id)
     # We need to modify the selected Chair's match entry.
-    selected_match = Match.where(user_id: matched_id).first
-
-    return if selected_match.nil?
+    selected_match = Match.where(user_id: selected_id).first
 
     # Check if the person who we selected already had a partner. Unmatch them if so.
-    unmatch_existing_match(matched_id) unless selected_match.matched_id.nil?
+    unmatch_existing_match(selected_id, selected_match.matched_id) unless selected_match.matched_id.nil?
 
     selected_match.matched_id = user_id
     selected_match.save(validate: false)
   end
 
-  # Unmatch
-  def unmatch_existing_match(selected_id)
-    selected_match = Match.where(user_id: selected_id).first
+  # In the case where we are finding a match for User A and we select User B.
+  # However, User B was already matched to User C, therefore we must unmatch User B and C.
+  # Also used when User A is already matched to User D, so we unmatch User A and D
+  #
+  # @params user_match The ID of User A/B
+  # @params matched_id The ID of User C/D
+  def unmatch_existing_match(user_id, matched_id)
+    # Find User C/D's Match entry.
+    selected_match = Match.where(user_id: matched_id).first
     selected_match.matched_id = nil
     selected_match.save(validate: false)
+    
+    # Find User A/B's Match entry.
+    selector_match = Match.where(user_id: user_id).first
+    selector_match.matched_id = nil
+    selector_match.save(validate: false)
+
   end
 end

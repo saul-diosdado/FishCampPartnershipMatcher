@@ -47,6 +47,27 @@ class MatchesController < ApplicationController
     @prospects_ids = []
     helpers.generate_prospects(@match.user_id)
 
+    # If this Chair already had a match, put them as first in the prospects.
+    if @match.matched_id != nil
+      match_in_prospects = false
+      index = 0
+
+      @prospects_ids.each do |prospect_id|
+        # If the match is in the array of prospects, move it up to be the first in the array.
+        if @match.matched_id == prospect_id
+          @prospects_ids.insert(0, @prospects_ids.delete_at(index))
+          match_in_prospects = true
+          break
+        end
+        index = index + 1
+      end
+
+      # In case their match was not in the prospects array (i.e. was found through "Search")
+      if !match_in_prospects
+        @prospects_ids.insert(0, @match.matched_id)
+      end
+    end
+
     # # Don't run the matching algorithm if the Chair already has prospects saved.
     # if !@match.prospects_ids.empty?
     #   @prospects_ids = @match.prospects_ids
@@ -61,6 +82,46 @@ class MatchesController < ApplicationController
     @questions = Question.all
     @matches = Match.all
 
+    @selector = Profile.where(user_id: @match.user_id).first
+    @selector_preferences = Preference.where(selector_id: @match.user_id, pref_type: 'Preference')
+    @selector_anti_preferences = Preference.where(selector_id: @match.user_id, pref_type: 'Anti-Preference')
+    @selector_answers = Answer.where(user_id: @match.user_id)
+
+    @selected = Profile.where(user_id: @prospects_ids)
+    @selected_preferences = Preference.where(selector_id: @prospects_ids).where(pref_type: 'Preference')
+    @selected_anti_preferences = Preference.where(selector_id: @prospects_ids).where(pref_type: 'Anti-Preference')
+    @selected_answers = Answer.where(user_id: @prospects_ids)
+  end
+
+  def edit_search
+    @match = Match.find(params[:match_id])
+    @prospect_id = params[:user_id].to_i
+
+    @profiles = Profile.all
+    @questions = Question.all
+    @matches = Match.all
+
+    @selector = Profile.where(user_id: @match.user_id).first
+    @selector_preferences = Preference.where(selector_id: @match.user_id, pref_type: 'Preference')
+    @selector_anti_preferences = Preference.where(selector_id: @match.user_id, pref_type: 'Anti-Preference')
+    @selector_answers = Answer.where(user_id: @match.user_id)
+
+    @selected = Profile.where(user_id: @prospect_id)
+    @selected_preferences = Preference.where(selector_id: @prospect_id).where(pref_type: 'Preference')
+    @selected_anti_preferences = Preference.where(selector_id: @prospect_id).where(pref_type: 'Anti-Preference')
+    @selected_answers = Answer.where(user_id: @prospect_id)
+  end
+
+  def edit_unmatched
+    @match = Match.find(params[:match_id])
+    
+    @profiles = Profile.all
+    @questions = Question.all
+    @matches = Match.all
+
+    # An array containing the ids of all Chairs that have no partner.
+    @prospects_ids = Match.where(matched_id: nil).where.not(user_id: @match.user_id)
+    
     @selector = Profile.where(user_id: @match.user_id).first
     @selector_preferences = Preference.where(selector_id: @match.user_id, pref_type: 'Preference')
     @selector_anti_preferences = Preference.where(selector_id: @match.user_id, pref_type: 'Anti-Preference')

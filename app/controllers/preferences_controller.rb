@@ -47,7 +47,7 @@ class PreferencesController < ApplicationController
 
   def delete
     @pref = Preference.find(params[:id])
-    @profile = Profile.where(user_id: @pref.selected_id)
+    @profile = Profile.where(user_id: @pref.selected_id).first
   end
 
   def destroy

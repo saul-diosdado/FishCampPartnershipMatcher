@@ -1,10 +1,12 @@
 <!-- Form for deleting a preference -->
-<h2 class="heading">Delete Preference</h2>
+<div class="container-x1">
+<h2 class="my-4">Delete Preference</h2>
 
 <%= form_for(@pref, :method => 'delete') do |f| %>
 
-    <p> Are you sure that you wish to permanently delete your <%= @pref.pref_type %> for <%= @profile.name %></p>
-    <%= link_to("Back to Preferences", preferences_path(:user_id => @pref.selector_id, :form_id => @pref.preference_form_id), class: "btn btn-secondary btn-sm ml-2") %>
+    <p> Are you sure that you wish to permanently delete your <b><%= @pref.pref_type %></b> for <b><%= @profile.name %></b></p>
+    <%= link_to("Back", preferences_path(:user_id => @pref.selector_id, :form_id => @pref.preference_form_id), class: "btn btn-secondary btn-sm ml-2") %>
     <%= f.submit("Delete Preference", class: "btn btn-danger btn-sm ml-2") %>
 
 <% end %>
+</div>

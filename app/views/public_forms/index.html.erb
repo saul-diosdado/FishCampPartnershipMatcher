@@ -1,18 +1,21 @@
-<% @forms.each do |form| %>
-    <div class="card mb-4">
-        <!-- Card Header -->
-        <div class="card-header d-flex justify-content-between">
-            <h5><%= form.title %></h5>
-            <div class="form-inline">
-                <%= link_to("Open", answers_path(:user_id => 1, :form_id => form.id), class: "btn btn-primary btn-sm ml-2") %>
+<div class="container-x1">
+    <h1 class="my-4">Forms</h1>
+    <% @forms.each do |form| %>
+        <div class="card mb-4">
+            <!-- Card Header -->
+            <div class="card-header d-flex justify-content-between">
+                <h5><%= form.title %></h5>
+                <div class="form-inline">
+                    <%= link_to("Open", answers_path(:user_id => 1, :form_id => form.id), class: "btn btn-primary btn-sm ml-2") %>
+                </div>
+            </div>
+            <!-- Card Body -->
+            <div class="card-body">
+                <p class="card-title">Status: </p>
+                <p class="card-title">Deadline: </p>
             </div>
         </div>
-        <!-- Card Body -->
-        <div class="card-body">
-            <p class="card-title">Status: </p>
-            <p class="card-title">Deadline: </p>
-        </div>
-    </div>
-<% end %>
+    <% end %>
 
-<%= link_to("Back to Profiles", root_path, class: "btn btn-success mt-2 mb-4") %>
+    <%= link_to("Back to Profiles", root_path, class: "btn btn-success mt-2 mb-4") %>
+</div>

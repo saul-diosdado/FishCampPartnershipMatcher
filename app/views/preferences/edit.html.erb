@@ -1,29 +1,30 @@
-<h2 class="heading">Edit Preference</h2>
+<div class="container-x1">
+    <h2 class="my-4">Edit Preference</h2>
+    <div class="card">
+        <div class="card-body">
+            <%= form_for(@pref) do |f| %>
+                <div>
+                    <!-- Save given fields -->
+                    <%= f.hidden_field(:selector_id, value: @pref.selector_id) %>
+                    <%= f.hidden_field(:pref_type, value: @pref.pref_type) %>
+                    
+                    <!-- Select a chair from list -->
+                    <p>Select Chair <%= f.collection_select(:selected_id, @profiles.order(:name), :user_id, :name) %></p>
 
-<%= form_for(@pref) do |f| %>
+                    <!-- Rate that chair -->
+                    <p>Rating  <%= f.select :rating, [1, 2, 3, 4, 5]%></p>
 
-    <div>
-        <!-- Save given fields -->
-        <%= f.hidden_field(:selector_id, value: @pref.selector_id) %>
-        <%= f.hidden_field(:pref_type, value: @pref.pref_type) %>
-        
-        <!-- Select a chair from list -->
-        <p>Select Chair</p>
-        <%= f.collection_select(:selected_id, @profiles.order(:name), :user_id, :name) %>
-
-        <!-- Rate that chair -->
-        <p>Rating</p>
-        <%= f.select :rating, [1, 2, 3, 4, 5]%>
-
-        <!-- Explain your rating in the text box -->
-        <p>Explain why you gave this person this rating?</p>
-        <%= f.text_area(:why, :cols => "100", :rows => "10") %>
+                    <!-- Explain your rating in the text box -->
+                    <p></br>Explain why you gave this person this rating?</p>
+                    <%= f.text_area(:why, :cols => "100", :rows => "10") %>
+                </div>
+                <div>
+                    <!-- Submit and back buttons -->
+                    <p></p>
+                    <%= link_to("Back to Preferences", preferences_path(:user_id => @pref.selector_id, :form_id => @pref.preference_form_id), class: "btn btn-secondary btn-sm ml-2") %>
+                    <%= f.submit("Save", class: "btn btn-success btn-sm ml-2") %>
+                </div>
+            <% end %>
+        </div>
     </div>
-    <div>
-        <!-- Submit and back buttons -->
-        <%= link_to("Back to Preferences", preferences_path(:user_id => @pref.selector_id, :form_id => @pref.preference_form_id), class: "btn btn-secondary btn-sm ml-2") %>
-        <%= f.submit("Save", class: "btn btn-success btn-sm ml-2") %>
-    </div>
-
-
-<% end %>
+</div>

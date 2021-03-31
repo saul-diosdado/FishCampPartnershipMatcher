@@ -26,20 +26,6 @@ class MatchesController < ApplicationController
     @selected_answers = Answer.where(user_id: @match.matched_id)
   end
 
-  def new
-    @match = Match.new
-  end
-
-  def create
-    @match = Match.new(match_params)
-
-    if @match.save
-      redirect_to(matches_path({ flash: { success: 'Match created successfully.' } }))
-    else
-      render('new')
-    end
-  end
-
   def edit
     @match = Match.find(params[:id])
 
@@ -48,12 +34,10 @@ class MatchesController < ApplicationController
     helpers.generate_prospects(@match.user_id)
 
     # Display a warning alert if there is not going to be any prospect cards rendered.
-    if @prospects_ids.length() == 0
-      flash.now[:warning] = 'Warning: This chair has no prospects.'
-    end
+    flash.now[:warning] = 'Warning: This chair has no prospects.' if @prospects_ids.length.zero?
 
     # If this Chair already had a match, put them as first in the prospects.
-    if @match.matched_id != nil
+    unless @match.matched_id.nil?
       match_in_prospects = false
       index = 0
 
@@ -64,13 +48,11 @@ class MatchesController < ApplicationController
           match_in_prospects = true
           break
         end
-        index = index + 1
+        index += 1
       end
 
       # In case their match was not in the prospects array (i.e. was found through "Search")
-      if !match_in_prospects
-        @prospects_ids.insert(0, @match.matched_id)
-      end
+      @prospects_ids.insert(0, @match.matched_id) unless match_in_prospects
     end
 
     # # Don't run the matching algorithm if the Chair already has prospects saved.
@@ -119,7 +101,7 @@ class MatchesController < ApplicationController
 
   def edit_unmatched
     @match = Match.find(params[:match_id])
-    
+
     @profiles = Profile.all
     @questions = Question.all
     @matches = Match.all
@@ -128,10 +110,8 @@ class MatchesController < ApplicationController
     @prospects_ids = Match.where(matched_id: nil).where.not(user_id: @match.user_id)
 
     # Display a warning alert if there is no unmatched chairs left.
-    if @prospects_ids.length() == 0
-      flash.now[:warning] = 'Warning: All other chairs already have a partner.'
-    end
-    
+    flash.now[:warning] = 'Warning: All other chairs already have a partner.' if @prospects_ids.length.zero?
+
     @selector = Profile.where(user_id: @match.user_id).first
     @selector_preferences = Preference.where(selector_id: @match.user_id, pref_type: 'Preference')
     @selector_anti_preferences = Preference.where(selector_id: @match.user_id, pref_type: 'Anti-Preference')
@@ -147,26 +127,15 @@ class MatchesController < ApplicationController
     @match = Match.find(params[:id])
 
     # Check if this Chair already had an existing match.
-    helpers.unmatch_existing_match(@match.user_id, @match.matched_id) unless @match.matched_id == nil
+    helpers.unmatch_existing_match(@match.user_id, @match.matched_id) unless @match.matched_id.nil?
 
     if @match.update(match_params)
       helpers.update_selected_match(@match.matched_id, @match.user_id)
       # Once update occurs, this Chair's Match entry will contain their new partner. Update that partner's Match entry.
-      redirect_to(matches_path(), { flash: { success: 'Match updated successfully.' } })
+      redirect_to(matches_path, { flash: { success: 'Match updated successfully.' } })
     else
       render('edit')
     end
-  end
-
-  def delete
-    @match = Match.find(params[:id])
-  end
-
-  def destroy
-    @match = Match.find(params[:id])
-    @match.destroy
-
-    redirect_to(matches_path({ flash: { success: 'Match removed successfully.' } }))
   end
 
   private

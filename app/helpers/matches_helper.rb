@@ -3,7 +3,6 @@
 module MatchesHelper
   # For a given user, populate their Match table entry.
   def generate_prospects(user_id)
-    selector_match = Match.where(user_id: user_id).first
     user_prefs = Preference.where(selector_id: user_id)
     prefed_user = Preference.where(selected_id: user_id)
 
@@ -33,7 +32,7 @@ module MatchesHelper
         if prospects_avgs[i] > prospects_avgs[i - 1]
           # Parallel swap.
           prospects_avgs[i - 1] = prospects_avgs[i]
-          prospects_avgs[i] = prosects_avgs[i - 1]
+          prospects_avgs[i] = prospects_avgs[i - 1]
           @prospects_ids[i], @prospects_ids[i - 1] = @prospects_ids[i - 1], @prospects_ids[i]
         end
         i -= 1
@@ -56,7 +55,7 @@ module MatchesHelper
         if prospects_avgs[i] > prospects_avgs[i - 1]
           # Parallel swap.
           prospects_avgs[i - 1] = prospects_avgs[i]
-          prospects_avgs[i] = prosects_avgs[i - 1]
+          prospects_avgs[i] = prospects_avgs[i - 1]
           @prospects_ids[i], @prospects_ids[i - 1] = @prospects_ids[i - 1], @prospects_ids[i]
         end
         i -= 1
@@ -90,11 +89,10 @@ module MatchesHelper
     selected_match = Match.where(user_id: matched_id).first
     selected_match.matched_id = nil
     selected_match.save(validate: false)
-    
+
     # Find User A/B's Match entry.
     selector_match = Match.where(user_id: user_id).first
     selector_match.matched_id = nil
     selector_match.save(validate: false)
-
   end
 end

@@ -14,9 +14,9 @@ class PreferencesController < ApplicationController
   end
 
   def new
-    @users = User.where(:role => "Chair", :approved => TRUE).where.not(:id => current_user.id)
+    @users = User.where(role: 'Chair', approved: TRUE).where.not(id: current_user.id)
     @profiles = Profile.all
-    @pref = Preference.new(:preference_form_id => params[:form_id], :selector_id => current_user.id, :pref_type => params[:pref_type])
+    @pref = Preference.new(preference_form_id: params[:form_id], selector_id: current_user.id, pref_type: params[:pref_type])
   end
 
   def create

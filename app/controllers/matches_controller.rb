@@ -47,6 +47,11 @@ class MatchesController < ApplicationController
     @prospects_ids = []
     helpers.generate_prospects(@match.user_id)
 
+    # Display a warning alert if there is not going to be any prospect cards rendered.
+    if @prospects_ids.length() == 0
+      flash.now[:warning] = 'Warning: This chair has no prospects.'
+    end
+
     # If this Chair already had a match, put them as first in the prospects.
     if @match.matched_id != nil
       match_in_prospects = false
@@ -121,6 +126,11 @@ class MatchesController < ApplicationController
 
     # An array containing the ids of all Chairs that have no partner.
     @prospects_ids = Match.where(matched_id: nil).where.not(user_id: @match.user_id)
+
+    # Display a warning alert if there is no unmatched chairs left.
+    if @prospects_ids.length() == 0
+      flash.now[:warning] = 'Warning: All other chairs already have a partner.'
+    end
     
     @selector = Profile.where(user_id: @match.user_id).first
     @selector_preferences = Preference.where(selector_id: @match.user_id, pref_type: 'Preference')

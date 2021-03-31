@@ -11,14 +11,14 @@
 		border: 20px solid rgba(0, 0, 0, 0.2);
 	}
 	#home-button{
+		opacity: 0.95;
 		border: 4px solid rgba(0, 0, 0, 0.2);
 		margin:5px;
-		background color: lightSlateGrey;
 	}
 	#delete-button{
+		opacity: 0.95;
 		border: 4px solid rgba(0, 0, 0, 0.2);
 		margin:5px;
-		background color: lightSlateGrey;
 	}
 	body {
 		background-color: wheat;
@@ -35,8 +35,8 @@
 			<p>Are you <b>sure</b> you want to <b>permanently</b> delete your profile?</p>
 			<p>This action can't be undone</p>
 			<p>
-				<div id="home-button" class="btn btn-sm" style="background-color:lightSlateGrey"> <%= link_to("Cancel", profiles_path(), :class => "btn") %></div>
-				<%= f.submit("Delete Profile", class: "btn btn-sm", id: "delete-button", style: "background-color:lightSlateGrey") %>
+				<div id="home-button" class="btn btn-sm" style="background-color:Peru"> <%= link_to("Cancel", profiles_path(), :class => "btn", style: "color: SeaShell") %></div>
+				<%= f.submit("Delete Profile", class: "btn btn-sm", id: "delete-button", style: "background-color:Peru; color: SeaShell") %>
 			</p>
 		<% end %>
 	</div>

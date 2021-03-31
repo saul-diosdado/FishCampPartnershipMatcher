@@ -14,8 +14,12 @@ class PreferencesController < ApplicationController
   end
 
   def new
-    @users = User.where(:role => "Chair", :approved => TRUE).where.not(:id => current_user.id)
-    @profiles = Profile.all
+    @prefs = Preference.where(preference_form_id: @form.id, selector_id: current_user.id,
+                              pref_type: 'Preference')
+    @antiprefs = Preference.where(preference_form_id: @form.id, selector_id: current_user.id,
+                                  pref_type: 'Anti-Preference')
+    @profiles = Profile.all.where.not(user_id: current_user.id)
+
     @pref = Preference.new(:preference_form_id => params[:form_id], :selector_id => current_user.id, :pref_type => params[:pref_type])
   end
 
@@ -31,8 +35,12 @@ class PreferencesController < ApplicationController
 
   def edit
     @pref = Preference.find(params[:id])
-    @profiles = Profile.all
-    @users = User.where(role: 'Chair', approved: TRUE).where.not(id: params[:user_id])
+    @prefs = Preference.where(preference_form_id: @form.id, selector_id: current_user.id,
+      pref_type: 'Preference')
+    @antiprefs = Preference.where(preference_form_id: @form.id, selector_id: current_user.id,
+              pref_type: 'Anti-Preference')
+    # .  
+    @profiles = Profile.all.where.not(user_id: current_user.id)
   end
 
   def update

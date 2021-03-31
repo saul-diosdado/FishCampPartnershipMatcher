@@ -1,7 +1,7 @@
 <div class="profile_index2">
 
-	<head>
-	</head>
+<head>
+</head>
 	
 	<style>
 		.card {
@@ -37,8 +37,6 @@
 			background-repeat: no-repeat;
 			background-size: cover;
 		}
-
-
 		
 	</style>
 	
@@ -58,8 +56,7 @@
 		   </div>
 		</nav>
 		<br><br>
-		
-		
+				
 		<div class="profile_index">
 
 			<div class = "container-fluid" style="font-family:Georgia">
@@ -105,7 +102,7 @@
 					</div>
 				</div>
 			</div>
-			
+
 			<% @profiles.each do |profile| %>
 				<div class = "carousel-item"> 
 					<div class = "container">
@@ -116,7 +113,12 @@
 										<h5 class="card-title"><%= profile.name%></h5>
 											<img src="https://mdbootstrap.com/img/new/standard/city/053.jpg" class="rounded-circle" alt="default profile pic" width="135" height="135" style = "border:2px solid white"> 
 											<br><br>
-											<p class="card-text">Not sure what exactly will go in here yet. May be an optional bio or contact information.</p>
+											<% if profile.aboutme.length > 90 %>
+												<% substring = profile.aboutme[0..90] %>
+												<p class = "card-text" style = "font-size: 14px"><%= substring %>...</p>
+											<% else %>
+												<p class="card-text" style = "font-size: 14px"><%= profile.aboutme %></p>
+											<% end %> 
 											<div id = "card-button" class="btn btn-sm" style="background-color: Peru;"><%= link_to("View Profile", profile_path(profile), :class => "btn", style: "color:SeaShell") %></div>
 									</div>
 									
@@ -136,32 +138,32 @@
 									<div class="card-body">
 										<!-- addresses spacing on the right card (teddy bear string is too long to fit on one line) -->
 										<% if profile.ptanimal.eql? "The Accommodating Teddy Bear" %>
-											<hr style = "border: 1px solid white; width: 100%; opacity: 0.65;">
+											<hr style = "border: 1px solid brown; width: 100%; opacity: 0.9;">
 											
 											<p><b>Animal</b><br><%= profile.ptanimal %></p>
-											<hr style = "border: 1px solid white; width: 100%; opacity: 0.65;">
+											<hr style = "border: 1px solid brown; width: 100%; opacity: 0.9;">
 											
 											<p><b>True Colors</b><br><%= profile.pttruecolors %></p>
-											<hr style = "border: 1px solid white; width: 100%; opacity: 0.65;">
+											<hr style = "border: 1px solid brown; width: 100%; opacity: 0.9;">
 											
 											<p><b>Myers Briggs</b><br><%= profile.ptmyersbriggs %></p>
-											<hr style = "border: 1px solid white; width: 100%; opacity: 0.65;">
+											<hr style = "border: 1px solid brown; width: 100%; opacity: 0.9;">
 											
 											<p><b>Enneagram</b><br><%= profile.enneagram%></p>
 										<% else %>
-											<hr style = "border: 1px solid white; width: 100%; opacity: 0.65;">
+											<hr style = "border: 1px solid brown; width: 100%; opacity: 0.9;">
 											
 											<p><b>Animal</b><br><%= profile.ptanimal %></p>
-											<hr style = "border: 1px solid white; width: 100%; opacity: 0.65;">
+											<hr style = "border: 1px solid brown; width: 100%; opacity: 0.9;">
 											
 											<p><b>True Colors</b><br><%= profile.pttruecolors %></p>
-											<hr style = "border: 1px solid white; width: 100%; opacity: 0.65;">
+											<hr style = "border: 1px solid brown; width: 100%; opacity: 0.9;">
 											
 											<p><b>Myers Briggs</b><br><%= profile.ptmyersbriggs %></p>
-											<hr style = "border: 1px solid white; width: 100%; opacity: 0.65;">
+											<hr style = "border: 1px solid brown; width: 100%; opacity: 0.9;">
 											
 											<p><b>Enneagram</b><br><%= profile.enneagram%></p>
-											<hr style = "border: 1px solid white; width: 100%; opacity: 0.65;">
+											<hr style = "border: 1px solid brown; width: 100%; opacity: 0.9;">
 										<% end %>
 									</div>
 								</div>

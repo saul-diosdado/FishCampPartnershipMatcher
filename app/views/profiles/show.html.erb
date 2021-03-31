@@ -52,57 +52,57 @@
 			<h3> <%= @profile.name %> </h3>
 		<% end %>
 		<table summary="Profile view">
-			<tr><th><hr style = "border: 1px solid white; width: 340%;opacity: 0.65;"></th></tr>
+			<tr><th><hr style = "border: 1px solid brown; width: 340%;opacity: 0.9;"></th></tr>
 			<tr>
 			  <th>Email</th>
 			  <td><%= @profile.email %></td>
 			</tr>
-			<tr><th><hr style = "border: 1px solid white; width: 340%; opacity: 0.65;"></th></tr>
+			<tr><th><hr style = "border: 1px solid brown; width: 340%; opacity: 0.9;"></th></tr>
 			<tr>
 			  <th>Phone Number &nbsp; </th>
 			  <td><%= @profile.phonenumber %></td>
 			</tr>
-			<tr><th><hr style = "border: 1px solid white; width: 340%;opacity: 0.65;"></th></tr>
+			<tr><th><hr style = "border: 1px solid brown; width: 340%;opacity: 0.9;"></th></tr>
 			<tr>
 			  <th>Snapchat</th>
 			  <td><%= @profile.snapchat %></td>
 			</tr>
-			<tr><th><hr style = "border: 1px solid white; width: 340%;opacity: 0.65;"></th></tr>
+			<tr><th><hr style = "border: 1px solid brown; width: 340%;opacity: 0.9;"></th></tr>
 			<tr>
 			  <th>Instagram</th>
 			  <td><%= @profile.instagram %></td>
 			</tr>
-			<tr><th><hr style = "border: 1px solid white; width: 340%;opacity: 0.65;"></th></tr>
+			<tr><th><hr style = "border: 1px solid brown; width: 340%;opacity: 0.9;"></th></tr>
 			<tr>
 			  <th>Facebook</th>
 			  <td><%= @profile.facebook %></td>
 			</tr>
-			<tr><th><hr style = "border: 1px solid white; width: 340%;opacity: 0.65;"></th></tr>
+			<tr><th><hr style = "border: 1px solid brown; width: 340%;opacity: 0.9;"></th></tr>
 			<tr>
 			  <th>Twitter</th>
 			  <td><%= @profile.twitter %></td>
 			</tr>
-			<tr><th><hr style = "border: 1px solid white; width: 340%;opacity: 0.65;"></th></tr>
+			<tr><th><hr style = "border: 1px solid brown; width: 340%;opacity: 0.9;"></th></tr>
 			<tr>
 			  <th> Animal</th>
 			  <td><%= @profile.ptanimal %></td>
 			</tr>
-			<tr><th><hr style = "border: 1px solid white; width: 340%;opacity: 0.65;"></th></tr>
+			<tr><th><hr style = "border: 1px solid brown; width: 340%;opacity: 0.9;"></th></tr>
 			<tr>
 			  <th> True Colors</th>
 			  <td><%= @profile.pttruecolors %></td>
 			</tr>
-			<tr><th><hr style = "border: 1px solid white; width: 340%;opacity: 0.65;"></th></tr>
+			<tr><th><hr style = "border: 1px solid brown; width: 340%;opacity: 0.9;"></th></tr>
 			<tr>
 			  <th>Myers Briggs</th>
 			  <td><%= @profile.ptmyersbriggs %></td>
 			</tr>
-			<tr><th><hr style = "border: 1px solid white; width: 340%;opacity: 0.65;"></th></tr>
+			<tr><th><hr style = "border: 1px solid brown; width: 340%;opacity: 0.9;"></th></tr>
 			<tr>
 			  <th>Enneagram</th>
 			  <td><%= @profile.enneagram %></td>
 			</tr>
-			<tr><th><hr style = "border: 1px solid white; width: 340%;opacity: 0.65;"></th></tr>
+			<tr><th><hr style = "border: 1px solid brown; width: 340%;opacity: 0.9;"></th></tr>
 			<tr>
 			  <th>About Me</th>
 			  <td class = "about-me"><%= @profile.aboutme %></td>
@@ -112,7 +112,7 @@
 </div>
 
 <br>
-
+&emsp;
 <div id="home-button" class="btn btn-sm" style="background-color:Peru"> <%= link_to("Home", profiles_path(), :class => "btn", style: "color:SeaShell") %></div>
 <% if current_user.id.eql? @profile.user_id %>
 	<div id="edit-button" class="btn btn-sm" style="background-color:Peru"> <%= link_to("Edit", edit_profile_path(@profile), :class => "btn", style: "color:SeaShell") %></div>

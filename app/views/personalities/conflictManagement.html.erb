@@ -60,17 +60,25 @@
 				<div class="card">
 					<div class="card-body">
 						<div class = "text-center">
-							<div id = "card-button" class="btn btn-sm" style="background-color: maroon; color: white;"><h4> User with same type:  </h4></div>
+							<% if @userProfile.ptanimal.eql? "The Competitive Shark" %>
+								<div id = "card-button" class="btn btn-sm" style="background-color: maroon; color: white;"><h4>Other Competitive Sharks: </h4></div>
+							<% elsif @userProfile.ptanimal.eql? "The Avoidant Turtle" %>
+								<div id = "card-button" class="btn btn-sm" style="background-color: maroon; color: white;"><h4>Other Other Avoidant Turtles: </h4></div>
+							<% elsif @userProfile.ptanimal.eql? "The Collaborative Owl" %>
+								<div id = "card-button" class="btn btn-sm" style="background-color: maroon; color: white;"><h4>Other Collaborative Owls: </h4></div>
+							<% elsif @userProfile.ptanimal.eql? "The Accommodating Teddy Bear" %>
+								<div id = "card-button" class="btn btn-sm" style="background-color: maroon; color: white;"><h4>Other Teddy Bears: </h4></div>
+							<% end %>
 							<table class="listing" summary="Same Type List">
 								<% @sameCM.each do |same| %>
-									<div class="card-body">
+									
 										<hr style = "border: 1px solid brown; width: 100%; opacity: 0.9;">
-										<%= link_to("View Profile", profile_path(same), :class => "btn", style: "color: white; font-weight: bold;") %>
-										<h5 class="card-title"><%= same.name%></h5>
+										<%= link_to(same.name, profile_path(same), :class => "btn", style: "color: white; font-weight: bold;") %>
 										<p class="card-text"><%= same.ptanimal %></p>
-										<div class="btn btn-secondary btn-sm"> <%= link_to("View Profile", profile_path(same), :class => "btn", style: "color: white") %></div>
-									</div>
+									
+									
 								<% end %>
+							<hr style = "border: 1px solid brown; width: 100%; opacity: 0.9;">
 							</table>
 						</div>
 					</div>
@@ -80,7 +88,16 @@
 				<div class="card">
 					<div class="card-body">
 						<div class = "text-center">
-							<div id = "card-button" class="btn btn-sm" style="background-color: maroon; color: white;"><h4>Profiles with opposite type: </h4></div>
+							<% if @userProfile.ptanimal.eql? "The Competitive Shark" %>
+								<div id = "card-button" class="btn btn-sm" style="background-color: maroon; color: white;"><h4> Teddy Bears:  </h4></div>
+							<% elsif @userProfile.ptanimal.eql? "The Avoidant Turtle" %>
+								<div id = "card-button" class="btn btn-sm" style="background-color: maroon; color: white;"><h4> Collaborative Owls:  </h4></div>
+							<% elsif @userProfile.ptanimal.eql? "The Collaborative Owl" %>
+								<div id = "card-button" class="btn btn-sm" style="background-color: maroon; color: white;"><h4> Avoidant Turtles:  </h4></div>
+							<% elsif @userProfile.ptanimal.eql? "The Accommodating Teddy Bear" %>
+								<div id = "card-button" class="btn btn-sm" style="background-color: maroon; color: white;"><h4> Competitive Sharks: </h4></div>
+							<% end %>
+					
 							<table class="listing" summary="Opposite Type List">
 								<% @oppositeMatches.each do |opposite| %>
 									

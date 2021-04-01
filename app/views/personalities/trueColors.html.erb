@@ -6,19 +6,31 @@
 	  padding: 10px;
 	}
 	.card {
-			display: inline-block;
-			margin-left: 10px;
-			margin-right: 10px;
-			width: 400px;
-			opacity: 0.75;
-			background-repeat: no-repeat;
-			background-color: maroon;
-			border: 20px solid rgba(0, 0, 0, 0.2);
-			font-family: Georgia;
-		}
-	#card-button {
-			border: 4px solid rgba(0, 0, 0, 0.2);
+		display: inline-block;
+		margin-left: 10px;
+		margin-right: 10px;
+		width: 250px;
+		opacity: 0.75;
+		background-repeat: no-repeat;
+		background-color: maroon;
+		color: white;
+		border: 20px solid rgba(0, 0, 0, 0.2);
 	}
+	#card-button {
+		opacity: 0.95;
+		border: 4px solid rgba(0, 0, 0, 0.2);
+	}
+	h3.centered {
+		margin-left: auto;
+		margin-right: auto;
+		padding-bottom: 40px;
+		width: 25em;
+	}
+
+	h1.margined {
+		padding-top: 40px;
+		padding-bottom: 40px;
+	}	
 	body {
 		background-color: wheat;
 		width: 100%;
@@ -26,100 +38,119 @@
 		background-repeat: no-repeat;
 		background-size: cover;
 	}
-	#card-button {
-			border: 4px solid rgba(0, 0, 0, 0.2);
-	}
 </style>
-
-<div class = "container-fluid" style="font-family:Georgia">
-	<% flash.each do |key, value| %>
-		<div class="flash-notice <%= key %>"><%= value %></div>
-	 <% end %>
-	<br>
-	<h2 style = "text-align:center; margin-top: 45px;"><b>Your True Color: <%= @userProfile.pttruecolors %></b></h2>
-	<br>
-	<hr style = "border: 1px solid black; width: 85%;">
-	<br>
-	<h3 class = "margined" style = "text-align: center; margin-bottom:75px;"> Below, you will find the true colors
-	of you potential partners</h3>
-</div>
-
-
-<div>
-	<div class="card text-center text-white mb-3">
-		<div class="card-body">
-			<div id = "card-button" class="btn btn-sm" style="background-color: maroon; color: white;"><h3>Users with the same color as you: </h3></div>
-			<table class="listing" summary="Ideal matches list">
-				<% @sameProfiles.each do |same| %>
-					<div class="card-body">
-						<h5 class="card-title"><%= same.name%></h5>
-							<p class="card-text"><%= same.pttruecolors %></p>
-							<div class="btn btn-secondary btn-sm"> <%= link_to("View Profile", profile_path(same), :class => "btn", style: "color: white") %></div>
-					</div>
-				<% end %>
-			</table>
-		</div>
-		</div>
-	</div>
-		
-	<div class="card text-center text-white mb-3">
-		<div class="card-body">
-			
-			<div id = "card-button" class="btn btn-sm" style="background-color: maroon; color: white;"><h3>Profiles with the opposite CM type:</h3></div>
-			<h5> Users who are <%= @otherProfiles1color %>: </h5>
-			<table class="listing" summary="Other Colors 1">
-				<% @otherProfiles1.each do |otherColor1| %>
-					<div class="card-body">
-						<h5 class="card-title"><%= otherColor1.name%></h5>
-							<p class="card-text"><%= otherColor1.pttruecolors %></p>
-							<div class="btn btn-secondary btn-sm"> <%= link_to("View Profile", profile_path(otherColor1), :class => "btn", style: "color: white") %></div>
-					</div>
-				<% end %>
-			</table>
-		</div>
+<body>
+	<div class = "container-fluid" style="font-family:Georgia">
+		<% flash.each do |key, value| %>
+			<div class="flash-notice <%= key %>"><%= value %></div>
+		 <% end %>
+		<br>
+		<h2 style = "text-align:center; margin-top: 45px;"><b>Your True Color: <%= @userProfile.pttruecolors %></b></h2>
+		<br>
+		<hr style = "border: 1px solid black; width: 85%;">
+		<br>
+		<h3 class = "margined" style = "text-align: center; margin-bottom:75px;"> Below, you will find the true colors
+		of you potential partners</h3>
 	</div>
 	
-	<div class="card text-center text-white mb-3">
-		<div class="card-body">
-			
-			<div id = "card-button" class="btn btn-sm" style="background-color: maroon; color: white;"><h3>Profiles with the opposite CM type:</h3></div>
-			<h5> Users who are <%= @otherProfiles2color %>: </h5>
-			<table class="listing" summary="Other Colors 2">
-				<% @otherProfiles2.each do |otherColor2| %>
-					<div class="card-body">
-						<h5 class="card-title"><%= otherColor2.name%></h5>
-							<p class="card-text"><%= otherColor2.pttruecolors %></p>
-							<div class="btn btn-secondary btn-sm"> <%= link_to("View Profile", profile_path(otherColor2), :class => "btn", style: "color: white") %></div>
-					</div>
-				<% end %>
-			</table>
-		</div>
-	</div>
+	<!------------------------------------------->
 	
-	<div class="card text-center text-white mb-3">
-		<div class="card-body">
-			
-			<div id = "card-button" class="btn btn-sm" style="background-color: maroon; color: white;"><h3>Profiles with the opposite CM type:</h3></div>
-			<h5> Users who are <%= @otherProfiles3color %>: </h5>
-			<table class="listing" summary="Other Colors 3">
-				<% @otherProfiles3.each do |otherColor3| %>
-					<div class="card-body">
-						<h5 class="card-title"><%= otherColor3.name%></h5>
-							<p class="card-text"><%= otherColor3.pttruecolors %></p>
-							<div class="btn btn-secondary btn-sm"> <%= link_to("View Profile", profile_path(otherColor3), :class => "btn", style: "color: white") %></div>
+	<div class="container">
+        <div class="row">
+            <div class="col-lg-6 mb-4">
+                <div class="card text-center text-white mb-3">
+					<div class="card-body">						
+						<div id = "card-button" class="btn btn-sm" style="background-color: maroon; color: white;"><h4>Other <%= @userProfile.pttruecolors %> Users</h4></div>
+						<table class="listing" summary="Same Color">
+							<% @sameProfiles.each do |same| %>
+								<hr style = "border: 1px solid brown; width: 100%; opacity: 0.9;">								
+								<%= link_to(same.name, profile_path(same), :class => "btn", style: "color: white; font-weight: bold;") %>
+								<p class="card-text"><%= same.pttruecolors %></p>
+								
+							<% end %>
+							<hr style = "border: 1px solid brown; width: 100%; opacity: 0.9;">
+						</table>
 					</div>
-				<% end %>
-			</table>
-		</div>
-	</div>
-	<br><br>
-	<div class="btn btn-secondary btn-sm"> <%= link_to("Home", personalities_path, :class => "btn", style: "color: white;") %></div>
-	<br><br>
+				</div>
+            </div>
+            <div class="col-lg-6 mb-4">
+                <div class="card text-center text-white mb-3">
+					<div class="card-body">
+						<% if @userProfile.pttruecolors.eql? "Orange" %>
+							<div id = "card-button" class="btn btn-sm" style="background-color: maroon; color: white;"><h4>Gold Users</h4></div>
+						<% elsif @userProfile.pttruecolors.eql? "Blue" %>
+							<div id = "card-button" class="btn btn-sm" style="background-color: maroon; color: white;"><h4>Gold Users</h4></div>
+						<% elsif @userProfile.pttruecolors.eql? "Gold" %>
+							<div id = "card-button" class="btn btn-sm" style="background-color: maroon; color: white;"><h4>Blue Users</h4></div>
+						<% elsif @userProfile.pttruecolors.eql? "Green" %>
+							<div id = "card-button" class="btn btn-sm" style="background-color: maroon; color: white;"><h4>Blue Users</h4></div>
+						<% end %> 
+						<table class="listing" summary="Other Colors 1">
+							<% @otherProfiles1.each do |otherColor1| %>
+								<hr style = "border: 1px solid brown; width: 100%; opacity: 0.9;">								
+								<%= link_to(otherColor1.name, profile_path(otherColor1), :class => "btn", style: "color: white; font-weight: bold;") %>
+								<p class="card-text"><%= otherColor1.pttruecolors %></p>
+								
+							<% end %>
+							<hr style = "border: 1px solid brown; width: 100%; opacity: 0.9;">
+						</table>
+					</div>
+				</div>
+            </div>
+        </div>
+    </div>
 	
-</div>
+	<div class="container">
+        <div class="row">
+            <div class="col-lg-6 mb-4">
+                <div class="card text-center text-white mb-3">
+					<div class="card-body">						
+						<% if @userProfile.pttruecolors.eql? "Orange" %>
+							<div id = "card-button" class="btn btn-sm" style="background-color: maroon; color: white;"><h4>Green Users</h4></div>
+						<% elsif @userProfile.pttruecolors.eql? "Blue" %>
+							<div id = "card-button" class="btn btn-sm" style="background-color: maroon; color: white;"><h4>Green Users</h4></div>
+						<% elsif @userProfile.pttruecolors.eql? "Gold" %>
+							<div id = "card-button" class="btn btn-sm" style="background-color: maroon; color: white;"><h4>Green Users</h4></div>
+						<% elsif @userProfile.pttruecolors.eql? "Green" %>
+							<div id = "card-button" class="btn btn-sm" style="background-color: maroon; color: white;"><h4>Gold Users</h4></div>
+						<% end %> 
+						<table class="listing" summary="Other Colors 2">
+							<% @otherProfiles2.each do |otherColor2| %>
+								<hr style = "border: 1px solid brown; width: 100%; opacity: 0.9;">								
+								<%= link_to(otherColor2.name, profile_path(otherColor2), :class => "btn", style: "color: white; font-weight: bold;") %>
+								<p class="card-text"><%= otherColor2.pttruecolors %></p>
+								
+							<% end %>
+							<hr style = "border: 1px solid brown; width: 100%; opacity: 0.9;">
+						</table>
+					</div>
+				</div>
+            </div>
+            <div class="col-lg-6 mb-4">
+                 <div class="card text-center text-white mb-3">
+					<div class="card-body">						
+						<% if @userProfile.pttruecolors.eql? "Orange" %>
+							<div id = "card-button" class="btn btn-sm" style="background-color: maroon; color: white;"><h4>Blue Users</h4></div>
+						<% elsif @userProfile.pttruecolors.eql? "Blue" %>
+							<div id = "card-button" class="btn btn-sm" style="background-color: maroon; color: white;"><h4>Orange Users</h4></div>
+						<% elsif @userProfile.pttruecolors.eql? "Gold" %>
+							<div id = "card-button" class="btn btn-sm" style="background-color: maroon; color: white;"><h4>Orange Users</h4></div>
+						<% elsif @userProfile.pttruecolors.eql? "Green" %>
+							<div id = "card-button" class="btn btn-sm" style="background-color: maroon; color: white;"><h4>Orange Users</h4></div>
+						<% end %> 
+						<table class="listing" summary="Other Colors 3">
+							<% @otherProfiles3.each do |otherColor3| %>
+								<hr style = "border: 1px solid brown; width: 100%; opacity: 0.9;">								
+								<%= link_to(otherColor3.name, profile_path(otherColor3), :class => "btn", style: "color: white; font-weight: bold;") %>
+								<p class="card-text"><%= otherColor3.pttruecolors %></p>
+								
+							<% end %>
+							<hr style = "border: 1px solid brown; width: 100%; opacity: 0.9;">
+						</table>
+					</div>
+				</div>
+            </div>
+        </div>
+    </div>
+</body>
 
-
-
-
-
-<!-------------------------------------------------------------------------------->

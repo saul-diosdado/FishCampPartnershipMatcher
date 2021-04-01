@@ -64,7 +64,7 @@
 							<div class = "container">
 								<div class = "row">
 									<div class="col-lg-6 mb-4">
-										<div class="card text-white shadow-lg">
+										<div class="card text-white">
 											<div class="card-body">
 												<h5 class="card-title">Hello!</h5>
 													<p class="card-text">Swipe to find your perfect partner.</p>
@@ -160,7 +160,45 @@
 						<% end %>
 					</div>
 				</div>
-		</div>		
+		</div>
+		
+		<ul style = "list-style-type: none">
+			<form class = "inline">
+				<li><input id="myInput" class="form-control mr-sm-2 my-4" style = "width: 20%" onkeyup="myFunction()" placeholder="Search"></li>
+			</form>
+		</ul>
+		
+		<ul id = "myUL" style = "list-style-type: none" class = "mt-4">
+			<hr style = "border: 1px solid Tan; width: 100%; opacity: 0.9;">
+			<% @profiles.each do |profile| %>
+				<li><a href= "#" style = "color: black";><%= profile.name %><% link_to(profile.name, profile_path(profile)) %>
+					<br><hr style = "border: 1px solid Tan; width: 100%; opacity: 0.9;"></a>
+				</li>
+			<% end %> 
+		</ul>
+		<!---- algorithm from https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_filter_list ---->
+		<script>
+			function myFunction() {
+				var input;
+				input = document.getElementById("myInput");
+				var filter;
+				filter = input.value.toUpperCase();
+				var ul;
+				ul = document.getElementById("myUL");
+				var li;
+				li = ul.getElementsByTagName("li");
+				var a, i, textValue;
+				for (i = 0; i < li.length; i++) {
+					a = li[i].getElementsByTagName("a")[0];
+					textValue = a.textContent || a.innerText;
+					if (textValue.toUpperCase().indexOf(filter) > -1) {
+						li[i].style.display = "";
+					} else {
+						li[i].style.display = "none";
+					}
+				}
+			}
+		</script>
 	</body>
 
 </div>	

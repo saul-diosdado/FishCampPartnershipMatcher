@@ -6,19 +6,31 @@
 	  padding: 10px;
 	}
 	.card {
-			display: inline-block;
-			margin-left: 10px;
-			margin-right: 10px;
-			width: 400px;
-			opacity: 0.75;
-			background-repeat: no-repeat;
-			background-color: maroon;
-			border: 20px solid rgba(0, 0, 0, 0.2);
-			font-family: Georgia;
-		}
-	#card-button {
-			border: 4px solid rgba(0, 0, 0, 0.2);
+		display: inline-block;
+		margin-left: 10px;
+		margin-right: 10px;
+		width: 250px;
+		opacity: 0.75;
+		background-repeat: no-repeat;
+		background-color: maroon;
+		color: white;
+		border: 20px solid rgba(0, 0, 0, 0.2);
 	}
+	#card-button {
+		opacity: 0.95;
+		border: 4px solid rgba(0, 0, 0, 0.2);
+	}
+	h3.centered {
+		margin-left: auto;
+		margin-right: auto;
+		padding-bottom: 40px;
+		width: 25em;
+	}
+
+	h1.margined {
+		padding-top: 40px;
+		padding-bottom: 40px;
+	}	
 	body {
 		background-color: wheat;
 		width: 100%;
@@ -26,10 +38,16 @@
 		background-repeat: no-repeat;
 		background-size: cover;
 	}
-	#card-button {
-			border: 4px solid rgba(0, 0, 0, 0.2);
-	}
 </style>
+
+<div class = "mt-4">
+	<button onclick="goBack()" id = "card-button" class = "btn btn-sm" style = "background-color: Peru; color: SeaShell; opacity: 0.85;"> < Back </button>
+</div> 
+<script>
+	function goBack() {
+	  window.history.back();
+	}
+</script>
 
 <div class = "container-fluid" style="font-family:Georgia">
 	<% flash.each do |key, value| %>
@@ -45,41 +63,67 @@
 
 
 <div>
-	<div class="card text-center text-white mb-3">
-		<div class="card-body">
-			<div id = "card-button" class="btn btn-sm" style="background-color: maroon; color: white;"><h3>Profiles with the same type: </h3></div>
-			<table class="listing" summary="Same Type List">
-				<% @sameCM.each do |same| %>
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-6 mb-4">
+				<div class="card">
 					<div class="card-body">
-						<h5 class="card-title"><%= same.name%></h5>
-						<p class="card-text"><%= same.ptanimal %></p>
-						<div class="btn btn-secondary btn-sm"> <%= link_to("View Profile", profile_path(same), :class => "btn", style: "color: white") %></div>
+						<div class = "text-center">
+							<% if @userProfile.ptanimal.eql? "The Competitive Shark" %>
+								<div id = "card-button" class="btn btn-sm" style="background-color: maroon; color: white;"><h4>Other Competitive Sharks: </h4></div>
+							<% elsif @userProfile.ptanimal.eql? "The Avoidant Turtle" %>
+								<div id = "card-button" class="btn btn-sm" style="background-color: maroon; color: white;"><h4>Other Other Avoidant Turtles: </h4></div>
+							<% elsif @userProfile.ptanimal.eql? "The Collaborative Owl" %>
+								<div id = "card-button" class="btn btn-sm" style="background-color: maroon; color: white;"><h4>Other Collaborative Owls: </h4></div>
+							<% elsif @userProfile.ptanimal.eql? "The Accommodating Teddy Bear" %>
+								<div id = "card-button" class="btn btn-sm" style="background-color: maroon; color: white;"><h4>Other Teddy Bears: </h4></div>
+							<% end %>
+							<table class="listing" summary="Same Type List">
+								<% @sameCM.each do |same| %>
+									
+										<hr style = "border: 1px solid brown; width: 100%; opacity: 0.9;">
+										<%= link_to(same.name, profile_path(same), :class => "btn", style: "color: white; font-weight: bold;") %>
+										<p class="card-text"><%= same.ptanimal %></p>
+									
+									
+								<% end %>
+							<hr style = "border: 1px solid brown; width: 100%; opacity: 0.9;">
+							</table>
+						</div>
 					</div>
-				<% end %>
-			</table>
-		</div>
+				</div>
+			</div>
+			<div class="col-lg-6 mb-4">
+				<div class="card">
+					<div class="card-body">
+						<div class = "text-center">
+							<% if @userProfile.ptanimal.eql? "The Competitive Shark" %>
+								<div id = "card-button" class="btn btn-sm" style="background-color: maroon; color: white;"><h4> Teddy Bears:  </h4></div>
+							<% elsif @userProfile.ptanimal.eql? "The Avoidant Turtle" %>
+								<div id = "card-button" class="btn btn-sm" style="background-color: maroon; color: white;"><h4> Collaborative Owls:  </h4></div>
+							<% elsif @userProfile.ptanimal.eql? "The Collaborative Owl" %>
+								<div id = "card-button" class="btn btn-sm" style="background-color: maroon; color: white;"><h4> Avoidant Turtles:  </h4></div>
+							<% elsif @userProfile.ptanimal.eql? "The Accommodating Teddy Bear" %>
+								<div id = "card-button" class="btn btn-sm" style="background-color: maroon; color: white;"><h4> Competitive Sharks: </h4></div>
+							<% end %>
+					
+							<table class="listing" summary="Opposite Type List">
+								<% @oppositeMatches.each do |opposite| %>
+									
+									<hr style = "border: 1px solid brown; width: 100%; opacity: 0.9;">
+									<%= link_to(opposite.name, profile_path(opposite), :class => "btn", style: "color: white; font-weight: bold") %>
+									<p class="card-text"><%= opposite.ptanimal %></p>
+									
+								<% end %>
+							<hr style = "border: 1px solid brown; width: 100%; opacity: 0.9;">
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
-		
-	<div class="card text-center text-white mb-3">
-		<div class="card-body">
-			
-			<div id = "card-button" class="btn btn-sm" style="background-color: maroon; color: white;"><h3>Profiles with the opposite CM type:</h3></div>
-			<table class="listing" summary="Same Type List">
-				<% @oppositeMatches.each do |opposite| %>
-					<div class="card-body">
-						<h5 class="card-title"><%= opposite.name%></h5>
-							<p class="card-text"><%= opposite.ptanimal %></p>
-							<div class="btn btn-secondary btn-sm"> <%= link_to("View Profile", profile_path(opposite), :class => "btn", style: "color: white") %></div>
-					</div>
-				<% end %>
-			</table>
-		</div>
-	</div>
-	<br><br>
-	<div class="btn btn-secondary btn-sm"> <%= link_to("Home", personalities_path, :class => "btn", style: "color: white;") %></div>
-	<br><br>
-	
+
 </div>
 
 

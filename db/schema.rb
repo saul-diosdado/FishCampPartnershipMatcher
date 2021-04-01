@@ -18,15 +18,11 @@ ActiveRecord::Schema.define(version: 2021_03_23_000647) do
   create_table "answers", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "question_id"
-    t.bigint "preference_form_id"
-    t.string "answer_type"
     t.text "short_answer"
     t.boolean "true_false"
     t.integer "numeric"
-    t.string "multiple_choice"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["preference_form_id"], name: "index_answers_on_preference_form_id"
     t.index ["question_id"], name: "index_answers_on_question_id"
     t.index ["user_id"], name: "index_answers_on_user_id"
   end
@@ -39,25 +35,10 @@ ActiveRecord::Schema.define(version: 2021_03_23_000647) do
     t.index ["question_id"], name: "index_choices_on_question_id"
   end
 
-  create_table "matches", force: :cascade do |t|
-    t.bigint "user_id"
-    t.bigint "matched_id"
-    t.bigint "preference_form_id"
-    t.bigint "prospects_ids", default: [], array: true
-    t.decimal "prospects_pref_averages", default: [], array: true
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["matched_id"], name: "index_matches_on_matched_id"
-    t.index ["preference_form_id"], name: "index_matches_on_preference_form_id"
-    t.index ["user_id"], name: "index_matches_on_user_id"
-  end
-
   create_table "preference_forms", force: :cascade do |t|
     t.bigint "creator_id"
-    t.string "title"
     t.integer "num_prefs"
     t.integer "num_antiprefs"
-    t.boolean "active"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["creator_id"], name: "index_preference_forms_on_creator_id"
@@ -66,13 +47,11 @@ ActiveRecord::Schema.define(version: 2021_03_23_000647) do
   create_table "preferences", force: :cascade do |t|
     t.bigint "selector_id"
     t.bigint "selected_id"
-    t.bigint "preference_form_id"
     t.string "pref_type"
     t.integer "rating"
     t.text "why"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["preference_form_id"], name: "index_preferences_on_preference_form_id"
     t.index ["selected_id"], name: "index_preferences_on_selected_id"
     t.index ["selector_id"], name: "index_preferences_on_selector_id"
   end
@@ -98,12 +77,11 @@ ActiveRecord::Schema.define(version: 2021_03_23_000647) do
   end
 
   create_table "questions", force: :cascade do |t|
-    t.bigint "preference_form_id"
     t.text "question"
-    t.string "question_type"
+    t.string "type"
+    t.string "choices", array: true
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["preference_form_id"], name: "index_questions_on_preference_form_id"
   end
 
   create_table "roles", force: :cascade do |t|

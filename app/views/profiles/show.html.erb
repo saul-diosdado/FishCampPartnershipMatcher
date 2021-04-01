@@ -15,21 +15,20 @@
 			border: 4px solid rgba(0, 0, 0, 0.2);
 	}
 	#home-button{
+		opacity: 0.75;
 		border: 4px solid rgba(0, 0, 0, 0.2);
 		margin:5px;
-		background color: lightSlateGrey;
 	}
 	#edit-button{
+		opacity: 0.75;
 		border: 4px solid rgba(0, 0, 0, 0.2);
-		margin: 5px;
-		background color: lightSlateGrey;
+		margin:5px;
 
 	}
 	#delete-button{
+		opacity: 0.75;
 		border: 4px solid rgba(0, 0, 0, 0.2);
-		margin: 5px;
-		background color: lightSlateGrey;
-
+		margin:5px;
 	}
 	body {
 		background-color: wheat;
@@ -38,8 +37,19 @@
 		background-repeat: no-repeat;
 		background-size: cover;
 	}
-	
+	.about-me {
+		max-width: 250px;
+	}
 </style>
+<div class = "mt-4">
+	<button onclick="goBack()" id = "card-button" class = "btn btn-sm" style = "background-color: Peru; color: SeaShell; opacity: 0.85;"> < Back </button>
+</div> 
+<script>
+	function goBack() {
+	  window.history.back();
+	}
+</script>
+
 <div class="profile show">
 
 <div class="card text-white mb-3" margin:20px;">
@@ -51,55 +61,69 @@
 			<h3> <%= @profile.name %> </h3>
 		<% end %>
 		<table summary="Profile view">
+			<tr><th><hr style = "border: 1px solid brown; width: 340%;opacity: 0.9;"></th></tr>
 			<tr>
 			  <th>Email</th>
 			  <td><%= @profile.email %></td>
 			</tr>
+			<tr><th><hr style = "border: 1px solid brown; width: 340%; opacity: 0.9;"></th></tr>
 			<tr>
-			  <th>Phone Number</th>
+			  <th>Phone Number &nbsp; </th>
 			  <td><%= @profile.phonenumber %></td>
 			</tr>
+			<tr><th><hr style = "border: 1px solid brown; width: 340%;opacity: 0.9;"></th></tr>
 			<tr>
 			  <th>Snapchat</th>
 			  <td><%= @profile.snapchat %></td>
 			</tr>
+			<tr><th><hr style = "border: 1px solid brown; width: 340%;opacity: 0.9;"></th></tr>
 			<tr>
 			  <th>Instagram</th>
 			  <td><%= @profile.instagram %></td>
 			</tr>
+			<tr><th><hr style = "border: 1px solid brown; width: 340%;opacity: 0.9;"></th></tr>
 			<tr>
 			  <th>Facebook</th>
 			  <td><%= @profile.facebook %></td>
 			</tr>
+			<tr><th><hr style = "border: 1px solid brown; width: 340%;opacity: 0.9;"></th></tr>
 			<tr>
 			  <th>Twitter</th>
 			  <td><%= @profile.twitter %></td>
 			</tr>
+			<tr><th><hr style = "border: 1px solid brown; width: 340%;opacity: 0.9;"></th></tr>
 			<tr>
 			  <th> Animal</th>
 			  <td><%= @profile.ptanimal %></td>
 			</tr>
+			<tr><th><hr style = "border: 1px solid brown; width: 340%;opacity: 0.9;"></th></tr>
 			<tr>
 			  <th> True Colors</th>
 			  <td><%= @profile.pttruecolors %></td>
 			</tr>
+			<tr><th><hr style = "border: 1px solid brown; width: 340%;opacity: 0.9;"></th></tr>
 			<tr>
 			  <th>Myers Briggs</th>
 			  <td><%= @profile.ptmyersbriggs %></td>
 			</tr>
+			<tr><th><hr style = "border: 1px solid brown; width: 340%;opacity: 0.9;"></th></tr>
+			<tr>
+			  <th>Enneagram</th>
+			  <td><%= @profile.enneagram %></td>
+			</tr>
+			<tr><th><hr style = "border: 1px solid brown; width: 340%;opacity: 0.9;"></th></tr>
 			<tr>
 			  <th>About Me</th>
-			  <td><%= @profile.aboutme %></td>
+			  <td class = "about-me"><%= @profile.aboutme %></td>
 			</tr>
 		</table>
 	</div>					
 </div>
 
 <br>
-
-<div id="home-button" class="btn btn-sm" > <%= link_to("Home", profiles_path(), :class => "btn") %></div>
+&emsp;
 <% if current_user.id.eql? @profile.user_id %>
-	<div id="edit-button" class="btn btn-sm" > <%= link_to("Edit", edit_profile_path(@profile), :class => "btn") %></div>
-	<div id="delete-button" class="btn btn-sm" > <%= link_to("Delete", delete_profile_path(@profile), :class => "btn") %></div>
+	<div id="edit-button" class="btn btn-sm" style="background-color:Peru"> <%= link_to("Edit", edit_profile_path(@profile), :class => "btn", style: "color:SeaShell") %></div>
+	<div id="delete-button" class="btn btn-sm" style="background-color:Peru"> <%= link_to("Delete", delete_profile_path(@profile), :class => "btn", style: "color:SeaShell") %></div>
 <%end%>
 <br>

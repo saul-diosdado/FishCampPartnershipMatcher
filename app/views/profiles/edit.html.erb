@@ -3,14 +3,16 @@
 			display: inline-block;
 			margin-left: 10px;
 			margin-right: 10px;
-			width: 250px;
-			height: 440px;
 			opacity: 0.75;
 			background-repeat: no-repeat;
 			background-color: maroon;
 			border: 20px solid rgba(0, 0, 0, 0.2);
 		}
+	#card-button {
+		border: 4px solid rgba(0, 0, 0, 0.2);
+	}
 	#home-button{
+		opacity: 0.75;
 		border: 4px solid rgba(0, 0, 0, 0.2);
 		margin:5px;
 	}
@@ -30,9 +32,17 @@
 <% flash.each do |key, value| %>
 			<div class="flash-notice <%= key %>"><%= value %></div>
 <% end %>
+&emsp;
+<div class = "my-4">
+	<button onclick="goBack()" id = "card-button" class = "btn btn-sm" style = "background-color: Peru; color: SeaShell; opacity: 0.85;"> < Back </button>
+</div> 
+<script>
+	function goBack() {
+	  window.history.back();
+	}
+</script>
 
-<hr class="mt-3"/>
-<div class="card text-white mb-3" style="width: 500px; height: 1350px"; margin:20px;">
+<div class="card text-white mb-3" style="width: 500px; margin:20px;">
 	<div class="card-body">
 		<h2 class="card-title">Edit Your Profile</h2>
 		<p class="card-text">Update your information.</p>
@@ -40,10 +50,10 @@
 			<%= render(:partial => "form", :locals => {:f => f}) %>
 			<%= f.hidden_field(:approvedchair, value: false) %>
 			<%= f.hidden_field(:user_id, value: current_user.id) %>
-			<%= f.submit("Save Changes", class: "btn btn-sm", id: "create-button", style: "background-color: lightSlateGrey") %>
+			<br>
+			<%= f.submit("Save Changes", class: "btn btn-sm", id: "create-button", style: "background-color: Peru; color: SeaShell;") %>
 		<% end %>
 	</div>
 </div>
 <br>
 
-<div id="home-button" class="btn btn-sm" style = "background-color:wheat" > <%= link_to("Home", profiles_path(), :class => "btn") %></div>

@@ -1,4 +1,8 @@
 <!-- Form to Create/Edit a Profile -->
+<style>
+	
+</style>
+
 <div class="form-group">
         <!-- series of labels with corresponding fields to retrieve all information for a profile -->
         <%= f.label( :name, "Name:", class: "col-md-4 col-form-label") %>
@@ -30,25 +34,25 @@
         <br>
         <%= f.text_field(:twitter, class: "col-md-6 form-control") %>
         <br>
-        <%= f.label(:ptanimal, "PTAnimal:", class: "col-md-4 col-form-label") %>
-        <br>
-        <%= f.select(:ptanimal, ["-", "The Collaborative Owl", "The Avoidant Turtle", "The Compromising Fox", "The Competitive Shark", "The Accommodating Teddy Bear"], class: "form-control") %>
-        <br>
+		<%= f.label(:ptanimal, "PTAnimal:", class: "col-md-4 col-form-label") %>
+		<br>
+		<%= f.select(:ptanimal, ["-", "The Collaborative Owl", "The Avoidant Turtle", "The Compromising Fox", "The Competitive Shark", "The Accommodating Teddy Bear"], class: "form-control") %>
+		<br><br>
         <%= f.label(:pttruecolors, "PTTrueColors:", class: "col-md-4 col-form-label") %>
         <br>
         <%= f.select(:pttruecolors, ["-", "Orange", "Gold", "Green", "Blue"], class: "form-control") %>
-        <br>
+        <br><br>
         <%= f.label(:ptmyersbriggs, "PTMyersBriggs:", class: "col-md-4 col-form-label") %>
         <br>
         <%= f.select(:ptmyersbriggs, ["-", "INFP", "ENFP", "INFJ", "ENFJ", "INTJ", "ENTJ", "INTP", "ENTP", "ISFP", "ESFP", "ISTP", "ESTP", "ISFJ", "ESFJ", "ISTJ", "ESTJ"], class: "form-control") %>
-        <br>
+        <br><br>
         <%= f.label(:enneagram, "Enneagram:", class: "col-md-4 col-form-label") %>
         <br>
         <%= f.select(:enneagram, ["-", "Reformer", "Helper", "Achiever", "Individualist", "Investigator", "Loyalist", "Enthusiast", "Challenger", "Peacemaker"], class: "form-control") %>
+        <br><br>
+        <%= f.label(:aboutme, "About Me (500 characters or less):", class: "col-md-8 col-form-label") %>
         <br>
-        <%= f.label(:aboutme, "About Me:", class: "col-md-4 col-form-label") %>
-        <br>
-        <%= f.text_field(:aboutme, class: "col-lg-10 form-control") %>
+        <%= f.text_field(:aboutme, class: "col-lg-10 form-control", :maxlength => 250)%>
         <br>
         <%= f.label(:gender, "Gender:", class: "col-md-4 col-form-label") %>
         <br>

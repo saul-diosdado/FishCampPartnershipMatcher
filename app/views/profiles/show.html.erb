@@ -41,6 +41,15 @@
 		max-width: 250px;
 	}
 </style>
+<div class = "mt-4">
+	<button onclick="goBack()" id = "card-button" class = "btn btn-sm" style = "background-color: Peru; color: SeaShell; opacity: 0.85;"> < Back </button>
+</div> 
+<script>
+	function goBack() {
+	  window.history.back();
+	}
+</script>
+
 <div class="profile show">
 
 <div class="card text-white mb-3" margin:20px;">
@@ -113,7 +122,6 @@
 
 <br>
 &emsp;
-<div id="home-button" class="btn btn-sm" style="background-color:Peru"> <%= link_to("Home", profiles_path(), :class => "btn", style: "color:SeaShell") %></div>
 <% if current_user.id.eql? @profile.user_id %>
 	<div id="edit-button" class="btn btn-sm" style="background-color:Peru"> <%= link_to("Edit", edit_profile_path(@profile), :class => "btn", style: "color:SeaShell") %></div>
 	<div id="delete-button" class="btn btn-sm" style="background-color:Peru"> <%= link_to("Delete", delete_profile_path(@profile), :class => "btn", style: "color:SeaShell") %></div>

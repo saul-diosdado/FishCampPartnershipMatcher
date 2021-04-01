@@ -10,6 +10,10 @@
 		background-color: maroon;
 		border: 20px solid rgba(0, 0, 0, 0.2);
 	}
+	#card-button {
+		opacity: 0.95;
+		border: 4px solid rgba(0, 0, 0, 0.2);
+	}
 	#home-button{
 		opacity: 0.95;
 		border: 4px solid rgba(0, 0, 0, 0.2);
@@ -29,15 +33,26 @@
 	}
 </style>
 
+<div class = "mt-4">
+	<button onclick="goBack()" id = "card-button" class = "btn btn-sm" style = "background-color: Peru; color: SeaShell; opacity: 0.75;"> < Back </button>
+</div> 
+<script>
+	function goBack() {
+	  window.history.back();
+	}
+</script>
+
 <div class="card text-white mb-3" style="width: 18rem; margin:20px; left: 30%">
 	<div class="card-body">
 		<%= form_for(@profile, :method => "delete") do |f| %>
 			<p>Are you <b>sure</b> you want to <b>permanently</b> delete your profile?</p>
 			<p>This action can't be undone</p>
-			<p>
-				<div id="home-button" class="btn btn-sm" style="background-color:Peru"> <%= link_to("Cancel", profiles_path(), :class => "btn", style: "color: SeaShell") %></div>
-				<%= f.submit("Delete Profile", class: "btn btn-sm", id: "delete-button", style: "background-color:Peru; color: SeaShell") %>
-			</p>
+			<div class="d-flex justify-content-center">
+				<p>
+					<div id="home-button" class = "btn btn-sm" style="background-color:Peru"> <%= link_to("Cancel", profiles_path(), style: "color: SeaShell") %></div>
+					<%= f.submit("Delete", class: "btn btn-sm btn-danger", id: "delete-button") %>
+				</p>
+			</div>
 		<% end %>
 	</div>
 </div>

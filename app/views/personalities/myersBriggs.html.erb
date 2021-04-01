@@ -41,6 +41,15 @@
 </style>
 
 <body>
+	<div class = "mt-4">
+		<button onclick="goBack()" id = "card-button" class = "btn btn-sm" style = "background-color: Peru; color: SeaShell; opacity: 0.85;"> < Back </button>
+	</div> 
+	<script>
+		function goBack() {
+		  window.history.back();
+		}
+	</script>
+	
 	<div class = "container-fluid" style="font-family:Georgia">
 		<% flash.each do |key, value| %>
 			<div class="flash-notice <%= key %>"><%= value %></div>
@@ -102,10 +111,4 @@
 				</div>
 			</div>
 		</div>
-	<br>
-	<div id = "card-button" class="d-flex justify-content-center">
-		<br><br>
-		<div class="btn btn-secondary btn-sm"> <%= link_to("Home", personalities_path, :class => "btn", style: "color: white;") %></div>
-		<br><br>
-	</div>
 </body>

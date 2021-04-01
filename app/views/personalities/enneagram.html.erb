@@ -1,10 +1,5 @@
 
 <style> 
-	.center {
-	  margin: 0 auto;
-	  width: 80%;
-	  padding: 10px;
-	}
 	.card {
 			display: inline-block;
 			margin-left: 10px;
@@ -44,24 +39,26 @@
 	match for your enneagram personality type.</h3>
 </div>
 
-<div class="card text-center text-white mb-3">
-	<div class="card-body">
-		<div id = "card-button" class="btn btn-sm" style="background-color: maroon; color: white;"><h3><%= @m %></h3></div>
-		<table class="listing" summary="Ideal matches list">
-			<% @bestMatches.each do |bestMatch| %>
-				<div class="card-body">
-					<h5 class="card-title"><%= bestMatch.name%></h5>
-						<p class="card-text"><%= bestMatch.enneagram %></p>
-						<div class="btn btn-secondary btn-sm"> <%= link_to("View Profile", profile_path(bestMatch), :class => "btn", style: "color: white") %></div>
-				</div>
-			<% end %>
-		</table>
-	</div>
+<div class = "d-flex justify-content-center">
+	<div class="card text-center text-white mb-3">
+		<div class="card-body">
+			<div id = "card-button" class="btn btn-sm" style="background-color: maroon; color: white;"><h4><%= @m %></h4></div>
+			<table class="listing" summary="Ideal matches list">
+				<% @bestMatches.each do |bestMatch| %>
+						<hr style = "border: 1px solid brown; width: 100%; opacity: 0.9;">
+						<%= link_to(bestMatch.name, profile_path(bestMatch), :class => "btn", style: "color: white; font-weight: bold;") %>
+							<p class="card-text"><%= bestMatch.enneagram %></p>
+				<% end %>
+				<hr style = "border: 1px solid brown; width: 100%; opacity: 0.9;">
+			</table>
+		</div>
+		</div>
 	</div>
 	
 	<br><br>
-	<div class="btn btn-secondary btn-sm"> <%= link_to("Home", personalities_path, :class => "btn", style: "color: white;") %></div>
-	<br><br>
-</div>
+		<div class="btn btn-secondary btn-sm"> <%= link_to("Home", personalities_path, :class => "btn", style: "color: white;") %></div>
+		<br><br>
+</div> 
+
 
 <!------------------------------------------------------------------>

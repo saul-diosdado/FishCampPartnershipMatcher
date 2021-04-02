@@ -107,7 +107,7 @@ class MatchesController < ApplicationController
     @matches = Match.all
 
     # An array containing the ids of all Chairs that have no partner.
-    @prospects_ids = Match.where(matched_id: nil).where.not(user_id: @match.user_id)
+    @prospects_ids = Match.where(matched_id: nil).where.not(user_id: @match.user_id).pluck(:user_id)
 
     # Display a warning alert if there is no unmatched chairs left.
     flash.now[:warning] = 'Warning: All other chairs already have a partner.' if @prospects_ids.length.zero?

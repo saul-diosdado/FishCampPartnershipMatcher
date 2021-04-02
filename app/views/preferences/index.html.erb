@@ -1,57 +1,94 @@
-<h1 class="heading">Fish Camp: Partner Preference Form</h1>
-<p class="notice"><%= flash[:notice] %></p>
-
-<p>Write preference instructions here...</p>
-
-<h3>Preferences</h3>
-<table class="questions-table">
-    <thead>
-    <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Rating</th>
-        <th>Why</th>
-        <th class="actions">Actions</th>
-    </tr>
-    </thead>
-    
-    <tbody>
-    <% @prefs.each do |pref| %>
-    <tr>
-        <td><%= @users.where(:id => pref.selected_id).first.email %></td>
-        <td><%= pref.pref_type %></td>
-        <td><%= pref.rating %></td>
-        <td><%= pref.why %></td>
-        <td class="actions">
-            <%= link_to("Edit", edit_preference_path(pref)) %>
-            <%= link_to("Delete Response", delete_preference_path(pref)) %>
-        </td>
-    </tr>
-    <% end %>
-
-    <% @antiprefs.each do |anti| %>
-    <tr>
-        <td><%= @users.where(:id => anti.selected_id).first.email %></td>
-        <td><%= anti.pref_type %></td>
-        <td><%= anti.rating %></td>
-        <td><%= anti.why %></td>
-        <td class="actions">
-            <%= link_to("Edit", edit_preference_path(anti)) %>
-            <%= link_to("Delete Response", delete_preference_path(anti)) %>
-        </td>
-    </tr>
-    <% end %>
-    </tbody>
-</table>
-
-<% if @prefs.where(:pref_type => "Preference").size < @form.num_prefs %>
-    <%= link_to("Add Preference", new_preference_path(:pref_type => "Preference")) %>
-    </br>
+<!-- Index page showing all user preferences -->
+<% flash.each do |key, value| %>
+  <div class="alert alert-<%= key %>"><%= value %></div>
 <% end %>
-<% if @antiprefs.where(:pref_type => "Anti-Preference").size < @form.num_antiprefs %>
-    <%= link_to("Add Anti-Preference", new_preference_path(:pref_type => "Anti-Preference")) %>
-    </br>
-<% end %>
+<div class="container-x1">
+    <h1 class="my-4"><%= @form.title %></h1>
+    <!-- Preference form instructions -->
+    <div class="card mb-4">
+        <div class="card-header">
+            <h5><b>INSTRUCTIONS</b></h5>
+            <p>
+                <b style="color:red;">THIS FORM REQUIRES <%= @form.num_prefs %> PREF(S) AND <%= @form.num_antiprefs %> ANTI-PREF(S).</b></br>
+                Use the <b>"Add Pref"</b> and <b>"Add Anti-Pref"</b> buttons to add preferences to this form and fill out the required information for each preference. 
+                Press the <b>"Save"</b> button to save your responses. Use the <b>"Edit"</b> button to revise any previously answered question. The <b>"Delete"</b> button
+                allows you to start a question over from scratch. <b style="color:red;">WARNING:</b> If a response is deleted it can NOT 
+                be retrieved later. </br> </br>  
+                This form can be resumed later, so feel free to exit if needed. Once finished, use the <b>"Next Page"</b> button to fill out the preferences portion of the form.
+            </p>
+        </div>
+    </div>
 
-<%= link_to("Go Back", answers_path) %>
-<%= link_to("Submit Form", preference_path(@prefs)) %>
+    <h3>Preferences</h3>
+    <p></p>
+    <!-- Table of prefs and anti-prefs -->
+    <table class="table">
+        <!-- Table header -->
+        <thead class="thead-light">
+        <tr>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Rating</th>
+            <th>Why</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <!-- Table body -->
+        <tbody>
+        <% @prefs.each do |pref| %> <!-- Displays all preferences in the top half of the table -->
+        <tr>
+            <td><%= @profiles.where(user_id: pref.selected_id).first.name %></td>
+            <td><%= pref.pref_type %></td>
+            <td><%= pref.rating %></td>
+            <td><%= pref.why %></td>
+            <td>
+                <!-- Actions -->
+                <%= link_to("Edit", edit_preference_path(pref), class: "btn btn-primary btn-sm ml-2") %>
+                <p> </p>
+                <%= link_to("Delete", delete_preference_path(pref), class: "btn btn-danger btn-sm ml-2") %>
+            </td>
+        </tr> 
+        <% end %>
+
+        <% @antiprefs.each do |anti| %> <!-- Displays all anti-preferences in the top half of the table -->
+        <tr>
+            <td><%= @profiles.where(user_id: anti.selected_id).first.name %></td>
+            <td><%= anti.pref_type %></td>
+            <td><%= anti.rating %></td>
+            <td><%= anti.why %></td>
+            <td class="actions">
+                <%= link_to("Edit", edit_preference_path(anti), class: "btn btn-primary btn-sm ml-2") %>
+                <p> </p>
+                <%= link_to("Delete", delete_preference_path(anti), class: "btn btn-danger btn-sm ml-2") %>
+            </td>
+        </tr>
+        <% end %>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>
+                <!-- Buttons to add preference or anti-preference at the bottom of the table. -->
+                <div class="form-inline">
+                    <% if @prefs.where(:pref_type => "Preference").size < @form.num_prefs %> <!-- If the user has used all prefs, remove the button. -->
+                        <%= link_to("Add Pref", new_preference_path(:form_id => @form.id, :pref_type => "Preference"), class: "btn btn-primary btn-sm ml-2") %>
+                    <% end %>
+
+                    
+                    <% if @antiprefs.where(:pref_type => "Anti-Preference").size < @form.num_antiprefs %> <!-- If the user has used all anti-prefs, remove the button. -->
+                        <p> </p>
+                        <%= link_to("Add Anti-Pref", new_preference_path(:form_id => @form.id, :pref_type => "Anti-Preference"), class: "btn btn-primary btn-sm ml-2") %>
+                    <% end %>
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <div>
+        <!-- Submit and back buttons -->
+        <%= link_to("Back to Questions", answers_path(:form_id => @form.id), class: "btn btn-secondary btn-sm ml-2") %>
+        <%= link_to("Submit Form", preference_form_path(@form), class: "btn btn-success btn-sm ml-2") %> <!-- Leads to review page -->
+    </div>
+</div>

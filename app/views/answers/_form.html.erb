@@ -1,13 +1,15 @@
 
 <%= form_for(@answer) do |f| %>
+    <!-- Saves the values for user_id, question_id, preference_form_id, answer_type -->
     <%= f.hidden_field(:user_id, value: @answer.user_id) %>
     <%= f.hidden_field(:question_id, value: @answer.question_id) %>
     <%= f.hidden_field(:preference_form_id, value: @answer.preference_form_id) %>
     <%= f.hidden_field(:answer_type, value: @answer.answer_type) %>
-    <%= f.hidden_field(:form_id, value: @answer.preference_form_id) %>
 
+    <!-- Render the question based on the question type. -->
     <%= render(:partial => "question", :locals => {:question => @question, :f => f}) %>   
 
-    <%= link_to("Go Back", answers_path(:user_id => $user_id, :form_id => @answer.preference_form_id)) %>
-    <%= f.submit("Save") %>
+    <!-- Back and save buttons -->
+    <%= link_to("Back to Answers", answers_path(:user_id => @answer.user_id, :form_id => @answer.preference_form_id), class: "btn btn-secondary mt-2 mb-4") %>
+    <%= f.submit("Save Response", class: "btn btn-success mt-2 mb-4") %>
 <% end %>

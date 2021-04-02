@@ -13,8 +13,8 @@
 
   <body>
     <header>
-      <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-        <a class="navbar-brand" href="#">Fish Camp</a>
+      <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: maroon; opacity: 0.75">
+        <a class="navbar-brand" href=<%= profiles_path() %>>Fish Camp</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -23,6 +23,9 @@
             <%= link_to("Create Form", preference_forms_path, class: "nav-link") %>
             <%= link_to("Forms", public_forms_path, class: "nav-link") %>
             <%= link_to("Profiles", profiles_path, class: "nav-link") %>
+            <%= link_to("Matching", matches_path, class: "nav-link") %>
+            <%= link_to("Personalities", personalities_path, class: "nav-link") %>
+            <%= link_to("Administrator Dashboard", admin_users_path, class: "nav-link") %>
           </ul>
           <form class="form-inline d-flex my-2 my-lg-0">
             <% if signed_in? %>
@@ -40,7 +43,7 @@
       <% end %>
     </div>
     -->
-    <div class="container-lg">
+    <div class="container-xl">
       <%= yield %>
     </div>
   </body>

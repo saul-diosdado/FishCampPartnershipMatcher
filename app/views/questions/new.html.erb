@@ -1,8 +1,8 @@
-<%= link_to("Questions", questions_path) %>
-<h1>Add New Question</h1>
+<%= link_to("Back", questions_path(:form_id => @form_id), class: "btn btn-primary btn-sm mt-2 mb-2") %>
+<h1>Edit Question</h1>
 <%= form_for(@question) do |f| %>
-    <%= render(:partial => "form", :locals => {:f => f, :form_id => @form_id}) %>
-    <p>
-        <%= f.submit("Submit", class: "btn btn-primary my-1") %>
-    </p>
+  <%= render(:partial => "form", :locals => {:f => f,:form_id => @form_id}) %>
+  <p>
+    <%= f.submit("Create Question", class: "btn btn-success") %>
+  </p>
 <% end %>

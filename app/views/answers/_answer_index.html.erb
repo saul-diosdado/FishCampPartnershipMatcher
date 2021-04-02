@@ -1,0 +1,30 @@
+<!-- Card layout for each answer. -->
+<div class="card mb-4">
+  <!-- Card Header -->
+  <div class="card-header d-flex justify-content-between">
+    <h5>Question <%= row_num %></h5> <!-- Displays the question number -->
+    <div class="form-inline">
+    <!-- If there is an answer for the question, allow editing and deleting -->
+      <% if @answers.exists?(:question_id => question.id) %>
+          <% answer = @answers.where(:question_id => question.id).first %>
+          <%= link_to("Edit", edit_answer_path(answer, :question_id => question.id), class: "btn btn-primary btn-sm ml-2") %>
+          <%= link_to("Delete", delete_answer_path(answer, :question_id => question.id), class: "btn btn-danger btn-sm ml-2") %>
+      <% else %>
+          <!-- Else, allow them to add a response to the question. -->
+          <%= link_to("Add Response", new_answer_path(:question_id => question.id, :form_id => question.preference_form_id, :question_type => question.question_type), class: "btn btn-primary btn-sm ml-2") %>
+      <% end %>
+    </div>
+  </div>
+
+  <!-- Card Body -->
+  <div class="card-body">
+    <h5 class="card-title"><%= question.question %></h5> <!-- Displays the question -->
+    <!-- Displays a preview of the answer -->
+    <% preview = get_answer_preview(question) %>
+    <% if preview == "Unanswered" %>
+      <p style="color:red;"><%= preview %></p> <!-- If it is unanswered, show "Unanswered" in red. -->
+    <% else %>
+      <p><%= preview %></p> <!-- Else, show the answer. -->
+    <% end %>
+  </div>
+</div>

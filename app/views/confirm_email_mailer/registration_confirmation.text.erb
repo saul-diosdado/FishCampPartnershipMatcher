@@ -1,0 +1,5 @@
+Welcome to FishCampPartnershipMatcher!
+
+You are receiving this email because you created an account and need to confirm your email!
+
+All you need to do is follow this link: <%= link_to('Confirm Email', url_for(controller: 'email_confirmations', action: 'update', token: @user.email_confirmation_token)) %>

@@ -5,7 +5,7 @@
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
     <script src='./assets/0.12.3/application.js' type='text/javascript'></script>
     <link href='./assets/0.12.3/application.css' media='screen, projection, print' rel='stylesheet' type='text/css' />
-    <link rel="shortcut icon" type="image/png" href="./assets/0.12.3/favicon_green.png" />
+    <link rel="shortcut icon" type="image/png" href="./assets/0.12.3/favicon_yellow.png" />
     <link rel="icon" type="image/png" href="./assets/0.12.3/favicon.png" />
   </head>
 
@@ -14,7 +14,7 @@
       <img src="./assets/0.12.3/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" class="hide">
-      <div class="timestamp">Generated <abbr class="timeago" title="2021-03-31T01:19:45-05:00">2021-03-31T01:19:45-05:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2021-04-03T13:19:53-05:00">2021-04-03T13:19:53-05:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
@@ -22,15 +22,15 @@
   <h2>
     <span class="group_name">All Files</span>
     (<span class="covered_percent">
-      <span class="green">
-  91.11%
+      <span class="yellow">
+  87.76%
 </span>
 
      </span>
      covered at
      <span class="covered_strength">
        <span class="green">
-         2.72
+         2.8
        </span>
     </span> hits/line
     )
@@ -39,15 +39,15 @@
   <a name="AllFiles"></a>
 
   <div>
-    <b>39</b> files in total.
+    <b>40</b> files in total.
   </div>
 
   <div class="t-line-summary">
-    <b>416</b> relevant lines,
-    <span class="green"><b>379</b> lines covered</span> and
-    <span class="red"><b>37</b> lines missed. </span>
-    (<span class="green">
-  91.11%
+    <b>474</b> relevant lines,
+    <span class="green"><b>416</b> lines covered</span> and
+    <span class="red"><b>58</b> lines missed. </span>
+    (<span class="yellow">
+  87.76%
 </span>
 )
   </div>
@@ -83,12 +83,23 @@
         
           <tr class="t-file">
             <td class="strong t-file__name"><a href="#01a63cd2ce0623939d61c6f6e938f24112290098" class="src_link" title="app/controllers/matches_controller.rb">app/controllers/matches_controller.rb</a></td>
-            <td class="green strong cell--number t-file__coverage">97.56 %</td>
-            <td class="cell--number">146</td>
-            <td class="cell--number">82</td>
-            <td class="cell--number">80</td>
+            <td class="green strong cell--number t-file__coverage">97.65 %</td>
+            <td class="cell--number">150</td>
+            <td class="cell--number">85</td>
+            <td class="cell--number">83</td>
             <td class="cell--number">2</td>
-            <td class="cell--number">4.98</td>
+            <td class="cell--number">5.31</td>
+            
+          </tr>
+        
+          <tr class="t-file">
+            <td class="strong t-file__name"><a href="#d3380a89f30ee4ab5db8315ac9e561d231b67de7" class="src_link" title="app/controllers/profiles_controller.rb">app/controllers/profiles_controller.rb</a></td>
+            <td class="red strong cell--number t-file__coverage">41.67 %</td>
+            <td class="cell--number">68</td>
+            <td class="cell--number">36</td>
+            <td class="cell--number">15</td>
+            <td class="cell--number">21</td>
+            <td class="cell--number">1.17</td>
             
           </tr>
         
@@ -286,7 +297,7 @@
             <td class="cell--number">6</td>
             <td class="cell--number">6</td>
             <td class="cell--number">0</td>
-            <td class="cell--number">2.67</td>
+            <td class="cell--number">6.00</td>
             
           </tr>
         
@@ -480,11 +491,11 @@
           <tr class="t-file">
             <td class="strong t-file__name"><a href="#813c67016cc2e195af8ba9696b231eba8bd8155a" class="src_link" title="spec/controllers/matches_controller_spec.rb">spec/controllers/matches_controller_spec.rb</a></td>
             <td class="green strong cell--number t-file__coverage">100.00 %</td>
-            <td class="cell--number">176</td>
-            <td class="cell--number">120</td>
-            <td class="cell--number">120</td>
+            <td class="cell--number">198</td>
+            <td class="cell--number">139</td>
+            <td class="cell--number">139</td>
             <td class="cell--number">0</td>
-            <td class="cell--number">1.00</td>
+            <td class="cell--number">1.52</td>
             
           </tr>
         
@@ -607,7 +618,7 @@
     <h3>app/controllers/matches_controller.rb</h3>
     <h4>
       <span class="green">
-  97.56%
+  97.65%
 </span>
 
       lines covered
@@ -616,8 +627,8 @@
     
 
     <div class="t-line-summary">
-      <b>82</b> relevant lines.
-      <span class="green"><b>80</b> lines covered</span> and
+      <b>85</b> relevant lines.
+      <span class="green"><b>83</b> lines covered</span> and
       <span class="red"><b>2</b> lines missed.</span>
     </div>
 
@@ -668,29 +679,29 @@
 
             
 
-            <code class="ruby">  def index</code>
+            <code class="ruby">  before_action :require_login, :check_role</code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="11" data-linenumber="5">
-            <span class="hits">11</span>
-            
-
-            
-
-            <code class="ruby">    @unmatched_chairs = Match.where(matched_id: nil)</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="6">
+          <li class="never" data-hits="" data-linenumber="5">
             
             
 
             
 
             <code class="ruby"></code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="6">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">  def index</code>
           </li>
         </div>
       
@@ -701,18 +712,18 @@
 
             
 
-            <code class="ruby">    @matched_chairs = Match.where.not(matched_id: nil)</code>
+            <code class="ruby">    @unmatched_chairs = Match.where(matched_id: nil)</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="8">
-            
-            
-
+          <li class="covered" data-hits="11" data-linenumber="8">
+            <span class="hits">11</span>
             
 
-            <code class="ruby"></code>
+            
+
+            <code class="ruby">    @matched_chairs = Match.where.not(matched_id: nil)</code>
           </li>
         </div>
       
@@ -1834,7 +1845,7 @@
 
             
 
-            <code class="ruby">    @prospects_ids = Match.where(matched_id: nil).where.not(user_id: @match.user_id)</code>
+            <code class="ruby">    @prospects_ids = Match.where(matched_id: nil).where.not(user_id: @match.user_id).pluck(:user_id)</code>
           </li>
         </div>
       
@@ -2225,6 +2236,829 @@
       
         <div>
           <li class="never" data-hits="" data-linenumber="146">
+            
+            
+
+            
+
+            <code class="ruby"></code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="147">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">  def check_role</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="41" data-linenumber="148">
+            <span class="hits">41</span>
+            
+
+            
+
+            <code class="ruby">    redirect_to(root_path, { flash: { danger: &#39;WARNING: Only Directors have access to the matching pages.&#39; } }) unless current_user.has_role? :director</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="149">
+            
+            
+
+            
+
+            <code class="ruby">  end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="150">
+            
+            
+
+            
+
+            <code class="ruby">end</code>
+          </li>
+        </div>
+      
+    </ol>
+  </pre>
+</div>
+
+      
+        <div class="source_table" id="d3380a89f30ee4ab5db8315ac9e561d231b67de7">
+  <div class="header">
+    <h3>app/controllers/profiles_controller.rb</h3>
+    <h4>
+      <span class="red">
+  41.67%
+</span>
+
+      lines covered
+    </h4>
+
+    
+
+    <div class="t-line-summary">
+      <b>36</b> relevant lines.
+      <span class="green"><b>15</b> lines covered</span> and
+      <span class="red"><b>21</b> lines missed.</span>
+    </div>
+
+    
+
+  </div>
+
+  <pre>
+    <ol>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="1">
+            
+            
+
+            
+
+            <code class="ruby"># frozen_string_literal: true</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="2">
+            
+            
+
+            
+
+            <code class="ruby"></code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="3">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">class ProfilesController &lt; ApplicationController</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="4">
+            
+            
+
+            
+
+            <code class="ruby">  # user must be logged in to access any views</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="5">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">  before_action :require_login</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="6">
+            
+            
+
+            
+
+            <code class="ruby"></code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="7">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">  def index</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="10" data-linenumber="8">
+            <span class="hits">10</span>
+            
+
+            
+
+            <code class="ruby">    user_id = current_user.id</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="10" data-linenumber="9">
+            <span class="hits">10</span>
+            
+
+            
+
+            <code class="ruby">    @profiles = Profile.all</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="10">
+            
+            
+
+            
+
+            <code class="ruby">    # If user has already created a profile, brings them to a second index</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="10" data-linenumber="11">
+            <span class="hits">10</span>
+            
+
+            
+
+            <code class="ruby">    render(&#39;index2&#39;) if Profile.find_by user_id: user_id</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="12">
+            
+            
+
+            
+
+            <code class="ruby">  end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="13">
+            
+            
+
+            
+
+            <code class="ruby"></code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="14">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">  def index2; end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="15">
+            
+            
+
+            
+
+            <code class="ruby"></code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="16">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">  def new</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="17">
+            
+            
+
+            
+
+            <code class="ruby">    redirect_to(profiles_path, { flash: { red: &#39;Must be a chair to create a profile.&#39; } }) unless current_user.has_role? :chair</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="18">
+            
+            
+
+            
+
+            <code class="ruby">    user_id = current_user.id</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="19">
+            
+            
+
+            
+
+            <code class="ruby">    @profile = Profile.new</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="20">
+            
+            
+
+            
+
+            <code class="ruby">  end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="21">
+            
+            
+
+            
+
+            <code class="ruby"></code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="22">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">  def create</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="23">
+            
+            
+
+            
+
+            <code class="ruby">    filter = p</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="24">
+            
+            
+
+            
+
+            <code class="ruby">    @profile = Profile.new(profile_params)</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="25">
+            
+            
+
+            
+
+            <code class="ruby">    if @profile.save</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="26">
+            
+            
+
+            
+
+            <code class="ruby">      # Create an entry in the Match table for each user.</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="27">
+            
+            
+
+            
+
+            <code class="ruby">      match = Match.new(user_id: profile_params[:user_id])</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="28">
+            
+            
+
+            
+
+            <code class="ruby">      match.save(validate: false)</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="29">
+            
+            
+
+            
+
+            <code class="ruby"></code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="30">
+            
+            
+
+            
+
+            <code class="ruby">      redirect_to(profiles_path, { flash: { green: &quot;Created #{@profile.name} successfully.&quot; } })</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="31">
+            
+            
+
+            
+
+            <code class="ruby">    else</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="32">
+            
+            
+
+            
+
+            <code class="ruby">      redirect_to(new_profile_path, { flash: { red: &#39;Profile must have a name.&#39; } })</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="33">
+            
+            
+
+            
+
+            <code class="ruby">    end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="34">
+            
+            
+
+            
+
+            <code class="ruby">  end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="35">
+            
+            
+
+            
+
+            <code class="ruby"></code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="36">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">  def edit</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="37">
+            
+            
+
+            
+
+            <code class="ruby">    @profile = Profile.find(params[:id])</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="38">
+            
+            
+
+            
+
+            <code class="ruby">  end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="39">
+            
+            
+
+            
+
+            <code class="ruby"></code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="40">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">  def update</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="41">
+            
+            
+
+            
+
+            <code class="ruby">    @profile = Profile.find(params[:id])</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="42">
+            
+            
+
+            
+
+            <code class="ruby">    if @profile.update(profile_params)</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="43">
+            
+            
+
+            
+
+            <code class="ruby">      redirect_to(profiles_path, { flash: { green: &quot;Profile #{@profile.name} updated succesfully.&quot; } })</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="44">
+            
+            
+
+            
+
+            <code class="ruby">    else</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="45">
+            
+            
+
+            
+
+            <code class="ruby">      redirect_to(edit_profile_path, { flash: { red: &#39;Profile did not update successfully.&#39; } })</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="46">
+            
+            
+
+            
+
+            <code class="ruby">    end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="47">
+            
+            
+
+            
+
+            <code class="ruby">  end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="48">
+            
+            
+
+            
+
+            <code class="ruby"></code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="49">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">  def show</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="50">
+            
+            
+
+            
+
+            <code class="ruby">    @profile = Profile.find(params[:id])</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="51">
+            
+            
+
+            
+
+            <code class="ruby">  end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="52">
+            
+            
+
+            
+
+            <code class="ruby"></code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="53">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">  def delete</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="54">
+            
+            
+
+            
+
+            <code class="ruby">    @profile = Profile.find(params[:id])</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="55">
+            
+            
+
+            
+
+            <code class="ruby">  end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="56">
+            
+            
+
+            
+
+            <code class="ruby"></code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="57">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">  def destroy</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="58">
+            
+            
+
+            
+
+            <code class="ruby">    @profile = Profile.find(params[:id])</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="59">
+            
+            
+
+            
+
+            <code class="ruby">    @profile.destroy</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="60">
+            
+            
+
+            
+
+            <code class="ruby">    redirect_to(profiles_path, { flash: { red: &#39;Profile deleted successfully.&#39; } })</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="61">
+            
+            
+
+            
+
+            <code class="ruby">  end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="62">
+            
+            
+
+            
+
+            <code class="ruby"></code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="63">
+            
+            
+
+            
+
+            <code class="ruby">  # defined valid parameters for creating a profile</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="64">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">  private def profile_params</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="65">
+            
+            
+
+            
+
+            <code class="ruby">    params.require(:profile).permit(:name, :email, :phonenumber, :snapchat, :instagram, :facebook, :twitter, :ptanimal, :pttruecolors,</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="66">
+            
+            
+
+            
+
+            <code class="ruby">                                    :ptmyersbriggs, :enneagram, :aboutme, :approvedchair, :gender, :user_id)</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="67">
+            
+            
+
+            
+
+            <code class="ruby">  end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="68">
             
             
 
@@ -5741,8 +6575,8 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="11" data-linenumber="10">
-            <span class="hits">11</span>
+          <li class="covered" data-hits="31" data-linenumber="10">
+            <span class="hits">31</span>
             
 
             
@@ -9751,8 +10585,8 @@
     
 
     <div class="t-line-summary">
-      <b>120</b> relevant lines.
-      <span class="green"><b>120</b> lines covered</span> and
+      <b>139</b> relevant lines.
+      <span class="green"><b>139</b> lines covered</span> and
       <span class="red"><b>0</b> lines missed.</span>
     </div>
 
@@ -9814,23 +10648,12 @@
 
             
 
-            <code class="ruby"></code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="6">
-            
-            
-
-            
-
             <code class="ruby"># Integration Testing Controller Flash Notice</code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="7">
+          <li class="covered" data-hits="1" data-linenumber="6">
             <span class="hits">1</span>
             
 
@@ -9841,7 +10664,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="8">
+          <li class="covered" data-hits="1" data-linenumber="7">
             <span class="hits">1</span>
             
 
@@ -9852,7 +10675,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="9">
+          <li class="never" data-hits="" data-linenumber="8">
             
             
 
@@ -9863,7 +10686,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="10">
+          <li class="covered" data-hits="1" data-linenumber="9">
             <span class="hits">1</span>
             
 
@@ -9874,7 +10697,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="11">
+          <li class="never" data-hits="" data-linenumber="10">
             
             
 
@@ -9885,7 +10708,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="12">
+          <li class="never" data-hits="" data-linenumber="11">
             
             
 
@@ -9896,7 +10719,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="13">
+          <li class="covered" data-hits="1" data-linenumber="12">
             <span class="hits">1</span>
             
 
@@ -9907,7 +10730,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="14">
+          <li class="covered" data-hits="1" data-linenumber="13">
             <span class="hits">1</span>
             
 
@@ -9918,7 +10741,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="15">
+          <li class="covered" data-hits="1" data-linenumber="14">
             <span class="hits">1</span>
             
 
@@ -9929,7 +10752,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="16">
+          <li class="covered" data-hits="1" data-linenumber="15">
             <span class="hits">1</span>
             
 
@@ -9940,7 +10763,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="17">
+          <li class="covered" data-hits="1" data-linenumber="16">
             <span class="hits">1</span>
             
 
@@ -9951,7 +10774,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="18">
+          <li class="covered" data-hits="1" data-linenumber="17">
             <span class="hits">1</span>
             
 
@@ -9962,7 +10785,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="19">
+          <li class="never" data-hits="" data-linenumber="18">
             
             
 
@@ -9973,7 +10796,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="20">
+          <li class="never" data-hits="" data-linenumber="19">
             
             
 
@@ -9984,7 +10807,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="21">
+          <li class="covered" data-hits="1" data-linenumber="20">
             <span class="hits">1</span>
             
 
@@ -9995,7 +10818,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="22">
+          <li class="covered" data-hits="1" data-linenumber="21">
             <span class="hits">1</span>
             
 
@@ -10006,7 +10829,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="23">
+          <li class="covered" data-hits="1" data-linenumber="22">
             <span class="hits">1</span>
             
 
@@ -10017,7 +10840,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="24">
+          <li class="covered" data-hits="1" data-linenumber="23">
             <span class="hits">1</span>
             
 
@@ -10028,7 +10851,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="25">
+          <li class="covered" data-hits="1" data-linenumber="24">
             <span class="hits">1</span>
             
 
@@ -10039,7 +10862,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="26">
+          <li class="never" data-hits="" data-linenumber="25">
             
             
 
@@ -10050,7 +10873,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="27">
+          <li class="never" data-hits="" data-linenumber="26">
             
             
 
@@ -10061,7 +10884,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="28">
+          <li class="covered" data-hits="1" data-linenumber="27">
             <span class="hits">1</span>
             
 
@@ -10072,7 +10895,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="29">
+          <li class="covered" data-hits="1" data-linenumber="28">
             <span class="hits">1</span>
             
 
@@ -10083,7 +10906,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="30">
+          <li class="covered" data-hits="1" data-linenumber="29">
             <span class="hits">1</span>
             
 
@@ -10094,7 +10917,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="31">
+          <li class="never" data-hits="" data-linenumber="30">
             
             
 
@@ -10105,18 +10928,18 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="32">
+          <li class="never" data-hits="" data-linenumber="31">
             
             
 
             
 
-            <code class="ruby">  </code>
+            <code class="ruby"></code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="33">
+          <li class="covered" data-hits="1" data-linenumber="32">
             <span class="hits">1</span>
             
 
@@ -10127,13 +10950,24 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="34">
+          <li class="covered" data-hits="1" data-linenumber="33">
             <span class="hits">1</span>
             
 
             
 
             <code class="ruby">    it &#39;should flash correct message in index&#39; do</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="34">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">      director_login()</code>
           </li>
         </div>
       
@@ -10628,7 +11462,7 @@
 
             
 
-            <code class="ruby"></code>
+            <code class="ruby">  </code>
           </li>
         </div>
       
@@ -10650,7 +11484,7 @@
 
             
 
-            <code class="ruby">    visit edit_match_path(@match_1)</code>
+            <code class="ruby">    director_login()</code>
           </li>
         </div>
       
@@ -10661,7 +11495,7 @@
 
             
 
-            <code class="ruby">    click_button &#39;Match&#39;</code>
+            <code class="ruby">    visit edit_match_path(@match_1)</code>
           </li>
         </div>
       
@@ -10672,7 +11506,7 @@
 
             
 
-            <code class="ruby">    expect(Match.find(1).matched_id).to eq(2)</code>
+            <code class="ruby">    click_button &#39;Match&#39;</code>
           </li>
         </div>
       
@@ -10683,18 +11517,18 @@
 
             
 
-            <code class="ruby">    expect(Match.find(2).matched_id).to eq(1)</code>
+            <code class="ruby">    expect(Match.find(1).matched_id).to eq(2)</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="85">
-            
-            
-
+          <li class="covered" data-hits="1" data-linenumber="85">
+            <span class="hits">1</span>
             
 
-            <code class="ruby">  end</code>
+            
+
+            <code class="ruby">    expect(Match.find(2).matched_id).to eq(1)</code>
           </li>
         </div>
       
@@ -10705,18 +11539,18 @@
 
             
 
-            <code class="ruby"></code>
+            <code class="ruby">  end</code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="87">
-            <span class="hits">1</span>
+          <li class="never" data-hits="" data-linenumber="87">
+            
             
 
             
 
-            <code class="ruby">  it &#39;matches User 3 and 1 after User 1 and 2 are already matched&#39; do</code>
+            <code class="ruby"></code>
           </li>
         </div>
       
@@ -10727,7 +11561,7 @@
 
             
 
-            <code class="ruby">    visit edit_match_path(@match_1)</code>
+            <code class="ruby">  it &#39;matches User 3 and 1 after User 1 and 2 are already matched&#39; do</code>
           </li>
         </div>
       
@@ -10738,7 +11572,7 @@
 
             
 
-            <code class="ruby">    click_button &#39;Match&#39;</code>
+            <code class="ruby">    director_login()</code>
           </li>
         </div>
       
@@ -10749,7 +11583,7 @@
 
             
 
-            <code class="ruby">    visit edit_match_path(@match_3)</code>
+            <code class="ruby">    visit edit_match_path(@match_1)</code>
           </li>
         </div>
       
@@ -10771,7 +11605,7 @@
 
             
 
-            <code class="ruby">    expect(Match.find(1).matched_id).to eq(3)</code>
+            <code class="ruby">    visit edit_match_path(@match_3)</code>
           </li>
         </div>
       
@@ -10782,7 +11616,7 @@
 
             
 
-            <code class="ruby">    expect(Match.find(2).matched_id).to eq(nil)</code>
+            <code class="ruby">    click_button &#39;Match&#39;</code>
           </li>
         </div>
       
@@ -10793,12 +11627,34 @@
 
             
 
+            <code class="ruby">    expect(Match.find(1).matched_id).to eq(3)</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="95">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">    expect(Match.find(2).matched_id).to eq(nil)</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="96">
+            <span class="hits">1</span>
+            
+
+            
+
             <code class="ruby">    expect(Match.find(3).matched_id).to eq(1)</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="95">
+          <li class="never" data-hits="" data-linenumber="97">
             
             
 
@@ -10809,35 +11665,13 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="96">
+          <li class="never" data-hits="" data-linenumber="98">
             
             
 
             
 
             <code class="ruby"></code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="97">
-            <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">  it &#39;views User 1\&#39;s existing partner while looking for a match for User 3&#39; do</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="98">
-            <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">    visit edit_match_path(@match_1)</code>
           </li>
         </div>
       
@@ -10848,7 +11682,7 @@
 
             
 
-            <code class="ruby">    click_button &#39;Match&#39;</code>
+            <code class="ruby">  it &#39;views User 1\&#39;s existing partner while looking for a match for User 3&#39; do</code>
           </li>
         </div>
       
@@ -10859,7 +11693,7 @@
 
             
 
-            <code class="ruby">    visit edit_match_path(@match_3)</code>
+            <code class="ruby">    director_login()</code>
           </li>
         </div>
       
@@ -10870,7 +11704,7 @@
 
             
 
-            <code class="ruby">    click_link &#39;View Partner&#39;</code>
+            <code class="ruby">    visit edit_match_path(@match_1)</code>
           </li>
         </div>
       
@@ -10881,7 +11715,7 @@
 
             
 
-            <code class="ruby">    expect(page).to have_content(@p_1.name)</code>
+            <code class="ruby">    click_button &#39;Match&#39;</code>
           </li>
         </div>
       
@@ -10892,29 +11726,29 @@
 
             
 
-            <code class="ruby">    expect(page).to have_content(@p_2.name)</code>
+            <code class="ruby">    visit edit_match_path(@match_3)</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="104">
-            
-            
-
+          <li class="covered" data-hits="1" data-linenumber="104">
+            <span class="hits">1</span>
             
 
-            <code class="ruby">  end</code>
+            
+
+            <code class="ruby">    click_link &#39;View Partner&#39;</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="105">
-            
-            
-
+          <li class="covered" data-hits="1" data-linenumber="105">
+            <span class="hits">1</span>
             
 
-            <code class="ruby"></code>
+            
+
+            <code class="ruby">    expect(page).to have_content(@p_1.name)</code>
           </li>
         </div>
       
@@ -10925,29 +11759,29 @@
 
             
 
-            <code class="ruby">  it &#39;wants to see all of the unmatched chairs while trying to find a new match for User 1&#39; do</code>
+            <code class="ruby">    expect(page).to have_content(@p_2.name)</code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="107">
-            <span class="hits">1</span>
+          <li class="never" data-hits="" data-linenumber="107">
+            
             
 
             
 
-            <code class="ruby">    visit edit_match_path(@match_1)</code>
+            <code class="ruby">  end</code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="108">
-            <span class="hits">1</span>
+          <li class="never" data-hits="" data-linenumber="108">
+            
             
 
             
 
-            <code class="ruby">    click_button &#39;Match&#39;</code>
+            <code class="ruby"></code>
           </li>
         </div>
       
@@ -10958,7 +11792,7 @@
 
             
 
-            <code class="ruby">    visit edit_match_path(@match_1)</code>
+            <code class="ruby">  it &#39;wants to see all of the unmatched chairs while trying to find a new match for User 1&#39; do</code>
           </li>
         </div>
       
@@ -10969,7 +11803,7 @@
 
             
 
-            <code class="ruby">    click_link &#39;Unmatched Chairs&#39;</code>
+            <code class="ruby">    director_login()</code>
           </li>
         </div>
       
@@ -10980,7 +11814,7 @@
 
             
 
-            <code class="ruby">    expect(page).to have_content(@p_1.name)</code>
+            <code class="ruby">    visit edit_match_path(@match_1)</code>
           </li>
         </div>
       
@@ -10991,45 +11825,12 @@
 
             
 
-            <code class="ruby">    expect(page).to have_content(@p_3.name)</code>
+            <code class="ruby">    click_button &#39;Match&#39;</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="113">
-            
-            
-
-            
-
-            <code class="ruby">  end</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="114">
-            
-            
-
-            
-
-            <code class="ruby"></code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="115">
-            <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">  it &#39;matches User 1 and User 2 through the search dropdown&#39; do</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="116">
+          <li class="covered" data-hits="1" data-linenumber="113">
             <span class="hits">1</span>
             
 
@@ -11040,172 +11841,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="117">
-            <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">    click_button &#39;Search by name&#39;</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="118">
-            <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">    click_link @p_2.name</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="119">
-            <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">    expect(page).to have_content(@p_1.name)</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="120">
-            <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">    expect(page).to have_content(@p_2.name)</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="121">
-            <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">    click_button &#39;Match&#39;</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="122">
-            <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">    expect(Match.find(1).matched_id).to eq(2)</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="123">
-            <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">    expect(Match.find(2).matched_id).to eq(1)</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="124">
-            
-            
-
-            
-
-            <code class="ruby">  end</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="125">
-            
-            
-
-            
-
-            <code class="ruby"></code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="126">
-            <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">  it &#39;tries to find an unmatched chair after all other chairs already have a partner&#39; do</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="127">
-            <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">    visit edit_match_path(@match_1)</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="128">
-            <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">    click_button &#39;Match&#39;</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="129">
-            <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">    visit edit_match_path(@match_4)</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="130">
-            <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">    click_button &#39;Match&#39;</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="131">
-            <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">    visit edit_match_path(@match_3)</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="132">
+          <li class="covered" data-hits="1" data-linenumber="114">
             <span class="hits">1</span>
             
 
@@ -11216,7 +11852,18 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="133">
+          <li class="covered" data-hits="1" data-linenumber="115">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">    expect(page).to have_content(@p_1.name)</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="116">
             <span class="hits">1</span>
             
 
@@ -11227,150 +11874,205 @@
         </div>
       
         <div>
+          <li class="never" data-hits="" data-linenumber="117">
+            
+            
+
+            
+
+            <code class="ruby">  end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="118">
+            
+            
+
+            
+
+            <code class="ruby"></code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="119">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">  it &#39;matches User 1 and User 2 through the search dropdown&#39; do</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="120">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">    director_login()</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="121">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">    visit edit_match_path(@match_1)</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="122">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">    click_button &#39;Search by name&#39;</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="123">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">    click_link @p_2.name</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="124">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">    expect(page).to have_content(@p_1.name)</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="125">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">    expect(page).to have_content(@p_2.name)</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="126">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">    click_button &#39;Match&#39;</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="127">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">    expect(Match.find(1).matched_id).to eq(2)</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="128">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">    expect(Match.find(2).matched_id).to eq(1)</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="129">
+            
+            
+
+            
+
+            <code class="ruby">  end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="130">
+            
+            
+
+            
+
+            <code class="ruby"></code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="131">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">  it &#39;tries to find an unmatched chair after all other chairs already have a partner&#39; do</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="132">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">    director_login()</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="133">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">    visit edit_match_path(@match_1)</code>
+          </li>
+        </div>
+      
+        <div>
           <li class="covered" data-hits="1" data-linenumber="134">
             <span class="hits">1</span>
             
 
             
 
-            <code class="ruby">    expect(page).to have_content(&#39;Warning: All other chairs already have a partner.&#39;)</code>
+            <code class="ruby">    click_button &#39;Match&#39;</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="135">
-            
-            
-
-            
-
-            <code class="ruby">  end</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="136">
-            
-            
-
-            
-
-            <code class="ruby"></code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="137">
-            <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">  it &#39;tries to find a match for someone who has no prospects&#39; do</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="138">
-            <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">    u_6 = User.create(id: 6, email: &#39;u6@gmail.com&#39;, role: &#39;Chair&#39;, approved: true)</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="139">
-            <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">    p_6 = Profile.create(id: 6, user_id: u_6.id, name: &#39;User 6&#39;, email: &#39;u6@gmail.com&#39;)</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="140">
-            <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">    match_6 = Match.create(id: 6, user_id: 6, matched_id: nil)</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="141">
-            
-            
-
-            
-
-            <code class="ruby"></code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="142">
-            <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">    visit edit_match_path(match_6)</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="143">
-            <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">    expect(page).to have_content(&#39;Warning: This chair has no prospects.&#39;)</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="144">
-            
-            
-
-            
-
-            <code class="ruby">  end</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="145">
-            
-            
-
-            
-
-            <code class="ruby"></code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="146">
-            <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">  it &#39;is trying to find a match for a user that no other chair has selected as a preference&#39; do</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="147">
+          <li class="covered" data-hits="1" data-linenumber="135">
             <span class="hits">1</span>
             
 
@@ -11381,7 +12083,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="148">
+          <li class="covered" data-hits="1" data-linenumber="136">
             <span class="hits">1</span>
             
 
@@ -11392,18 +12094,51 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="149">
+          <li class="covered" data-hits="1" data-linenumber="137">
             <span class="hits">1</span>
             
 
             
 
-            <code class="ruby">    expect(page).to have_content(&#39;Match updated successfully.&#39;)</code>
+            <code class="ruby">    visit edit_match_path(@match_3)</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="150">
+          <li class="covered" data-hits="1" data-linenumber="138">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">    click_link &#39;Unmatched Chairs&#39;</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="139">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">    expect(page).to have_content(@p_3.name)</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="140">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">    expect(page).to have_content(&#39;Warning: All other chairs already have a partner.&#39;)</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="141">
             
             
 
@@ -11414,29 +12149,40 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="151">
+          <li class="never" data-hits="" data-linenumber="142">
             
             
 
             
 
-            <code class="ruby">  </code>
+            <code class="ruby"></code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="152">
+          <li class="covered" data-hits="1" data-linenumber="143">
             <span class="hits">1</span>
             
 
             
 
-            <code class="ruby">  it &#39;starts matching and a new match average turns out to be better than a previous one&#39; do</code>
+            <code class="ruby">  it &#39;tries to find a match for someone who has no prospects&#39; do</code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="153">
+          <li class="covered" data-hits="1" data-linenumber="144">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">    director_login()</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="145">
             <span class="hits">1</span>
             
 
@@ -11447,117 +12193,18 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="154">
+          <li class="covered" data-hits="1" data-linenumber="146">
             <span class="hits">1</span>
             
 
             
 
-            <code class="ruby">    u_7 = User.create(id: 7, email: &#39;u7@gmail.com&#39;, role: &#39;Chair&#39;, approved: true)</code>
+            <code class="ruby">    p_6 = Profile.create(id: 6, user_id: u_6.id, name: &#39;User 6&#39;, email: &#39;u6@gmail.com&#39;)</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="155">
-            
-            
-
-            
-
-            <code class="ruby"></code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="156">
-            <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">    Profile.create(id: 6, user_id: u_6.id, name: &#39;User 6&#39;, email: &#39;u6@gmail.com&#39;)</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="157">
-            <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">    Profile.create(id: 7, user_id: u_7.id, name: &#39;User 7&#39;, email: &#39;u7@gmail.com&#39;)</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="158">
-            
-            
-
-            
-
-            <code class="ruby"></code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="159">
-            <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">    Preference.create(id: 7, selector_id: 5, selected_id: 6, preference_form_id: 1, pref_type: &#39;Preference&#39;, rating: 3)</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="160">
-            <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">    Preference.create(id: 8, selector_id: 6, selected_id: 5, preference_form_id: 1, pref_type: &#39;Preference&#39;, rating: 3)</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="161">
-            <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">    Preference.create(id: 9, selector_id: 5, selected_id: 7, preference_form_id: 1, pref_type: &#39;Preference&#39;, rating: 5)</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="162">
-            <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">    Preference.create(id: 10, selector_id: 7, selected_id: 5, preference_form_id: 1, pref_type: &#39;Preference&#39;, rating: 5)</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="163">
-            
-            
-
-            
-
-            <code class="ruby"></code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="164">
+          <li class="covered" data-hits="1" data-linenumber="147">
             <span class="hits">1</span>
             
 
@@ -11568,18 +12215,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="165">
-            <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">    match_7 = Match.create(id: 7, user_id: 7, matched_id: nil)</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="166">
+          <li class="never" data-hits="" data-linenumber="148">
             
             
 
@@ -11590,18 +12226,84 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="167">
+          <li class="covered" data-hits="1" data-linenumber="149">
             <span class="hits">1</span>
             
 
             
 
-            <code class="ruby">    visit edit_match_path(@match_5)</code>
+            <code class="ruby">    visit edit_match_path(match_6)</code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="168">
+          <li class="covered" data-hits="1" data-linenumber="150">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">    expect(page).to have_content(&#39;Warning: This chair has no prospects.&#39;)</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="151">
+            
+            
+
+            
+
+            <code class="ruby">  end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="152">
+            
+            
+
+            
+
+            <code class="ruby"></code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="153">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">  it &#39;is trying to find a match for a user that no other chair has selected as a preference&#39; do</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="154">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">    director_login()</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="155">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">    visit edit_match_path(@match_4)</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="156">
             <span class="hits">1</span>
             
 
@@ -11612,7 +12314,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="169">
+          <li class="covered" data-hits="1" data-linenumber="157">
             <span class="hits">1</span>
             
 
@@ -11623,7 +12325,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="170">
+          <li class="never" data-hits="" data-linenumber="158">
             
             
 
@@ -11634,7 +12336,62 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="171">
+          <li class="never" data-hits="" data-linenumber="159">
+            
+            
+
+            
+
+            <code class="ruby">  </code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="160">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">  it &#39;starts matching and a new match average turns out to be better than a previous one&#39; do</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="161">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">    director_login()</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="162">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">    u_6 = User.create(id: 6, email: &#39;u6@gmail.com&#39;, role: &#39;Chair&#39;, approved: true)</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="163">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">    u_7 = User.create(id: 7, email: &#39;u7@gmail.com&#39;, role: &#39;Chair&#39;, approved: true)</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="164">
             
             
 
@@ -11645,13 +12402,90 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="172">
+          <li class="covered" data-hits="1" data-linenumber="165">
             <span class="hits">1</span>
             
 
             
 
-            <code class="ruby">  after(:all) do</code>
+            <code class="ruby">    Profile.create(id: 6, user_id: u_6.id, name: &#39;User 6&#39;, email: &#39;u6@gmail.com&#39;)</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="166">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">    Profile.create(id: 7, user_id: u_7.id, name: &#39;User 7&#39;, email: &#39;u7@gmail.com&#39;)</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="167">
+            
+            
+
+            
+
+            <code class="ruby"></code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="168">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">    Preference.create(id: 7, selector_id: 5, selected_id: 6, preference_form_id: 1, pref_type: &#39;Preference&#39;, rating: 3)</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="169">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">    Preference.create(id: 8, selector_id: 6, selected_id: 5, preference_form_id: 1, pref_type: &#39;Preference&#39;, rating: 3)</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="170">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">    Preference.create(id: 9, selector_id: 5, selected_id: 7, preference_form_id: 1, pref_type: &#39;Preference&#39;, rating: 5)</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="171">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">    Preference.create(id: 10, selector_id: 7, selected_id: 5, preference_form_id: 1, pref_type: &#39;Preference&#39;, rating: 5)</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="172">
+            
+            
+
+            
+
+            <code class="ruby"></code>
           </li>
         </div>
       
@@ -11662,18 +12496,18 @@
 
             
 
-            <code class="ruby">    DatabaseCleaner.clean_with(:truncation)</code>
+            <code class="ruby">    match_6 = Match.create(id: 6, user_id: 6, matched_id: nil)</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="174">
-            
-            
-
+          <li class="covered" data-hits="1" data-linenumber="174">
+            <span class="hits">1</span>
             
 
-            <code class="ruby">  end</code>
+            
+
+            <code class="ruby">    match_7 = Match.create(id: 7, user_id: 7, matched_id: nil)</code>
           </li>
         </div>
       
@@ -11684,18 +12518,260 @@
 
             
 
+            <code class="ruby"></code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="176">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">    visit edit_match_path(@match_5)</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="177">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">    click_button &#39;Match&#39;</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="178">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">    expect(page).to have_content(&#39;Match updated successfully.&#39;)</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="179">
+            
+            
+
+            
+
+            <code class="ruby">  end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="180">
+            
+            
+
+            
+
+            <code class="ruby"></code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="181">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">  after(:all) do</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="182">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">    DatabaseCleaner.clean_with(:truncation)</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="183">
+            
+            
+
+            
+
+            <code class="ruby">  end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="184">
+            
+            
+
+            
+
             <code class="ruby">end</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="176">
+          <li class="never" data-hits="" data-linenumber="185">
             
             
 
             
 
-            <code class="ruby">  </code>
+            <code class="ruby"></code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="186">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">def director_login</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="187">
+            
+            
+
+            
+
+            <code class="ruby">  # Sign up with a new account.</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="10" data-linenumber="188">
+            <span class="hits">10</span>
+            
+
+            
+
+            <code class="ruby">  visit root_path</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="10" data-linenumber="189">
+            <span class="hits">10</span>
+            
+
+            
+
+            <code class="ruby">  click_link &#39;Sign up&#39;</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="10" data-linenumber="190">
+            <span class="hits">10</span>
+            
+
+            
+
+            <code class="ruby">  fill_in &#39;user[email]&#39;, with: &#39;director@gmail.com&#39;</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="10" data-linenumber="191">
+            <span class="hits">10</span>
+            
+
+            
+
+            <code class="ruby">  fill_in &#39;Password&#39;, with: &#39;12345&#39;</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="10" data-linenumber="192">
+            <span class="hits">10</span>
+            
+
+            
+
+            <code class="ruby">  click_button &#39;Sign up&#39;</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="193">
+            
+            
+
+            
+
+            <code class="ruby"></code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="194">
+            
+            
+
+            
+
+            <code class="ruby">  # Make the last account that signed up a Director in order to access the matches pages.</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="10" data-linenumber="195">
+            <span class="hits">10</span>
+            
+
+            
+
+            <code class="ruby">  @director_user = User.last</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="10" data-linenumber="196">
+            <span class="hits">10</span>
+            
+
+            
+
+            <code class="ruby">  @director_user.remove_role :chair</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="10" data-linenumber="197">
+            <span class="hits">10</span>
+            
+
+            
+
+            <code class="ruby">  @director_user.add_role :director</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="198">
+            
+            
+
+            
+
+            <code class="ruby">end</code>
           </li>
         </div>
       

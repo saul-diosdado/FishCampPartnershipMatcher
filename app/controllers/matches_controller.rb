@@ -145,6 +145,9 @@ class MatchesController < ApplicationController
   end
 
   def check_role
-    redirect_to(root_path, { flash: { danger: 'WARNING: Only Directors have access to the matching pages.' } }) unless current_user.has_role? :director
+    return if current_user.has_role? :director
+
+    redirect_to(root_path,
+                { flash: { danger: 'WARNING: Only Directors have access to the matching pages.' } })
   end
 end

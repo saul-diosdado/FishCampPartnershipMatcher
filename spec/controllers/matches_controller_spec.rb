@@ -2,7 +2,6 @@
 
 require 'rails_helper'
 
-
 # Integration Testing Controller Flash Notice
 RSpec.describe 'Controller Test', type: :system do
   before(:all) do
@@ -29,9 +28,10 @@ RSpec.describe 'Controller Test', type: :system do
     @match_2 = Match.create(id: 2, user_id: 2, matched_id: nil)
     @match_3 = Match.create(id: 3, user_id: 3, matched_id: nil)
   end
-  
+
   describe 'proper message after a match has been made' do
     it 'should flash correct message in index' do
+      director_login()
       visit edit_match_path(@match_1)
       click_button 'Match'
       expect(page).to have_content('Match updated successfully.')
@@ -76,8 +76,9 @@ RSpec.describe 'Director', type: :system do
     @match_4 = Match.create(id: 4, user_id: 4, matched_id: nil)
     @match_5 = Match.create(id: 5, user_id: 5, matched_id: nil)
   end
-
+  
   it 'matches User 1 and User 2' do
+    director_login()
     visit edit_match_path(@match_1)
     click_button 'Match'
     expect(Match.find(1).matched_id).to eq(2)
@@ -85,6 +86,7 @@ RSpec.describe 'Director', type: :system do
   end
 
   it 'matches User 3 and 1 after User 1 and 2 are already matched' do
+    director_login()
     visit edit_match_path(@match_1)
     click_button 'Match'
     visit edit_match_path(@match_3)
@@ -95,6 +97,7 @@ RSpec.describe 'Director', type: :system do
   end
 
   it 'views User 1\'s existing partner while looking for a match for User 3' do
+    director_login()
     visit edit_match_path(@match_1)
     click_button 'Match'
     visit edit_match_path(@match_3)
@@ -104,6 +107,7 @@ RSpec.describe 'Director', type: :system do
   end
 
   it 'wants to see all of the unmatched chairs while trying to find a new match for User 1' do
+    director_login()
     visit edit_match_path(@match_1)
     click_button 'Match'
     visit edit_match_path(@match_1)
@@ -113,6 +117,7 @@ RSpec.describe 'Director', type: :system do
   end
 
   it 'matches User 1 and User 2 through the search dropdown' do
+    director_login()
     visit edit_match_path(@match_1)
     click_button 'Search by name'
     click_link @p_2.name
@@ -124,6 +129,7 @@ RSpec.describe 'Director', type: :system do
   end
 
   it 'tries to find an unmatched chair after all other chairs already have a partner' do
+    director_login()
     visit edit_match_path(@match_1)
     click_button 'Match'
     visit edit_match_path(@match_4)
@@ -135,6 +141,7 @@ RSpec.describe 'Director', type: :system do
   end
 
   it 'tries to find a match for someone who has no prospects' do
+    director_login()
     u_6 = User.create(id: 6, email: 'u6@gmail.com', role: 'Chair', approved: true)
     p_6 = Profile.create(id: 6, user_id: u_6.id, name: 'User 6', email: 'u6@gmail.com')
     match_6 = Match.create(id: 6, user_id: 6, matched_id: nil)
@@ -144,12 +151,14 @@ RSpec.describe 'Director', type: :system do
   end
 
   it 'is trying to find a match for a user that no other chair has selected as a preference' do
+    director_login()
     visit edit_match_path(@match_4)
     click_button 'Match'
     expect(page).to have_content('Match updated successfully.')
   end
   
   it 'starts matching and a new match average turns out to be better than a previous one' do
+    director_login()
     u_6 = User.create(id: 6, email: 'u6@gmail.com', role: 'Chair', approved: true)
     u_7 = User.create(id: 7, email: 'u7@gmail.com', role: 'Chair', approved: true)
 
@@ -173,4 +182,17 @@ RSpec.describe 'Director', type: :system do
     DatabaseCleaner.clean_with(:truncation)
   end
 end
-  
+
+def director_login
+  # Sign up with a new account.
+  visit root_path
+  click_link 'Sign up'
+  fill_in 'user[email]', with: 'director@gmail.com'
+  fill_in 'Password', with: '12345'
+  click_button 'Sign up'
+
+  # Make the last account that signed up a Director in order to access the matches pages.
+  @director_user = User.last
+  @director_user.remove_role :chair
+  @director_user.add_role :director
+end

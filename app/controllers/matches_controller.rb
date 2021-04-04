@@ -65,7 +65,7 @@ class MatchesController < ApplicationController
     #   @match.save(validate: false)
     # end
 
-    @profiles = Profile.all
+    @profiles = Profile.order(:name)
     @questions = Question.all
     @matches = Match.all
 

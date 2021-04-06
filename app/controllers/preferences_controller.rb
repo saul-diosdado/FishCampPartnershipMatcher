@@ -8,19 +8,25 @@ class PreferencesController < ApplicationController
     @profiles = Profile.all
     @users = User.where(role: 'Chair', approved: TRUE).where.not(id: current_user.id)
     @prefs = Preference.where(preference_form_id: @form.id, selector_id: current_user.id,
-                              pref_type: 'Preference')
+                              pref_type: 'Preference').order('rating DESC')
     @antiprefs = Preference.where(preference_form_id: @form.id, selector_id: current_user.id,
                                   pref_type: 'Anti-Preference')
   end
 
   def new
-    @prefs = Preference.where(preference_form_id: @form.id, selector_id: current_user.id,
-                              pref_type: 'Preference')
-    @antiprefs = Preference.where(preference_form_id: @form.id, selector_id: current_user.id,
-                                  pref_type: 'Anti-Preference')
-    @profiles = Profile.all.where.not(user_id: current_user.id)
+    # Load all approved chairs
+    users = User.where(role: 'Chair', approved: TRUE).where.not(id: current_user.id)
+    user_ids = users.map { |user| user.id }
+    # Load all of the users prefs
+    prefs = Preference.where(preference_form_id: params[:form_id], selector_id: current_user.id)
+    # User can only pref users who they have not preffed already.
+    prospects = user_ids.map { |id| if prefs.where(selected_id: id).exists? == FALSE then id end }
 
-    @pref = Preference.new(:preference_form_id => params[:form_id], :selector_id => current_user.id, :pref_type => params[:pref_type])
+    # Show all potential prefs
+    @profiles = Profile.where(user_id: prospects)
+
+    @pref = Preference.new(:preference_form_id => params[:form_id], :selector_id => current_user.id, 
+                            :pref_type => params[:pref_type])
   end
 
   def create
@@ -35,12 +41,16 @@ class PreferencesController < ApplicationController
 
   def edit
     @pref = Preference.find(params[:id])
-    @prefs = Preference.where(preference_form_id: @form.id, selector_id: current_user.id,
-      pref_type: 'Preference')
-    @antiprefs = Preference.where(preference_form_id: @form.id, selector_id: current_user.id,
-              pref_type: 'Anti-Preference')
-    # .  
-    @profiles = Profile.all.where.not(user_id: current_user.id)
+
+    # Load all approved chairs
+    users = User.where(role: 'Chair', approved: TRUE).where.not(id: current_user.id)
+    user_ids = users.map { |user| user.id }
+    # Load all of the users prefs
+    prefs = Preference.where(preference_form_id: @pref.preference_form_id, selector_id: current_user.id)
+    # User can only pref users who they have not preffed already.
+    prospects = user_ids.map { |id| if prefs.where(selected_id: id).exists? == FALSE then id end }
+    
+    @profiles = Profile.where(user_id: (prospects + [@pref.selected_id]))
   end
 
   def update

@@ -2,7 +2,7 @@
 
 class PreferenceFormsController < ApplicationController
   before_action :require_login
-  
+
   def index
     @forms = PreferenceForm.all
   end

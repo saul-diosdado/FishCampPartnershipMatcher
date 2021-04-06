@@ -1,5 +1,6 @@
 <div class="container-x1">
     <h1 class="my-4">Forms</h1>
+    <% num_forms = 0 %>
     <% @forms.each do |form| %>
         <div class="card mb-4">
             <!-- Card Header -->
@@ -15,7 +16,10 @@
                 <p class="card-title">Deadline: </p>
             </div>
         </div>
+        <% num_forms = num_forms + 1 %>
     <% end %>
-
+    <% if num_forms == 0 %>
+        <p style="color:lightgray">Sorry! There are no forms available for you to complete.</p>
+    <% end %>
     <%= link_to("Back to Profiles", root_path, class: "btn btn-success mt-2 mb-4") %>
 </div>

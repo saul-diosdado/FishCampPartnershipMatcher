@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
 class MatchesController < ApplicationController
+  before_action :require_login, :check_role
+
   def index
     @unmatched_chairs = Match.where(matched_id: nil)
-
     @matched_chairs = Match.where.not(matched_id: nil)
-
     @profiles = Profile.all
   end
 
@@ -65,7 +65,7 @@ class MatchesController < ApplicationController
     #   @match.save(validate: false)
     # end
 
-    @profiles = Profile.all
+    @profiles = Profile.order(:name)
     @questions = Question.all
     @matches = Match.all
 
@@ -107,7 +107,7 @@ class MatchesController < ApplicationController
     @matches = Match.all
 
     # An array containing the ids of all Chairs that have no partner.
-    @prospects_ids = Match.where(matched_id: nil).where.not(user_id: @match.user_id)
+    @prospects_ids = Match.where(matched_id: nil).where.not(user_id: @match.user_id).pluck(:user_id)
 
     # Display a warning alert if there is no unmatched chairs left.
     flash.now[:warning] = 'Warning: All other chairs already have a partner.' if @prospects_ids.length.zero?
@@ -142,5 +142,12 @@ class MatchesController < ApplicationController
 
   def match_params
     params.require(:match).permit(:id, :user_id, :matched_id, :preference_form_id, :prospects_ids, :prospects_pref_averages)
+  end
+
+  def check_role
+    return if current_user.has_role? :director
+
+    redirect_to(root_path,
+                { flash: { danger: 'WARNING: Only Directors have access to the matching pages.' } })
   end
 end

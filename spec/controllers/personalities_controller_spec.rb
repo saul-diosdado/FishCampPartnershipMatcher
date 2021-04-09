@@ -81,6 +81,10 @@ RSpec.describe 'Controller Test', type: :system do
       expect(page).to have_content('Profile must have result of Enneagram test filled out to view this page.')
     end
   end
+
+  after(:all) do
+    DatabaseCleaner.clean_with(:truncation)
+  end
 end
 # Ensure the matching algorithm is registering their personality type correctly for Myers Briggs
 RSpec.describe 'Controller Test', type: :system do
@@ -342,6 +346,10 @@ RSpec.describe 'Controller Test', type: :system do
       expect(page).to have_content('Your Personality Type: ESTJ')
     end
   end
+
+  after(:all) do
+    DatabaseCleaner.clean_with(:truncation)
+  end
 end
 # Ensure the matching algorithm is registering their personality type correctly for Conflict Management
 RSpec.describe 'Controller Test', type: :system do
@@ -427,6 +435,10 @@ RSpec.describe 'Controller Test', type: :system do
       expect(page).to have_content('As a Turtle, your best matches are owls!')
     end
   end
+
+  after(:all) do
+    DatabaseCleaner.clean_with(:truncation)
+  end
 end
 # Ensure the matching algorithm is registering their personality type correctly for True Colors
 RSpec.describe 'Controller Test', type: :system do
@@ -495,6 +507,10 @@ RSpec.describe 'Controller Test', type: :system do
       click_link 'True Colors'
       expect(page).to have_content('Your True Color: Orange')
     end
+  end
+
+  after(:all) do
+    DatabaseCleaner.clean_with(:truncation)
   end
 end
 # Ensure the matching algorithm is registering their personality type correctly for Enneagram
@@ -644,5 +660,9 @@ RSpec.describe 'Controller Test', type: :system do
       click_link 'Enneagram'
       expect(page).to have_content('Your ideal matches are Acheivers and Loyalists!')
     end
+  end
+
+  after(:all) do
+    DatabaseCleaner.clean_with(:truncation)
   end
 end

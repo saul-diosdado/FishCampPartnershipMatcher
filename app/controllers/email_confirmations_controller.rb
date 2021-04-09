@@ -6,6 +6,6 @@ class EmailConfirmationsController < ApplicationController
         #function updates the user's confirmed_at column to the current time
         user.confirm_email
         sign_in user
-        redirect_to root_path, notice: t("flashes.confirmed_email")
+        redirect_to root_path, notice: t("Email Confirmed! Welcome to the site")
     end
 end

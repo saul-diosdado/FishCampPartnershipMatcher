@@ -72,6 +72,8 @@ GEM
       momentjs-rails (~> 2.8)
       sassc-rails (~> 2.1)
       selectize-rails (~> 0.6)
+    archive-zip (0.12.0)
+      io-like (~> 0.3.0)
     autoprefixer-rails (10.2.4.0)
       execjs
     bcrypt (3.1.16)
@@ -93,6 +95,9 @@ GEM
       regexp_parser (>= 1.5, < 3.0)
       xpath (~> 3.2)
     childprocess (3.0.0)
+    chromedriver-helper (2.1.1)
+      archive-zip (~> 0.10)
+      nokogiri (~> 1.8)
     clearance (1.15.1)
       bcrypt
       email_validator (~> 1.4)
@@ -118,6 +123,7 @@ GEM
       activesupport (>= 4.2.0)
     i18n (1.8.9)
       concurrent-ruby (~> 1.0)
+    io-like (0.3.1)
     jbuilder (2.11.2)
       activesupport (>= 5.0.0)
     jquery-rails (4.4.0)
@@ -295,6 +301,7 @@ DEPENDENCIES
   bootstrap
   byebug
   capybara
+  chromedriver-helper
   clearance (~> 1.15.1)
   cocoon
   database_cleaner-active_record

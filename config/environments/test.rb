@@ -44,6 +44,7 @@ Rails.application.configure do
   # The :test delivery method accumulates sent emails in the
   # ActionMailer::Base.deliveries array.
   config.action_mailer.delivery_method = :test
+  config.action_mailer.default_url_options = {:host => 'http://127.0.0.1:3000'}
 
   # Print deprecation notices to the stderr.
   config.active_support.deprecation = :stderr
@@ -55,7 +56,7 @@ Rails.application.configure do
   config.active_support.disallowed_deprecation_warnings = []
 
   #middleware to allow user to sign in without wasting time
-  config.middleware.use Clearance::Backdoor
+  config.middleware.use Clearance::BackDoor
 
   # Raises error for missing translations.
   # config.i18n.raise_on_missing_translations = true

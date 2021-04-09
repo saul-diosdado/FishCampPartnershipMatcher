@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 #Testing backend of the users controller
-describe UsersController do
+RSpec.describe 'UsersController', type: :system do
     describe '#create' do
         it 'creates a user with valid attributes and sends confirmation email' do
             post :create, user: { email: 'a@gmail.com', password: 'password'}

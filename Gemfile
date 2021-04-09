@@ -71,6 +71,7 @@ group :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'database_cleaner-active_record'
   gem 'selenium-webdriver'
+  gem 'email_spec'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

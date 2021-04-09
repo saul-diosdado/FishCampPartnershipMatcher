@@ -9,6 +9,8 @@ abort('The Rails environment is running in production mode!') if Rails.env.produ
 require 'rspec/rails'
 # Add additional requires below this line. Rails is not loaded until this point!
 require 'clearance/rspec'
+require 'email_spec'
+require 'email_spec/rspec'
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are
@@ -88,5 +90,3 @@ RSpec.configure do |config|
   # config.filter_gems_from_backtrace("gem name")
 end
 Capybara.default_driver = :selenium_chrome
- Selenium::WebDriver::Chrome.path = "/mnt/c/Program Files (x86)/Google/Chrome/Application/chrome.exe"
-#Selenium::WebDriver::Chrome.path = "/mnt/c/Users/cindy/AppData/Local/Google/Chrome/User Data/Default"

@@ -12,7 +12,7 @@ AllCops:
     - "app/views/personalities/**"
     - "db/schema.rb"
     - "app/dashboards/**"
-  NewCops: disable
+
 Layout/EndOfLine:
   Enabled: false
 

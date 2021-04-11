@@ -80,16 +80,17 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :smtp
 
   config.action_mailer.smtp_settings = {
-    address: 'smtp.gmail.com',
-    port: 587,
-    user_name: ENV['mailgun_user_name'],
-    password: ENV['mailgun_password'],
-    authentication: 'plain',
-    enable_starttls_auto: true
+    :address => 'smtp.gmail.com',
+    :port => 587,
+    :domain => 'gmail.com',
+    :user_name => ENV['mailgun_user_name'],
+    :password => ENV['mailgun_password'],
+    :authentication => 'plain',
+    :enable_starttls_auto => true
   }
 
-  # set url to the production heroku app
-  config.action_mailer.default_url_options = { host: 'https://fish-camp-partnership-matcher.herokuapp.com/' }
+  #set url to the production heroku app
+  config.action_mailer.default_url_options = { :host => ENV['app_url']}
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation cannot be found).

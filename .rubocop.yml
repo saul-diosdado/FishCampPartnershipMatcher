@@ -12,6 +12,8 @@ AllCops:
     - "app/views/personalities/**"
     - "db/schema.rb"
     - "app/dashboards/**"
+  AllCops:
+    NewCops: disable
 
 Layout/EndOfLine:
   Enabled: false

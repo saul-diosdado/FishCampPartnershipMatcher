@@ -40,3 +40,12 @@ Metrics/PerceivedComplexity:
 # URISchemes: http, https
 Layout/LineLength:
   Max: 150
+
+Style/HashEachMethods:
+  Enabled: false
+
+Style/HashTransformKeys:
+  Enabled: false
+
+Style/HashTransformValues:
+  Enabled: false

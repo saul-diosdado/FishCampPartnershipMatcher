@@ -28,4 +28,8 @@ RSpec.describe Match, type: :model do
     @match.destroy
     expect(Match.count).to be < previous_match_count
   end
+
+  after(:all) do
+    DatabaseCleaner.clean_with(:truncation)
+  end
 end

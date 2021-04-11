@@ -20,7 +20,6 @@ RSpec.describe 'Controller Test', type: :system do
 
             #visit confirm user page with a valid token
             visit "/confirm_email/{@user.email_confirmation_token}"
-            user.reload
             expect(user.email_confirmed_at).to be_present
         end
     end

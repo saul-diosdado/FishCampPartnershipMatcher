@@ -14,11 +14,16 @@
                 <p>Select Chair  <%= f.collection_select(:selected_id, @profiles.order(:name), :user_id, :name) %></p>
 
                 <!-- Rate the selected chair -->
-                <p>Rating  <%= f.select :rating, [1, 2, 3, 4, 5] %></p>
+                <% if @pref.pref_type == "Preference" %>
+                    <p>Rating  <%= f.select :rating, [1, 2, 3, 4, 5] %></p>
+                <% else %>
+                    <p style="color:red"><b>Anti-Pref</b></p>
+                    <%= f.hidden_field(:rating, value: 0) %>
+                <% end %>
 
                 <!-- Provide an explanation in the text box. -->
                 <p></br>Explain why you gave this person this rating?</p>
-                <%= f.text_area(:why, :cols => "100", :rows => "10") %>
+                <%= f.text_area(:why, :cols => "100", :rows => "10", :required => true) %>
             </div>
             <div> 
                 <!-- Save the form, or go back -->

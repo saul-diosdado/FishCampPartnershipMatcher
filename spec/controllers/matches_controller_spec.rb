@@ -6,7 +6,7 @@ require 'rails_helper'
 RSpec.describe 'Controller Test', type: :system do
   before(:all) do
     # Preference Form
-    @form = PreferenceForm.create(creator_id: 1, title: 'Test', num_prefs: 2, num_antiprefs: 1, active: true)
+    @form = PreferenceForm.create(title: 'Test', num_prefs: 2, num_antiprefs: 1, active: true)
     
     # Three Test Users
     @u_1 = User.create(id: 1, email: 'u1@gmail.com', role: 'Chair', approved: true)
@@ -27,6 +27,17 @@ RSpec.describe 'Controller Test', type: :system do
     @match_1 = Match.create(id: 1, user_id: 1, matched_id: nil)
     @match_2 = Match.create(id: 2, user_id: 2, matched_id: nil)
     @match_3 = Match.create(id: 3, user_id: 3, matched_id: nil)
+
+    # Mock Q/A
+    @q_1 = Question.create(id:1, preference_form_id: 1, question: 'Is this a quesiton?', question_type: 'Short Answer')
+    @q_2 = Question.create(id:2, preference_form_id: 1, question: 'Is this a quesiton 2?', question_type: 'Multiple Choice')
+    @q_3 = Question.create(id:3, preference_form_id: 1, question: 'Is this a quesiton 3?', question_type: 'True/False')
+    @q_4 = Question.create(id:4, preference_form_id: 1, question: 'Is this a quesiton 4?', question_type: 'Numeric')
+    @c_1 = Choice.create(id: 1, content: 'Possibly.', question_id: 2)
+    @a_1 = Answer.create(user_id: 1, question_id: 1, preference_form_id: 1, answer_type: 'Short Answer', short_answer: 'This is in fact a question.')
+    @a_2 = Answer.create(user_id: 1, question_id: 2, preference_form_id: 1, answer_type: 'Multiple Choice', multiple_choice: 'Possibly.')
+    @a_3 = Answer.create(user_id: 1, question_id: 3, preference_form_id: 1, answer_type: 'True/False', true_false: true)
+    @a_4 = Answer.create(user_id: 1, question_id: 4, preference_form_id: 1, answer_type: 'Numeric', numeric: 4)
   end
 
   describe 'proper message after a match has been made' do
@@ -183,6 +194,7 @@ RSpec.describe 'Director', type: :system do
   end
 end
 
+# Helper function to login a user and make them a Director (in order to access matches pages)
 def director_login
   # Sign up with a new account.
   visit root_path

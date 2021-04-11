@@ -70,13 +70,13 @@ Rails.application.configure do
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
   config.action_mailer.raise_delivery_errors = true
 
-  #makes the mailer actually perform deliveries
+  # makes the mailer actually perform deliveries
   config.action_mailer.perform_deliveries = true
 
-  #Sets default from for mails
+  # Sets default from for mails
   config.action_mailer.default_options = { from: 'fcparternshipmatchermailer@heroku.com' }
 
-  #use smtp as mail delivery method
+  # use smtp as mail delivery method
   config.action_mailer.delivery_method = :smtp
 
   config.action_mailer.smtp_settings = {

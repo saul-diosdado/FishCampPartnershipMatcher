@@ -20,7 +20,7 @@
   <div class="card-body">
     <h5 class="card-title"><%= question.question %></h5> <!-- Displays the question -->
     <!-- Displays a preview of the answer -->
-    <% preview = get_answer_preview(question) %>
+    <% preview = get_answer_preview(question, current_user.id) %>
     <% if preview == "Unanswered" %>
       <p style="color:red;"><%= preview %></p> <!-- If it is unanswered, show "Unanswered" in red. -->
     <% else %>

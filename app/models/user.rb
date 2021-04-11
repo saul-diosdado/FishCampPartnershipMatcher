@@ -10,10 +10,9 @@ class User < ApplicationRecord
     add_role(:chair)
   end
 
-  #method to confirm user email on sign_up
+  # method to confirm user email on sign_up
   def confirm_email
     self.email_confirmed_at = Time.current
     save
   end
-
 end

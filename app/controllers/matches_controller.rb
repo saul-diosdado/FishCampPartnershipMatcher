@@ -3,12 +3,14 @@
 class MatchesController < ApplicationController
   before_action :require_login, :check_role
 
+  # Get records of both people with a partner (matched) and without a partner.
   def index
     @unmatched_chairs = Match.where(matched_id: nil)
     @matched_chairs = Match.where.not(matched_id: nil)
     @profiles = Profile.all
   end
 
+  # Given two users, gather all of their information to display a card.
   def show
     @match = Match.find(params[:id])
 
@@ -26,6 +28,7 @@ class MatchesController < ApplicationController
     @selected_answers = Answer.where(user_id: @match.matched_id)
   end
 
+  # Given a user's match entry, generate a list of prospects and gather all their information.
   def edit
     @match = Match.find(params[:id])
 
@@ -55,16 +58,6 @@ class MatchesController < ApplicationController
       @prospects_ids.insert(0, @match.matched_id) unless match_in_prospects
     end
 
-    # # Don't run the matching algorithm if the Chair already has prospects saved.
-    # if !@match.prospects_ids.empty?
-    #   @prospects_ids = @match.prospects_ids
-    # else
-    #   # Run the matching algoritm to generate prospects and then save them to the database.
-    #   helpers.generate_prospects(@match.user_id)
-    #   @match.prospects_ids = @prospects_ids
-    #   @match.save(validate: false)
-    # end
-
     @profiles = Profile.order(:name)
     @questions = Question.all
     @matches = Match.all
@@ -80,6 +73,7 @@ class MatchesController < ApplicationController
     @selected_answers = Answer.where(user_id: @prospects_ids)
   end
 
+  # Given two different users, get all of their information.
   def edit_search
     @match = Match.find(params[:match_id])
     @prospect_id = params[:user_id].to_i
@@ -99,6 +93,7 @@ class MatchesController < ApplicationController
     @selected_answers = Answer.where(user_id: @prospect_id)
   end
 
+  # For a given user, generate a list of prospects that consists of only Chairs with no partner.
   def edit_unmatched
     @match = Match.find(params[:match_id])
 
@@ -123,6 +118,7 @@ class MatchesController < ApplicationController
     @selected_answers = Answer.where(user_id: @prospects_ids)
   end
 
+  # Run some helper functions in order to make sure everyone is unmatched and matched accordingly.
   def update
     @match = Match.find(params[:id])
 
@@ -144,6 +140,7 @@ class MatchesController < ApplicationController
     params.require(:match).permit(:id, :user_id, :matched_id, :preference_form_id, :prospects_ids, :prospects_pref_averages)
   end
 
+  # Before accessing this page, insure the user is a Director.
   def check_role
     return if current_user.has_role? :director
 

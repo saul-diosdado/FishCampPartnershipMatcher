@@ -13,6 +13,7 @@ RSpec.describe Question, type: :model do
   end
 end
 
+# Question Model Unit Tests
 RSpec.describe Question, type: :model do
   before(:all) do
     @question = Question.create(question: 'Test q?', question_type: 'Short Answer')
@@ -30,5 +31,9 @@ RSpec.describe Question, type: :model do
     previous_question_count = Question.count
     @question.destroy
     expect(Question.count).to be < previous_question_count
+  end
+
+  after(:all) do
+    DatabaseCleaner.clean_with(:truncation)
   end
 end

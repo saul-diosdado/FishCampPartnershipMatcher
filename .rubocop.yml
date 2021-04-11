@@ -13,8 +13,6 @@ AllCops:
     - "db/schema.rb"
     - "app/dashboards/**"
 
-  SuggestExtensions: false
-
 Layout/EndOfLine:
   Enabled: false
 

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class RemoveColumnsFromMatches < ActiveRecord::Migration[6.1]
   def change
     remove_column :matches, :prospects_ids, :bigint

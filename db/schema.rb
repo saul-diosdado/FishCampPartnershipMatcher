@@ -86,13 +86,13 @@ ActiveRecord::Schema.define(version: 2021_04_11_160407) do
     t.string "ptanimal"
     t.string "pttruecolors"
     t.string "ptmyersbriggs"
-    t.string "enneagram"
     t.string "aboutme"
     t.boolean "approvedchair"
     t.string "gender"
     t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "enneagram"
   end
 
   create_table "questions", force: :cascade do |t|
@@ -124,8 +124,6 @@ ActiveRecord::Schema.define(version: 2021_04_11_160407) do
     t.string "encrypted_password", limit: 128
     t.string "confirmation_token", limit: 128
     t.string "remember_token", limit: 128
-    t.string "email_confirmation_token", default: "", null: false
-    t.datetime "email_confirmed_at"
     t.index ["email"], name: "index_users_on_email"
     t.index ["remember_token"], name: "index_users_on_remember_token"
   end

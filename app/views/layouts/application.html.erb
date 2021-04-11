@@ -27,16 +27,18 @@
               <% if current_user.has_role? :director %>
                 <%= link_to("Matching", matches_path, class: "nav-link") %>
               <% end %>
-              <%= link_to("Personalities", personalities_path, class: "nav-link") %>
-              <% Profile.all.each do |profile| %>
-                <% @created = false %>
-                <% if current_user.email.eql? profile.email %>
-                  <%= link_to("View Your Profile", profile_path(profile), :class => "btn", class: "nav-link") %>
-                  <% @created = true %>
+              <% if current_user.has_role? :chair %>
+                <%= link_to("Personalities", personalities_path, class: "nav-link") %>
+                <% Profile.all.each do |profile| %>
+                  <% @created = false %>
+                  <% if current_user.email.eql? profile.email %>
+                    <%= link_to("View Your Profile", profile_path(profile), :class => "btn", class: "nav-link") %>
+                    <% @created = true %>
+                  <% end %>
                 <% end %>
-              <% end %>
-              <% if @created.eql? false %>
-                <%= link_to("Create New Profile", new_profile_path, :class => "btn", class: "nav-link") %><br/>
+                <% if @created.eql? false %>
+                  <%= link_to("Create New Profile", new_profile_path, :class => "btn", class: "nav-link") %><br/>
+                <% end %>
               <% end %>
             </ul>
             <form class="form-inline d-flex my-2 my-lg-0">

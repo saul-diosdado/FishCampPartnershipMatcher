@@ -2,6 +2,6 @@
 
 class PublicFormsController < ApplicationController
   def index
-    @forms = PreferenceForm.where(active: TRUE)
+    @forms = PreferenceForm.where(active: true)
   end
 end

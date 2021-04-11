@@ -6,7 +6,7 @@ class PreferencesController < ApplicationController
   def index
     @form = PreferenceForm.find(params[:form_id])
     @profiles = Profile.all
-    @users = User.where(role: 'Chair', approved: TRUE).where.not(id: current_user.id)
+    @users = User.where(role: 'Chair', approved: true).where.not(id: current_user.id)
     @prefs = Preference.where(preference_form_id: @form.id, selector_id: current_user.id,
                               pref_type: 'Preference').order('rating DESC')
     @antiprefs = Preference.where(preference_form_id: @form.id, selector_id: current_user.id,
@@ -15,12 +15,12 @@ class PreferencesController < ApplicationController
 
   def new
     # Load all approved chairs
-    users = User.where(role: 'Chair', approved: TRUE).where.not(id: current_user.id)
+    users = User.where(role: 'Chair', approved: true).where.not(id: current_user.id)
     user_ids = users.map(&:id)
     # Load all of the users prefs
     prefs = Preference.where(preference_form_id: params[:form_id], selector_id: current_user.id)
     # User can only pref users who they have not preffed already.
-    prospects = user_ids.map { |id| id if prefs.where(selected_id: id).exists? == FALSE }
+    prospects = user_ids.map { |id| id if prefs.where(selected_id: id).exists? == false }
 
     # Show all potential prefs
     @profiles = Profile.where(user_id: prospects)
@@ -42,12 +42,12 @@ class PreferencesController < ApplicationController
     @pref = Preference.find(params[:id])
 
     # Load all approved chairs
-    users = User.where(role: 'Chair', approved: TRUE).where.not(id: current_user.id)
+    users = User.where(role: 'Chair', approved: true).where.not(id: current_user.id)
     user_ids = users.map(&:id)
     # Load all of the users prefs
     prefs = Preference.where(preference_form_id: @pref.preference_form_id, selector_id: current_user.id)
     # User can only pref users who they have not preffed already.
-    prospects = user_ids.map { |id| id if prefs.where(selected_id: id).exists? == FALSE }
+    prospects = user_ids.map { |id| id if prefs.where(selected_id: id).exists? == false }
 
     @profiles = Profile.where(user_id: (prospects + [@pref.selected_id]))
   end

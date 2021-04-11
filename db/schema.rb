@@ -105,7 +105,7 @@ ActiveRecord::Schema.define(version: 2021_04_11_180601) do
   end
 
   create_table "roles", force: :cascade do |t|
-    t.string "Role"
+    t.string "name"
     t.string "resource_type"
     t.bigint "resource_id"
     t.datetime "created_at", precision: 6, null: false

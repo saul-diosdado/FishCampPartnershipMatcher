@@ -207,4 +207,8 @@ def director_login
   @director_user = User.last
   @director_user.remove_role :chair
   @director_user.add_role :director
+
+  # Confirm the email.
+  open_email 'director@gmail.com'
+  click_first_link_in_email
 end

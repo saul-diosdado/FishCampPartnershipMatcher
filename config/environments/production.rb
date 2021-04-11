@@ -68,7 +68,28 @@ Rails.application.configure do
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
-  # config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.raise_delivery_errors = true
+
+  #makes the mailer actually perform deliveries
+  config.action_mailer.perform_deliveries = true
+
+  #Sets default from for mails
+  config.action_mailer.default_options = { from: 'fcparternshipmatchermailer@heroku.com' }
+
+  #use smtp as mail delivery method
+  config.action_mailer.delivery_method = :smtp
+
+  config.action_mailer.smtp_settings = {
+    :address => 'smtp.gmail.com',
+    :port => 587,
+    :user_name => ENV['mailgun_user_name'],
+    :password => ENV['mailgun_password'],
+    :authentication => 'plain',
+    :enable_starttls_auto => true
+  }
+
+  #set url to the production heroku app
+  config.action_mailer.default_url_options = { :host => 'https://fish-camp-partnership-matcher.herokuapp.com/'}
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation cannot be found).

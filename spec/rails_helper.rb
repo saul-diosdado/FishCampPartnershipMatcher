@@ -8,6 +8,9 @@ require File.expand_path('../config/environment', __dir__)
 abort('The Rails environment is running in production mode!') if Rails.env.production?
 require 'rspec/rails'
 # Add additional requires below this line. Rails is not loaded until this point!
+require 'clearance/rspec'
+require 'email_spec'
+require 'email_spec/rspec'
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are
@@ -41,8 +44,30 @@ RSpec.configure do |config|
   # instead of true.
   config.use_transactional_fixtures = true
 
+  #Email testing purposes
+  config.include EmailSpec::Helpers
+  config.include EmailSpec::Matchers
+
   # You can uncomment this line to turn off ActiveRecord support entirely.
   # config.use_active_record = false
+
+  #Capybara.register_driver :selenium_chrome_headless do |app|
+  #  browser_options = ::Selenium::WebDriver::Chrome::Options.new
+  #  browser_options.binary: "/mnt/c/Program Files (x86)/Google/Chrome/Application/chrome.exe"
+  #  Capybara::Selenium::Driver.new(app, browser: :chrome, options: browser_options)
+  #end
+
+  #config.before(:each) do |example|
+  #  if example.metadata[:type] == :system
+  #    driven_by :selenium_chrome_headless
+  #  end
+  #end
+
+  #Capybara::Selenium::Driver.new(
+  #  options: Selenium::WebDriver::Chrome::Options.new(
+  #    binary: "/mnt/c/Program Files (x86)/Google/Chrome/Application/chrome.exe"
+  #  )
+  #)
 
   # RSpec Rails can automatically mix in different behaviours to your tests
   # based on their file location, for example enabling you to call `get` and
@@ -64,3 +89,6 @@ RSpec.configure do |config|
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
 end
+# Capybara.default_driver = :selenium_chrome
+# Selenium::WebDriver::Chrome.path = "/mnt/c/Program Files (x86)/Google/Chrome/Application/chrome.exe"
+# Selenium::WebDriver::Chrome.path = "/mnt/c/Users/cindy/AppData/Local/Google/Chrome/User Data/Default"

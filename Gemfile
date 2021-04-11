@@ -25,6 +25,8 @@ gem 'clearance', '~> 1.15.1'
 gem 'rolify'
 # Admin login
 gem 'administrate'
+# Protect SMTP credentials
+gem 'figaro'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use Active Model has_secure_password
@@ -75,6 +77,7 @@ group :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'database_cleaner-active_record'
   gem 'selenium-webdriver'
+  gem 'email_spec'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

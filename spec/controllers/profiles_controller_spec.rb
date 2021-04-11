@@ -22,13 +22,14 @@ RSpec.describe 'Controller Test', type: :system do
 
       it 'Edit a profile with incorrect params' do
         user_login()
-        visit_new_profile_path
+        visit new_profile_path
         fill_in 'Name', with: 'Bob'
         click_button 'Create Profile'
         visit edit_profile_path(Profile.last)
         fill_in 'Name', with: ''
         click_button 'Save Changes'
         expect(page).to have_content('Profile did not update successfully.')
+      end
     end
 end
   
@@ -36,6 +37,7 @@ end
 RSpec.describe 'User Working on profile', type: :system do
     it 'Create a profile' do
       user_login()
+      visit new_profile_path
       fill_in 'Name', with: 'Bob'
       click_button 'Create Profile'
       expect(page).to have_content('Bob')

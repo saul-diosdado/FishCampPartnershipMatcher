@@ -68,7 +68,7 @@
         <div class="card-body">
           <div id = "card-button" class="btn btn-sm" style="background-color: maroon; color: white;"><h4> Other Foxes:</h4></div>
           <table class="listing" summary="Same Type List">
-            <% @sameCM.each do |same| %>
+            <% @same_cm.each do |same| %>
                 <hr style = "border: 1px solid brown; width: 100%; opacity: 0.9;">
                 <%= link_to(same.name, profile_path(same), :class => "btn", style: "color: white; font-weight: bold") %>
                   <p class="card-text"><%= same.ptanimal %></p>

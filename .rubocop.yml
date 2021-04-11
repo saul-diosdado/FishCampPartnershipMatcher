@@ -37,7 +37,7 @@ Metrics/PerceivedComplexity:
 
 # URISchemes: http, https
 Layout/LineLength:
-  Max: 150
+  Max: 155
 
 Style/HashEachMethods:
   Enabled: false

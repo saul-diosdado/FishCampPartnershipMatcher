@@ -39,11 +39,13 @@ class PreferenceFormsController < ApplicationController
     # Takes the correct action based on the found error.
     case error_id
     when 1
-      redirect_to(answers_path(form_id: @form.id), {flash: {danger: 'FORM NOT COMPLETE: please answer all questions before submitting.'}})
+      redirect_to(answers_path(form_id: @form.id), { flash: { danger: 'FORM NOT COMPLETE: please answer all questions before submitting.' } })
     when 2
-      redirect_to(preferences_path(form_id: @form.id), {flash: {danger: 'FORM NOT COMPLETE: missing one or more preferences. Use the "Add Pref" button to complete the form.'}})
+      redirect_to(preferences_path(form_id: @form.id),
+                  { flash: { danger: 'FORM NOT COMPLETE: missing one or more preferences. Use the "Add Pref" button to complete the form.' } })
     when 3
-      redirect_to(preferences_path(form_id: @form.id), {flash: {danger: 'FORM NOT COMPLETE: missing one or more anti-preferences. Use the "Add Anti-Pref" button to complete the form.'}})
+      redirect_to(preferences_path(form_id: @form.id),
+                  { flash: { danger: 'FORM NOT COMPLETE: missing one or more anti-preferences. Use the "Add Anti-Pref" button to complete the form.' } })
     end
   end
 

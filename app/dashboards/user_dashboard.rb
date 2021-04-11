@@ -13,7 +13,7 @@ class UserDashboard < Administrate::BaseDashboard
     roles: Field::HasMany,
     id: Field::Number,
     email: Field::String,
-    role: Field::String,
+
     approved: Field::Boolean,
     created_at: Field::DateTime,
     updated_at: Field::DateTime
@@ -46,7 +46,7 @@ class UserDashboard < Administrate::BaseDashboard
   # on the model's form (`new` and `edit`) pages.
   FORM_ATTRIBUTES = %i[
     email
-    role
+    roles
     approved
   ].freeze
 
@@ -66,3 +66,4 @@ class UserDashboard < Administrate::BaseDashboard
   # across all pages of the admin dashboard.
   #
 end
+

@@ -14,7 +14,7 @@ class ProfilesController < ApplicationController
   def index2; end
 
   def new
-    #ensures user has correct role to create a profile
+    # ensures user has correct role to create a profile
     redirect_to(profiles_path, { flash: { danger: 'Must be a chair to create a profile.' } }) unless current_user.has_role? :chair
     user_id = current_user.id
     @profile = Profile.new

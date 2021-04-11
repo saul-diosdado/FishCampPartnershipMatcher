@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  resources :passwords, controller: 'clearance/passwords', only: [:create, :new]
+  resources :passwords, controller: 'clearance/passwords', only: %i[create new]
   resource :session, controller: 'clearance/sessions', only: [:create]
 
   resources :users, only: [:create] do
     resource :password,
-      controller: 'clearance/passwords',
-      only: [:create, :edit, :update]
+             controller: 'clearance/passwords',
+             only: %i[create edit update]
   end
 
   get '/sign_in' => 'clearance/sessions#new', as: 'sign_in'

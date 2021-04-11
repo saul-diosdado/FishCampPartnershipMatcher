@@ -1,4 +1,4 @@
-name: CD
+name: CI/CD
 on:
   push:
     branches: [main]
@@ -6,6 +6,15 @@ on:
     branches: [main]
 
 jobs:
+  linter:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Rubocop Linter Action
+        uses: andrewmcodes/rubocop-linter-action@v3.0.0.rc2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
   build:
     runs-on: ubuntu-latest
     steps:
@@ -16,3 +25,5 @@ jobs:
           heroku_app_name: ${{secrets.HEROKU_APP_NAME}}
           heroku_email: ${{secrets.HEROKU_EMAIL}}
           checkstring: "ok"
+          # usedocker: true
+          # dontuseforce: 1

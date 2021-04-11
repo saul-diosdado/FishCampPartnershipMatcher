@@ -57,6 +57,10 @@ RSpec.describe 'Controller Test', type: :system do
   end
   
   RSpec.describe 'Questionnaire director 2', type: :system do
+    before(:all) do
+      @question = Question.create(question: 'Test q?', question_type: 'Short Answer')
+    end
+
     it 'edits question' do
       visit edit_question_path(Question.last)
       fill_in 'Question', with: 'Edited this question?'
@@ -80,6 +84,10 @@ RSpec.describe 'Controller Test', type: :system do
       fill_in 'Question', with: ''
       click_button 'Update Question'
       expect(page).to have_content("Question can't be blank")
+    end
+
+    after(:all) do
+      DatabaseCleaner.clean_with(:truncation)
     end
   end
   

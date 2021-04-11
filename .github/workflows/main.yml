@@ -9,9 +9,10 @@ jobs:
   linter:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - name: Rubocop Linter Action
-        uses: andrewmcodes/rubocop-linter-action@v3.0.0.rc2
+      - uses: actions/checkout@v1
+
+      - name: Rubocop checks
+        uses: luizfonseca/github-actions-rubocop@1.5.5
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 

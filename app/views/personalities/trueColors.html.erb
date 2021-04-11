@@ -55,7 +55,7 @@
 			<div class="flash-notice <%= key %>"><%= value %></div>
 		 <% end %>
 		<br>
-		<h2 style = "text-align:center; margin-top: 45px;"><b>Your True Color: <%= @userProfile.pttruecolors %></b></h2>
+		<h2 style = "text-align:center; margin-top: 45px;"><b>Your True Color: <%= @user_profile.pttruecolors %></b></h2>
 		<br>
 		<hr style = "border: 1px solid black; width: 85%;">
 		<br>
@@ -70,7 +70,7 @@
             <div class="col-lg-6 mb-4">
                 <div class="card text-center text-white mb-3">
 					<div class="card-body">						
-						<div id = "card-button" class="btn btn-sm" style="background-color: maroon; color: white;"><h4>Other <%= @userProfile.pttruecolors %> Users</h4></div>
+						<div id = "card-button" class="btn btn-sm" style="background-color: maroon; color: white;"><h4>Other <%= @user_profile.pttruecolors %> Users</h4></div>
 						<table class="listing" summary="Same Color">
 							<% @sameProfiles.each do |same| %>
 								<hr style = "border: 1px solid brown; width: 100%; opacity: 0.9;">								
@@ -86,20 +86,20 @@
             <div class="col-lg-6 mb-4">
                 <div class="card text-center text-white mb-3">
 					<div class="card-body">
-						<% if @userProfile.pttruecolors.eql? "Orange" %>
+						<% if @user_profile.pttruecolors.eql? "Orange" %>
 							<div id = "card-button" class="btn btn-sm" style="background-color: maroon; color: white;"><h4>Gold Users</h4></div>
-						<% elsif @userProfile.pttruecolors.eql? "Blue" %>
+						<% elsif @user_profile.pttruecolors.eql? "Blue" %>
 							<div id = "card-button" class="btn btn-sm" style="background-color: maroon; color: white;"><h4>Gold Users</h4></div>
-						<% elsif @userProfile.pttruecolors.eql? "Gold" %>
+						<% elsif @user_profile.pttruecolors.eql? "Gold" %>
 							<div id = "card-button" class="btn btn-sm" style="background-color: maroon; color: white;"><h4>Blue Users</h4></div>
-						<% elsif @userProfile.pttruecolors.eql? "Green" %>
+						<% elsif @user_profile.pttruecolors.eql? "Green" %>
 							<div id = "card-button" class="btn btn-sm" style="background-color: maroon; color: white;"><h4>Blue Users</h4></div>
 						<% end %> 
 						<table class="listing" summary="Other Colors 1">
-							<% @otherProfiles1.each do |otherColor1| %>
+							<% @other_profiles_1.each do |other_color_1| %>
 								<hr style = "border: 1px solid brown; width: 100%; opacity: 0.9;">								
-								<%= link_to(otherColor1.name, profile_path(otherColor1), :class => "btn", style: "color: white; font-weight: bold;") %>
-								<p class="card-text"><%= otherColor1.pttruecolors %></p>
+								<%= link_to(other_color_1.name, profile_path(other_color_1), :class => "btn", style: "color: white; font-weight: bold;") %>
+								<p class="card-text"><%= other_color_1.pttruecolors %></p>
 								
 							<% end %>
 							<hr style = "border: 1px solid brown; width: 100%; opacity: 0.9;">
@@ -115,20 +115,20 @@
             <div class="col-lg-6 mb-4">
                 <div class="card text-center text-white mb-3">
 					<div class="card-body">						
-						<% if @userProfile.pttruecolors.eql? "Orange" %>
+						<% if @user_profile.pttruecolors.eql? "Orange" %>
 							<div id = "card-button" class="btn btn-sm" style="background-color: maroon; color: white;"><h4>Green Users</h4></div>
-						<% elsif @userProfile.pttruecolors.eql? "Blue" %>
+						<% elsif @user_profile.pttruecolors.eql? "Blue" %>
 							<div id = "card-button" class="btn btn-sm" style="background-color: maroon; color: white;"><h4>Green Users</h4></div>
-						<% elsif @userProfile.pttruecolors.eql? "Gold" %>
+						<% elsif @user_profile.pttruecolors.eql? "Gold" %>
 							<div id = "card-button" class="btn btn-sm" style="background-color: maroon; color: white;"><h4>Green Users</h4></div>
-						<% elsif @userProfile.pttruecolors.eql? "Green" %>
+						<% elsif @user_profile.pttruecolors.eql? "Green" %>
 							<div id = "card-button" class="btn btn-sm" style="background-color: maroon; color: white;"><h4>Gold Users</h4></div>
 						<% end %> 
 						<table class="listing" summary="Other Colors 2">
-							<% @otherProfiles2.each do |otherColor2| %>
+							<% @other_profiles_2.each do |other_color_2| %>
 								<hr style = "border: 1px solid brown; width: 100%; opacity: 0.9;">								
-								<%= link_to(otherColor2.name, profile_path(otherColor2), :class => "btn", style: "color: white; font-weight: bold;") %>
-								<p class="card-text"><%= otherColor2.pttruecolors %></p>
+								<%= link_to(other_color_2.name, profile_path(other_color_2), :class => "btn", style: "color: white; font-weight: bold;") %>
+								<p class="card-text"><%= other_color_2.pttruecolors %></p>
 								
 							<% end %>
 							<hr style = "border: 1px solid brown; width: 100%; opacity: 0.9;">
@@ -139,20 +139,20 @@
             <div class="col-lg-6 mb-4">
                  <div class="card text-center text-white mb-3">
 					<div class="card-body">						
-						<% if @userProfile.pttruecolors.eql? "Orange" %>
+						<% if @user_profile.pttruecolors.eql? "Orange" %>
 							<div id = "card-button" class="btn btn-sm" style="background-color: maroon; color: white;"><h4>Blue Users</h4></div>
-						<% elsif @userProfile.pttruecolors.eql? "Blue" %>
+						<% elsif @user_profile.pttruecolors.eql? "Blue" %>
 							<div id = "card-button" class="btn btn-sm" style="background-color: maroon; color: white;"><h4>Orange Users</h4></div>
-						<% elsif @userProfile.pttruecolors.eql? "Gold" %>
+						<% elsif @user_profile.pttruecolors.eql? "Gold" %>
 							<div id = "card-button" class="btn btn-sm" style="background-color: maroon; color: white;"><h4>Orange Users</h4></div>
-						<% elsif @userProfile.pttruecolors.eql? "Green" %>
+						<% elsif @user_profile.pttruecolors.eql? "Green" %>
 							<div id = "card-button" class="btn btn-sm" style="background-color: maroon; color: white;"><h4>Orange Users</h4></div>
 						<% end %> 
 						<table class="listing" summary="Other Colors 3">
-							<% @otherProfiles3.each do |otherColor3| %>
+							<% @other_profiles_3.each do |other_color_3| %>
 								<hr style = "border: 1px solid brown; width: 100%; opacity: 0.9;">								
-								<%= link_to(otherColor3.name, profile_path(otherColor3), :class => "btn", style: "color: white; font-weight: bold;") %>
-								<p class="card-text"><%= otherColor3.pttruecolors %></p>
+								<%= link_to(other_color_3.name, profile_path(other_color_3), :class => "btn", style: "color: white; font-weight: bold;") %>
+								<p class="card-text"><%= other_color_3.pttruecolors %></p>
 								
 							<% end %>
 							<hr style = "border: 1px solid brown; width: 100%; opacity: 0.9;">

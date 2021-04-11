@@ -66,7 +66,7 @@
 	<div class="d-flex justify-content-center">
 		<div id = "match-card" class="card text-center text-white mb-3" style="width: 60%; height: 10%; margin: 15px;">
 			<div class="card-body">
-					<div id = "card-button" class="btn btn-sm" style="background-color: maroon; color: white;"><h3> Your Personality Type: <%= @userProfile.ptmyersbriggs %> </h3></div>
+					<div id = "card-button" class="btn btn-sm" style="background-color: maroon; color: white;"><h3> Your Personality Type: <%= @user_profile.ptmyersbriggs %> </h3></div>
 			</div>
 		</div>
 	</div>
@@ -81,10 +81,10 @@
 							<div class = "text-center">
 								<div id = "card-button" class="btn btn-sm" style="background-color: maroon; color: white;"><h4>Ideal Matches: </h4></div>
 								<table class="listing" summary="Ideal Match List">
-									<% @idealMatches.each do |idealMatch| %>
+									<% @ideal_matches.each do |ideal_match| %>
 											<hr style = "border: 1px solid brown; width: 100%; opacity: 0.9;">
-											<%= link_to(idealMatch.name, profile_path(idealMatch), :class => "btn", style: "color: white; font-weight: bold;") %>
-											<p class="card-text">Type: <%= idealMatch.ptmyersbriggs %></p>
+											<%= link_to(ideal_match.name, profile_path(ideal_match), :class => "btn", style: "color: white; font-weight: bold;") %>
+											<p class="card-text">Type: <%= ideal_match.ptmyersbriggs %></p>
 									<% end %>
 									<hr style = "border: 1px solid brown; width: 100%; opacity: 0.9;">
 								</table>
@@ -98,10 +98,10 @@
 							<div class = "text-center">
 								<div id = "card-button" class="btn btn-sm" style="background-color: maroon; color: white;"><h4>Good Matches: </h4></div>
 								<table class="listing" summary="Good Match List">
-									<% @goodMatches.each do |goodMatch| %>
+									<% @good_matches.each do |good_match| %>
 											<hr style = "border: 1px solid brown; width: 100%; opacity: 0.9;">
-											<%= link_to(goodMatch.name, profile_path(goodMatch), :class => "btn", style: "color: white; font-weight: bold;") %>
-											<p class="card-text">Type: <%= goodMatch.ptmyersbriggs %></p>
+											<%= link_to(good_match.name, profile_path(good_match), :class => "btn", style: "color: white; font-weight: bold;") %>
+											<p class="card-text">Type: <%= good_match.ptmyersbriggs %></p>
 									<% end %>
 									<hr style = "border: 1px solid brown; width: 100%; opacity: 0.9;">
 								</table>

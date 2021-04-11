@@ -73,14 +73,17 @@ Rails.application.configure do
   #makes the mailer actually perform deliveries
   config.action_mailer.perform_deliveries = true
 
+  #Sets default from for mails
+  config.action_mailer.default_options = { from: 'fcparternshipmatchermailer@heroku.com' }
+
   #use smtp as mail delivery method
   config.action_mailer.delivery_method = :smtp
 
   config.action_mailer.smtp_settings = {
-    address: => 'smtp.gmail.com',
+    :address => 'smtp.gmail.com',
     :port => 587,
-    :user_name => 'FCPartnershipmatcher@gmail.com',
-    :password => 'FCsender3387',
+    :user_name => 'fcpartnershipmatchermailer@gmail.com',
+    :password => 'ogvtpqxmwqgxtyoa',
     :authentication => 'plain',
     :enable_starttls_auto => true
   }

@@ -52,7 +52,7 @@
 
 <div class="profile show">
 
-<div class="card text-white mb-3" margin:20px;">
+<div class="card text-white mb-3" margin:20px;>
 	<div class="card-body">
 		<% if current_user.email.eql? @profile.email %>
 			<h3 class="card-title">Your Profile</h3>
@@ -124,6 +124,5 @@
 &emsp;
 <% if current_user.id.eql? @profile.user_id %>
 	<div id="edit-button" class="btn btn-sm" style="background-color:Peru"> <%= link_to("Edit", edit_profile_path(@profile), :class => "btn", style: "color:SeaShell") %></div>
-	<div id="delete-button" class="btn btn-sm" style="background-color:Peru"> <%= link_to("Delete", delete_profile_path(@profile), :class => "btn", style: "color:SeaShell") %></div>
 <%end%>
 <br>

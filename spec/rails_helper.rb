@@ -90,3 +90,5 @@ RSpec.configure do |config|
   # config.filter_gems_from_backtrace("gem name")
 end
 Capybara.default_driver = :selenium_chrome
+ Selenium::WebDriver::Chrome.path = "/mnt/c/Program Files (x86)/Google/Chrome/Application/chrome.exe"
+#Selenium::WebDriver::Chrome.path = "/mnt/c/Users/cindy/AppData/Local/Google/Chrome/User Data/Default"

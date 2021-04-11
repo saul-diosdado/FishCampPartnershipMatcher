@@ -15,7 +15,7 @@ class ProfilesController < ApplicationController
 
   def new
     #ensures user has correct role to create a profile
-    redirect_to(profiles_path, { flash: { red: 'Must be a chair to create a profile.' } }) unless current_user.has_role? :chair
+    redirect_to(profiles_path, { flash: { danger: 'Must be a chair to create a profile.' } }) unless current_user.has_role? :chair
     user_id = current_user.id
     @profile = Profile.new
   end
@@ -28,9 +28,9 @@ class ProfilesController < ApplicationController
       match = Match.new(user_id: profile_params[:user_id])
       match.save(validate: false)
 
-      redirect_to(profiles_path, { flash: { green: "Created #{@profile.name} successfully." } })
+      redirect_to(profiles_path, { flash: { success: "Created #{@profile.name} successfully." } })
     else
-      redirect_to(new_profile_path, { flash: { red: 'Profile must have a name.' } })
+      redirect_to(new_profile_path, { flash: { danger: 'Profile must have a name.' } })
     end
   end
 
@@ -41,9 +41,9 @@ class ProfilesController < ApplicationController
   def update
     @profile = Profile.find(params[:id])
     if @profile.update(profile_params)
-      redirect_to(profiles_path, { flash: { green: "Profile #{@profile.name} updated succesfully." } })
+      redirect_to(profiles_path, { flash: { success: "Profile #{@profile.name} updated succesfully." } })
     else
-      redirect_to(edit_profile_path, { flash: { red: 'Profile did not update successfully.' } })
+      redirect_to(edit_profile_path, { flash: { danger: 'Profile did not update successfully.' } })
     end
   end
 
@@ -51,15 +51,16 @@ class ProfilesController < ApplicationController
     @profile = Profile.find(params[:id])
   end
 
-  def delete
-    @profile = Profile.find(params[:id])
-  end
+  # Removed because we do not want users to delete their profiles
+  # def delete
+  #   @profile = Profile.find(params[:id])
+  # end
 
-  def destroy
-    @profile = Profile.find(params[:id])
-    @profile.destroy
-    redirect_to(profiles_path, { flash: { red: 'Profile deleted successfully.' } })
-  end
+  # def destroy
+  #   @profile = Profile.find(params[:id])
+  #   @profile.destroy
+  #   redirect_to(profiles_path, { flash: { danger: 'Profile deleted successfully.' } })
+  # end
 
   # defined valid parameters for creating a profile
   private def profile_params

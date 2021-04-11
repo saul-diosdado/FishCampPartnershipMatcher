@@ -54,7 +54,7 @@
 		<div class="flash-notice <%= key %>"><%= value %></div>
 	 <% end %>
 	<br>
-	<h2 style = "text-align:center; margin-top: 45px;"><b>Your Type: <%= @userProfile.ptanimal %></b></h2>
+	<h2 style = "text-align:center; margin-top: 45px;"><b>Your Type: <%= @user_profile.ptanimal %></b></h2>
 	<br>
 	<hr style = "border: 1px solid black; width: 85%;">
 	<br>
@@ -69,17 +69,17 @@
 				<div class="card">
 					<div class="card-body">
 						<div class = "text-center">
-							<% if @userProfile.ptanimal.eql? "The Competitive Shark" %>
+							<% if @user_profile.ptanimal.eql? "The Competitive Shark" %>
 								<div id = "card-button" class="btn btn-sm" style="background-color: maroon; color: white;"><h4>Other Competitive Sharks: </h4></div>
-							<% elsif @userProfile.ptanimal.eql? "The Avoidant Turtle" %>
+							<% elsif @user_profile.ptanimal.eql? "The Avoidant Turtle" %>
 								<div id = "card-button" class="btn btn-sm" style="background-color: maroon; color: white;"><h4>Other Other Avoidant Turtles: </h4></div>
-							<% elsif @userProfile.ptanimal.eql? "The Collaborative Owl" %>
+							<% elsif @user_profile.ptanimal.eql? "The Collaborative Owl" %>
 								<div id = "card-button" class="btn btn-sm" style="background-color: maroon; color: white;"><h4>Other Collaborative Owls: </h4></div>
-							<% elsif @userProfile.ptanimal.eql? "The Accommodating Teddy Bear" %>
+							<% elsif @user_profile.ptanimal.eql? "The Accommodating Teddy Bear" %>
 								<div id = "card-button" class="btn btn-sm" style="background-color: maroon; color: white;"><h4>Other Teddy Bears: </h4></div>
 							<% end %>
 							<table class="listing" summary="Same Type List">
-								<% @sameCM.each do |same| %>
+								<% @same_cm.each do |same| %>
 									
 										<hr style = "border: 1px solid brown; width: 100%; opacity: 0.9;">
 										<%= link_to(same.name, profile_path(same), :class => "btn", style: "color: white; font-weight: bold;") %>
@@ -97,18 +97,18 @@
 				<div class="card">
 					<div class="card-body">
 						<div class = "text-center">
-							<% if @userProfile.ptanimal.eql? "The Competitive Shark" %>
+							<% if @user_profile.ptanimal.eql? "The Competitive Shark" %>
 								<div id = "card-button" class="btn btn-sm" style="background-color: maroon; color: white;"><h4> Teddy Bears:  </h4></div>
-							<% elsif @userProfile.ptanimal.eql? "The Avoidant Turtle" %>
+							<% elsif @user_profile.ptanimal.eql? "The Avoidant Turtle" %>
 								<div id = "card-button" class="btn btn-sm" style="background-color: maroon; color: white;"><h4> Collaborative Owls:  </h4></div>
-							<% elsif @userProfile.ptanimal.eql? "The Collaborative Owl" %>
+							<% elsif @user_profile.ptanimal.eql? "The Collaborative Owl" %>
 								<div id = "card-button" class="btn btn-sm" style="background-color: maroon; color: white;"><h4> Avoidant Turtles:  </h4></div>
-							<% elsif @userProfile.ptanimal.eql? "The Accommodating Teddy Bear" %>
+							<% elsif @user_profile.ptanimal.eql? "The Accommodating Teddy Bear" %>
 								<div id = "card-button" class="btn btn-sm" style="background-color: maroon; color: white;"><h4> Competitive Sharks: </h4></div>
 							<% end %>
 					
 							<table class="listing" summary="Opposite Type List">
-								<% @oppositeMatches.each do |opposite| %>
+								<% @opposite_matches.each do |opposite| %>
 									
 									<hr style = "border: 1px solid brown; width: 100%; opacity: 0.9;">
 									<%= link_to(opposite.name, profile_path(opposite), :class => "btn", style: "color: white; font-weight: bold") %>

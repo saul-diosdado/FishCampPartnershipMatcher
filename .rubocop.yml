@@ -12,6 +12,7 @@ AllCops:
     - "app/views/personalities/**"
     - "db/schema.rb"
     - "app/dashboards/**"
+  NewCops: disable
 
 Layout/EndOfLine:
   Enabled: false
@@ -37,7 +38,7 @@ Metrics/PerceivedComplexity:
 
 # URISchemes: http, https
 Layout/LineLength:
-  Max: 150
+  Max: 155
 
 Style/HashEachMethods:
   Enabled: false

@@ -1,0 +1,32 @@
+<style>
+  body {
+    background-color: wheat;
+    width: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  #sub-button {
+    border: 4px solid rgba(0, 0, 0, 0.2);
+    margin:5px
+  }
+</style>
+
+<div id="clearance" class="password-reset">
+  <h2><%= t(".title") %></h2>
+
+  <p><%= t(".description") %></p>
+
+  <%= form_for :password_reset,
+        url: user_password_path(@user, token: @user.confirmation_token),
+        html: { method: :put } do |form| %>
+    <div class="password-field">
+      <%= form.label :password %>
+      <%= form.password_field :password %>
+    </div>
+
+    <div class="submit-field">
+      <%= form.submit(class: 'btn btn-sm', id: 'sub-button', style: 'background-color: Peru; color: SeaShell;') %>
+    </div>
+  <% end %>
+</div>

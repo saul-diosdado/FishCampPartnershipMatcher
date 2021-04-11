@@ -19,9 +19,9 @@ module ApplicationHelper
     end
   end
 
-  def get_answer_preview(question)
-    if @answers.exists?(question_id: question.id)
-      answer = @answers.where(question_id: question.id).first
+  def get_answer_preview(question, user_id)
+    if @answers.exists?(question_id: question, user_id: user_id)
+      answer = @answers.where(question_id: question.id, user_id: user_id).first
 
       case question.question_type
       when 'Multiple Choice' # If multiple choice, show selected answer.

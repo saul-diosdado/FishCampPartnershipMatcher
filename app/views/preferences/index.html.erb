@@ -10,11 +10,11 @@
             <h5><b>INSTRUCTIONS</b></h5>
             <p>
                 <b style="color:red;">THIS FORM REQUIRES <%= @form.num_prefs %> PREF(S) AND <%= @form.num_antiprefs %> ANTI-PREF(S).</b></br>
-                Use the <b>"Add Pref"</b> and <b>"Add Anti-Pref"</b> buttons to add preferences to this form and fill out the required information for each preference. 
-                Press the <b>"Save"</b> button to save your responses. Use the <b>"Edit"</b> button to revise any previously answered question. The <b>"Delete"</b> button
-                allows you to start a question over from scratch. <b style="color:red;">WARNING:</b> If a response is deleted it can NOT 
-                be retrieved later. </br> </br>  
-                This form can be resumed later, so feel free to exit if needed. Once finished, use the <b>"Next Page"</b> button to fill out the preferences portion of the form.
+                Use the "Add Pref" and "Add Anti-Pref" buttons to add preferences to this form and fill out the required information for each preference. 
+                Press the "Save" button to save your responses. Use the "Edit" button to revise any previously answered question. "Delete" allows you 
+                to start a preference over from scratch. </br></br>
+                <b>WARNING:</b> If a response is deleted it can NOT be retrieved later. </br>
+                This form can be resumed later, so feel free to exit if needed. Once finished, use the "Next Page" button to fill out the preferences portion of the form.
             </p>
         </div>
     </div>
@@ -89,6 +89,6 @@
     <div>
         <!-- Submit and back buttons -->
         <%= link_to("Back to Questions", answers_path(:form_id => @form.id), class: "btn btn-secondary btn-sm ml-2") %>
-        <%= link_to("Submit Form", preference_form_path(@form), class: "btn btn-success btn-sm ml-2") %> <!-- Leads to review page -->
+        <%= link_to("Review Responses", preference_form_path(@form), class: "btn btn-success btn-sm ml-2") %> <!-- Leads to review page -->
     </div>
 </div>

@@ -1,66 +1,149 @@
 
 <style> 
-	.center {
-	  margin: 0 auto;
-	  width: 80%;
-	  padding: 10px;
-	}
-	.card {
-			display: inline-block;
-			margin-left: 10px;
-			margin-right: 10px;
-			width: 400px;
-			opacity: 0.75;
-			background-repeat: no-repeat;
-			background-color: maroon;
-			border: 20px solid rgba(0, 0, 0, 0.2);
-			font-family: Georgia;
-		}
-	#card-button {
-			border: 4px solid rgba(0, 0, 0, 0.2);
-	}
-	body {
-		background-color: wheat;
-		width: 100%;
-		background-position: center;
-		background-repeat: no-repeat;
-		background-size: cover;
-	}
-	#card-button {
-			border: 4px solid rgba(0, 0, 0, 0.2);
-	}
+  .center {
+    margin: 0 auto;
+    width: 80%;
+    padding: 10px;
+  }
+  .card {
+    display: inline-block;
+    margin-left: 10px;
+    margin-right: 10px;
+    width: 250px;
+    opacity: 0.75;
+    background-repeat: no-repeat;
+    background-color: maroon;
+    color: white;
+    border: 20px solid rgba(0, 0, 0, 0.2);
+  }
+  #card-button {
+    opacity: 0.95;
+    border: 4px solid rgba(0, 0, 0, 0.2);
+  }
+  h3.centered {
+    margin-left: auto;
+    margin-right: auto;
+    padding-bottom: 40px;
+    width: 25em;
+  }
+
+  h1.margined {
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }	
+  body {
+    background-color: wheat;
+    width: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
 </style>
 
+<div class = "mt-4">
+  <button onclick="goBack()" id = "card-button" class = "btn btn-sm" style = "background-color: Peru; color: SeaShell; opacity: 0.85;"> < Back </button>
+</div> 
+<script>
+  function goBack() {
+    window.history.back();
+  }
+</script>
+  
 <div class = "container-fluid" style="font-family:Georgia">
-	<% flash.each do |key, value| %>
-		<div class="flash-notice <%= key %>"><%= value %></div>
-	  <% end %>
-	<br>
-	<h2 style = "text-align:center; margin-top: 30px;">You Are <%= @userProfile.ptanimal %></h2>
-	<br>
-	<hr style = "border: 1px solid black; width: 85%;">
-	<br>
-	<h3 class = "margined" style = "text-align: center; margin-bottom:75px;"> <%= @message %></h3>
+  <% flash.each do |key, value| %>
+    <div class="flash-notice <%= key %>"><%= value %></div>
+   <% end %>
+  <br>
+  <h2 style = "text-align:center; margin-top: 30px;">You Are <%= @user_profile.ptanimal %></h2>
+  <br>
+  <hr style = "border: 1px solid black; width: 85%;">
+  <br>
+  <h3 class = "margined" style = "text-align: center; margin-bottom:75px;"> <%= @message %></h3>
 </div>
 
-<div class="card text-center text-white mb-3">
-	<div class="card-body">
-		<div id = "card-button" class="btn btn-sm" style="background-color: maroon; color: white;"><h3> Other Compromising Foxes:</h3></div>
-		<table class="listing" summary="Same Type List">
-			<% @sameCM.each do |same| %>
-				<div class="card-body">
-					<h5 class="card-title"><%= same.name%></h5>
-						<p class="card-text"><%= same.ptanimal %></p>
-						<div class="btn btn-secondary btn-sm"> <%= link_to("View Profile", profile_path(same), :class => "btn", style: "color: white") %></div>
-				</div>
-			<% end %>
-		</table>
-	</div>
-	</div>
-	
-	<br><br>
-	<div class="btn btn-secondary btn-sm"> <%= link_to("Home", personalities_path, :class => "btn", style: "color: white;") %></div>
-	<br><br>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-6 mb-4">
+      <div class="card text-center text-white mb-3">
+        <div class="card-body">
+          <div id = "card-button" class="btn btn-sm" style="background-color: maroon; color: white;"><h4> Other Foxes:</h4></div>
+          <table class="listing" summary="Same Type List">
+            <% @same_cm.each do |same| %>
+                <hr style = "border: 1px solid brown; width: 100%; opacity: 0.9;">
+                <%= link_to(same.name, profile_path(same), :class => "btn", style: "color: white; font-weight: bold") %>
+                  <p class="card-text"><%= same.ptanimal %></p>
+            <% end %>
+          </table>
+          <hr style = "border: 1px solid brown; width: 100%; opacity: 0.9;">
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-6 mb-4">
+      <div class="card text-center text-white mb-3">
+        <div class="card-body">
+          <div id = "card-button" class="btn btn-sm" style="background-color: maroon; color: white;"><h4> Other Sharks:</h4></div>
+          <table class="listing" summary="Sharks List">
+            <% @sharks.each do |shark| %>
+                <hr style = "border: 1px solid brown; width: 100%; opacity: 0.9;">
+                <%= link_to(shark.name, profile_path(shark), :class => "btn", style: "color: white; font-weight: bold") %>
+                  <p class="card-text"><%= shark.ptanimal %></p>
+            <% end %>
+          </table>
+          <hr style = "border: 1px solid brown; width: 100%; opacity: 0.9;">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-6 mb-4">
+      <div class="card text-center text-white mb-3">
+        <div class="card-body">
+          <div id = "card-button" class="btn btn-sm" style="background-color: maroon; color: white;"><h4> Other Owls:</h4></div>
+          <table class="listing" summary="Owls List">
+            <% @owls.each do |owl| %>
+                <hr style = "border: 1px solid brown; width: 100%; opacity: 0.9;">
+                <%= link_to(owl.name, profile_path(owl), :class => "btn", style: "color: white; font-weight: bold") %>
+                  <p class="card-text"><%= owl.ptanimal %></p>
+            <% end %>
+          </table>
+          <hr style = "border: 1px solid brown; width: 100%; opacity: 0.9;">
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-6 mb-4">
+      <div class="card text-center text-white mb-3">
+        <div class="card-body">
+          <div id = "card-button" class="btn btn-sm" style="background-color: maroon; color: white;"><h4> Other Turtles:</h4></div>
+          <table class="listing" summary="Turtles List">
+            <% @turtles.each do |turtle| %>
+                <hr style = "border: 1px solid brown; width: 100%; opacity: 0.9;">
+                <%= link_to(turtle.name, profile_path(turtle), :class => "btn", style: "color: white; font-weight: bold") %>
+                  <p class="card-text"><%= turtle.ptanimal %></p>
+            <% end %>
+          </table>
+          <hr style = "border: 1px solid brown; width: 100%; opacity: 0.9;">
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-6 mb-4">
+      <div class="card text-center text-white mb-3">
+        <div class="card-body">
+          <div id = "card-button" class="btn btn-sm" style="background-color: maroon; color: white;"><h4> Other Teddy Bears:</h4></div>
+          <table class="listing" summary="Bears List">
+            <% @bears.each do |bear| %>
+                <hr style = "border: 1px solid brown; width: 100%; opacity: 0.9;">
+                <%= link_to(bear.name, profile_path(bear), :class => "btn", style: "color: white; font-weight: bold") %>
+                  <p class="card-text"><%= bear.ptanimal %></p>
+            <% end %>
+          </table>
+          <hr style = "border: 1px solid brown; width: 100%; opacity: 0.9;">
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
 <!------------------------------------------->

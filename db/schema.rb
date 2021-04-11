@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_23_000647) do
+ActiveRecord::Schema.define(version: 2021_04_11_180601) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,8 +43,6 @@ ActiveRecord::Schema.define(version: 2021_03_23_000647) do
     t.bigint "user_id"
     t.bigint "matched_id"
     t.bigint "preference_form_id"
-    t.bigint "prospects_ids", default: [], array: true
-    t.decimal "prospects_pref_averages", default: [], array: true
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["matched_id"], name: "index_matches_on_matched_id"
@@ -126,6 +124,10 @@ ActiveRecord::Schema.define(version: 2021_03_23_000647) do
     t.string "encrypted_password", limit: 128
     t.string "confirmation_token", limit: 128
     t.string "remember_token", limit: 128
+    t.string "email_confirmation_token", default: "", null: false
+    t.datetime "email_confirmed_at"
+    t.bigint "profile_id"
+    t.bigint "match_id"
     t.index ["email"], name: "index_users_on_email"
     t.index ["remember_token"], name: "index_users_on_remember_token"
   end

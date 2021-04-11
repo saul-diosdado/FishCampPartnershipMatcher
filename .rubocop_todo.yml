@@ -9,22 +9,22 @@
 # Offense count: 2
 Lint/UselessAssignment:
   Exclude:
-    - 'app/controllers/profiles_controller.rb'
+    - "app/controllers/profiles_controller.rb"
 
 # Offense count: 1
 # Configuration parameters: ExpectMatchingDefinition, CheckDefinitionPathHierarchy, Regex, IgnoreExecutableScripts, AllowedAcronyms.
 # AllowedAcronyms: CLI, DSL, ACL, API, ASCII, CPU, CSS, DNS, EOF, GUID, HTML, HTTP, HTTPS, ID, IP, JSON, LHS, QPS, RAM, RHS, RPC, SLA, SMTP, SQL, SSH, TCP, TLS, TTL, UDP, UI, UID, UUID, URI, URL, UTF8, VM, XML, XMPP, XSRF, XSS
 Naming/FileName:
   Exclude:
-    - 'db/migrate/Anything.rb'
+    - "db/migrate/Anything.rb"
 
 # Offense count: 2
 # Configuration parameters: EnforcedStyle, AllowModifiersOnSymbols.
 # SupportedStyles: inline, group
 Style/AccessModifierDeclarations:
   Exclude:
-    - 'app/controllers/preference_forms_controller.rb'
-    - 'app/controllers/profiles_controller.rb'
+    - "app/controllers/preference_forms_controller.rb"
+    - "app/controllers/profiles_controller.rb"
 
 # Offense count: 21
 Style/Documentation:
@@ -34,11 +34,11 @@ Style/Documentation:
 # Configuration parameters: AllowedVariables.
 Style/GlobalVars:
   Exclude:
-    - 'app/controllers/answers_controller.rb'
-    - 'app/controllers/questions_controller.rb'
+    - "app/controllers/answers_controller.rb"
+    - "app/controllers/questions_controller.rb"
 
 # Offense count: 1
 # Cop supports --auto-correct.
 Style/IfUnlessModifier:
   Exclude:
-    - 'bin/bundle'
+    - "bin/bundle"

@@ -2,15 +2,17 @@
 
 require 'rails_helper'
 
+# Unit Tests
 RSpec.describe Match, type: :model do
   it 'is valid with valid attributes' do
-    expect(Match.new(user_id: 1, matched_id: 2, prospects_ids: [2, 4])).to be_valid
+    expect(Match.new(user_id: 1, matched_id: 2)).to be_valid
   end
 end
 
+# More Unit Tests
 RSpec.describe Match, type: :model do
   before(:all) do
-    @match = Match.create(user_id: 1, matched_id: 2, prospects_ids: [2, 4])
+    @match = Match.create(user_id: 1, matched_id: 2)
   end
 
   it 'checks that a match can be created' do

@@ -139,12 +139,4 @@ class MatchesController < ApplicationController
   def match_params
     params.require(:match).permit(:id, :user_id, :matched_id, :preference_form_id, :prospects_ids, :prospects_pref_averages)
   end
-
-  # Before accessing this page, insure the user is a Director.
-  def check_role
-    return if current_user.has_role? :director
-
-    redirect_to(root_path,
-                { flash: { danger: 'WARNING: Only Directors have access to the matching pages.' } })
-  end
 end

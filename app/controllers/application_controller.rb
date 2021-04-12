@@ -2,4 +2,12 @@
 
 class ApplicationController < ActionController::Base
   include Clearance::Controller
+
+  # Before accessing this page, insure the user is a Director.
+  def check_role
+    return if current_user.has_role? :director
+
+    redirect_to(root_path,
+                { flash: { danger: 'WARNING: Only Directors have access to the matching pages.' } })
+  end
 end

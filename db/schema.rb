@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_11_180601) do
+ActiveRecord::Schema.define(version: 2021_04_12_071501) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -55,10 +55,10 @@ ActiveRecord::Schema.define(version: 2021_04_11_180601) do
     t.integer "num_prefs"
     t.integer "num_antiprefs"
     t.boolean "active"
-    t.datetime "deadline"
     t.bigint "submissions", default: [], array: true
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.datetime "deadline"
   end
 
   create_table "preferences", force: :cascade do |t|

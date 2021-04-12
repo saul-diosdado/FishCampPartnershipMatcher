@@ -2,6 +2,7 @@
 
 class MatchesController < ApplicationController
   before_action :require_login, :check_role
+  before_action :check_if_approved
 
   # Get records of both people with a partner (matched) and without a partner.
   def index

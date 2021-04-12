@@ -1,0 +1,2 @@
+module UnapprovedUserHelper
+end

@@ -473,4 +473,7 @@ def user_login
   # Confirm the email
   open_email 'user@gmail.com'
   click_first_link_in_email
+
+  @user = User.last
+  @user.approved = TRUE
 end

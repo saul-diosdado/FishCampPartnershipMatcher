@@ -42,6 +42,7 @@ Rails.application.routes.draw do
   resources :preference_forms do
     member do
       get :delete
+      get :submit
     end
   end
 

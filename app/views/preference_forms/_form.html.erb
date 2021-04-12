@@ -1,24 +1,39 @@
+<!-- Form for Create/Update a question. -->
 <%= error_messages_for(f.object) %>
 
-<!-- Form for Create/Update a question. -->
+<!-- Title -->
 <div class="form-group">
-  <%= f.label(:title, class: "col-md-4 col-form-label") %>
-  <div class="col-md-6">
-    <%= f.text_field(:title, class: "form-control") %>
+  <div class=d-inline-block>
+    <%= f.label(:title, "Title") %>
+  </div>
+  <div class=d-inline-block>
+      <%= f.text_field(:title, class: "form-control") %>
   </div>
 </div>
+
+<!-- Public or Private form -->
 <div class="form-group">
   <p>Warning: Setting form to public will make it visible to chairs.</p>
   <%= f.label(:active, "Visibility") %>
   <%= f.select(:active, [["Private", FALSE], ["Public", TRUE]], class: "form-control") %>
 </div>
+
+<!-- Number of preferences -->
 <div class="form-group">
   <%= f.label(:num_prefs, "Number of Preferences") %>
-  <%= f.select(:num_prefs, [1,2,3,4,5,6,7,8,9,10], class: "form-control") %>
+  <%= f.select(:num_prefs, [0,1,2,3,4,5,6,7,8,9,10], class: "form-control") %>
 </div>
+
+<!-- Number of anti-preferences -->
 <div class="form-group">
   <%= f.label(:num_antiprefs, "Number of Anti-Preferences") %>
-  <%= f.select(:num_antiprefs, [1,2,3,4,5,6,7,8,9,10], class: "form-control") %>
+  <%= f.select(:num_antiprefs, [0,1,2,3,4,5,6,7,8,9,10], class: "form-control") %>
+</div>
+
+<!-- Deadline -->
+<div class="form-group">
+  <%= f.label(:deadline, "Deadline") %>
+  <%= f.datetime_select(:deadline, start_year: Time.current.year, end_year: (Time.current.year + 10), ampm: true) %>
 </div>
 
 

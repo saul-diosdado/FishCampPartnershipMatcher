@@ -11,12 +11,12 @@
   </div>
   <!-- Card Body -->
   <div class="card-body">
-    <p class="card-title">Creator: <%= form.creator_id %><p>
     <% if form.active ==  TRUE %>
       <p>Status: Public</p>
     <% else %>
       <p>Status: Private</p>
     <% end %>
-    <p class="card-title">Creation Date: <%= form.created_at %></p>
+    <p class="card-title">Deadline: <%= form.deadline %></p>
+    <p>Submissions: <%= form.submissions.length %></p>
   </div>
 </div>

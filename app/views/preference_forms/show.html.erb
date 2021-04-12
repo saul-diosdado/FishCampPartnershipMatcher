@@ -76,7 +76,7 @@
         <%= link_to("Go Back", preferences_path(:form_id => @form.id), class: "btn btn-secondary mt-2 mb-4") %>
     </div>
     <div class="d-inline-block"> 
-        <%= link_to("Submit", public_forms_path, class: "btn btn-success mt-2 mb-4") %>
+        <%= link_to("Submit", submit_preference_form_path(@form), class: "btn btn-success mt-2 mb-4") %>
     </div>
     <div class="d-inline-block align-middle"> 
         <p>  <b style="color:red">WARNING:</b> Completed forms can <b>NOT</b> be changed following their submission. Are you sure that you want to submit this form?</p>

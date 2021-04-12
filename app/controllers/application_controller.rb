@@ -18,4 +18,18 @@ class ApplicationController < ActionController::Base
       redirect_to('/unapproved_user/index', { flash: { danger: 'You need to be approved to access the site' } })
     end
   end
+  
+  module Admin
+    class ApplicationController < Administrate::ApplicationController
+      before_action :authenticate_user!
+      before_action :authenticate_admin
+      def authenticate_admin
+        redirect_to '/', alert: 'Not authorized.' unless current_user && access?
+      end
+      private
+      def access?
+        current_user.has_role? :admin
+      end
+    end
+  end
 end

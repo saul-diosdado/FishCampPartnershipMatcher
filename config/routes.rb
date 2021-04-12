@@ -17,16 +17,14 @@ Rails.application.routes.draw do
   get '/confirm_email/:token' => 'email_confirmations#update', as: 'confirm_email'
 
   namespace :admin do
-    resources :answers
-    resources :choices
-    resources :preferences
-    resources :preference_forms
-    resources :profiles
-    resources :questions
+   
     resources :roles
     resources :users
+    resources :preference_forms
+    resources :profiles
 
-    root to: 'answers#index'
+
+    
   end
   root 'profiles#index'
 

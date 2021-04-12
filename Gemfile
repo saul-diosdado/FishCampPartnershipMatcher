@@ -25,6 +25,8 @@ gem 'clearance', '~> 1.15.1'
 gem 'rolify'
 # Admin login
 gem 'administrate'
+# Protect SMTP credentials
+gem 'figaro'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use Active Model has_secure_password
@@ -74,6 +76,7 @@ end
 group :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'database_cleaner-active_record'
+  gem 'email_spec'
   gem 'selenium-webdriver'
 end
 

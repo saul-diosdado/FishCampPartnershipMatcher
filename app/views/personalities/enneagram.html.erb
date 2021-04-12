@@ -1,67 +1,69 @@
 
 <style> 
-	.center {
-	  margin: 0 auto;
-	  width: 80%;
-	  padding: 10px;
-	}
-	.card {
-			display: inline-block;
-			margin-left: 10px;
-			margin-right: 10px;
-			width: 400px;
-			opacity: 0.75;
-			background-repeat: no-repeat;
-			background-color: maroon;
-			border: 20px solid rgba(0, 0, 0, 0.2);
-			font-family: Georgia;
-		}
-	#card-button {
-			border: 4px solid rgba(0, 0, 0, 0.2);
-	}
-	body {
-		background-color: wheat;
-		width: 100%;
-		background-position: center;
-		background-repeat: no-repeat;
-		background-size: cover;
-	}
-	#card-button {
-			border: 4px solid rgba(0, 0, 0, 0.2);
-	}
+  .card {
+      display: inline-block;
+      margin-left: 10px;
+      margin-right: 10px;
+      width: 400px;
+      opacity: 0.75;
+      background-repeat: no-repeat;
+      background-color: maroon;
+      border: 20px solid rgba(0, 0, 0, 0.2);
+      font-family: Georgia;
+    }
+  #card-button {
+      border: 4px solid rgba(0, 0, 0, 0.2);
+  }
+  body {
+    background-color: wheat;
+    width: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  #card-button {
+      border: 4px solid rgba(0, 0, 0, 0.2);
+  }
 </style>
 
+<div class = "mt-4">
+  <button onclick="goBack()" id = "card-button" class = "btn btn-sm" style = "background-color: Peru; color: SeaShell; opacity: 0.85;"> < Back </button>
+</div> 
+<script>
+  function goBack() {
+    window.history.back();
+  }
+</script>
+  
 <div class = "container-fluid" style="font-family:Georgia">
-	<% flash.each do |key, value| %>
-		<div class="flash-notice <%= key %>"><%= value %></div>
-	 <% end %>
-	<br>
-	<h2 style = "text-align:center; margin-top: 45px;"><b>Your Enneagram Type: <%= @userProfile.enneagram %></b></h2>
-	<br>
-	<hr style = "border: 1px solid black; width: 85%;">
-	<br>
-	<h3 class = "margined" style = "text-align: center; margin-bottom:75px;"> Below, you will find chairs who are the ideal
-	match for your enneagram personality type.</h3>
+  <% flash.each do |key, value| %>
+    <div class="flash-notice <%= key %>"><%= value %></div>
+   <% end %>
+  <br>
+  <h2 style = "text-align:center; margin-top: 45px;"><b>Your Enneagram Type: <%= @user_profile.enneagram %></b></h2>
+  <br>
+  <hr style = "border: 1px solid black; width: 85%;">
+  <br>
+  <h3 class = "margined" style = "text-align: center; margin-bottom:75px;"> Below, you will find chairs who are the ideal
+  match for your enneagram personality type.</h3>
 </div>
 
-<div class="card text-center text-white mb-3">
-	<div class="card-body">
-		<div id = "card-button" class="btn btn-sm" style="background-color: maroon; color: white;"><h3><%= @m %></h3></div>
-		<table class="listing" summary="Ideal matches list">
-			<% @bestMatches.each do |bestMatch| %>
-				<div class="card-body">
-					<h5 class="card-title"><%= bestMatch.name%></h5>
-						<p class="card-text"><%= bestMatch.enneagram %></p>
-						<div class="btn btn-secondary btn-sm"> <%= link_to("View Profile", profile_path(bestMatch), :class => "btn", style: "color: white") %></div>
-				</div>
-			<% end %>
-		</table>
-	</div>
-	</div>
-	
-	<br><br>
-	<div class="btn btn-secondary btn-sm"> <%= link_to("Home", personalities_path, :class => "btn", style: "color: white;") %></div>
-	<br><br>
-</div>
+<div class = "d-flex justify-content-center">
+  <div class="card text-center text-white mb-3">
+    <div class="card-body">
+      <div id = "card-button" class="btn btn-sm" style="background-color: maroon; color: white;"><h4><%= @m %></h4></div>
+      <table class="listing" summary="Ideal matches list">
+        <% @best_matches.each do |best_match| %>
+            <hr style = "border: 1px solid brown; width: 100%; opacity: 0.9;">
+            <%= link_to(best_match.name, profile_path(best_match), :class => "btn", style: "color: white; font-weight: bold;") %>
+              <p class="card-text"><%= best_match.enneagram %></p>
+        <% end %>
+        <hr style = "border: 1px solid brown; width: 100%; opacity: 0.9;">
+      </table>
+    </div>
+    </div>
+  </div>
+</div> 
+
 
 <!------------------------------------------------------------------>

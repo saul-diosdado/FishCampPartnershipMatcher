@@ -2,6 +2,7 @@
 
 # Controller for allowing directors to create questions on a specific preference form.
 class QuestionsController < ApplicationController
+  before_action :require_login, :check_role
 
   def index
     @form_id = params[:form_id]

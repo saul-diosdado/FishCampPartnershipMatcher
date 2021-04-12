@@ -1,87 +1,87 @@
 <style> 
-	.card {
-			display: inline-block;
-			margin-left: 10px;
-			margin-right: 10px;
-			width: 200px;
-			height: 400px;
-			opacity: 0.75;
-			background-repeat: no-repeat;
-			background-color: maroon;
-			border: 20px solid rgba(0, 0, 0, 0.2);
-		}
-	#card-button {
-			border: 4px solid rgba(0, 0, 0, 0.2);
-	}
-	body {
-		background-color: wheat;
-		width: 100%;
-		background-position: center;
-		background-repeat: no-repeat;
-		background-size: cover;
-	}
+  .card {
+      display: inline-block;
+      margin-left: 10px;
+      margin-right: 10px;
+      width: 200px;
+      height: 400px;
+      opacity: 0.75;
+      background-repeat: no-repeat;
+      background-color: maroon;
+      border: 20px solid rgba(0, 0, 0, 0.2);
+    }
+  #card-button {
+      border: 4px solid rgba(0, 0, 0, 0.2);
+  }
+  body {
+    background-color: wheat;
+    width: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
 </style>
 
 
 <div class = "container-fluid" style="font-family:Georgia">
-	<% flash.each do |key, value| %>
-		<div class="flash-notice <%= key %>"><%= value %></div>
-	  <% end %>
-	<br>
-	<h2 style = "text-align:center; margin-top: 30px;">Welcome to the <b>personalities</b> page</h2>
-	<br>
-	<hr style = "border: 1px solid black; width: 85%;">
-	<br>
-	<h3 class = "margined" style = "text-align: center; margin-bottom:75px;"> Below, you can explore and find out which chairs 
-	have personalities similar to yours!</h3>
+  <% flash.each do |key, value| %>
+    <div class="flash-notice <%= key %>"><%= value %></div>
+    <% end %>
+  <br>
+  <h2 style = "text-align:center; margin-top: 30px;">Welcome to the <b>personalities</b> page</h2>
+  <br>
+  <hr style = "border: 1px solid black; width: 85%;">
+  <br>
+  <h3 class = "margined" style = "text-align: center; margin-bottom:75px;"> Below, you can explore and find out which chairs 
+  have personalities similar to yours!</h3>
 </div>
 
-<div class = "container-fluid" style="width: 75%">
-		<div class="card text-center text-white mb-3" style="width: 18rem; margin:20px;">
-			<div class="card-body">
-				<div id = "card-button" class="btn btn-sm" style="background-color: lightSlateGrey;"> <%= link_to("Myers Briggs", "personalities/myersBriggs", :class => "btn", style: "color: white") %></div>
-				<br><br><br>
-				<p class="card-text">Don't know your Myers Briggs? Find out <a href="https://www.16personalities.com/free-personality-test" target="_blank" style="color: white"><b>here.</b></a></p>
-				<br>
-				<p> Once you figure it out, change it in your profile! </p>
-			</div>
-			
-		</div>
+  <div class = "container-fluid" style="width: 75%">
+      <div class="card text-center text-white mb-3" style="width: 18rem; margin:20px;">
+        <div class="card-body">
+          <div id = "card-button" class="btn btn-sm" style="background-color: Peru;"> <%= link_to("Myers Briggs", "personalities/myersBriggs", :class => "btn", style: "color: SeaShell") %></div>
+          <br><br><br>
+          <p class="card-text">Don't know your Myers Briggs? Find out <a href="https://www.16personalities.com/free-personality-test" target="_blank" style="color: white"><b>here.</b></a></p>
+          <br>
+          <p> Once you figure it out, change it in your profile! </p>
+        </div>
+        
+      </div>
 
-		<div class="card text-center text-white mb-3" style="width: 18rem; margin:20px;">
-			<div class="card-body">
-				<div id = "card-button" class="btn btn-sm" style="background-color: lightSlateGrey;"> <%= link_to("Conflict Management", "personalities/conflictManagement", :class => "btn", style: "color: white") %></div>
-				<br><br><br>
-				<p class="card-text">Don't know your type? Find out <a href="https://www.buzzfeed.com/kourtneif/conflict-management-f2cxoxb8qx" target="_blank" style="color: white"><b>here.</b></a></p>
-				<br>
-				<p> Once you figure it out, change it in your profile! </p>
-			</div>
-			
-		</div>
+      <div class="card text-center text-white mb-3" style="width: 18rem; margin:20px;">
+        <div class="card-body">
+          <div id = "card-button" class="btn btn-sm" style="background-color: Peru;"> <%= link_to("Conflict Management", "personalities/conflictManagement", :class => "btn", style: "color: SeaShell") %></div>
+          <br><br><br>
+          <p class="card-text">Don't know your type? Find out <a href="https://www.buzzfeed.com/kourtneif/conflict-management-f2cxoxb8qx" target="_blank" style="color: white"><b>here.</b></a></p>
+          <br>
+          <p> Once you figure it out, change it in your profile! </p>
+        </div>
+        
+      </div>
 
-		<div class="card text-center text-white mb-3" style="width: 18rem; margin:20px;">
-			<div class="card-body">
-				<div id = "card-button" class="btn btn-sm" style="background-color: lightSlateGrey"> <%= link_to("True Colors", "personalities/trueColors", :class => "btn", style: "color: white") %></div>
-				<br><br><br>
-				<p class="card-text">Don't know your True Colors? Find out <a href="https://www.buzzfeed.com/kourtneif/true-colors-ax9pha9yu7" target="_blank" style="color: white"><b>here.</b></a></p>
-				<br>
-				<p> Once you figure it out, change it in your profile! </p>
-			</div>
-			
-		</div>
+      <div class="card text-center text-white mb-3" style="width: 18rem; margin:20px;">
+        <div class="card-body">
+          <div id = "card-button" class="btn btn-sm" style="background-color: Peru"> <%= link_to("True Colors", "personalities/trueColors", :class => "btn", style: "color: SeaShell") %></div>
+          <br><br><br>
+          <p class="card-text">Don't know your True Colors? Find out <a href="https://www.buzzfeed.com/kourtneif/true-colors-ax9pha9yu7" target="_blank" style="color: white"><b>here.</b></a></p>
+          <br>
+          <p> Once you figure it out, change it in your profile! </p>
+        </div>
+        
+      </div>
 
-		<div class="card text-center text-white mb-3" style="width: 18rem; margin:20px;">
-			<div class="card-body">
-				<div id = "card-button" class="btn btn-sm" style="background-color: lightSlateGrey"> <%= link_to("Enneagram", "personalities/enneagram", :class => "btn", style: "color: white") %></div>
-				<br><br><br>
-				<p class="card-text">Don't know your Enneagram? Find out <a href="https://www.eclecticenergies.com/enneagram/test" target="_blank" style="color: white"><b>here.</b></a></p>
-				<br>
-				<p> Once you figure it out, change it in your profile! </p>
-			</div>
-			
-		</div>
-</div>
+      <div class="card text-center text-white mb-3" style="width: 18rem; margin:20px;">
+        <div class="card-body">
+          <div id = "card-button" class="btn btn-sm" style="background-color: Peru"> <%= link_to("Enneagram", "personalities/enneagram", :class => "btn", style: "color: SeaShell") %></div>
+          <br><br><br>
+          <p class="card-text">Don't know your Enneagram? Find out <a href="https://www.eclecticenergies.com/enneagram/test" target="_blank" style="color: white"><b>here.</b></a></p>
+          <br>
+          <p> Once you figure it out, change it in your profile! </p>
+        </div>
+        
+      </div>
+  </div>
 
 <% flash.each do |key, value| %>
-	<div class="flash-notice <%= key %>"><%= value %></div>
+  <div class="flash-notice <%= key %>"><%= value %></div>
 <% end %>

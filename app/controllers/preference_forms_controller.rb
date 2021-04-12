@@ -2,7 +2,7 @@
 
 class PreferenceFormsController < ApplicationController
   before_action :require_login, :check_if_approved, :check_role
-
+  skip_before_action :check_role, only: [:show]
   def index
     @forms = PreferenceForm.all
   end

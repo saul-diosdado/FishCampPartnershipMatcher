@@ -77,6 +77,11 @@ def user_login
   fill_in 'Password', with: '12345'
   click_button 'Sign up'
 
+  # Approve user
+  @user = User.last
+  @user.approved = TRUE
+  @user.save
+
   # Confirm the email
   open_email 'user@gmail.com'
   click_first_link_in_email

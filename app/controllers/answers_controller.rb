@@ -3,6 +3,7 @@
 # Allows users to answer all questions in a question form.
 class AnswersController < ApplicationController
   before_action :require_login
+  before_action :check_if_approved
 
   def index
     @form = PreferenceForm.find(params[:form_id])

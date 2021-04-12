@@ -9,5 +9,13 @@ class ApplicationController < ActionController::Base
 
     redirect_to(root_path,
                 { flash: { danger: 'WARNING: Only Directors have access to the matching pages.' } })
+
+  end
+  
+  def check_if_approved
+    approved = current_user.approved
+    if !approved
+      redirect_to('/unapproved_user/index', { flash: { danger: 'You need to be approved to access the site' } })
+    end
   end
 end

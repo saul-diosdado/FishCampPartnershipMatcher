@@ -47,16 +47,6 @@ class ProfilesController < ApplicationController
     @profile = Profile.find(params[:id])
   end
 
-  def delete
-    @profile = Profile.find(params[:id])
-  end
-
-  def destroy
-    @profile = Profile.find(params[:id])
-    @profile.destroy
-    redirect_to(profiles_path, { flash: { red: 'Profile deleted successfully.' } })
-  end
-
   #defined valid parameters for creating a profile
   private def profile_params() 
     params.require(:profile).permit(:name, :email, :phonenumber, :snapchat, :instagram, :facebook, :twitter, :ptanimal, :pttruecolors, :ptmyersbriggs, :enneagram, :aboutme, :approvedchair, :gender, :user_id)

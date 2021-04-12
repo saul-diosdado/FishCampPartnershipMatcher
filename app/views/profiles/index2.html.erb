@@ -97,14 +97,14 @@
 											<div class="card text-white text-center">
 												<div class="card-body">
 													<h5 class="card-title"><%= profile.name%></h5>
-														<img src="https://mdbootstrap.com/img/new/standard/city/053.jpg" class="rounded-circle" alt="default profile pic" width="135" height="135" style = "border:2px solid white"> 
-														<br><br>
-														<% if profile.aboutme.length > 90 %>
-															<% substring = profile.aboutme[0..90] %>
+														<br>
+														<% if profile.aboutme.length > 180 %>
+															<% substring = profile.aboutme[0..180] %>
 															<p class = "card-text" style = "font-size: 14px"><%= substring %>...</p>
 														<% else %>
 															<p class="card-text" style = "font-size: 14px"><%= profile.aboutme %></p>
 														<% end %> 
+														<br>
 														<div id = "card-button" class="btn btn-sm" style="background-color: Peru;"><%= link_to("View Profile", profile_path(profile), :class => "btn", style: "color:SeaShell") %></div>
 												</div>
 												
@@ -164,14 +164,14 @@
 		
 		<ul style = "list-style-type: none">
 			<form class = "inline">
-				<li><input id="myInput" class="form-control mr-sm-2 my-4" style = "width: 20%" onkeyup="myFunction()" placeholder="Search"></li>
+				<li><input id="myInput" class="form-control mr-sm-2 my-4" style = "width: 20%" onkeyup="myFunction()" placeholder="Search for other chairs..."></li>
 			</form>
 		</ul>
 		
 		<ul id = "myUL" style = "list-style-type: none" class = "mt-4">
 			<hr style = "border: 1px solid Tan; width: 100%; opacity: 0.9;">
 			<% @profiles.each do |profile| %>
-				<li><a href= "#" style = "color: black";><%= profile.name %><% link_to(profile.name, profile_path(profile)) %>
+				<li><a href= "profiles/<%=profile.id %>" style = "color: black;"><%= profile.name %><% link_to(profile.name, profile_path(profile)) %>
 					<br><hr style = "border: 1px solid Tan; width: 100%; opacity: 0.9;"></a>
 				</li>
 			<% end %> 

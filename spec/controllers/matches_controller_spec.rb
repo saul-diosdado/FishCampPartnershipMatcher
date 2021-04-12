@@ -203,6 +203,11 @@ def director_login
   fill_in 'Password', with: '12345'
   click_button 'Sign up'
 
+  # Approve user
+  @user = User.last
+  @user.approved = TRUE
+  @user.save
+
   # Make the last account that signed up a Director in order to access the matches pages.
   @director_user = User.last
   @director_user.remove_role :chair

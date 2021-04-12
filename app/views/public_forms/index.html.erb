@@ -2,18 +2,43 @@
     <h1 class="my-4">Forms</h1>
     <% num_forms = 0 %>
     <% @forms.each do |form| %>
+
+        <!-- Form was submitted. Disabling form editing. -->
+        <% completed = FALSE %>
+        <% if form.submissions.include?(current_user.id) %>
+            <% completed = TRUE %>
+        <% end %>
+
+        <!-- Create the preference form card-->
         <div class="card mb-4">
             <!-- Card Header -->
             <div class="card-header d-flex justify-content-between">
                 <h5><%= form.title %></h5>
-                <div class="form-inline">
-                    <%= link_to("Open", answers_path(:user_id => 1, :form_id => form.id), class: "btn btn-primary btn-sm ml-2") %>
-                </div>
+                <% if completed == FALSE %>
+                    <div class="form-inline">
+                        <%= link_to("Open", answers_path(:user_id => 1, :form_id => form.id), class: "btn btn-primary btn-sm ml-2") %>
+                    </div>
+                <% end %>
             </div>
             <!-- Card Body -->
             <div class="card-body">
-                <p class="card-title">Status: </p>
-                <p class="card-title">Deadline: </p>
+                <p class="card-title">Deadline: <%= form.deadline %></p>
+                <!-- Checks if the form was completed -->
+                <% if completed == TRUE %>
+                    <p class="card-title">Status: <b>Completed</b> </p>
+                <% else %>
+                    <!--  Checks if the form was late -->
+                    <% if Time.now > form.deadline %>
+                        <p class="card-title">Status: <b style="color:red">Late</b> </p>
+                    <% else %>
+                        <!-- Checks if the form was started -->
+                        <% if @answers.where(preference_form_id: form.id).empty? %>
+                            <p class="card-title">Status: <b style="color:red">Incomplete</b> </p>
+                        <% else %>
+                            <p class="card-title">Status: <b style="color:red">In Progress</b></p>
+                        <% end %>
+                    <% end %>
+                <% end %>
             </div>
         </div>
         <% num_forms = num_forms + 1 %>

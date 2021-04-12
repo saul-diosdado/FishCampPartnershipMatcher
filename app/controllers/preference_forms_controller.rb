@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class PreferenceFormsController < ApplicationController
-  before_action :require_login
+  before_action :require_login, :check_if_approved, :check_role
 
   def index
     @forms = PreferenceForm.all
@@ -86,7 +86,23 @@ class PreferenceFormsController < ApplicationController
     redirect_to(preference_forms_path, { flash: { success: 'Form deleted successfully.' } })
   end
 
+  def submit
+    # Get the current form
+    @form = PreferenceForm.find(params[:id])
+    submissions = @form.submissions
+
+    # If the user hasnt submitted already, add them to submission list.
+    if submissions.include?(current_user.id) == FALSE
+      submissions.append(current_user.id)
+      @form.submissions = submissions
+      @form.save
+    end
+
+    # Redirect to public forms
+    redirect_to(public_forms_path)
+  end
+
   private def form_params
-    params.require(:preference_form).permit(:id, :title, :num_prefs, :num_antiprefs, :active)
+    params.require(:preference_form).permit(:id, :title, :num_prefs, :num_antiprefs, :active, :deadline)
   end
 end

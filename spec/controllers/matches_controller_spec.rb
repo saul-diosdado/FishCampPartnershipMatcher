@@ -58,7 +58,7 @@ end
 RSpec.describe 'Director', type: :system do
   before(:all) do
     # Preference Form
-    @form = PreferenceForm.create(creator_id: 1, title: 'Test', num_prefs: 2, num_antiprefs: 1, active: true)
+    @form = PreferenceForm.create(title: 'Test', num_prefs: 2, num_antiprefs: 1, active: true)
     
     # Three Test Users
     @u_1 = User.create(id: 1, email: 'u1@gmail.com', role: 'Chair', approved: true)
@@ -202,6 +202,11 @@ def director_login
   fill_in 'user[email]', with: 'director@gmail.com'
   fill_in 'Password', with: '12345'
   click_button 'Sign up'
+
+  # Approve user
+  @user = User.last
+  @user.approved = TRUE
+  @user.save
 
   # Make the last account that signed up a Director in order to access the matches pages.
   @director_user = User.last

@@ -2,6 +2,7 @@
 
 class PreferencesController < ApplicationController
   before_action :require_login
+  before_action :check_if_approved
 
   def index
     @form = PreferenceForm.find(params[:form_id])

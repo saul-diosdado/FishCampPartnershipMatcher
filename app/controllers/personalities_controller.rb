@@ -3,6 +3,7 @@
 class PersonalitiesController < ApplicationController
   # user must be logged in to access any views
   before_action :require_login
+  before_action :check_if_approved
 
   def index
     user_id = current_user.id

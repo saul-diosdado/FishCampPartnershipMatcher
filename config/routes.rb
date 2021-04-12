@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  get 'unapproved_user/index'
   resources :passwords, controller: 'clearance/passwords', only: %i[create new]
   resource :session, controller: 'clearance/sessions', only: [:create]
 
@@ -54,6 +55,7 @@ Rails.application.routes.draw do
   resources :preference_forms do
     member do
       get :delete
+      get :submit
     end
   end
 
@@ -65,6 +67,11 @@ Rails.application.routes.draw do
     get 'edit_search'
     get 'edit_unmatched'
   end
+
+  resources :support, only: [:index]
+  get 'support/chair'
+  get 'support/director'
+  get 'support/admin'
 
   resources :public_forms, only: [:index]
 

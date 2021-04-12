@@ -1,0 +1,75 @@
+<h1 class="my-4">Help for Directors</h1>
+<p>Only users with "Director" role have the authority to perform Director tasks. <strong>If you are a Fish Camp
+Director and do not have access to these features, contact the administrator of this website (likely another Fish Camp Director).</strong>
+</p>
+
+<h2>1. How To Create A Preference Form</h2>
+<ol type="1">
+  <li>Sign in to the website <strong>with an account that has "Director" privileges.</strong></li>
+  <li>Visit the <%= link_to("Create Form", preference_forms_path) %> tab in the navigation bar.</li>
+  <li>Click the "Create New Form" button.</li>
+  <li>Fill out all fields. Forms that are set to "Private" will not be shown to Chairs. Forms can be changed to "Public" once they are ready to be filled out by Chairs.</li>
+  <li>Click "Add Questions" in order to create questions that are specific to this form. Quesitons can also be added and deleted at a later time.</li>
+  <li>Click "Create New Quesiton" to add a new question to this form.<l1>
+  <l1>Click "Done" once all the desired questions have been added.<l1>
+</ol>
+
+<h2>2. How To Modify Questions In A Form</h2>
+<p>Questions in a form can be added and deleted at any time. We recommend only adding new questions <strong>before</strong> the Form becomes
+public to Chairs. If a question has been added after Chairs have already begun submitting Forms, they may not see the question.
+</p>
+<ol type="1">
+  <li>Sign in to the website <strong>with an account that has "Director" privileges.</strong></li>
+  <li>Visit the <%= link_to("Create Form", preference_forms_path) %> tab in the navigation bar.</li>
+  <li>Find the desired Preference Form you would like to modify.</li>
+  <li>Click the "Edit Questions" button that is located next to the desired Preference Form.</li>
+  <li>If you would like to modify an existing quesiton, find the quesiton and click the "Edit" button next to it.</li>
+  <li>If you would like to add a new quesiton, click the "Create New Question" button at the top of the page.<l1>
+</ol>
+
+<h2>3. The Partnership Matching Process</h2>
+<p>Once all of the Chairs have submitted a Preference Form, Directors should start the Partnership Matching process. <strong>The following are important
+details that Directors should properly convey to all Chairs in order for the Matching process to work...</strong>
+</p>
+<ol type="1">
+  <li><strong>All Chairs should create a Profile.</strong></li>
+  <li><strong>All Chairs should submit at least the required number of preferences. Failure to do so will result in the Chair having no prospects.</strong></li>
+</ol>
+<h4>Getting Started With Matching</h4>
+<ol type="1">
+  <li>Sign in to the website <strong>with an account that has "Director" privileges.</strong></li>
+  <li>Visit the <%= link_to("Matching", matches_path) %> tab in the navigation bar.</li>
+  <li>Chairs are separated into two categories: matched and unmatched. Unmatched Chairs are all Chairs that currently do not have a partner.</li>
+  <li>For an unmatched Chair, click the "Find Match" button located next to their entry.</li>
+  <li>A page will load showing the Chair that you are trying to find a partner for (on the left) and a list of prospects (on the right).</li>
+  <li>The list on the right is sorted by highest probablity of a match (the first prospect that appears) to the lowest.<l1>
+  <li>Navigate through the prospects using the arrows on the screen.<l1>
+  <li>Once you have found the perfect partner, click the "Match" button located at the top of the prospec's card.<l1>
+</ol>
+<h4>Editing An Existing Partnership</h4>
+<p>All Chairs that currently have a partner will appear in their own table at the bottom of the page. If you would like
+to change the partner of any Chair, simply click the "Edit Match" button.
+</p>
+<h4>Other Features</h4>
+<ol type="1">
+    <li>If you do not feel like any of the prospects are good partners for a Chair, you can click the "Search by name" button at the top of the page.
+    This will show a dropdown of all other Chairs in alphabetical order. Select a Chair to compare the two and match them if you'd like.</li>
+    <li>If you would like to simply match this Chair with someone that currently has no partner, click "Unmatched Chairs" button. This will
+    load a new page where all of the prospects are Chairs with no partner.</li>
+    <li>If a prospect already has a partner, you can view that partnership by clicking "View Partner". This will allow you to review
+    the existing partnership to determine if you would like to change the partnership.</li>
+</ol>
+
+<h2>4. What Are Prospects? How Are They Determined?</h2>
+<h4>What Are Prospects?</h4>
+<p>Prospects are a list of Chairs that could be possible partners to a Chair based on the preferences they submitted.</p>
+<h4>How Are Prospects Determined?</h4>
+<p>Prospects are determined based on preferences submitted by each chair. The following is how a list of prospects are generated for a given Chair.</p>
+<ol type="1">
+    <li>For Chair "John Doe", a list of mutual preferences is gathered (that is, John Doe selected them as a preference and they selected John Doe too).</li>
+    <li>Based on this list, an average for each mutual preference is calculated. For example, if both Chairs preffed each other as "5", then the average is a 5.
+    Once averages have been calcualted, they are sorted from highest to lowest averager</li>
+    <li>Next, all non-mutual preferences are considered for John Doe (that is, cases where only one Chair selected another Chair as a preference, but the other Chair did not).</li>
+    <l1>The average is calculated and then divided by 10. These prospects are then added to the list of prospects from highest to lowest order.</l1>
+</ol>
+<p>The end result of generating prospects is that for each Chair, the most likely partnerships are shown front and center and are easy to access.</p>

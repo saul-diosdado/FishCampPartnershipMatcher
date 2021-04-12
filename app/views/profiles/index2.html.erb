@@ -2,61 +2,61 @@
 
 <head>
 </head>
-	
-	<style>
-		.card {
-			display: inline-block;
-			margin-left: 10px;
-			margin-right: 10px;
-			width: 250px;
-			height: 440px;
-			opacity: 0.75;
-			background-repeat: no-repeat;
-			background-color: maroon;
-			border: 20px solid rgba(0, 0, 0, 0.2);
-		}
-		#card-button {
-			opacity: 0.95;
-			border: 4px solid rgba(0, 0, 0, 0.2);
-		}
-		h3.centered {
-			margin-left: auto;
-			margin-right: auto;
-			padding-bottom: 40px;
-			width: 25em;
-		}
+  
+  <style>
+    .card {
+      display: inline-block;
+      margin-left: 10px;
+      margin-right: 10px;
+      width: 250px;
+      height: 440px;
+      opacity: 0.75;
+      background-repeat: no-repeat;
+      background-color: maroon;
+      border: 20px solid rgba(0, 0, 0, 0.2);
+    }
+    #card-button {
+      opacity: 0.95;
+      border: 4px solid rgba(0, 0, 0, 0.2);
+    }
+    h3.centered {
+      margin-left: auto;
+      margin-right: auto;
+      padding-bottom: 40px;
+      width: 25em;
+    }
 
-		h1.margined {
-			padding-top: 40px;
-			padding-bottom: 40px;
-		}	
-		body {
-			background-color: wheat;
-			width: 100%;
-			background-position: center;
-			background-repeat: no-repeat;
-			background-size: cover;
-		}
-		
-	</style>
-	
-	<body>
-		<div class = "my-4">
-							
-				<div class="profile_index">
+    h1.margined {
+      padding-top: 40px;
+      padding-bottom: 40px;
+    }	
+    body {
+      background-color: wheat;
+      width: 100%;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+    
+  </style>
+  
+  <body>
+    <div class = "my-4">
+              
+        <div class="profile_index">
 
-					<div class = "container-fluid" style="font-family:Georgia">
-						<% flash.each do |key, value| %>
-							<div class="flash-notice <%= key %>"><%= value %></div>
-						  <% end %>
-						<br>
-						<h1 style = "text-align: center">Welcome.</h1>
-						<br>
-						<hr style = "border: 1px solid black; width: 85%;">
-						<br>
-						<h3 class = "margined" style="text-align: center">Below, you will be able to learn about <b>ALL</b> of your potentially <b>PERFECT</b> partners.</h2>
-					</div>
-					<br><br><br><br>
+          <div class = "container-fluid" style="font-family:Georgia">
+            <% flash.each do |key, value| %>
+                <div class="alert alert-<%= key %>"><%= value %></div>
+            <% end %>
+            <br>
+            <h1 style = "text-align: center">Welcome.</h1>
+            <br>
+            <hr style = "border: 1px solid black; width: 85%;">
+            <br>
+            <h3 class = "margined" style="text-align: center">Below, you will be able to learn about <b>ALL</b> of your potentially <b>PERFECT</b> partners.</h2>
+          </div>
+          <br><br><br><br>
 
 				<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
 					<div class="carousel-inner">
@@ -202,7 +202,7 @@
 	</body>
 
 </div>	
-	<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: maroon; opacity: 0.60;">
-		<a class="navbar-brand" href="#"> </a>
-	</nav>
+  <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: maroon; opacity: 0.60;">
+    <a class="navbar-brand" href="#"> </a>
+  </nav>
 </div>

@@ -1,0 +1,73 @@
+<style>
+  .carousel-control-prev, .carousel-control-next {
+    height: 25%;
+    top: 33%;
+    width: 30px;
+    background: gray;
+  }
+</style>
+
+<% flash.each do |key, value| %>
+  <div class="alert alert-<%= key %>"><%= value %></div>
+<% end %>
+
+<%= link_to("Back", matches_path(), class: "btn btn-primary btn-sm mt-2 mb-2") %>
+<div class="d-flex justify-content-between align-items-center">
+  <h1 class="mb-4">Find Match</h1>
+  <div class="form-inline">
+    <%= link_to("Unmatched Chairs", match_edit_unmatched_path(@match), class: "btn btn-secondary") %>
+    <div class="dropdown ml-2">
+      <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Search by name
+      </button>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+        <% @profiles.each do |chair| %>
+          <% if chair.user_id != @match.user_id %>
+            <%= link_to(chair.name, match_edit_search_path(@match, :user_id => chair.user_id), class: "dropdown-item", type: "button") %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <!-- Selector Card -->
+  <div class="col-6">
+    <%= render(:partial => "selector_card") %>
+  </div>
+
+  <% if @prospects_ids.length() == 0 %>
+    <div class="col-6">
+      <%= render(:partial => "no_prospects_card") %>
+    </div>
+  <% else %>
+    <!-- Selected Cards -->
+    <div id="carouselExampleControls" class="col-6 carousel slide" data-ride="carousel" data-interval="false">
+      <div class="carousel-inner">
+        <% prospect_count = 0 %>
+        <% @prospects_ids.each do |prospect_id| %>
+          <% prospect_count = prospect_count + 1 %>
+          <% if prospect_count == 1 %>
+            <div class="carousel-item active">
+              <%= render(:partial => "prospect_card", :locals => {:prospect_id => prospect_id}) %>
+            </div>
+          <% else %>
+            <div class="carousel-item">
+              <%= render(:partial => "prospect_card", :locals => {:prospect_id => prospect_id}) %>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+
+      <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+    </div>
+  <% end %>
+</div>

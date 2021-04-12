@@ -21,6 +21,12 @@ gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.7'
 # User email/password authentication
 gem 'clearance', '~> 1.15.1'
+# User roles
+gem 'rolify'
+# Admin login
+gem 'administrate'
+# Protect SMTP credentials
+gem 'figaro'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use Active Model has_secure_password
@@ -34,6 +40,10 @@ gem 'bootsnap', '>= 1.4.4', require: false
 gem 'bootstrap'
 gem 'cocoon'
 gem 'jquery-rails'
+
+gem 'brakeman'
+gem 'rubocop'
+gem 'rubocop-rails'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -65,6 +75,8 @@ end
 
 group :test do
   # Adds support for Capybara system testing and selenium driver
+  gem 'database_cleaner-active_record'
+  gem 'email_spec'
   gem 'selenium-webdriver'
 end
 

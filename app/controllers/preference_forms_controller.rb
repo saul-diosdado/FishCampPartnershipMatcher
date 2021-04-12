@@ -1,8 +1,52 @@
 # frozen_string_literal: true
 
 class PreferenceFormsController < ApplicationController
+  before_action :require_login, :check_if_approved, :check_role
+
   def index
     @forms = PreferenceForm.all
+  end
+
+  def show
+    @form = PreferenceForm.find(params[:id])
+    @profiles = Profile.all
+    @prefs = Preference.where(preference_form_id: @form.id, selector_id: current_user.id,
+                              pref_type: 'Preference')
+    @antiprefs = Preference.where(preference_form_id: @form.id, selector_id: current_user.id,
+                                  pref_type: 'Anti-Preference')
+
+    @questions = Question.where(preference_form_id: @form.id)
+    @answers = Answer.where(user_id: current_user.id, preference_form_id: @form.id)
+
+    # Checks if the form was complete before allowing the user to review responses.
+    error_id = 0
+
+    # Checks if all the questions were answered.
+    @questions.each do |question|
+      error_id = 1 if @answers.exists?(question_id: question.id) == false
+    end
+
+    if error_id.zero?
+      if @prefs.size < @form.num_prefs
+        # Checks if there were enough preferences made.
+        error_id = 2
+      elsif @antiprefs.size < @form.num_antiprefs
+        # Checks if there were enough anti-preferences made
+        error_id = 3
+      end
+    end
+
+    # Takes the correct action based on the found error.
+    case error_id
+    when 1
+      redirect_to(answers_path(form_id: @form.id), { flash: { danger: 'FORM NOT COMPLETE: please answer all questions before submitting.' } })
+    when 2
+      redirect_to(preferences_path(form_id: @form.id),
+                  { flash: { danger: 'FORM NOT COMPLETE: missing one or more preferences. Use the "Add Pref" button to complete the form.' } })
+    when 3
+      redirect_to(preferences_path(form_id: @form.id),
+                  { flash: { danger: 'FORM NOT COMPLETE: missing one or more anti-preferences. Use the "Add Anti-Pref" button to complete the form.' } })
+    end
   end
 
   def new
@@ -42,7 +86,23 @@ class PreferenceFormsController < ApplicationController
     redirect_to(preference_forms_path, { flash: { success: 'Form deleted successfully.' } })
   end
 
+  def submit
+    # Get the current form
+    @form = PreferenceForm.find(params[:id])
+    submissions = @form.submissions
+
+    # If the user hasnt submitted already, add them to submission list.
+    if submissions.include?(current_user.id) == FALSE
+      submissions.append(current_user.id)
+      @form.submissions = submissions
+      @form.save
+    end
+
+    # Redirect to public forms
+    redirect_to(public_forms_path)
+  end
+
   private def form_params
-    params.require(:preference_form).permit(:id, :title, :num_prefs, :num_antiprefs, :active)
+    params.require(:preference_form).permit(:id, :title, :num_prefs, :num_antiprefs, :active, :deadline)
   end
 end

@@ -68,6 +68,11 @@ Rails.application.routes.draw do
     get 'edit_unmatched'
   end
 
+  resources :support, only: [:index]
+  get 'support/chair'
+  get 'support/director'
+  get 'support/admin'
+
   resources :public_forms, only: [:index]
 
   resources :personalities, only: [:index]

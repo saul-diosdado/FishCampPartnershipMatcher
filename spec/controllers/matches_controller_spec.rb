@@ -58,7 +58,7 @@ end
 RSpec.describe 'Director', type: :system do
   before(:all) do
     # Preference Form
-    @form = PreferenceForm.create(creator_id: 1, title: 'Test', num_prefs: 2, num_antiprefs: 1, active: true)
+    @form = PreferenceForm.create(title: 'Test', num_prefs: 2, num_antiprefs: 1, active: true)
     
     # Three Test Users
     @u_1 = User.create(id: 1, email: 'u1@gmail.com', role: 'Chair', approved: true)

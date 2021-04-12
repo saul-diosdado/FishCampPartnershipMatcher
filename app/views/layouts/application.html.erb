@@ -21,27 +21,36 @@
             <ul class="navbar-nav mr-auto">
               <% if signed_in? %>
                 <% if current_user.approved %>
-                  <%= link_to("Forms", public_forms_path, class: "nav-link") %>
-                  <%= link_to("Profiles", profiles_path, class: "nav-link") %>
+                  <!-- Chair -->
+                  <% if current_user.has_role? :chair %>
+                    <% if Profile.find_by(user_id: current_user.id) %>
+                      <%= link_to("View Your Profile", profile_path(profile), :class => "btn", class: "nav-link") %>
+                    <% else %>
+                      <%= link_to("Create New Profile", new_profile_path, :class => "btn", class: "nav-link") %><br/>
+                    <% end %>
+                    <%= link_to("Profiles", profiles_path, class: "nav-link") %>
+                    <%= link_to("Personalities", personalities_path, class: "nav-link") %>
+                    <%= link_to("Forms", public_forms_path, class: "nav-link") %>
+                  <% end %>
+
+
+                  <!-- Director -->
                   <% if current_user.has_role? :director %>
+                    <%= link_to("Profiles", profiles_path, class: "nav-link") %>
                     <%= link_to("Create Form", preference_forms_path, class: "nav-link") %>
                     <%= link_to("Matching", matches_path, class: "nav-link") %>
                   <% end %>
-                  <% if current_user.has_role? :chair %>
-                    <%= link_to("Personalities", personalities_path, class: "nav-link") %>
-                    <% Profile.all.each do |profile| %>
-                      <% @created = false %>
-                      <% if current_user.email.eql? profile.email %>
-                        <%= link_to("View Your Profile", profile_path(profile), :class => "btn", class: "nav-link") %>
-                        <% @created = true %>
-                      <% end %>
-                    <% end %>
-                    <% if @created.eql? false %>
-                      <%= link_to("Create New Profile", new_profile_path, :class => "btn", class: "nav-link") %><br/>
-                    <% end %>
+
+
+                  <!-- Administrator -->
+                  <% if current_user.has_role? :admin %>
+                    <%= link_to("Profiles", profiles_path, class: "nav-link") %>
+                    <%= link_to("Administrator Dashboard", admin_users_path, class: "nav-link") %>
                   <% end %>
                 <% end %>
               <% end %>
+              
+              <!-- Support -->
               <%= link_to("Support", support_index_path, class: "nav-link") %>
             </ul>
             <form class="form-inline d-flex my-2 my-lg-0">

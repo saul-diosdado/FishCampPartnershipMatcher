@@ -1,17 +1,11 @@
+# frozen_string_literal: true
+
 class SupportController < ApplicationController
-  def index
+  def index; end
 
-  end
+  def chair; end
 
-  def chair
+  def director; end
 
-  end
-
-  def director
-
-  end
-
-  def admin
-
-  end
+  def admin; end
 end

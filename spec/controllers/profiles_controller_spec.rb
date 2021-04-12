@@ -55,6 +55,10 @@ RSpec.describe 'User Working on profile', type: :system do
       @user = User.last
       @user.remove_role :chair
 
+      #Approve user
+      @user.approved = TRUE
+      @user.save
+
       # Confirm the email
       open_email 'user@gmail.com'
       click_first_link_in_email

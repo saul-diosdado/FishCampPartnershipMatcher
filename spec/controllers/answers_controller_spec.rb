@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe 'Controller Test', type: :system do
   describe 'proper messages' do
     it 'should flash correct message in index' do
-      user_login()
+      director_login()
 
       visit preference_forms_path
       click_link "Create New Form"
@@ -39,7 +39,7 @@ end
 # Acceptance Test User Requirement
 RSpec.describe 'User actions', type: :system do
   it 'create, edit, and delete answers' do
-    user_login()
+    director_login()
 
     visit preference_forms_path
     click_link "Create New Form"
@@ -69,11 +69,11 @@ RSpec.describe 'User actions', type: :system do
   end
 end
   
-def user_login
+def director_login
   # Sign up with new account
   visit root_path
   click_link 'Sign up'
-  fill_in 'user[email]', with: 'user@gmail.com'
+  fill_in 'user[email]', with: 'user_1@gmail.com'
   fill_in 'Password', with: '12345'
   click_button 'Sign up'
 
@@ -82,7 +82,12 @@ def user_login
   @user.approved = TRUE
   @user.save
 
+  # Make the last account that signed up a Director in order to access the matches pages.
+  @director_user = User.last
+  @director_user.remove_role :chair
+  @director_user.add_role :director
+
   # Confirm the email
-  open_email 'user@gmail.com'
+  open_email 'user_1@gmail.com'
   click_first_link_in_email
 end

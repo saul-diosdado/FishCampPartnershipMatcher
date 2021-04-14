@@ -4,6 +4,7 @@ require 'rails_helper'
 # Answer Model Unit Test
 RSpec.describe Answer, type: :model do
   before(:all) do
+    @user = User.create(email: 'c@gmail.com', password: '12345', email_confirmation_token: 'token', email_confirmed_at: nil)
     @q_1 = Question.create(id:1, preference_form_id: 1, question: 'Is this a quesiton?', question_type: 'Short Answer')
     @q_2 = Question.create(id:2, preference_form_id: 1, question: 'Is this a quesiton 2?', question_type: 'Multiple Choice')
     @q_3 = Question.create(id:3, preference_form_id: 1, question: 'Is this a quesiton 3?', question_type: 'True/False')
@@ -17,17 +18,17 @@ RSpec.describe Answer, type: :model do
 
   # Testing multiple choice answer
   it 'multiple choice valid with valid attributes' do
-    expect(Answer.new(user_id: 4, question_id: 2, preference_form_id: 4, answer_type: "Multiple Choice", multiple_choice: "Test")).to be_valid
+    expect(Answer.new(user_id: 1, question_id: 2, preference_form_id: 4, answer_type: "Multiple Choice", multiple_choice: "Test")).to be_valid
   end
 
   # Testing true/false answer
   it 'true_false is valid with valid attributes' do
-    expect(Answer.new(user_id: 2, question_id: 3, preference_form_id: 2, answer_type: "True/False", true_false: TRUE)).to be_valid
+    expect(Answer.new(user_id: 1, question_id: 3, preference_form_id: 2, answer_type: "True/False", true_false: TRUE)).to be_valid
   end
 
   # Testing numeric answer
   it 'numeric is valid with valid attributes' do
-    expect(Answer.new(user_id: 3, question_id: 4, preference_form_id: 3, answer_type: "Numeric", numeric: 1)).to be_valid
+    expect(Answer.new(user_id: 1, question_id: 4, preference_form_id: 3, answer_type: "Numeric", numeric: 1)).to be_valid
   end
 
   # Validating presence of user ID
@@ -58,7 +59,9 @@ end
 # Checks that answers can be created, read, and deleted.
 RSpec.describe Answer, type: :model do
   before(:all) do
-    @question = Question.create(id: 1, question: 'Test q?', question_type: 'Short Answer')
+    @user = User.create(email: 'c@gmail.com', password: '12345', email_confirmation_token: 'token', email_confirmed_at: nil)
+    @form = PreferenceForm.create(title: 'Test', num_prefs: 2, num_antiprefs: 1, active: true)
+    @question = Question.create(id: 1, preference_form_id: 1, question: 'Test q?', question_type: 'Short Answer')
     @answer = Answer.create(user_id: 1, question_id: 1, preference_form_id: 1, answer_type: "Short Answer", short_answer: "Test")
   end
 

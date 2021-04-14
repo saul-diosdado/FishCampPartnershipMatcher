@@ -11,6 +11,15 @@
   </div>
 
   <ul class="list-group list-group-flush">
+    <!-- Personality Test Results -->
+    <li class="list-group-item">
+      <h4 class="mb-3">Personality Tests</h4>
+      <h6>Conflict Animal: <%= @selector.ptanimal.nil? ? "N/A" : @selector.ptanimal %></h6>
+      <h6>True Colors: <%= @selector.pttruecolors.nil? ? "N/A" : @selector.pttruecolors %></h6>
+      <h6>Myers Briggs: <%= @selector.ptmyersbriggs.nil? ? "N/A" : @selector.ptmyersbriggs %></h6>
+      <h6>Enneagram: <%= @selector.enneagram.nil? ? "N/A" : @selector.enneagram %></h6>
+    </li>
+
     <!-- Preferences -->
     <li class="list-group-item">
       <h4 class="mb-3">Preferences</h4>

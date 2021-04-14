@@ -84,7 +84,6 @@
               </div>
             </div>
 
-<<<<<<< HEAD
 						<% @profiles.each do |profile| %>
 							<div class = "carousel-item"> 
 								<div class = "container">
@@ -204,79 +203,3 @@
 		<a class="navbar-brand" href="#"> </a>
 	</nav>
 </div>
-=======
-            <% @profiles.each do |profile| %>
-              <div class = "carousel-item"> 
-                <div class = "container">
-                  <div class = "row">
-                    <div class="col-lg-6 mb-4">
-                      <div class="card text-white text-center">
-                        <div class="card-body">
-                          <h5 class="card-title"><%= profile.name%></h5>
-                            <img src="https://mdbootstrap.com/img/new/standard/city/053.jpg" class="rounded-circle" alt="default profile pic" width="135" height="135" style = "border:2px solid white"> 
-                            <br><br>
-                            <% if profile.aboutme.length > 90 %>
-                              <% substring = profile.aboutme[0..90] %>
-                              <p class = "card-text" style = "font-size: 14px"><%= substring %>...</p>
-                            <% else %>
-                              <p class="card-text" style = "font-size: 14px"><%= profile.aboutme %></p>
-                            <% end %> 
-                            <div id = "card-button" class="btn btn-sm" style="background-color: Peru;"><%= link_to("View Profile", profile_path(profile), :class => "btn", style: "color:SeaShell") %></div>
-                        </div>
-                        
-                          <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-                          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                          <span class="sr-only">Previous</span>
-                          </a>
-                          <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-                          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                          <span class="sr-only">Next</span>
-                          </a>
-                      </div>
-                    </div>
-                    
-                    <div class="col-lg-6 mb-4">
-                      <div class="card text-white">
-                        <div class="card-body">
-                          <!-- addresses spacing on the right card (teddy bear string is too long to fit on one line) -->
-                          <% if profile.ptanimal.eql? "The Accommodating Teddy Bear" %>
-                            <hr style = "border: 1px solid brown; width: 100%; opacity: 0.9;">
-                            
-                            <p><b>Animal</b><br><%= profile.ptanimal %></p>
-                            <hr style = "border: 1px solid brown; width: 100%; opacity: 0.9;">
-                            
-                            <p><b>True Colors</b><br><%= profile.pttruecolors %></p>
-                            <hr style = "border: 1px solid brown; width: 100%; opacity: 0.9;">
-                            
-                            <p><b>Myers Briggs</b><br><%= profile.ptmyersbriggs %></p>
-                            <hr style = "border: 1px solid brown; width: 100%; opacity: 0.9;">
-                            
-                            <p><b>Enneagram</b><br><%= profile.enneagram%></p>
-                          <% else %>
-                            <hr style = "border: 1px solid brown; width: 100%; opacity: 0.9;">
-                            
-                            <p><b>Animal</b><br><%= profile.ptanimal %></p>
-                            <hr style = "border: 1px solid brown; width: 100%; opacity: 0.9;">
-                            
-                            <p><b>True Colors</b><br><%= profile.pttruecolors %></p>
-                            <hr style = "border: 1px solid brown; width: 100%; opacity: 0.9;">
-                            
-                            <p><b>Myers Briggs</b><br><%= profile.ptmyersbriggs %></p>
-                            <hr style = "border: 1px solid brown; width: 100%; opacity: 0.9;">
-                            
-                            <p><b>Enneagram</b><br><%= profile.enneagram%></p>
-                            <hr style = "border: 1px solid brown; width: 100%; opacity: 0.9;">
-                          <% end %>
-                        </div>
-                      </div>
-                    </div>
-                  </div>	
-                </div>
-              </div>
-            <% end %>
-          </div>
-        </div>
-      </div>
-    </div>
-  </body>
->>>>>>> develop

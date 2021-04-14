@@ -23,7 +23,8 @@
                 <% if current_user.approved %>
                   <!-- Chair -->
                   <% if current_user.has_role? :chair %>
-                    <% if Profile.find_by(user_id: current_user.id) %>
+                    <% profile = Profile.find_by(user_id: current_user.id) %>
+                    <% if profile %>
                       <%= link_to("View Your Profile", profile_path(profile), :class => "btn", class: "nav-link") %>
                     <% else %>
                       <%= link_to("Create New Profile", new_profile_path, :class => "btn", class: "nav-link") %><br/>

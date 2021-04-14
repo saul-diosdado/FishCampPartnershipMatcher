@@ -1,8 +1,7 @@
 # frozen_string_literal: true
 
 class PreferenceFormsController < ApplicationController
-  before_action :require_login, :check_if_approved, :check_role
-
+  before_action :require_login, :check_if_approved
   def index
     @forms = PreferenceForm.all
   end

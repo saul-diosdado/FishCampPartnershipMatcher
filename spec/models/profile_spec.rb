@@ -30,4 +30,8 @@ RSpec.describe Profile, type: :model do
     subject.user_id = nil
     expect(subject).to_not be_valid
   end
+
+  it 'has empty about me when one is not provided' do
+    expect(subject.aboutme).to_not be_nil
+  end
 end

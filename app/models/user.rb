@@ -4,6 +4,10 @@ class User < ApplicationRecord
   rolify
   include Clearance::User
 
+  has_many :answers, dependent: :delete_all
+  has_many :preferences, foreign_key: 'selector_id', dependent: :delete_all
+  has_one :match, dependent: :delete
+
   after_initialize :assign_default_role, if: :new_record?
   after_save :assign_admin_role
 

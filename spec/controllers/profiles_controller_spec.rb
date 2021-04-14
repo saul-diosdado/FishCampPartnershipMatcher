@@ -8,7 +8,7 @@ RSpec.describe 'Controller Test', type: :system do
       it 'should flash correct messages in index2' do
         user_login()
         visit new_profile_path
-        fill_in 'Name', with: 'a'
+        fill_in 'Name', with: 'User Name'
         click_button 'Create Profile'
         expect(page).to have_content('Created a successfully.')
       end
@@ -23,7 +23,7 @@ RSpec.describe 'Controller Test', type: :system do
       it 'Edit a profile with incorrect params' do
         user_login()
         visit new_profile_path
-        fill_in 'Name', with: 'Bob'
+        fill_in 'Name', with: 'User Name'
         click_button 'Create Profile'
         visit edit_profile_path(Profile.last)
         fill_in 'Name', with: ''
@@ -38,7 +38,7 @@ RSpec.describe 'User Working on profile', type: :system do
     it 'Create a profile' do
       user_login()
       visit new_profile_path
-      fill_in 'Name', with: 'Bob'
+      fill_in 'Name', with: 'User Name'
       click_button 'Create Profile'
       expect(page).to have_content('Bob')
     end
@@ -46,7 +46,7 @@ RSpec.describe 'User Working on profile', type: :system do
     it 'Create a profile with valid about me' do
       user_login()
       visit new_profile_path
-      fill_in 'Name', with: 'Bob'
+      fill_in 'Name', with: 'User Name'
       fill_in 'profile[aboutme]', with: 'This is all about me.'
       click_button 'Create Profile'
 
@@ -81,7 +81,7 @@ RSpec.describe 'User Working on profile', type: :system do
     it 'Edit a profile' do
       user_login()
       visit new_profile_path
-      fill_in 'Name', with: 'Bob'
+      fill_in 'Name', with: 'User Name'
       click_button 'Create Profile'
       visit edit_profile_path(Profile.last)
       fill_in 'Name', with: 'Joe'
@@ -92,7 +92,7 @@ RSpec.describe 'User Working on profile', type: :system do
     it 'Show a profile' do
       user_login()
       visit new_profile_path
-      fill_in 'Name', with: 'e'
+      fill_in 'Name', with: 'User Name'
       click_button 'Create Profile'
       visit profile_path(Profile.last)
       expect(page).to have_content(Profile.last.name)

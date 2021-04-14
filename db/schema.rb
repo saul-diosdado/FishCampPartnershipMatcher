@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_12_071501) do
+ActiveRecord::Schema.define(version: 2021_04_14_202441) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,14 +51,15 @@ ActiveRecord::Schema.define(version: 2021_04_12_071501) do
   end
 
   create_table "preference_forms", force: :cascade do |t|
+    t.bigint "creator_id"
     t.string "title"
     t.integer "num_prefs"
     t.integer "num_antiprefs"
     t.boolean "active"
-    t.bigint "submissions", default: [], array: true
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.datetime "deadline"
+    t.index ["creator_id"], name: "index_preference_forms_on_creator_id"
   end
 
   create_table "preferences", force: :cascade do |t|
@@ -117,7 +118,6 @@ ActiveRecord::Schema.define(version: 2021_04_12_071501) do
   create_table "users", force: :cascade do |t|
     t.string "email"
     t.string "password"
-    t.string "role"
     t.boolean "approved"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

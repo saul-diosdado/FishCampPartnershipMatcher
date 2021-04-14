@@ -4,10 +4,13 @@
   <%= f.hidden_field(:user_id, value: @match.user_id) %>
   <%= f.hidden_field(:preference_form_id, value: @match.preference_form_id) %>
   <%= f.hidden_field(:matched_id, value: prospect_id) %>
+
+  <% prospect = @selected.where(user_id: prospect_id).first %>
+
   <div class="card">
     <div class="card-header d-flex flex-row justify-content-between">
       <div>
-        <h2><%= @selected.where(user_id: prospect_id).first.name %></h2>
+        <h2><%= prospect.name %></h2>
         <% prospect_match_entry = @matches.where(user_id: prospect_id).first %>
         <% if prospect_match_entry.matched_id != nil %>
           <h6>Partner: <%= @profiles.where(user_id: prospect_match_entry.matched_id).first.name %>
@@ -31,6 +34,15 @@
     </div>
 
     <ul class="list-group list-group-flush">
+      <!-- Personality Test Results -->
+      <li class="list-group-item">
+        <h4 class="mb-3">Personality Tests</h4>
+        <h6>Conflict Animal: <%= prospect.ptanimal.nil? ? "N/A" : prospect.ptanimal %></h6>
+        <h6>True Colors: <%= prospect.pttruecolors.nil? ? "N/A" : prospect.pttruecolors %></h6>
+        <h6>Myers Briggs: <%= prospect.ptmyersbriggs.nil? ? "N/A" : prospect.ptmyersbriggs %></h6>
+        <h6>Enneagram: <%= prospect.enneagram.nil? ? "N/A" : prospect.enneagram %></h6>
+      </li>
+
       <!-- Preferences -->
       <li class="list-group-item">
         <h4 class="mb-3">Preferences</h4>

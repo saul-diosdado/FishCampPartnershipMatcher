@@ -3,6 +3,9 @@
 class PreferenceFormsController < ApplicationController
   before_action :require_login, :check_if_approved
   def index
+    # Check if current user is a director
+    check_role
+
     @forms = PreferenceForm.all
   end
 
@@ -49,6 +52,15 @@ class PreferenceFormsController < ApplicationController
   end
 
   def new
+    # Check if current user is a director
+    check_role
+
+    # Check if forms already exist
+    created_forms = PreferenceForm.all
+    if created_forms.count > 0
+      redirect_to(preference_forms_path(), { flash: { danger: 'FORM ALREADY CREATED: delete existing form to create a new form.' } })
+    end
+
     @form = PreferenceForm.new
   end
 
@@ -63,6 +75,9 @@ class PreferenceFormsController < ApplicationController
   end
 
   def edit
+    # Check if current user is a director
+    check_role
+
     @form = PreferenceForm.find(params[:id])
   end
 
@@ -76,6 +91,9 @@ class PreferenceFormsController < ApplicationController
   end
 
   def delete
+    # Check if current user is a director
+    check_role
+
     @form = PreferenceForm.find(params[:id])
   end
 

@@ -18,11 +18,15 @@ ActiveRecord::Schema.define(version: 2021_04_14_232939) do
   create_table "answers", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "question_id"
+    t.bigint "preference_form_id"
+    t.string "answer_type"
     t.text "short_answer"
     t.boolean "true_false"
     t.integer "numeric"
+    t.string "multiple_choice"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["preference_form_id"], name: "index_answers_on_preference_form_id"
     t.index ["question_id"], name: "index_answers_on_question_id"
     t.index ["user_id"], name: "index_answers_on_user_id"
   end
@@ -47,23 +51,26 @@ ActiveRecord::Schema.define(version: 2021_04_14_232939) do
   end
 
   create_table "preference_forms", force: :cascade do |t|
-    t.bigint "creator_id"
+    t.string "title"
     t.integer "num_prefs"
     t.integer "num_antiprefs"
+    t.boolean "active"
+    t.bigint "submissions", default: [], array: true
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.datetime "deadline"
-    t.index ["creator_id"], name: "index_preference_forms_on_creator_id"
   end
 
   create_table "preferences", force: :cascade do |t|
     t.bigint "selector_id"
     t.bigint "selected_id"
+    t.bigint "preference_form_id"
     t.string "pref_type"
     t.integer "rating"
     t.text "why"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["preference_form_id"], name: "index_preferences_on_preference_form_id"
     t.index ["selected_id"], name: "index_preferences_on_selected_id"
     t.index ["selector_id"], name: "index_preferences_on_selector_id"
   end
@@ -79,21 +86,22 @@ ActiveRecord::Schema.define(version: 2021_04_14_232939) do
     t.string "ptanimal"
     t.string "pttruecolors"
     t.string "ptmyersbriggs"
+    t.string "enneagram"
     t.string "aboutme"
     t.boolean "approvedchair"
     t.string "gender"
     t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "enneagram"
   end
 
   create_table "questions", force: :cascade do |t|
+    t.bigint "preference_form_id"
     t.text "question"
-    t.string "type"
-    t.string "choices", array: true
+    t.string "question_type"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["preference_form_id"], name: "index_questions_on_preference_form_id"
   end
 
   create_table "roles", force: :cascade do |t|

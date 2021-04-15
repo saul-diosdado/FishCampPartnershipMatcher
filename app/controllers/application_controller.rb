@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
     return if current_user.has_role? :director
 
     redirect_to(root_path,
-                { flash: { danger: 'WARNING: Only Directors have access to the matching pages.' } })
+                { flash: { danger: 'Oops! Only directors have access to this page' } })
   end
 
   def check_if_approved

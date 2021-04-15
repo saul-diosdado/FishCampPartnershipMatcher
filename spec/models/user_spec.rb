@@ -23,6 +23,8 @@ RSpec.describe User, type: :model do
     @pref_2 = Preference.create(id: 2, selector_id: 1, selected_id: 3, preference_form_id: 1, pref_type: 'Preference', rating: 4)
 
     @match = Match.create(user_id: 1, matched_id: 2)
+
+    @profile = Profile.create(id: 1, user_id: 1, name: 'User Name', email: 'c@gmail.com')
   end
 
   it 'is valid with valid attributes' do
@@ -33,12 +35,14 @@ RSpec.describe User, type: :model do
     previous_answer_count = Answer.count
     previous_preferences_count = Preference.count
     previous_match_count = Match.count
+    previous_profile_count = Profile.count
 
     @user.destroy
 
     expect(Answer.count).to be < previous_answer_count
     expect(Preference.count).to be < previous_preferences_count
     expect(Match.count).to be < previous_match_count
+    expect(Profile.count).to be < previous_profile_count
   end
 
   after(:all) do

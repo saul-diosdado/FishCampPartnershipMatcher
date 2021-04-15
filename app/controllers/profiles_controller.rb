@@ -24,12 +24,17 @@ class ProfilesController < ApplicationController
   def create
     filter = p
     @profile = Profile.new(profile_params)
-    if @profile.save
+    if @profile.save and @profile.name.include? " "
       # Create an entry in the Match table for each user.
       match = Match.new(user_id: profile_params[:user_id])
       match.save(validate: false)
 
+      #Save profile name in current user's account
+      current_user.update(name: @profile.name)
+
       redirect_to(profiles_path, { flash: { success: "Created #{@profile.name} successfully." } })
+	elsif @profile.save
+      redirect_to(new_profile_path, { flash: { danger: 'Need to enter full name.' } })
     else
       redirect_to(new_profile_path, { flash: { danger: 'Profile must have a name.' } })
     end
@@ -41,10 +46,14 @@ class ProfilesController < ApplicationController
 
   def update
     @profile = Profile.find(params[:id])
-    if @profile.update(profile_params)
+	if @profile.update(profile_params) and @profile.name.include? " "
+      #Save profile name in current user's account
+      current_user.update(name: @profile.name)
       redirect_to(profiles_path, { flash: { success: "Profile #{@profile.name} updated succesfully." } })
-    else
-      redirect_to(edit_profile_path, { flash: { danger: 'Profile did not update successfully.' } })
+    elsif @profile.update(profile_params)
+      redirect_to(edit_profile_path, { flash: { danger: 'Need to enter full name.' } })
+    else 
+	  redirect_to(edit_profile_path, { flash: { danger: 'Profile did not update successfully.' } })
     end
   end
 

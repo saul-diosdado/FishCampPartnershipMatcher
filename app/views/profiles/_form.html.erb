@@ -7,8 +7,8 @@
     <!-- series of labels with corresponding fields to retrieve all information for a profile -->
     <%= f.label( :name, "Name:", class: "col-md-4 col-form-label") %>
     <br>
-    <%= f.text_field(:name, class: "col-md-6 form-control") %>
-    <br>
+	<%= f.text_field(:name, class: "col-md-6 form-control", placeholder: "Enter your full name") %>
+	<br>
     <%= f.label(:email, "Email:", class: "col-md-4 col-form-label") %>
     <br>
     <!-- immutable as it must be tied to the user's email -->

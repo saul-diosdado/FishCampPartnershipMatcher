@@ -9,9 +9,9 @@ RSpec.describe 'Controller Test', type: :system do
     @form = PreferenceForm.create(title: 'Test', num_prefs: 2, num_antiprefs: 1, active: true)
     
     # Three Test Users
-    @u_1 = User.create(id: 1, email: 'u1@gmail.com', role: 'Chair', approved: true)
-    @u_2 = User.create(id: 2, email: 'u2@gmail.com', role: 'Chair', approved: true)
-    @u_3 = User.create(id: 3, email: 'u3@gmail.com', role: 'Chair', approved: true)
+    @u_1 = User.create(id: 1, email: 'u1@gmail.com', approved: true)
+    @u_2 = User.create(id: 2, email: 'u2@gmail.com', approved: true)
+    @u_3 = User.create(id: 3, email: 'u3@gmail.com', approved: true)
     @p_1 = Profile.create(id: 1, user_id: @u_1.id, name: 'User 1', email: 'u1@gmail.com', ptanimal: 'The Collaborative Owl', pttruecolors: 'Orange', ptmyersbriggs: 'INTJ', enneagram: 'Achiever')
     @p_2 = Profile.create(id: 2, user_id: @u_2.id, name: 'User 2', email: 'u2@gmail.com', ptanimal: 'The Avoidant Turtle', pttruecolors: 'Gold', ptmyersbriggs: 'INFP', enneagram: 'Reformer')
     @p_3 = Profile.create(id: 3, user_id: @u_3.id, name: 'User 3', email: 'u3@gmail.com', ptanimal: 'The Compromising Fox', pttruecolors: 'Green', ptmyersbriggs: 'ENTP', enneagram: 'Investigator')
@@ -63,11 +63,11 @@ RSpec.describe 'Director', type: :system do
     @form = PreferenceForm.create(title: 'Test', num_prefs: 2, num_antiprefs: 1, active: true)
     
     # Three Test Users
-    @u_1 = User.create(id: 1, email: 'u1@gmail.com', role: 'Chair', approved: true)
-    @u_2 = User.create(id: 2, email: 'u2@gmail.com', role: 'Chair', approved: true)
-    @u_3 = User.create(id: 3, email: 'u3@gmail.com', role: 'Chair', approved: true)
-    @u_4 = User.create(id: 4, email: 'u4@gmail.com', role: 'Chair', approved: true)
-    @u_5 = User.create(id: 5, email: 'u5@gmail.com', role: 'Chair', approved: true)
+    @u_1 = User.create(id: 1, email: 'u1@gmail.com', approved: true)
+    @u_2 = User.create(id: 2, email: 'u2@gmail.com', approved: true)
+    @u_3 = User.create(id: 3, email: 'u3@gmail.com', approved: true)
+    @u_4 = User.create(id: 4, email: 'u4@gmail.com', approved: true)
+    @u_5 = User.create(id: 5, email: 'u5@gmail.com', approved: true)
     @p_1 = Profile.create(id: 1, user_id: @u_1.id, name: 'User 1', email: 'u1@gmail.com', ptanimal: 'The Collaborative Owl', pttruecolors: 'Orange', ptmyersbriggs: 'INTJ', enneagram: 'Achiever')
     @p_2 = Profile.create(id: 2, user_id: @u_2.id, name: 'User 2', email: 'u2@gmail.com', ptanimal: 'The Avoidant Turtle', pttruecolors: 'Gold', ptmyersbriggs: 'INFP', enneagram: 'Reformer')
     @p_3 = Profile.create(id: 3, user_id: @u_3.id, name: 'User 3', email: 'u3@gmail.com', ptanimal: 'The Compromising Fox', pttruecolors: 'Green', ptmyersbriggs: 'ENTP', enneagram: 'Investigator')
@@ -157,7 +157,7 @@ RSpec.describe 'Director', type: :system do
 
   it 'tries to find a match for someone who has no prospects' do
     director_login()
-    u_6 = User.create(id: 6, email: 'u6@gmail.com', role: 'Chair', approved: true)
+    u_6 = User.create(id: 6, email: 'u6@gmail.com', approved: true)
     p_6 = Profile.create(id: 6, user_id: u_6.id, name: 'User 6', email: 'u6@gmail.com')
     match_6 = Match.create(id: 6, user_id: 6, matched_id: nil)
 
@@ -174,8 +174,8 @@ RSpec.describe 'Director', type: :system do
   
   it 'starts matching and a new match average turns out to be better than a previous one' do
     director_login()
-    u_6 = User.create(id: 6, email: 'u6@gmail.com', role: 'Chair', approved: true)
-    u_7 = User.create(id: 7, email: 'u7@gmail.com', role: 'Chair', approved: true)
+    u_6 = User.create(id: 6, email: 'u6@gmail.com', approved: true)
+    u_7 = User.create(id: 7, email: 'u7@gmail.com', approved: true)
 
     Profile.create(id: 6, user_id: u_6.id, name: 'User 6', email: 'u6@gmail.com')
     Profile.create(id: 7, user_id: u_7.id, name: 'User 7', email: 'u7@gmail.com')

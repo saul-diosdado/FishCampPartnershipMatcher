@@ -6,22 +6,22 @@ require 'rails_helper'
 RSpec.describe 'Controller Test', type: :system do
   before(:each) do
     #Creating users
-    @u_1 = User.create(id: 1, email: 'u1@gmail.com', role: 'Chair', approved: true)
-    @u_2 = User.create(id: 2, email: 'u2@gmail.com', role: 'Chair', approved: true)
-    @u_3 = User.create(id: 3, email: 'u3@gmail.com', role: 'Chair', approved: true)
-    @u_4 = User.create(id: 4, email: 'u4@gmail.com', role: 'Chair', approved: true)
-    @u_5 = User.create(id: 5, email: 'u5@gmail.com', role: 'Chair', approved: true)
-    @u_6 = User.create(id: 6, email: 'u6@gmail.com', role: 'Chair', approved: true)
-    @u_7 = User.create(id: 7, email: 'u7@gmail.com', role: 'Chair', approved: true)
-    @u_8 = User.create(id: 8, email: 'u8@gmail.com', role: 'Chair', approved: true)
-    @u_9 = User.create(id: 9, email: 'u9@gmail.com', role: 'Chair', approved: true)
-    @u_10 = User.create(id: 10, email: 'u10@gmail.com', role: 'Chair', approved: true)
-    @u_11 = User.create(id: 11, email: 'u11@gmail.com', role: 'Chair', approved: true)
-    @u_12 = User.create(id: 12, email: 'u12@gmail.com', role: 'Chair', approved: true)
-    @u_13 = User.create(id: 13, email: 'u13@gmail.com', role: 'Chair', approved: true)
-    @u_14 = User.create(id: 14, email: 'u14@gmail.com', role: 'Chair', approved: true)
-    @u_15 = User.create(id: 15, email: 'u15@gmail.com', role: 'Chair', approved: true)
-    @u_16 = User.create(id: 16, email: 'u16@gmail.com', role: 'Chair', approved: true)
+    @u_1 = User.create(id: 1, email: 'u1@gmail.com', approved: true)
+    @u_2 = User.create(id: 2, email: 'u2@gmail.com', approved: true)
+    @u_3 = User.create(id: 3, email: 'u3@gmail.com', approved: true)
+    @u_4 = User.create(id: 4, email: 'u4@gmail.com', approved: true)
+    @u_5 = User.create(id: 5, email: 'u5@gmail.com', approved: true)
+    @u_6 = User.create(id: 6, email: 'u6@gmail.com', approved: true)
+    @u_7 = User.create(id: 7, email: 'u7@gmail.com', approved: true)
+    @u_8 = User.create(id: 8, email: 'u8@gmail.com', approved: true)
+    @u_9 = User.create(id: 9, email: 'u9@gmail.com', approved: true)
+    @u_10 = User.create(id: 10, email: 'u10@gmail.com', approved: true)
+    @u_11 = User.create(id: 11, email: 'u11@gmail.com', approved: true)
+    @u_12 = User.create(id: 12, email: 'u12@gmail.com', approved: true)
+    @u_13 = User.create(id: 13, email: 'u13@gmail.com', approved: true)
+    @u_14 = User.create(id: 14, email: 'u14@gmail.com', approved: true)
+    @u_15 = User.create(id: 15, email: 'u15@gmail.com', approved: true)
+    @u_16 = User.create(id: 16, email: 'u16@gmail.com', approved: true)
 
     #Creating profiles with corresponding PT type
     @p_1 = Profile.create(id: 1, user_id: @u_1.id, name: 'User 1', email: 'u1@gmail.com', ptmyersbriggs: 'INFP')
@@ -185,11 +185,11 @@ end
 RSpec.describe 'Controller Test', type: :system do
   before(:all) do
     #Creating user accounts to test matching algorithm
-    @u_1 = User.create(id: 1, email: 'u1@gmail.com', role: 'Chair', approved: true)
-    @u_2 = User.create(id: 2, email: 'u2@gmail.com', role: 'Chair', approved: true)
-    @u_3 = User.create(id: 3, email: 'u3@gmail.com', role: 'Chair', approved: true)
-    @u_4 = User.create(id: 4, email: 'u4@gmail.com', role: 'Chair', approved: true)
-    @u_5 = User.create(id: 5, email: 'u5@gmail.com', role: 'Chair', approved: true)
+    @u_1 = User.create(id: 1, email: 'u1@gmail.com', approved: true)
+    @u_2 = User.create(id: 2, email: 'u2@gmail.com', approved: true)
+    @u_3 = User.create(id: 3, email: 'u3@gmail.com', approved: true)
+    @u_4 = User.create(id: 4, email: 'u4@gmail.com', approved: true)
+    @u_5 = User.create(id: 5, email: 'u5@gmail.com', approved: true)
 
     #Filling in profiles for personality test results to test matching
     @p_1 = Profile.create(id: 1, user_id: @u_1.id, name: 'User 1', email: 'u1@gmail.com', ptanimal: 'The Competitive Shark')
@@ -251,15 +251,15 @@ RSpec.describe 'Controller Test', type: :system do
   describe 'Should give user matches for their personality results Enneagram' do
     before(:all) do
       #Creating users
-      @u_1 = User.create(id: 1, email: 'u1@gmail.com', role: 'Chair', approved: true)
-      @u_2 = User.create(id: 2, email: 'u2@gmail.com', role: 'Chair', approved: true)
-      @u_3 = User.create(id: 3, email: 'u3@gmail.com', role: 'Chair', approved: true)
-      @u_4 = User.create(id: 4, email: 'u4@gmail.com', role: 'Chair', approved: true)
-      @u_5 = User.create(id: 5, email: 'u5@gmail.com', role: 'Chair', approved: true)
-      @u_6 = User.create(id: 6, email: 'u6@gmail.com', role: 'Chair', approved: true)
-      @u_7 = User.create(id: 7, email: 'u7@gmail.com', role: 'Chair', approved: true)
-      @u_8 = User.create(id: 8, email: 'u8@gmail.com', role: 'Chair', approved: true)
-      @u_9 = User.create(id: 9, email: 'u9@gmail.com', role: 'Chair', approved: true)
+      @u_1 = User.create(id: 1, email: 'u1@gmail.com', approved: true)
+      @u_2 = User.create(id: 2, email: 'u2@gmail.com', approved: true)
+      @u_3 = User.create(id: 3, email: 'u3@gmail.com', approved: true)
+      @u_4 = User.create(id: 4, email: 'u4@gmail.com', approved: true)
+      @u_5 = User.create(id: 5, email: 'u5@gmail.com', approved: true)
+      @u_6 = User.create(id: 6, email: 'u6@gmail.com', approved: true)
+      @u_7 = User.create(id: 7, email: 'u7@gmail.com', approved: true)
+      @u_8 = User.create(id: 8, email: 'u8@gmail.com', approved: true)
+      @u_9 = User.create(id: 9, email: 'u9@gmail.com', approved: true)
 
       #Creating profiles with corresponding PT type
       @p_1 = Profile.create(id: 1, user_id: @u_1.id, name: 'User 1', email: 'u1@gmail.com', enneagram: 'Reformer')

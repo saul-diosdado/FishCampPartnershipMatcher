@@ -30,6 +30,25 @@ RSpec.describe 'Controller Test', type: :system do
         click_button 'Save Changes'
         expect(page).to have_content('Profile did not update successfully.')
       end
+
+      it 'Create a profile without a space in the name' do
+        user_login()
+        visit new_profile_path
+        fill_in 'Name', with: 'User'
+        click_button 'Create Profile'
+        expect(page).to have_content('Must enter first and last name.')
+      end
+
+      it 'Edit a profile without a space in the name' do
+        user_login()
+        visit new_profile_path
+        fill_in 'Name', with: 'User Name'
+        click_button 'Create Profile'
+        visit edit_profile_path(Profile.last)
+        fill_in 'Name', with: 'User'
+        click_button 'Save Changes'
+        expect(page).to have_content('Must enter first and last name.')
+      end
     end
 end
   

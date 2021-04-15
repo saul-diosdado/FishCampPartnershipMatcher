@@ -4,14 +4,14 @@ require 'rails_helper'
 # PreferenceForm Model Unit Test
 RSpec.describe PreferenceForm, type: :model do
   it 'preference form is valid with valid attributes' do
-    expect(PreferenceForm.new(creator_id: 1, title: 'test', num_prefs: 2, num_antiprefs: 1, active: TRUE)).to be_valid
+    expect(PreferenceForm.new(title: 'test', num_prefs: 2, num_antiprefs: 1, active: TRUE)).to be_valid
   end
 end
 
 # Checks that prefernce form can be created, read, and deleted.
 RSpec.describe PreferenceForm, type: :model do
-  before(:all) do
-    @form = PreferenceForm.create(creator_id: 1, title: 'test', num_prefs: 2, num_antiprefs: 1, active: TRUE)
+  before(:each) do
+    @form = PreferenceForm.create(id: 1, title: 'test', num_prefs: 2, num_antiprefs: 1, active: TRUE)
   end
 
   it 'checks that a form can be created' do
@@ -27,46 +27,21 @@ RSpec.describe PreferenceForm, type: :model do
     @form.destroy
     expect(PreferenceForm.count).to be < previous_form_count
   end
-end
 
-# Acceptance Test User Requirement
-RSpec.describe 'User actions', type: :system do
-  it 'create, edit, and delete preference form' do
-    visit new_profile_path
-    click_link "Sign up"
-    fill_in "user[email]", with: "g@gmail.com"
-    fill_in "Password", with: "12345"
-    click_button "Sign up"
+  it 'checks that a deleted form also deletes the associated questions' do
+    Question.create(id:1, preference_form_id: 1, question: 'Is this a quesiton?', question_type: 'Short Answer')
+    Question.create(id:2, preference_form_id: 1, question: 'Is this a quesiton 2?', question_type: 'Multiple Choice')
+    Question.create(id:3, preference_form_id: 1, question: 'Is this a quesiton 3?', question_type: 'True/False')
+    Question.create(id:4, preference_form_id: 1, question: 'Is this a quesiton 4?', question_type: 'Numeric')
 
-     visit preference_forms_path
-     click_link "Edit Questions"
-    # fill_in 'preference_form_title', with: 'test form'
-    # click_button "Add Question"
+    previous_form_count = PreferenceForm.count
+    previous_question_count = Question.count
+    @form.destroy
+    expect(PreferenceForm.count).to be < previous_form_count
+    expect(Question.count).to be < previous_question_count
+  end
 
-    click_link 'Create New Question'
-    fill_in 'question[question]', with: 'q1'
-    click_button 'Submit'
-
-    click_link 'Done'
-    expect(page).to have_content('test')
-
-    click_link 'Form Settings'
-    fill_in 'preference_form_title', with: 'test form 2'
-    select 'Public', from: 'preference_form[active]'
-    select '3', from: 'preference_form[num_prefs]'
-    select '2', from: 'preference_form[num_antiprefs]'
-    click_button 'Update Form'
-    expect(page).to have_content('test form 2')
-
-    click_link 'Edit Questions'
-    click_link 'Create New Question'
-    fill_in 'question[question]', with: 'q2'
-    click_button 'Submit'
-    click_link 'Done'
-    expect(page).to have_content('test form 2')
-
-    click_link 'Delete'
-    click_button 'Delete Form'
-    expect(page).to have_no_content('test form 2')
+  after(:all) do
+    DatabaseCleaner.clean_with(:truncation)
   end
 end

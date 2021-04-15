@@ -4,7 +4,9 @@
 
 <h1 class="my-4">Create Forms</h1>
 <%= link_to("Back to Profiles", root_path, class: "btn btn-success mt-2 mb-4") %>
-<%= link_to("Create New Form", new_preference_form_path, class: "btn btn-success mt-2 mb-4") %>
+<% if @forms.count == 0 %>
+  <%= link_to("Create New Form", new_preference_form_path, class: "btn btn-success mt-2 mb-4") %>
+<% end %>
 
 <% @forms.each do |form| %>
   <%= render(:partial => "preference_form_index", :locals => {:form => form}) %>

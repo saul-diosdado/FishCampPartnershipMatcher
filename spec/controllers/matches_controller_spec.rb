@@ -9,12 +9,12 @@ RSpec.describe 'Controller Test', type: :system do
     @form = PreferenceForm.create(title: 'Test', num_prefs: 2, num_antiprefs: 1, active: true)
     
     # Three Test Users
-    @u_1 = User.create(id: 1, email: 'u1@gmail.com', approved: true)
-    @u_2 = User.create(id: 2, email: 'u2@gmail.com', approved: true)
-    @u_3 = User.create(id: 3, email: 'u3@gmail.com', approved: true)
-    @p_1 = Profile.create(id: 1, user_id: @u_1.id, name: 'User 1', email: 'u1@gmail.com', ptanimal: 'The Collaborative Owl', pttruecolors: 'Orange', ptmyersbriggs: 'INTJ', enneagram: 'Achiever')
-    @p_2 = Profile.create(id: 2, user_id: @u_2.id, name: 'User 2', email: 'u2@gmail.com', ptanimal: 'The Avoidant Turtle', pttruecolors: 'Gold', ptmyersbriggs: 'INFP', enneagram: 'Reformer')
-    @p_3 = Profile.create(id: 3, user_id: @u_3.id, name: 'User 3', email: 'u3@gmail.com', ptanimal: 'The Compromising Fox', pttruecolors: 'Green', ptmyersbriggs: 'ENTP', enneagram: 'Investigator')
+    @u_1 = User.create(id: 1, email: 'u1@gmail.com', name: 'User 1', approved: true)
+    @u_2 = User.create(id: 2, email: 'u2@gmail.com', name: 'User 2', approved: true)
+    @u_3 = User.create(id: 3, email: 'u3@gmail.com', name: 'User 3', approved: true)
+    @p_1 = Profile.create(id: 1, user_id: @u_1.id, name: @u_1.name, email: 'u1@gmail.com', ptanimal: 'The Collaborative Owl', pttruecolors: 'Orange', ptmyersbriggs: 'INTJ', enneagram: 'Achiever')
+    @p_2 = Profile.create(id: 2, user_id: @u_2.id, name: @u_2.name, email: 'u2@gmail.com', ptanimal: 'The Avoidant Turtle', pttruecolors: 'Gold', ptmyersbriggs: 'INFP', enneagram: 'Reformer')
+    @p_3 = Profile.create(id: 3, user_id: @u_3.id, name: @u_3.name, email: 'u3@gmail.com', ptanimal: 'The Compromising Fox', pttruecolors: 'Green', ptmyersbriggs: 'ENTP', enneagram: 'Investigator')
 
     # Mock Preferences
     @pref_1 = Preference.create(id: 1, selector_id: 1, selected_id: 2, preference_form_id: 1, pref_type: 'Preference', rating: 4)
@@ -63,16 +63,16 @@ RSpec.describe 'Director', type: :system do
     @form = PreferenceForm.create(title: 'Test', num_prefs: 2, num_antiprefs: 1, active: true)
     
     # Three Test Users
-    @u_1 = User.create(id: 1, email: 'u1@gmail.com', approved: true)
-    @u_2 = User.create(id: 2, email: 'u2@gmail.com', approved: true)
-    @u_3 = User.create(id: 3, email: 'u3@gmail.com', approved: true)
-    @u_4 = User.create(id: 4, email: 'u4@gmail.com', approved: true)
-    @u_5 = User.create(id: 5, email: 'u5@gmail.com', approved: true)
-    @p_1 = Profile.create(id: 1, user_id: @u_1.id, name: 'User 1', email: 'u1@gmail.com', ptanimal: 'The Collaborative Owl', pttruecolors: 'Orange', ptmyersbriggs: 'INTJ', enneagram: 'Achiever')
-    @p_2 = Profile.create(id: 2, user_id: @u_2.id, name: 'User 2', email: 'u2@gmail.com', ptanimal: 'The Avoidant Turtle', pttruecolors: 'Gold', ptmyersbriggs: 'INFP', enneagram: 'Reformer')
-    @p_3 = Profile.create(id: 3, user_id: @u_3.id, name: 'User 3', email: 'u3@gmail.com', ptanimal: 'The Compromising Fox', pttruecolors: 'Green', ptmyersbriggs: 'ENTP', enneagram: 'Investigator')
-    @p_4 = Profile.create(id: 4, user_id: @u_4.id, name: 'User 4', email: 'u4@gmail.com', ptanimal: 'The Competitive Shark', pttruecolors: 'Blue', ptmyersbriggs: 'ISTJ', enneagram: 'Achiever')
-    @p_5 = Profile.create(id: 5, user_id: @u_5.id, name: 'User 5', email: 'u5@gmail.com', ptanimal: 'The Accommodating Teddy Bear', pttruecolors: 'Orange', ptmyersbriggs: 'ESTP', enneagram: 'Enthusiast')
+    @u_1 = User.create(id: 1, email: 'u1@gmail.com', name: 'User 1', approved: true)
+    @u_2 = User.create(id: 2, email: 'u2@gmail.com', name: 'User 2', approved: true)
+    @u_3 = User.create(id: 3, email: 'u3@gmail.com', name: 'User 3', approved: true)
+    @u_4 = User.create(id: 4, email: 'u4@gmail.com', name: 'User 4', approved: true)
+    @u_5 = User.create(id: 5, email: 'u5@gmail.com', name: 'User 5', approved: true)
+    @p_1 = Profile.create(id: 1, user_id: @u_1.id, name: @u_1.name, email: 'u1@gmail.com', ptanimal: 'The Collaborative Owl', pttruecolors: 'Orange', ptmyersbriggs: 'INTJ', enneagram: 'Achiever')
+    @p_2 = Profile.create(id: 2, user_id: @u_2.id, name: @u_2.name, email: 'u2@gmail.com', ptanimal: 'The Avoidant Turtle', pttruecolors: 'Gold', ptmyersbriggs: 'INFP', enneagram: 'Reformer')
+    @p_3 = Profile.create(id: 3, user_id: @u_3.id, name: @u_3.name, email: 'u3@gmail.com', ptanimal: 'The Compromising Fox', pttruecolors: 'Green', ptmyersbriggs: 'ENTP', enneagram: 'Investigator')
+    @p_4 = Profile.create(id: 4, user_id: @u_4.id, name: @u_4.name, email: 'u4@gmail.com', ptanimal: 'The Competitive Shark', pttruecolors: 'Blue', ptmyersbriggs: 'ISTJ', enneagram: 'Achiever')
+    @p_5 = Profile.create(id: 5, user_id: @u_5.id, name: @u_5.name, email: 'u5@gmail.com', ptanimal: 'The Accommodating Teddy Bear', pttruecolors: 'Orange', ptmyersbriggs: 'ESTP', enneagram: 'Enthusiast')
     
     # Mock Preferences
     @pref_1 = Preference.create(id: 1, selector_id: 1, selected_id: 2, preference_form_id: 1, pref_type: 'Preference', rating: 4)
@@ -157,8 +157,8 @@ RSpec.describe 'Director', type: :system do
 
   it 'tries to find a match for someone who has no prospects' do
     director_login()
-    u_6 = User.create(id: 6, email: 'u6@gmail.com', approved: true)
-    p_6 = Profile.create(id: 6, user_id: u_6.id, name: 'User 6', email: 'u6@gmail.com')
+    u_6 = User.create(id: 6, email: 'u6@gmail.com', name: 'User 6', approved: true)
+    p_6 = Profile.create(id: 6, user_id: u_6.id, name: u_6.name, email: 'u6@gmail.com')
     match_6 = Match.create(id: 6, user_id: 6, matched_id: nil)
 
     visit edit_match_path(match_6)
@@ -174,11 +174,11 @@ RSpec.describe 'Director', type: :system do
   
   it 'starts matching and a new match average turns out to be better than a previous one' do
     director_login()
-    u_6 = User.create(id: 6, email: 'u6@gmail.com', approved: true)
-    u_7 = User.create(id: 7, email: 'u7@gmail.com', approved: true)
+    u_6 = User.create(id: 6, email: 'u6@gmail.com', name: 'User 6', approved: true)
+    u_7 = User.create(id: 7, email: 'u7@gmail.com', name: 'User 7', approved: true)
 
-    Profile.create(id: 6, user_id: u_6.id, name: 'User 6', email: 'u6@gmail.com')
-    Profile.create(id: 7, user_id: u_7.id, name: 'User 7', email: 'u7@gmail.com')
+    Profile.create(id: 6, user_id: u_6.id, name: u_6.name, email: 'u6@gmail.com')
+    Profile.create(id: 7, user_id: u_7.id, name: u_7.name, email: 'u7@gmail.com')
 
     Preference.create(id: 7, selector_id: 5, selected_id: 6, preference_form_id: 1, pref_type: 'Preference', rating: 3)
     Preference.create(id: 8, selector_id: 6, selected_id: 5, preference_form_id: 1, pref_type: 'Preference', rating: 3)

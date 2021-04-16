@@ -8,35 +8,8 @@ RSpec.describe 'Controller Test', type: :system do
       it 'should flash correct messages in index2' do
         user_login()
         visit new_profile_path
-        fill_in 'Name', with: 'a person'
         click_button 'Create Profile'
-        expect(page).to have_content('Created a person successfully.')
-      end
-  
-      it 'Must have a name' do
-        user_login()
-        visit new_profile_path
-        click_button 'Create Profile'
-        expect(page).to have_content('Name must contain first and last name')
-      end
-
-      it 'Edit a profile with incorrect params' do
-        user_login()
-        visit new_profile_path
-        fill_in 'Name', with: 'Bob Rad'
-        click_button 'Create Profile'
-        visit edit_profile_path(Profile.last)
-        fill_in 'Name', with: ''
-        click_button 'Save Changes'
-        expect(page).to have_content('Name must contain first and last name')
-      end
-
-      it 'Name does not contain first and last name' do
-        user_login()
-        visit new_profile_path
-        fill_in 'Name', with: 'Bob'
-        click_button 'Create Profile'
-        expect(page).to have_content('Name must contain first and last name')
+        expect(page).to have_content('Created User Name successfully.')
       end
     end
 end
@@ -46,15 +19,13 @@ RSpec.describe 'User Working on profile', type: :system do
     it 'Create a profile' do
       user_login()
       visit new_profile_path
-      fill_in 'Name', with: 'Bob Cash'
       click_button 'Create Profile'
-      expect(page).to have_content('Bob Cash')
+      expect(page).to have_content('User Name')
     end
 
     it 'Create a profile with valid about me' do
       user_login()
       visit new_profile_path
-      fill_in 'Name', with: 'Bob Cash'
       fill_in 'profile[aboutme]', with: 'This is all about me.'
       click_button 'Create Profile'
 
@@ -66,6 +37,7 @@ RSpec.describe 'User Working on profile', type: :system do
       # Sign up with new account
       visit root_path
       click_link 'Sign up'
+      fill_in 'Name', with: 'User Name'
       fill_in 'user[email]', with: 'user@gmail.com'
       fill_in 'Password', with: '12345'
       click_button 'Sign up'
@@ -89,22 +61,24 @@ RSpec.describe 'User Working on profile', type: :system do
     it 'Edit a profile' do
       user_login()
       visit new_profile_path
-      fill_in 'Name', with: 'Bob Cash'
+      fill_in 'profile[aboutme]', with: 'Bob Cash'
       click_button 'Create Profile'
       visit edit_profile_path(Profile.last)
-      fill_in 'Name', with: 'Joe Mama'
+      fill_in 'profile[aboutme]', with: 'Joe Mama'
       click_button 'Save Changes'
-      expect(page).to have_content('Joe')
+      expect(Profile.last.aboutme).to eq 'Joe Mama'
     end
   
     it 'Show a profile' do
       user_login()
       visit new_profile_path
-      fill_in 'Name', with: 'Elon Musk'
       click_button 'Create Profile'
       visit profile_path(Profile.last)
       expect(page).to have_content(Profile.last.name)
     end
 
+    after(:all) do
+      DatabaseCleaner.clean_with(:truncation)
+    end
 end
   

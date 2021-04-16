@@ -50,7 +50,7 @@ class PreferencesController < ApplicationController
     # Load all approved chairs
     users = Profile.all.where.not(user_id: current_user.id)
     user_ids = users.map(&:user_id)
-    
+
     # Load all of the users prefs
     prefs = Preference.where(preference_form_id: @pref.preference_form_id, selector_id: current_user.id)
     # User can only pref users who they have not preffed already.

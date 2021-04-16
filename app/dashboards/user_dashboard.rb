@@ -17,6 +17,7 @@ class UserDashboard < Administrate::BaseDashboard
     roles: Field::HasMany,
     id: Field::Number,
     email: Field::String,
+    name: Field::String,
 
     approved: Field::Boolean,
     created_at: Field::DateTime,
@@ -39,6 +40,7 @@ class UserDashboard < Administrate::BaseDashboard
   SHOW_PAGE_ATTRIBUTES = %i[
 
     email
+    name
     
     approved
     created_at
@@ -50,6 +52,7 @@ class UserDashboard < Administrate::BaseDashboard
   # on the model's form (`new` and `edit`) pages.
   FORM_ATTRIBUTES = %i[
     email
+    name
     roles
     approved
   ].freeze

@@ -4,7 +4,7 @@ require 'rails_helper'
 # Answer Model Unit Test
 RSpec.describe Answer, type: :model do
   before(:all) do
-    @user = User.create(id: 1, email: 'c@gmail.com', password: '12345', email_confirmation_token: 'token', email_confirmed_at: nil)
+    @user = User.create(id: 1, name: 'User Name', email: 'c@gmail.com', password: '12345', email_confirmation_token: 'token', email_confirmed_at: nil)
     @q_1 = Question.create(id:1, preference_form_id: 1, question: 'Is this a quesiton?', question_type: 'Short Answer')
     @q_2 = Question.create(id:2, preference_form_id: 1, question: 'Is this a quesiton 2?', question_type: 'Multiple Choice')
     @q_3 = Question.create(id:3, preference_form_id: 1, question: 'Is this a quesiton 3?', question_type: 'True/False')
@@ -59,7 +59,7 @@ end
 # Checks that answers can be created, read, and deleted.
 RSpec.describe Answer, type: :model do
   before(:all) do
-    @user = User.create(id: 1, email: 'c@gmail.com', password: '12345', email_confirmation_token: 'token', email_confirmed_at: nil)
+    @user = User.create(id: 1, name: 'User name', email: 'c@gmail.com', password: '12345', email_confirmation_token: 'token', email_confirmed_at: nil)
     @form = PreferenceForm.create(title: 'Test', num_prefs: 2, num_antiprefs: 1, active: true)
     @question = Question.create(id: 1, preference_form_id: 1, question: 'Test q?', question_type: 'Short Answer')
     @answer = Answer.create(user_id: 1, question_id: 1, preference_form_id: 1, answer_type: "Short Answer", short_answer: "Test")

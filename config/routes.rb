@@ -21,7 +21,7 @@ Rails.application.routes.draw do
     resources :roles
     resources :users
     resources :preference_forms
-    resources :profiles
+    
 
 
     

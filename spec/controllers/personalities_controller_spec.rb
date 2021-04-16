@@ -6,22 +6,22 @@ require 'rails_helper'
 RSpec.describe 'Controller Test', type: :system do
   before(:each) do
     #Creating users
-    @u_1 = User.create(id: 1, email: 'u1@gmail.com', role: 'Chair', approved: true)
-    @u_2 = User.create(id: 2, email: 'u2@gmail.com', role: 'Chair', approved: true)
-    @u_3 = User.create(id: 3, email: 'u3@gmail.com', role: 'Chair', approved: true)
-    @u_4 = User.create(id: 4, email: 'u4@gmail.com', role: 'Chair', approved: true)
-    @u_5 = User.create(id: 5, email: 'u5@gmail.com', role: 'Chair', approved: true)
-    @u_6 = User.create(id: 6, email: 'u6@gmail.com', role: 'Chair', approved: true)
-    @u_7 = User.create(id: 7, email: 'u7@gmail.com', role: 'Chair', approved: true)
-    @u_8 = User.create(id: 8, email: 'u8@gmail.com', role: 'Chair', approved: true)
-    @u_9 = User.create(id: 9, email: 'u9@gmail.com', role: 'Chair', approved: true)
-    @u_10 = User.create(id: 10, email: 'u10@gmail.com', role: 'Chair', approved: true)
-    @u_11 = User.create(id: 11, email: 'u11@gmail.com', role: 'Chair', approved: true)
-    @u_12 = User.create(id: 12, email: 'u12@gmail.com', role: 'Chair', approved: true)
-    @u_13 = User.create(id: 13, email: 'u13@gmail.com', role: 'Chair', approved: true)
-    @u_14 = User.create(id: 14, email: 'u14@gmail.com', role: 'Chair', approved: true)
-    @u_15 = User.create(id: 15, email: 'u15@gmail.com', role: 'Chair', approved: true)
-    @u_16 = User.create(id: 16, email: 'u16@gmail.com', role: 'Chair', approved: true)
+    @u_1 = User.create(id: 1, email: 'u1@gmail.com', approved: true)
+    @u_2 = User.create(id: 2, email: 'u2@gmail.com', approved: true)
+    @u_3 = User.create(id: 3, email: 'u3@gmail.com', approved: true)
+    @u_4 = User.create(id: 4, email: 'u4@gmail.com', approved: true)
+    @u_5 = User.create(id: 5, email: 'u5@gmail.com', approved: true)
+    @u_6 = User.create(id: 6, email: 'u6@gmail.com', approved: true)
+    @u_7 = User.create(id: 7, email: 'u7@gmail.com', approved: true)
+    @u_8 = User.create(id: 8, email: 'u8@gmail.com', approved: true)
+    @u_9 = User.create(id: 9, email: 'u9@gmail.com', approved: true)
+    @u_10 = User.create(id: 10, email: 'u10@gmail.com', approved: true)
+    @u_11 = User.create(id: 11, email: 'u11@gmail.com', approved: true)
+    @u_12 = User.create(id: 12, email: 'u12@gmail.com', approved: true)
+    @u_13 = User.create(id: 13, email: 'u13@gmail.com', approved: true)
+    @u_14 = User.create(id: 14, email: 'u14@gmail.com', approved: true)
+    @u_15 = User.create(id: 15, email: 'u15@gmail.com', approved: true)
+    @u_16 = User.create(id: 16, email: 'u16@gmail.com', approved: true)
 
     #Creating profiles with corresponding PT type
     @p_1 = Profile.create(id: 1, user_id: @u_1.id, name: 'User 1', email: 'u1@gmail.com', ptmyersbriggs: 'INFP')
@@ -185,11 +185,11 @@ end
 RSpec.describe 'Controller Test', type: :system do
   before(:all) do
     #Creating user accounts to test matching algorithm
-    @u_1 = User.create(id: 1, email: 'u1@gmail.com', role: 'Chair', approved: true)
-    @u_2 = User.create(id: 2, email: 'u2@gmail.com', role: 'Chair', approved: true)
-    @u_3 = User.create(id: 3, email: 'u3@gmail.com', role: 'Chair', approved: true)
-    @u_4 = User.create(id: 4, email: 'u4@gmail.com', role: 'Chair', approved: true)
-    @u_5 = User.create(id: 5, email: 'u5@gmail.com', role: 'Chair', approved: true)
+    @u_1 = User.create(id: 1, email: 'u1@gmail.com', approved: true)
+    @u_2 = User.create(id: 2, email: 'u2@gmail.com', approved: true)
+    @u_3 = User.create(id: 3, email: 'u3@gmail.com', approved: true)
+    @u_4 = User.create(id: 4, email: 'u4@gmail.com', approved: true)
+    @u_5 = User.create(id: 5, email: 'u5@gmail.com', approved: true)
 
     #Filling in profiles for personality test results to test matching
     @p_1 = Profile.create(id: 1, user_id: @u_1.id, name: 'User 1', email: 'u1@gmail.com', ptanimal: 'The Competitive Shark')
@@ -251,15 +251,15 @@ RSpec.describe 'Controller Test', type: :system do
   describe 'Should give user matches for their personality results Enneagram' do
     before(:all) do
       #Creating users
-      @u_1 = User.create(id: 1, email: 'u1@gmail.com', role: 'Chair', approved: true)
-      @u_2 = User.create(id: 2, email: 'u2@gmail.com', role: 'Chair', approved: true)
-      @u_3 = User.create(id: 3, email: 'u3@gmail.com', role: 'Chair', approved: true)
-      @u_4 = User.create(id: 4, email: 'u4@gmail.com', role: 'Chair', approved: true)
-      @u_5 = User.create(id: 5, email: 'u5@gmail.com', role: 'Chair', approved: true)
-      @u_6 = User.create(id: 6, email: 'u6@gmail.com', role: 'Chair', approved: true)
-      @u_7 = User.create(id: 7, email: 'u7@gmail.com', role: 'Chair', approved: true)
-      @u_8 = User.create(id: 8, email: 'u8@gmail.com', role: 'Chair', approved: true)
-      @u_9 = User.create(id: 9, email: 'u9@gmail.com', role: 'Chair', approved: true)
+      @u_1 = User.create(id: 1, email: 'u1@gmail.com', approved: true)
+      @u_2 = User.create(id: 2, email: 'u2@gmail.com', approved: true)
+      @u_3 = User.create(id: 3, email: 'u3@gmail.com', approved: true)
+      @u_4 = User.create(id: 4, email: 'u4@gmail.com', approved: true)
+      @u_5 = User.create(id: 5, email: 'u5@gmail.com', approved: true)
+      @u_6 = User.create(id: 6, email: 'u6@gmail.com', approved: true)
+      @u_7 = User.create(id: 7, email: 'u7@gmail.com', approved: true)
+      @u_8 = User.create(id: 8, email: 'u8@gmail.com', approved: true)
+      @u_9 = User.create(id: 9, email: 'u9@gmail.com', approved: true)
 
       #Creating profiles with corresponding PT type
       @p_1 = Profile.create(id: 1, user_id: @u_1.id, name: 'User 1', email: 'u1@gmail.com', enneagram: 'Reformer')
@@ -305,7 +305,7 @@ RSpec.describe 'Controller Test', type: :system do
       expect(page).to have_content('User 1')
     end
     it 'Show user a match for type Investigator' do
-      user_login()
+    user_login()
       #Create a profile
       @p_17 = Profile.create(id: 17, user_id: User.last.id, name: 'User 17', email: 'user@gmail.com', enneagram: 'Investigator')
       visit personalities_path
@@ -357,7 +357,7 @@ RSpec.describe 'Controller Test', type: :system do
     it 'Show user their own personality type Gold' do
       user_login()
       visit new_profile_path
-      fill_in 'Name', with: 'i'
+      fill_in 'Name', with: 'User Name'
       select 'Gold', from: 'profile[pttruecolors]'
       click_button 'Create Profile'
       visit personalities_path
@@ -367,7 +367,7 @@ RSpec.describe 'Controller Test', type: :system do
     it 'Show user their own personality type Blue' do
       user_login()
       visit new_profile_path
-      fill_in 'Name', with: 'i'
+      fill_in 'Name', with: 'User Name'
       select 'Blue', from: 'profile[pttruecolors]'
       click_button 'Create Profile'
       visit personalities_path
@@ -377,7 +377,7 @@ RSpec.describe 'Controller Test', type: :system do
     it 'Show user their own personality type Green' do
       user_login()
       visit new_profile_path
-      fill_in 'Name', with: 'i'
+      fill_in 'Name', with: 'User Name'
       select 'Green', from: 'profile[pttruecolors]'
       click_button 'Create Profile'
       visit personalities_path
@@ -387,7 +387,7 @@ RSpec.describe 'Controller Test', type: :system do
     it 'Show user their own personality type Orange' do
       user_login()
       visit new_profile_path
-      fill_in 'Name', with: 'i'
+      fill_in 'Name', with: 'User Name'
       select 'Orange', from: 'profile[pttruecolors]'
       click_button 'Create Profile'
       visit personalities_path
@@ -420,7 +420,7 @@ RSpec.describe 'Controller Test', type: :system do
     it 'Reject if try to click on Conflict Management page' do
       user_login()
       visit new_profile_path
-      fill_in 'Name', with: 'h'
+      fill_in 'Name', with: 'User Name'
       select 'INFP', from: 'profile[ptmyersbriggs]'
       select 'Gold', from: 'profile[pttruecolors]'
       select 'Individualist', from: 'profile[enneagram]'
@@ -433,7 +433,7 @@ RSpec.describe 'Controller Test', type: :system do
     it 'Reject if try to click on True Colors page' do
       user_login()
       visit new_profile_path
-      fill_in 'Name', with: 'i'
+      fill_in 'Name', with: 'User Name'
       select 'ENFJ', from: 'profile[ptmyersbriggs]'
       select 'The Compromising Fox', from: 'profile[ptanimal]'
       select 'Enthusiast', from: 'profile[enneagram]'
@@ -446,7 +446,7 @@ RSpec.describe 'Controller Test', type: :system do
     it 'Reject if try to click on Enneagram page' do
       user_login()
       visit new_profile_path
-      fill_in 'Name', with: 'j'
+      fill_in 'Name', with: 'User Name'
       select 'ENTJ', from: 'profile[ptmyersbriggs]'
       select 'Blue', from: 'profile[pttruecolors]'
       select 'The Competitive Shark', from: 'profile[ptanimal]'

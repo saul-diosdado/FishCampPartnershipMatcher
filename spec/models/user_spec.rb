@@ -10,8 +10,8 @@ RSpec.describe User, type: :model do
     @user.confirm_email
     
     # Mock Users
-    @u_2 = User.create(id: 2, email: 'u2@gmail.com', role: 'Chair', approved: true)
-    @u_3 = User.create(id: 3, email: 'u3@gmail.com', role: 'Chair', approved: true)
+    @u_2 = User.create(id: 2, email: 'u2@gmail.com', approved: true)
+    @u_3 = User.create(id: 3, email: 'u3@gmail.com', approved: true)
     
     @form = PreferenceForm.create(title: 'Test', num_prefs: 2, num_antiprefs: 1, active: true)
     @q_1 = Question.create(id:1, preference_form_id: 1, question: 'Is this a quesiton?', question_type: 'Short Answer')

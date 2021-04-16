@@ -31,7 +31,7 @@ class ProfilesController < ApplicationController
 
       redirect_to(profiles_path, { flash: { success: "Created #{@profile.name} successfully." } })
     else
-      redirect_to(new_profile_path, { flash: { danger: 'Profile must have a name.' } })
+      render('new')
     end
   end
 
@@ -44,7 +44,7 @@ class ProfilesController < ApplicationController
     if @profile.update(profile_params)
       redirect_to(profiles_path, { flash: { success: "Profile #{@profile.name} updated succesfully." } })
     else
-      redirect_to(edit_profile_path, { flash: { danger: 'Profile did not update successfully.' } })
+      render('edit')
     end
   end
 

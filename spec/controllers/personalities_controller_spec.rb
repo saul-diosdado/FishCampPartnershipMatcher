@@ -305,7 +305,7 @@ RSpec.describe 'Controller Test', type: :system do
       expect(page).to have_content('User 1')
     end
     it 'Show user a match for type Investigator' do
-      user_login()
+    user_login()
       #Create a profile
       @p_17 = Profile.create(id: 17, user_id: User.last.id, name: 'User 17', email: 'user@gmail.com', enneagram: 'Investigator')
       visit personalities_path

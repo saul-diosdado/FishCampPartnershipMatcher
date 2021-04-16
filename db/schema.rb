@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_15_141832) do
+ActiveRecord::Schema.define(version: 2021_04_16_180348) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,15 +51,14 @@ ActiveRecord::Schema.define(version: 2021_04_15_141832) do
   end
 
   create_table "preference_forms", force: :cascade do |t|
-    t.bigint "creator_id"
     t.string "title"
     t.integer "num_prefs"
     t.integer "num_antiprefs"
     t.boolean "active"
+    t.bigint "submissions", default: [], array: true
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.datetime "deadline"
-    t.index ["creator_id"], name: "index_preference_forms_on_creator_id"
   end
 
   create_table "preferences", force: :cascade do |t|
@@ -118,6 +117,7 @@ ActiveRecord::Schema.define(version: 2021_04_15_141832) do
   create_table "users", force: :cascade do |t|
     t.string "email"
     t.string "password"
+    t.string "role"
     t.boolean "approved"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -126,7 +126,6 @@ ActiveRecord::Schema.define(version: 2021_04_15_141832) do
     t.string "remember_token", limit: 128
     t.string "email_confirmation_token", default: "", null: false
     t.datetime "email_confirmed_at"
-    t.string "name"
     t.index ["email"], name: "index_users_on_email"
     t.index ["remember_token"], name: "index_users_on_remember_token"
   end
@@ -141,5 +140,4 @@ ActiveRecord::Schema.define(version: 2021_04_15_141832) do
 
   add_foreign_key "choices", "questions"
   add_foreign_key "matches", "preference_forms"
-  add_foreign_key "profiles", "users"
 end

@@ -10,7 +10,6 @@ class UserDashboard < Administrate::BaseDashboard
   # which determines how the attribute is displayed
   # on pages throughout the dashboard.
   ATTRIBUTE_TYPES = {
-    role: Field::String,
     roles: Field::HasMany,
     id: Field::Number,
     email: Field::String,
@@ -47,7 +46,6 @@ class UserDashboard < Administrate::BaseDashboard
   # on the model's form (`new` and `edit`) pages.
   FORM_ATTRIBUTES = %i[
     email
-    role
     roles
     approved
   ].freeze

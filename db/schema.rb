@@ -51,15 +51,14 @@ ActiveRecord::Schema.define(version: 2021_04_15_141832) do
   end
 
   create_table "preference_forms", force: :cascade do |t|
-    t.bigint "creator_id"
     t.string "title"
     t.integer "num_prefs"
     t.integer "num_antiprefs"
     t.boolean "active"
+    t.bigint "submissions", default: [], array: true
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.datetime "deadline"
-    t.index ["creator_id"], name: "index_preference_forms_on_creator_id"
   end
 
   create_table "preferences", force: :cascade do |t|

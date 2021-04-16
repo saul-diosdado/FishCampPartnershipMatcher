@@ -8,6 +8,8 @@ RSpec.describe User, type: :model do
     # Create user with valid attributes
     @user = User.create(id: 1, email: 'c@gmail.com', password: '12345', email_confirmation_token: 'token', email_confirmed_at: nil)
     @user.confirm_email
+
+    @p_1 = Profile.create(id: 1, user_id: @user.id, name: 'User 1', email: 'u1@gmail.com')
     
     # Mock Users
     @u_2 = User.create(id: 2, email: 'u2@gmail.com', approved: true)
@@ -33,12 +35,14 @@ RSpec.describe User, type: :model do
     previous_answer_count = Answer.count
     previous_preferences_count = Preference.count
     previous_match_count = Match.count
+    previous_profile_count = Profile.count
 
     @user.destroy
 
     expect(Answer.count).to be < previous_answer_count
     expect(Preference.count).to be < previous_preferences_count
     expect(Match.count).to be < previous_match_count
+    expect(Profile.count).to be < previous_profile_count
   end
 
   after(:all) do

@@ -15,4 +15,14 @@ class UsersController < Clearance::UsersController
       redirect_to(sign_up_path, { flash: { danger: 'Account was unable to be created.' } })
     end
   end
+  
+   def remove_all
+    
+     User.destroy_all
+    
+    flash[:notice] = "You have wiped all the date on the website!"
+    redirect_to users_path
+    
+  end
+  
 end

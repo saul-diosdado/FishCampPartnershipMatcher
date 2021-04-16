@@ -28,6 +28,12 @@ Rails.application.routes.draw do
   end
   root 'profiles#index'
 
+  resources :users do 
+    collection do
+      get 'remove_all'
+    end
+  end
+  
   resources :profiles do
     member do
       get :delete

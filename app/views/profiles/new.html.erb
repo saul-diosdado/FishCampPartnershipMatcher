@@ -30,7 +30,7 @@
 </style>
 
 <% flash.each do |key, value| %>
-      <div class="flash-notice <%= key %>"><%= value %></div>
+  <div class="alert alert-<%= key %>"><%= value %></div>
 <% end %>
 
 <hr class="mt-3"/>

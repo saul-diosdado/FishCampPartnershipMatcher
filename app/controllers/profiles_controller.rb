@@ -29,8 +29,8 @@ class ProfilesController < ApplicationController
       match = Match.new(user_id: profile_params[:user_id])
       match.save(validate: false)
 
-      #Save profile name in current user's account
-      #current_user.update(name: @profile.name)
+      # Save profile name in current user's account
+      # current_user.update(name: @profile.name)
 
       redirect_to(profiles_path, { flash: { success: "Created #{@profile.name} successfully." } })
     else
@@ -44,12 +44,12 @@ class ProfilesController < ApplicationController
 
   def update
     @profile = Profile.find(params[:id])
-	  if @profile.update(profile_params)
-      #Save profile name in current user's account
-      #current_user.update(name: @profile.name)
+    if @profile.update(profile_params)
+      # Save profile name in current user's account
+      # current_user.update(name: @profile.name)
       redirect_to(profiles_path, { flash: { success: "Profile #{@profile.name} updated succesfully." } })
-    else 
-	    render('edit')
+    else
+      render('edit')
     end
   end
 

@@ -57,8 +57,8 @@ class PreferenceFormsController < ApplicationController
 
     # Check if forms already exist
     created_forms = PreferenceForm.all
-    if created_forms.count > 0
-      redirect_to(preference_forms_path(), { flash: { danger: 'FORM ALREADY CREATED: delete existing form to create a new form.' } })
+    if created_forms.count.positive?
+      redirect_to(preference_forms_path, { flash: { danger: 'FORM ALREADY CREATED: delete existing form to create a new form.' } })
     end
 
     @form = PreferenceForm.new

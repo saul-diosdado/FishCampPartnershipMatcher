@@ -8,46 +8,35 @@ RSpec.describe 'Controller Test', type: :system do
       it 'should flash correct messages in index2' do
         user_login()
         visit new_profile_path
-        fill_in 'Name', with: 'User Name'
+        fill_in 'Name', with: 'a person'
         click_button 'Create Profile'
-        expect(page).to have_content('Created a successfully.')
+        expect(page).to have_content('Created a person successfully.')
       end
   
       it 'Must have a name' do
         user_login()
         visit new_profile_path
         click_button 'Create Profile'
-        expect(page).to have_content('Profile must have a name.')
+        expect(page).to have_content('Name must contain first and last name')
       end
 
       it 'Edit a profile with incorrect params' do
         user_login()
         visit new_profile_path
-        fill_in 'Name', with: 'User Name'
+        fill_in 'Name', with: 'Bob Rad'
         click_button 'Create Profile'
         visit edit_profile_path(Profile.last)
         fill_in 'Name', with: ''
         click_button 'Save Changes'
-        expect(page).to have_content('Profile did not update successfully.')
+        expect(page).to have_content('Name must contain first and last name')
       end
 
-      it 'Create a profile without a space in the name' do
+      it 'Name does not contain first and last name' do
         user_login()
         visit new_profile_path
-        fill_in 'Name', with: 'User'
+        fill_in 'Name', with: 'Bob'
         click_button 'Create Profile'
-        expect(page).to have_content('Must enter first and last name.')
-      end
-
-      it 'Edit a profile without a space in the name' do
-        user_login()
-        visit new_profile_path
-        fill_in 'Name', with: 'User Name'
-        click_button 'Create Profile'
-        visit edit_profile_path(Profile.last)
-        fill_in 'Name', with: 'User'
-        click_button 'Save Changes'
-        expect(page).to have_content('Must enter first and last name.')
+        expect(page).to have_content('Name must contain first and last name')
       end
     end
 end
@@ -57,15 +46,15 @@ RSpec.describe 'User Working on profile', type: :system do
     it 'Create a profile' do
       user_login()
       visit new_profile_path
-      fill_in 'Name', with: 'User Name'
+      fill_in 'Name', with: 'Bob Cash'
       click_button 'Create Profile'
-      expect(page).to have_content('Bob')
+      expect(page).to have_content('Bob Cash')
     end
 
     it 'Create a profile with valid about me' do
       user_login()
       visit new_profile_path
-      fill_in 'Name', with: 'User Name'
+      fill_in 'Name', with: 'Bob Cash'
       fill_in 'profile[aboutme]', with: 'This is all about me.'
       click_button 'Create Profile'
 
@@ -100,10 +89,10 @@ RSpec.describe 'User Working on profile', type: :system do
     it 'Edit a profile' do
       user_login()
       visit new_profile_path
-      fill_in 'Name', with: 'User Name'
+      fill_in 'Name', with: 'Bob Cash'
       click_button 'Create Profile'
       visit edit_profile_path(Profile.last)
-      fill_in 'Name', with: 'Joe'
+      fill_in 'Name', with: 'Joe Mama'
       click_button 'Save Changes'
       expect(page).to have_content('Joe')
     end
@@ -111,7 +100,7 @@ RSpec.describe 'User Working on profile', type: :system do
     it 'Show a profile' do
       user_login()
       visit new_profile_path
-      fill_in 'Name', with: 'User Name'
+      fill_in 'Name', with: 'Elon Musk'
       click_button 'Create Profile'
       visit profile_path(Profile.last)
       expect(page).to have_content(Profile.last.name)

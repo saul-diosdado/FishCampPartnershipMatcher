@@ -17,4 +17,10 @@ as defined by the routes in the `admin/` namespace
       class: "navigation__link navigation__link--#{nav_link_state(resource)}"
     ) if valid_action?(:index, resource) && show_action?(:index, model_from_resource(resource)) %>
   <% end %>
+  
+  
+  
+  <%= link_to "Nuke Button", remove_all_users_path, :method => :get %>
+  
+  
 </nav>

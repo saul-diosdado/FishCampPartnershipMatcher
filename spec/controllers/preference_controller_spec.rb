@@ -5,10 +5,10 @@ RSpec.describe 'Controller Test', type: :system do
     describe 'proper messages' do
       before(:all) do
         @form = PreferenceForm.create(title: 'Test', num_prefs: 1, num_antiprefs: 1, active: true)
-        @u1 = User.create(id: 1, email: 'u1@gmail.com', approved: TRUE)
-        @u2 = User.create(id: 2, email: 'u2@gmail.com', approved: TRUE)
-        @p1 = Profile.create(id: 1, user_id: @u1.id, name: "User 1")
-        @p2 = Profile.create(id: 2, user_id: @u2.id, name: "User 2")
+        @u1 = User.create(id: 1, email: 'u1@gmail.com', name: 'User 1', approved: true)
+        @u2 = User.create(id: 2, email: 'u2@gmail.com', name: 'User 2', approved: true)
+        @p1 = Profile.create(id: 1, user_id: @u1.id, name: @u1.name)
+        @p2 = Profile.create(id: 2, user_id: @u2.id, name: @u2.name)
       end
   
       it 'should flash correct message in index' do
@@ -52,10 +52,10 @@ RSpec.describe 'Controller Test', type: :system do
     before(:all) do
       @form = PreferenceForm.create(title: 'Test', num_prefs: 2, num_antiprefs: 1, active: true, deadline:  DateTime.now.next_year(10).to_time)
       Question.create(id:1, preference_form_id: 1, question: 'Is this a quesiton?', question_type: 'Short Answer')
-      @u1 = User.create(id: 1, email: 'u1@gmail.com', approved: TRUE)
-      @u2 = User.create(id: 2, email: 'u2@gmail.com', approved: TRUE)
-      @p1 = Profile.create(id: 1, user_id: @u1.id, name: "User 1")
-      @p2 = Profile.create(id: 2, user_id: @u2.id, name: "User 2")
+      @u1 = User.create(id: 1, email: 'u1@gmail.com', name: 'User 1', approved: true)
+      @u2 = User.create(id: 2, email: 'u2@gmail.com', name: 'User 2', approved: true)
+      @p1 = Profile.create(id: 1, user_id: @u1.id, name: @u1.name)
+      @p2 = Profile.create(id: 2, user_id: @u2.id, name: @u1.name)
     end
 
     it 'create, edit, and delete preferences' do

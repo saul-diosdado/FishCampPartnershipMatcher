@@ -12,7 +12,18 @@ class UsersController < Clearance::UsersController
       ConfirmEmailMailer.registration_confirmation(@user).deliver_now
       redirect_to(sign_in_path, { flash: { success: 'Please check your email and confirm it to sign in' } })
     else
-      redirect_to(sign_up_path, { flash: { danger: 'Account was unable to be created.' } })
+      render('new')
     end
   end
+
+  private
+
+  def user_params
+    params[:user].permit(:email, :password, :name)
+  end
+
+  def user_from_params
+    User.new(user_params)
+  end
+
 end

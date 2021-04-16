@@ -4,6 +4,7 @@ module Helpers
     # Sign up with a new account.
     visit root_path
     click_link 'Sign up'
+    fill_in 'Name', with: 'Director Name'
     fill_in 'user[email]', with: 'director@gmail.com'
     fill_in 'Password', with: '12345'
     click_button 'Sign up'
@@ -27,6 +28,7 @@ module Helpers
     # Sign up with new account
     visit root_path
     click_link 'Sign up'
+    fill_in 'Name', with: 'User Name'
     fill_in 'user[email]', with: 'user@gmail.com'
     fill_in 'Password', with: '12345'
     click_button 'Sign up'

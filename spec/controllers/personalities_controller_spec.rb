@@ -6,40 +6,40 @@ require 'rails_helper'
 RSpec.describe 'Controller Test', type: :system do
   before(:each) do
     #Creating users
-    @u_1 = User.create(id: 1, email: 'u1@gmail.com', approved: true)
-    @u_2 = User.create(id: 2, email: 'u2@gmail.com', approved: true)
-    @u_3 = User.create(id: 3, email: 'u3@gmail.com', approved: true)
-    @u_4 = User.create(id: 4, email: 'u4@gmail.com', approved: true)
-    @u_5 = User.create(id: 5, email: 'u5@gmail.com', approved: true)
-    @u_6 = User.create(id: 6, email: 'u6@gmail.com', approved: true)
-    @u_7 = User.create(id: 7, email: 'u7@gmail.com', approved: true)
-    @u_8 = User.create(id: 8, email: 'u8@gmail.com', approved: true)
-    @u_9 = User.create(id: 9, email: 'u9@gmail.com', approved: true)
-    @u_10 = User.create(id: 10, email: 'u10@gmail.com', approved: true)
-    @u_11 = User.create(id: 11, email: 'u11@gmail.com', approved: true)
-    @u_12 = User.create(id: 12, email: 'u12@gmail.com', approved: true)
-    @u_13 = User.create(id: 13, email: 'u13@gmail.com', approved: true)
-    @u_14 = User.create(id: 14, email: 'u14@gmail.com', approved: true)
-    @u_15 = User.create(id: 15, email: 'u15@gmail.com', approved: true)
-    @u_16 = User.create(id: 16, email: 'u16@gmail.com', approved: true)
+    @u_1 = User.create(id: 1, email: 'u1@gmail.com', name: 'User 1', approved: true)
+    @u_2 = User.create(id: 2, email: 'u2@gmail.com', name: 'User 2', approved: true)
+    @u_3 = User.create(id: 3, email: 'u3@gmail.com', name: 'User 3', approved: true)
+    @u_4 = User.create(id: 4, email: 'u4@gmail.com', name: 'User 4', approved: true)
+    @u_5 = User.create(id: 5, email: 'u5@gmail.com', name: 'User 5', approved: true)
+    @u_6 = User.create(id: 6, email: 'u6@gmail.com', name: 'User 6', approved: true)
+    @u_7 = User.create(id: 7, email: 'u7@gmail.com', name: 'User 7', approved: true)
+    @u_8 = User.create(id: 8, email: 'u8@gmail.com', name: 'User 8', approved: true)
+    @u_9 = User.create(id: 9, email: 'u9@gmail.com', name: 'User 9', approved: true)
+    @u_10 = User.create(id: 10, email: 'u10@gmail.com', name: 'User 10', approved: true)
+    @u_11 = User.create(id: 11, email: 'u11@gmail.com', name: 'User 11', approved: true)
+    @u_12 = User.create(id: 12, email: 'u12@gmail.com', name: 'User 12', approved: true)
+    @u_13 = User.create(id: 13, email: 'u13@gmail.com', name: 'User 13', approved: true)
+    @u_14 = User.create(id: 14, email: 'u14@gmail.com', name: 'User 14', approved: true)
+    @u_15 = User.create(id: 15, email: 'u15@gmail.com', name: 'User 15', approved: true)
+    @u_16 = User.create(id: 16, email: 'u16@gmail.com', name: 'User 16', approved: true)
 
     #Creating profiles with corresponding PT type
-    @p_1 = Profile.create(id: 1, user_id: @u_1.id, name: 'User 1', email: 'u1@gmail.com', ptmyersbriggs: 'INFP')
-    @p_2 = Profile.create(id: 2, user_id: @u_2.id, name: 'User 2', email: 'u2@gmail.com', ptmyersbriggs: 'ENFP')
-    @p_3 = Profile.create(id: 3, user_id: @u_3.id, name: 'User 3', email: 'u3@gmail.com', ptmyersbriggs: 'INFJ')
-    @p_4 = Profile.create(id: 4, user_id: @u_4.id, name: 'User 4', email: 'u4@gmail.com', ptmyersbriggs: 'ENFJ')
-    @p_5 = Profile.create(id: 5, user_id: @u_5.id, name: 'User 5', email: 'u5@gmail.com', ptmyersbriggs: 'INTJ')
-    @p_6 = Profile.create(id: 6, user_id: @u_6.id, name: 'User 6', email: 'u6@gmail.com', ptmyersbriggs: 'ENTJ')
-    @p_7 = Profile.create(id: 7, user_id: @u_7.id, name: 'User 7', email: 'u7@gmail.com', ptmyersbriggs: 'INTP')
-    @p_8 = Profile.create(id: 8, user_id: @u_8.id, name: 'User 8', email: 'u8@gmail.com', ptmyersbriggs: 'ENTP')
-    @p_9 = Profile.create(id: 9, user_id: @u_9.id, name: 'User 9', email: 'u9@gmail.com', ptmyersbriggs: 'ISFP')
-    @p_10 = Profile.create(id: 10, user_id: @u_10.id, name: 'User 10', email: 'u10@gmail.com', ptmyersbriggs: 'ESFP')
-    @p_11 = Profile.create(id: 11, user_id: @u_11.id, name: 'User 11', email: 'u11@gmail.com', ptmyersbriggs: 'ISTP')
-    @p_12 = Profile.create(id: 12, user_id: @u_12.id, name: 'User 12', email: 'u12@gmail.com', ptmyersbriggs: 'ESTP')
-    @p_13 = Profile.create(id: 13, user_id: @u_13.id, name: 'User 13', email: 'u13@gmail.com', ptmyersbriggs: 'ISFJ')
-    @p_14 = Profile.create(id: 14, user_id: @u_14.id, name: 'User 14', email: 'u14@gmail.com', ptmyersbriggs: 'ESFJ')
-    @p_15 = Profile.create(id: 15, user_id: @u_15.id, name: 'User 15', email: 'u15@gmail.com', ptmyersbriggs: 'ISTJ')
-    @p_16 = Profile.create(id: 16, user_id: @u_16.id, name: 'User 16', email: 'u16@gmail.com', ptmyersbriggs: 'ESTJ')
+    @p_1 = Profile.create(id: 1, user_id: @u_1.id, name: @u_1.name, email: 'u1@gmail.com', ptmyersbriggs: 'INFP')
+    @p_2 = Profile.create(id: 2, user_id: @u_2.id, name: @u_2.name, email: 'u2@gmail.com', ptmyersbriggs: 'ENFP')
+    @p_3 = Profile.create(id: 3, user_id: @u_3.id, name: @u_3.name, email: 'u3@gmail.com', ptmyersbriggs: 'INFJ')
+    @p_4 = Profile.create(id: 4, user_id: @u_4.id, name: @u_4.name, email: 'u4@gmail.com', ptmyersbriggs: 'ENFJ')
+    @p_5 = Profile.create(id: 5, user_id: @u_5.id, name: @u_5.name, email: 'u5@gmail.com', ptmyersbriggs: 'INTJ')
+    @p_6 = Profile.create(id: 6, user_id: @u_6.id, name: @u_6.name, email: 'u6@gmail.com', ptmyersbriggs: 'ENTJ')
+    @p_7 = Profile.create(id: 7, user_id: @u_7.id, name: @u_7.name, email: 'u7@gmail.com', ptmyersbriggs: 'INTP')
+    @p_8 = Profile.create(id: 8, user_id: @u_8.id, name: @u_8.name, email: 'u8@gmail.com', ptmyersbriggs: 'ENTP')
+    @p_9 = Profile.create(id: 9, user_id: @u_9.id, name: @u_9.name, email: 'u9@gmail.com', ptmyersbriggs: 'ISFP')
+    @p_10 = Profile.create(id: 10, user_id: @u_10.id, name: @u_10.name, email: 'u10@gmail.com', ptmyersbriggs: 'ESFP')
+    @p_11 = Profile.create(id: 11, user_id: @u_11.id, name: @u_11.name, email: 'u11@gmail.com', ptmyersbriggs: 'ISTP')
+    @p_12 = Profile.create(id: 12, user_id: @u_12.id, name: @u_12.name, email: 'u12@gmail.com', ptmyersbriggs: 'ESTP')
+    @p_13 = Profile.create(id: 13, user_id: @u_13.id, name: @u_13.name, email: 'u13@gmail.com', ptmyersbriggs: 'ISFJ')
+    @p_14 = Profile.create(id: 14, user_id: @u_14.id, name: @u_14.name, email: 'u14@gmail.com', ptmyersbriggs: 'ESFJ')
+    @p_15 = Profile.create(id: 15, user_id: @u_15.id, name: @u_15.name, email: 'u15@gmail.com', ptmyersbriggs: 'ISTJ')
+    @p_16 = Profile.create(id: 16, user_id: @u_16.id, name: @u_16.name, email: 'u16@gmail.com', ptmyersbriggs: 'ESTJ')
   end
   describe 'Should give user information about their personality results MB' do
     it 'Show user an ideal match INFP' do
@@ -185,18 +185,18 @@ end
 RSpec.describe 'Controller Test', type: :system do
   before(:all) do
     #Creating user accounts to test matching algorithm
-    @u_1 = User.create(id: 1, email: 'u1@gmail.com', approved: true)
-    @u_2 = User.create(id: 2, email: 'u2@gmail.com', approved: true)
-    @u_3 = User.create(id: 3, email: 'u3@gmail.com', approved: true)
-    @u_4 = User.create(id: 4, email: 'u4@gmail.com', approved: true)
-    @u_5 = User.create(id: 5, email: 'u5@gmail.com', approved: true)
+    @u_1 = User.create(id: 1, email: 'u1@gmail.com', name: 'User 1', approved: true)
+    @u_2 = User.create(id: 2, email: 'u2@gmail.com', name: 'User 2', approved: true)
+    @u_3 = User.create(id: 3, email: 'u3@gmail.com', name: 'User 3', approved: true)
+    @u_4 = User.create(id: 4, email: 'u4@gmail.com', name: 'User 4', approved: true)
+    @u_5 = User.create(id: 5, email: 'u5@gmail.com', name: 'User 5', approved: true)
 
     #Filling in profiles for personality test results to test matching
-    @p_1 = Profile.create(id: 1, user_id: @u_1.id, name: 'User 1', email: 'u1@gmail.com', ptanimal: 'The Competitive Shark')
-    @p_2 = Profile.create(id: 2, user_id: @u_2.id, name: 'User 2', email: 'u2@gmail.com', ptanimal: 'The Compromising Fox')
-    @p_3 = Profile.create(id: 3, user_id: @u_3.id, name: 'User 3', email: 'u3@gmail.com', ptanimal: 'The Accommodating Teddy Bear')
-    @p_4 = Profile.create(id: 4, user_id: @u_4.id, name: 'User 4', email: 'u4@gmail.com', ptanimal: 'The Collaborative Owl')
-    @p_5 = Profile.create(id: 5, user_id: @u_5.id, name: 'User 5', email: 'u5@gmail.com', ptanimal: 'The Avoidant Turtle')
+    @p_1 = Profile.create(id: 1, user_id: @u_1.id, name: @u_1.name, email: 'u1@gmail.com', ptanimal: 'The Competitive Shark')
+    @p_2 = Profile.create(id: 2, user_id: @u_2.id, name: @u_2.name, email: 'u2@gmail.com', ptanimal: 'The Compromising Fox')
+    @p_3 = Profile.create(id: 3, user_id: @u_3.id, name: @u_3.name, email: 'u3@gmail.com', ptanimal: 'The Accommodating Teddy Bear')
+    @p_4 = Profile.create(id: 4, user_id: @u_4.id, name: @u_4.name, email: 'u4@gmail.com', ptanimal: 'The Collaborative Owl')
+    @p_5 = Profile.create(id: 5, user_id: @u_5.id, name: @u_5.name, email: 'u5@gmail.com', ptanimal: 'The Avoidant Turtle')
   end
   describe 'Should give user information about their personality results for Conflict Management' do
     it 'Show user a match for Shark' do
@@ -251,26 +251,26 @@ RSpec.describe 'Controller Test', type: :system do
   describe 'Should give user matches for their personality results Enneagram' do
     before(:all) do
       #Creating users
-      @u_1 = User.create(id: 1, email: 'u1@gmail.com', approved: true)
-      @u_2 = User.create(id: 2, email: 'u2@gmail.com', approved: true)
-      @u_3 = User.create(id: 3, email: 'u3@gmail.com', approved: true)
-      @u_4 = User.create(id: 4, email: 'u4@gmail.com', approved: true)
-      @u_5 = User.create(id: 5, email: 'u5@gmail.com', approved: true)
-      @u_6 = User.create(id: 6, email: 'u6@gmail.com', approved: true)
-      @u_7 = User.create(id: 7, email: 'u7@gmail.com', approved: true)
-      @u_8 = User.create(id: 8, email: 'u8@gmail.com', approved: true)
-      @u_9 = User.create(id: 9, email: 'u9@gmail.com', approved: true)
+      @u_1 = User.create(id: 1, email: 'u1@gmail.com', name: 'User 1', approved: true)
+      @u_2 = User.create(id: 2, email: 'u2@gmail.com', name: 'User 2', approved: true)
+      @u_3 = User.create(id: 3, email: 'u3@gmail.com', name: 'User 3', approved: true)
+      @u_4 = User.create(id: 4, email: 'u4@gmail.com', name: 'User 4', approved: true)
+      @u_5 = User.create(id: 5, email: 'u5@gmail.com', name: 'User 5', approved: true)
+      @u_6 = User.create(id: 6, email: 'u6@gmail.com', name: 'User 6', approved: true)
+      @u_7 = User.create(id: 7, email: 'u7@gmail.com', name: 'User 7', approved: true)
+      @u_8 = User.create(id: 8, email: 'u8@gmail.com', name: 'User 8', approved: true)
+      @u_9 = User.create(id: 9, email: 'u9@gmail.com', name: 'User 9', approved: true)
 
       #Creating profiles with corresponding PT type
-      @p_1 = Profile.create(id: 1, user_id: @u_1.id, name: 'User 1', email: 'u1@gmail.com', enneagram: 'Reformer')
-      @p_2 = Profile.create(id: 2, user_id: @u_2.id, name: 'User 2', email: 'u2@gmail.com', enneagram: 'Helper')
-      @p_3 = Profile.create(id: 3, user_id: @u_3.id, name: 'User 3', email: 'u3@gmail.com', enneagram: 'Achiever')
-      @p_4 = Profile.create(id: 4, user_id: @u_4.id, name: 'User 4', email: 'u4@gmail.com', enneagram: 'Individualist')
-      @p_5 = Profile.create(id: 5, user_id: @u_5.id, name: 'User 5', email: 'u5@gmail.com', enneagram: 'Investigator')
-      @p_6 = Profile.create(id: 6, user_id: @u_6.id, name: 'User 6', email: 'u6@gmail.com', enneagram: 'Loyalist')
-      @p_7 = Profile.create(id: 7, user_id: @u_7.id, name: 'User 7', email: 'u7@gmail.com', enneagram: 'Enthusiast')
-      @p_8 = Profile.create(id: 8, user_id: @u_8.id, name: 'User 8', email: 'u8@gmail.com', enneagram: 'Challenger')
-      @p_9 = Profile.create(id: 9, user_id: @u_9.id, name: 'User 9', email: 'u9@gmail.com', enneagram: 'Peacemaker')
+      @p_1 = Profile.create(id: 1, user_id: @u_1.id, name: @u_1.name, email: 'u1@gmail.com', enneagram: 'Reformer')
+      @p_2 = Profile.create(id: 2, user_id: @u_2.id, name: @u_2.name, email: 'u2@gmail.com', enneagram: 'Helper')
+      @p_3 = Profile.create(id: 3, user_id: @u_3.id, name: @u_3.name, email: 'u3@gmail.com', enneagram: 'Achiever')
+      @p_4 = Profile.create(id: 4, user_id: @u_4.id, name: @u_4.name, email: 'u4@gmail.com', enneagram: 'Individualist')
+      @p_5 = Profile.create(id: 5, user_id: @u_5.id, name: @u_5.name, email: 'u5@gmail.com', enneagram: 'Investigator')
+      @p_6 = Profile.create(id: 6, user_id: @u_6.id, name: @u_6.name, email: 'u6@gmail.com', enneagram: 'Loyalist')
+      @p_7 = Profile.create(id: 7, user_id: @u_7.id, name: @u_7.name, email: 'u7@gmail.com', enneagram: 'Enthusiast')
+      @p_8 = Profile.create(id: 8, user_id: @u_8.id, name: @u_8.name, email: 'u8@gmail.com', enneagram: 'Challenger')
+      @p_9 = Profile.create(id: 9, user_id: @u_9.id, name: @u_9.name, email: 'u9@gmail.com', enneagram: 'Peacemaker')
     end
     it 'Show user a match for type Reformer' do
       user_login()
@@ -462,19 +462,19 @@ RSpec.describe 'Controller Test', type: :system do
   end
 end
 
-def user_login
-  # Sign up with new account
-  visit root_path
-  click_link 'Sign up'
-  fill_in 'user[email]', with: 'user@gmail.com'
-  fill_in 'Password', with: '12345'
-  click_button 'Sign up'
+# def user_login
+#   # Sign up with new account
+#   visit root_path
+#   click_link 'Sign up'
+#   fill_in 'user[email]', with: 'user@gmail.com'
+#   fill_in 'Password', with: '12345'
+#   click_button 'Sign up'
 
-  @user = User.last
-  @user.approved = TRUE
-  @user.save
+#   @user = User.last
+#   @user.approved = TRUE
+#   @user.save
 
-  # Confirm the email
-  open_email 'user@gmail.com'
-  click_first_link_in_email
-end
+#   # Confirm the email
+#   open_email 'user@gmail.com'
+#   click_first_link_in_email
+# end

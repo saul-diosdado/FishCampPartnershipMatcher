@@ -12,8 +12,8 @@ RSpec.describe User, type: :model do
     @p_1 = Profile.create(id: 1, user_id: @user.id, name: 'User 1', email: 'u1@gmail.com')
     
     # Mock Users
-    @u_2 = User.create(id: 2, email: 'u2@gmail.com', approved: true)
-    @u_3 = User.create(id: 3, email: 'u3@gmail.com', approved: true)
+    @u_2 = User.create(id: 2, email: 'u2@gmail.com', name: 'User 2', approved: true)
+    @u_3 = User.create(id: 3, email: 'u3@gmail.com', name: 'User 3', approved: true)
     
     @form = PreferenceForm.create(title: 'Test', num_prefs: 2, num_antiprefs: 1, active: true)
     @q_1 = Question.create(id:1, preference_form_id: 1, question: 'Is this a quesiton?', question_type: 'Short Answer')
@@ -28,7 +28,7 @@ RSpec.describe User, type: :model do
   end
 
   it 'is valid with valid attributes' do
-    expect(User.new(id: 2, email: 'a@gmail.com', password: '12345', email_confirmation_token: 'token', email_confirmed_at: nil)).to be_valid
+    expect(User.new(id: 2, name: 'User name' email: 'a@gmail.com', password: '12345', email_confirmation_token: 'token', email_confirmed_at: nil)).to be_valid
   end
   
   it 'when deleted also deletes all preferences, answers, and match entry that the user has' do
@@ -55,7 +55,7 @@ RSpec.describe 'User Model Test', type: :system do
   describe 'confirm_email' do
     it 'sets confirmed_email properly' do
       #create user with valid attributes
-      user = User.create(email: 'c@gmail.com', email_confirmation_token: 'token', email_confirmed_at: nil)
+      user = User.create(email: 'c@gmail.com', name: 'User Name', email_confirmation_token: 'token', email_confirmed_at: nil)
 
       user.confirm_email
 

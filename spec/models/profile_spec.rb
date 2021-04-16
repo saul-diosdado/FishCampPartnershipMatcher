@@ -5,7 +5,7 @@ require 'rails_helper'
 # Profile Model Unit Test
 RSpec.describe Profile, type: :model do
   before(:each) do
-    @user = User.create(id: 1, email: 'c@gmail.com', password: '12345', email_confirmation_token: 'token', email_confirmed_at: nil)
+    @user = User.create(id: 1, email: 'c@gmail.com', name: 'User Name' password: '12345', email_confirmation_token: 'token', email_confirmed_at: nil)
     @subject = Profile.create(id: 1, user_id: @user.id, name: 'User 1', email: 'u1@gmail.com')
   end
 

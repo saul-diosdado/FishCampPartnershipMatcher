@@ -10,6 +10,10 @@ class UserDashboard < Administrate::BaseDashboard
   # which determines how the attribute is displayed
   # on pages throughout the dashboard.
   ATTRIBUTE_TYPES = {
+<<<<<<< HEAD
+=======
+    
+>>>>>>> adf3fe13b018cd9a8440f6a67176b5c9077d2d9e
     roles: Field::HasMany,
     id: Field::Number,
     email: Field::String,

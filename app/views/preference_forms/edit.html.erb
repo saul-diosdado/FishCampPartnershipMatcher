@@ -1,8 +1,21 @@
 <h1 class="my-4">Edit Form</h1>
 <%= form_for(@form) do |f| %>
   <%= render(:partial => "form", :locals => {:f => f,:form_id => @form.id}) %>
+  <div style="margin-bottom: 10px;">
+    <h4>Functions</h4>
+    <% if (@form.submissions == []) %>
+      <p style="color:lightgray"> Sorry! No functions available right now. </p>
+    <% else %>
+      <div class="d-inline-block"> 
+        <p><%= link_to("Reopen Form", reopen_preference_form_path(@form), class: "btn btn-danger btn-sm my-1") %></p>
+      </div>
+      <div class="d-inline-block"> 
+        <p><b style="color:red">WARNING:</b> This will reopen the form for <b>ALL</b> chairs.</p>
+      </div>
+    <% end %>
+  </div>
   <p>
-    <%= link_to("Back", preference_forms_path) %>
+    <%= link_to("Back", preference_forms_path, class: "btn btn-secondary my-1") %>
     <%= f.submit("Update Form", class: "btn btn-primary") %>
   </p>
 <% end %>

@@ -16,6 +16,11 @@ class UsersController < Clearance::UsersController
     end
   end
 
+  def remove_all
+    User.destroy_all
+    redirect_to(root_path, { flash: { success: 'You have wiped all the date on the website!' } })
+  end
+
   private
 
   def user_params
@@ -25,5 +30,4 @@ class UsersController < Clearance::UsersController
   def user_from_params
     User.new(user_params)
   end
-
 end

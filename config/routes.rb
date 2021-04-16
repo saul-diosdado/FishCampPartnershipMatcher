@@ -56,6 +56,7 @@ Rails.application.routes.draw do
     member do
       get :delete
       get :submit
+      get :reopen
     end
   end
 

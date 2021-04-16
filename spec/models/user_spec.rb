@@ -6,7 +6,7 @@ require 'rails_helper'
 RSpec.describe User, type: :model do
   before(:all) do
     # Create user with valid attributes
-    @user = User.create(id: 1, email: 'c@gmail.com', password: '12345', email_confirmation_token: 'token', email_confirmed_at: nil)
+    @user = User.create(id: 1, name: 'User Name', email: 'c@gmail.com', password: '12345', email_confirmation_token: 'token', email_confirmed_at: nil)
     @user.confirm_email
 
     @p_1 = Profile.create(id: 1, user_id: @user.id, name: 'User 1', email: 'u1@gmail.com')
@@ -28,7 +28,7 @@ RSpec.describe User, type: :model do
   end
 
   it 'is valid with valid attributes' do
-    expect(User.new(id: 2, name: 'User name' email: 'a@gmail.com', password: '12345', email_confirmation_token: 'token', email_confirmed_at: nil)).to be_valid
+    expect(User.new(id: 2, name: 'User name', email: 'a@gmail.com', password: '12345', email_confirmation_token: 'token', email_confirmed_at: nil)).to be_valid
   end
   
   it 'when deleted also deletes all preferences, answers, and match entry that the user has' do

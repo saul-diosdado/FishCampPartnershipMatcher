@@ -9,7 +9,7 @@ RSpec.describe 'Controller Test', type: :system do
         user_login()
         visit new_profile_path
         click_button 'Create Profile'
-        expect(page).to have_content('Created a person successfully.')
+        expect(page).to have_content('Created User Name successfully.')
       end
     end
 end
@@ -66,7 +66,7 @@ RSpec.describe 'User Working on profile', type: :system do
       visit edit_profile_path(Profile.last)
       fill_in 'profile[aboutme]', with: 'Joe Mama'
       click_button 'Save Changes'
-      expect(page).to have_content('Joe Mama')
+      expect(Profile.last.aboutme).to eq 'Joe Mama'
     end
   
     it 'Show a profile' do

@@ -26,7 +26,7 @@ RSpec.describe 'Controller Test', type: :system do
         fill_in 'user[email]', with: 'g@gmail.com'
         fill_in 'Password', with: '12345'
         click_button 'Sign up'
-        expect(page).to have_content('Name cannot be blank')
+        expect(page).to have_content('Name can\'t be blank')
       end
 
       it 'Name does not contain first and last name' do

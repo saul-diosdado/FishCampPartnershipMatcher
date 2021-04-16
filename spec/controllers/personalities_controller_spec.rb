@@ -357,7 +357,6 @@ RSpec.describe 'Controller Test', type: :system do
     it 'Show user their own personality type Gold' do
       user_login()
       visit new_profile_path
-      fill_in 'Name', with: 'User Name'
       select 'Gold', from: 'profile[pttruecolors]'
       click_button 'Create Profile'
       visit personalities_path
@@ -367,7 +366,6 @@ RSpec.describe 'Controller Test', type: :system do
     it 'Show user their own personality type Blue' do
       user_login()
       visit new_profile_path
-      fill_in 'Name', with: 'User Name'
       select 'Blue', from: 'profile[pttruecolors]'
       click_button 'Create Profile'
       visit personalities_path
@@ -377,7 +375,6 @@ RSpec.describe 'Controller Test', type: :system do
     it 'Show user their own personality type Green' do
       user_login()
       visit new_profile_path
-      fill_in 'Name', with: 'User Name'
       select 'Green', from: 'profile[pttruecolors]'
       click_button 'Create Profile'
       visit personalities_path
@@ -387,7 +384,6 @@ RSpec.describe 'Controller Test', type: :system do
     it 'Show user their own personality type Orange' do
       user_login()
       visit new_profile_path
-      fill_in 'Name', with: 'User Name'
       select 'Orange', from: 'profile[pttruecolors]'
       click_button 'Create Profile'
       visit personalities_path
@@ -407,7 +403,6 @@ RSpec.describe 'Controller Test', type: :system do
     it 'Reject if try to click on Myers Briggs page' do
       user_login()
       visit new_profile_path
-      fill_in 'Name', with: 'g'
       select 'The Avoidant Turtle', from: 'profile[ptanimal]'
       select 'Green', from: 'profile[pttruecolors]'
       select 'Reformer', from: 'profile[enneagram]'
@@ -420,7 +415,6 @@ RSpec.describe 'Controller Test', type: :system do
     it 'Reject if try to click on Conflict Management page' do
       user_login()
       visit new_profile_path
-      fill_in 'Name', with: 'User Name'
       select 'INFP', from: 'profile[ptmyersbriggs]'
       select 'Gold', from: 'profile[pttruecolors]'
       select 'Individualist', from: 'profile[enneagram]'
@@ -433,7 +427,6 @@ RSpec.describe 'Controller Test', type: :system do
     it 'Reject if try to click on True Colors page' do
       user_login()
       visit new_profile_path
-      fill_in 'Name', with: 'User Name'
       select 'ENFJ', from: 'profile[ptmyersbriggs]'
       select 'The Compromising Fox', from: 'profile[ptanimal]'
       select 'Enthusiast', from: 'profile[enneagram]'
@@ -446,7 +439,6 @@ RSpec.describe 'Controller Test', type: :system do
     it 'Reject if try to click on Enneagram page' do
       user_login()
       visit new_profile_path
-      fill_in 'Name', with: 'User Name'
       select 'ENTJ', from: 'profile[ptmyersbriggs]'
       select 'Blue', from: 'profile[pttruecolors]'
       select 'The Competitive Shark', from: 'profile[ptanimal]'
@@ -461,20 +453,3 @@ RSpec.describe 'Controller Test', type: :system do
     DatabaseCleaner.clean_with(:truncation)
   end
 end
-
-# def user_login
-#   # Sign up with new account
-#   visit root_path
-#   click_link 'Sign up'
-#   fill_in 'user[email]', with: 'user@gmail.com'
-#   fill_in 'Password', with: '12345'
-#   click_button 'Sign up'
-
-#   @user = User.last
-#   @user.approved = TRUE
-#   @user.save
-
-#   # Confirm the email
-#   open_email 'user@gmail.com'
-#   click_first_link_in_email
-# end

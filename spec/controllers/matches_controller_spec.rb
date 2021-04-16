@@ -158,7 +158,7 @@ RSpec.describe 'Director', type: :system do
   it 'tries to find a match for someone who has no prospects' do
     director_login()
     u_6 = User.create(id: 6, email: 'u6@gmail.com', name: 'User 6', approved: true)
-    p_6 = Profile.create(id: 6, user_id: u_6.id, name: @u_6.name, email: 'u6@gmail.com')
+    p_6 = Profile.create(id: 6, user_id: u_6.id, name: u_6.name, email: 'u6@gmail.com')
     match_6 = Match.create(id: 6, user_id: 6, matched_id: nil)
 
     visit edit_match_path(match_6)
@@ -177,8 +177,8 @@ RSpec.describe 'Director', type: :system do
     u_6 = User.create(id: 6, email: 'u6@gmail.com', name: 'User 6', approved: true)
     u_7 = User.create(id: 7, email: 'u7@gmail.com', name: 'User 7', approved: true)
 
-    Profile.create(id: 6, user_id: u_6.id, name: @u_6.name, email: 'u6@gmail.com')
-    Profile.create(id: 7, user_id: u_7.id, name: @u_7.name, email: 'u7@gmail.com')
+    Profile.create(id: 6, user_id: u_6.id, name: u_6.name, email: 'u6@gmail.com')
+    Profile.create(id: 7, user_id: u_7.id, name: u_7.name, email: 'u7@gmail.com')
 
     Preference.create(id: 7, selector_id: 5, selected_id: 6, preference_form_id: 1, pref_type: 'Preference', rating: 3)
     Preference.create(id: 8, selector_id: 6, selected_id: 5, preference_form_id: 1, pref_type: 'Preference', rating: 3)

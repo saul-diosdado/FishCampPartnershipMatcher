@@ -1,5 +1,25 @@
+<style>
+	body {
+		  background-color: wheat;
+		  width: 100%;
+		  background-position: center;
+		  background-repeat: no-repeat;
+		  background-size: cover;
+		}
+</style>
+
 <% flash.each do |key, value| %>
   <div class="alert alert-<%= key %>"><%= value %></div>
 <% end %>
 
-Welcome to FCPartnershipMatcher! You must be approved by an administrator before you can move forward.
+<body>
+	<div class = "my-5" style = "text-align: center">
+		<div class="card" style = "background-color: maroon; color: white; opacity: 0.75">
+		  <div class="card-body">
+			<p class="card-text">Welcome to FCPartnershipMatcher! You must be approved by an administrator before you can move forward.</p>
+			<br>
+			<p class="card-text">Once approved, you can refresh the window or login at the sign-in page.</p>
+		  </div>
+		</div>
+	</div>
+</body>

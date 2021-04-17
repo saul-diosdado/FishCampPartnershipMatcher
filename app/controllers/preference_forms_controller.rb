@@ -3,6 +3,9 @@
 class PreferenceFormsController < ApplicationController
   before_action :require_login, :check_if_approved
   def index
+    # Check if current user is a director
+    check_role
+
     @forms = PreferenceForm.all
   end
 
@@ -38,17 +41,26 @@ class PreferenceFormsController < ApplicationController
     # Takes the correct action based on the found error.
     case error_id
     when 1
-      redirect_to(answers_path(form_id: @form.id), { flash: { danger: 'FORM NOT COMPLETE: please answer all questions before submitting.' } })
+      redirect_to(answers_path(form_id: @form.id), { flash: { danger: 'FORM NOT COMPLETE: please answer all questions before submitting' } })
     when 2
       redirect_to(preferences_path(form_id: @form.id),
-                  { flash: { danger: 'FORM NOT COMPLETE: missing one or more preferences. Use the "Add Pref" button to complete the form.' } })
+                  { flash: { danger: 'FORM NOT COMPLETE: missing one or more preferences. Use the "Add Pref" button to complete the form' } })
     when 3
       redirect_to(preferences_path(form_id: @form.id),
-                  { flash: { danger: 'FORM NOT COMPLETE: missing one or more anti-preferences. Use the "Add Anti-Pref" button to complete the form.' } })
+                  { flash: { danger: 'FORM NOT COMPLETE: missing one or more anti-preferences. Use the "Add Anti-Pref" button to complete the form' } })
     end
   end
 
   def new
+    # Check if current user is a director
+    check_role
+
+    # Check if forms already exist
+    created_forms = PreferenceForm.all
+    if created_forms.count.positive?
+      redirect_to(preference_forms_path, { flash: { danger: 'FORM ALREADY CREATED: delete existing form to create a new form' } })
+    end
+
     @form = PreferenceForm.new
   end
 
@@ -56,33 +68,39 @@ class PreferenceFormsController < ApplicationController
     @form = PreferenceForm.new(form_params)
 
     if @form.save
-      redirect_to(questions_path(form_id: @form.id), { flash: { success: 'Form settings added successfully.' } })
+      redirect_to(questions_path(form_id: @form.id), { flash: { success: 'Form settings added successfully' } })
     else
       render('new')
     end
   end
 
   def edit
+    # Check if current user is a director
+    check_role
+
     @form = PreferenceForm.find(params[:id])
   end
 
   def update
     @form = PreferenceForm.find(params[:id])
     if @form.update(form_params)
-      redirect_to(preference_forms_path, { flash: { success: 'Form settings updated successfully.' } })
+      redirect_to(preference_forms_path, { flash: { success: 'Form settings updated successfully' } })
     else
       render('edit')
     end
   end
 
   def delete
+    # Check if current user is a director
+    check_role
+
     @form = PreferenceForm.find(params[:id])
   end
 
   def destroy
     @form = PreferenceForm.find(params[:id])
     @form.destroy
-    redirect_to(preference_forms_path, { flash: { success: 'Form deleted successfully.' } })
+    redirect_to(preference_forms_path, { flash: { success: 'Form deleted successfully' } })
   end
 
   def submit
@@ -99,6 +117,17 @@ class PreferenceFormsController < ApplicationController
 
     # Redirect to public forms
     redirect_to(public_forms_path)
+  end
+
+  def reopen
+    # Load the form
+    @form = PreferenceForm.find(params[:id])
+
+    # Reset the submissions
+    @form.submissions = []
+    @form.save
+
+    redirect_to(preference_forms_path, { flash: { success: 'Form reopened' } })
   end
 
   private def form_params

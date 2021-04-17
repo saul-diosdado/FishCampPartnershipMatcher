@@ -9,12 +9,12 @@ RSpec.describe 'Controller Test', type: :system do
     @form = PreferenceForm.create(title: 'Test', num_prefs: 2, num_antiprefs: 1, active: true)
     
     # Three Test Users
-    @u_1 = User.create(id: 1, email: 'u1@gmail.com', role: 'Chair', approved: true)
-    @u_2 = User.create(id: 2, email: 'u2@gmail.com', role: 'Chair', approved: true)
-    @u_3 = User.create(id: 3, email: 'u3@gmail.com', role: 'Chair', approved: true)
-    @p_1 = Profile.create(id: 1, user_id: @u_1.id, name: 'User 1', email: 'u1@gmail.com')
-    @p_2 = Profile.create(id: 2, user_id: @u_2.id, name: 'User 2', email: 'u2@gmail.com')
-    @p_3 = Profile.create(id: 3, user_id: @u_3.id, name: 'User 3', email: 'u3@gmail.com')
+    @u_1 = User.create(id: 1, email: 'u1@gmail.com', name: 'User 1', approved: true)
+    @u_2 = User.create(id: 2, email: 'u2@gmail.com', name: 'User 2', approved: true)
+    @u_3 = User.create(id: 3, email: 'u3@gmail.com', name: 'User 3', approved: true)
+    @p_1 = Profile.create(id: 1, user_id: @u_1.id, name: @u_1.name, email: 'u1@gmail.com', ptanimal: 'The Collaborative Owl', pttruecolors: 'Orange', ptmyersbriggs: 'INTJ', enneagram: 'Achiever')
+    @p_2 = Profile.create(id: 2, user_id: @u_2.id, name: @u_2.name, email: 'u2@gmail.com', ptanimal: 'The Avoidant Turtle', pttruecolors: 'Gold', ptmyersbriggs: 'INFP', enneagram: 'Reformer')
+    @p_3 = Profile.create(id: 3, user_id: @u_3.id, name: @u_3.name, email: 'u3@gmail.com', ptanimal: 'The Compromising Fox', pttruecolors: 'Green', ptmyersbriggs: 'ENTP', enneagram: 'Investigator')
 
     # Mock Preferences
     @pref_1 = Preference.create(id: 1, selector_id: 1, selected_id: 2, preference_form_id: 1, pref_type: 'Preference', rating: 4)
@@ -22,12 +22,7 @@ RSpec.describe 'Controller Test', type: :system do
     @pref_3 = Preference.create(id: 3, selector_id: 2, selected_id: 1, preference_form_id: 1, pref_type: 'Preference', rating: 5)
     @pref_4 = Preference.create(id: 4, selector_id: 2, selected_id: 3, preference_form_id: 1, pref_type: 'Preference', rating: 3)
     @pref_5 = Preference.create(id: 5, selector_id: 3, selected_id: 1, preference_form_id: 1, pref_type: 'Preference', rating: 3)
-
-    # Match Entries
-    @match_1 = Match.create(id: 1, user_id: 1, matched_id: nil)
-    @match_2 = Match.create(id: 2, user_id: 2, matched_id: nil)
-    @match_3 = Match.create(id: 3, user_id: 3, matched_id: nil)
-
+    
     # Mock Q/A
     @q_1 = Question.create(id:1, preference_form_id: 1, question: 'Is this a quesiton?', question_type: 'Short Answer')
     @q_2 = Question.create(id:2, preference_form_id: 1, question: 'Is this a quesiton 2?', question_type: 'Multiple Choice')
@@ -38,6 +33,13 @@ RSpec.describe 'Controller Test', type: :system do
     @a_2 = Answer.create(user_id: 1, question_id: 2, preference_form_id: 1, answer_type: 'Multiple Choice', multiple_choice: 'Possibly.')
     @a_3 = Answer.create(user_id: 1, question_id: 3, preference_form_id: 1, answer_type: 'True/False', true_false: true)
     @a_4 = Answer.create(user_id: 1, question_id: 4, preference_form_id: 1, answer_type: 'Numeric', numeric: 4)
+  end
+  
+  before(:each) do
+    # Match Entries
+    @match_1 = Match.create(id: 1, user_id: 1, matched_id: nil)
+    @match_2 = Match.create(id: 2, user_id: 2, matched_id: nil)
+    @match_3 = Match.create(id: 3, user_id: 3, matched_id: nil)
   end
 
   describe 'proper message after a match has been made' do
@@ -61,16 +63,16 @@ RSpec.describe 'Director', type: :system do
     @form = PreferenceForm.create(title: 'Test', num_prefs: 2, num_antiprefs: 1, active: true)
     
     # Three Test Users
-    @u_1 = User.create(id: 1, email: 'u1@gmail.com', role: 'Chair', approved: true)
-    @u_2 = User.create(id: 2, email: 'u2@gmail.com', role: 'Chair', approved: true)
-    @u_3 = User.create(id: 3, email: 'u3@gmail.com', role: 'Chair', approved: true)
-    @u_4 = User.create(id: 4, email: 'u4@gmail.com', role: 'Chair', approved: true)
-    @u_5 = User.create(id: 5, email: 'u5@gmail.com', role: 'Chair', approved: true)
-    @p_1 = Profile.create(id: 1, user_id: @u_1.id, name: 'User 1', email: 'u1@gmail.com')
-    @p_2 = Profile.create(id: 2, user_id: @u_2.id, name: 'User 2', email: 'u2@gmail.com')
-    @p_3 = Profile.create(id: 3, user_id: @u_3.id, name: 'User 3', email: 'u3@gmail.com')
-    @p_4 = Profile.create(id: 4, user_id: @u_4.id, name: 'User 4', email: 'u4@gmail.com')
-    @p_5 = Profile.create(id: 5, user_id: @u_5.id, name: 'User 5', email: 'u5@gmail.com')
+    @u_1 = User.create(id: 1, email: 'u1@gmail.com', name: 'User 1', approved: true)
+    @u_2 = User.create(id: 2, email: 'u2@gmail.com', name: 'User 2', approved: true)
+    @u_3 = User.create(id: 3, email: 'u3@gmail.com', name: 'User 3', approved: true)
+    @u_4 = User.create(id: 4, email: 'u4@gmail.com', name: 'User 4', approved: true)
+    @u_5 = User.create(id: 5, email: 'u5@gmail.com', name: 'User 5', approved: true)
+    @p_1 = Profile.create(id: 1, user_id: @u_1.id, name: @u_1.name, email: 'u1@gmail.com', ptanimal: 'The Collaborative Owl', pttruecolors: 'Orange', ptmyersbriggs: 'INTJ', enneagram: 'Achiever')
+    @p_2 = Profile.create(id: 2, user_id: @u_2.id, name: @u_2.name, email: 'u2@gmail.com', ptanimal: 'The Avoidant Turtle', pttruecolors: 'Gold', ptmyersbriggs: 'INFP', enneagram: 'Reformer')
+    @p_3 = Profile.create(id: 3, user_id: @u_3.id, name: @u_3.name, email: 'u3@gmail.com', ptanimal: 'The Compromising Fox', pttruecolors: 'Green', ptmyersbriggs: 'ENTP', enneagram: 'Investigator')
+    @p_4 = Profile.create(id: 4, user_id: @u_4.id, name: @u_4.name, email: 'u4@gmail.com', ptanimal: 'The Competitive Shark', pttruecolors: 'Blue', ptmyersbriggs: 'ISTJ', enneagram: 'Achiever')
+    @p_5 = Profile.create(id: 5, user_id: @u_5.id, name: @u_5.name, email: 'u5@gmail.com', ptanimal: 'The Accommodating Teddy Bear', pttruecolors: 'Orange', ptmyersbriggs: 'ESTP', enneagram: 'Enthusiast')
     
     # Mock Preferences
     @pref_1 = Preference.create(id: 1, selector_id: 1, selected_id: 2, preference_form_id: 1, pref_type: 'Preference', rating: 4)
@@ -79,7 +81,9 @@ RSpec.describe 'Director', type: :system do
     @pref_4 = Preference.create(id: 4, selector_id: 2, selected_id: 3, preference_form_id: 1, pref_type: 'Preference', rating: 3)
     @pref_5 = Preference.create(id: 5, selector_id: 3, selected_id: 1, preference_form_id: 1, pref_type: 'Preference', rating: 3)
     @pref_6 = Preference.create(id: 6, selector_id: 4, selected_id: 5, preference_form_id: 1, pref_type: 'Preference', rating: 3)
-    
+  end
+
+    before(:each) do
     # Match Entries
     @match_1 = Match.create(id: 1, user_id: 1, matched_id: nil)
     @match_2 = Match.create(id: 2, user_id: 2, matched_id: nil)
@@ -153,8 +157,8 @@ RSpec.describe 'Director', type: :system do
 
   it 'tries to find a match for someone who has no prospects' do
     director_login()
-    u_6 = User.create(id: 6, email: 'u6@gmail.com', role: 'Chair', approved: true)
-    p_6 = Profile.create(id: 6, user_id: u_6.id, name: 'User 6', email: 'u6@gmail.com')
+    u_6 = User.create(id: 6, email: 'u6@gmail.com', name: 'User 6', approved: true)
+    p_6 = Profile.create(id: 6, user_id: u_6.id, name: u_6.name, email: 'u6@gmail.com')
     match_6 = Match.create(id: 6, user_id: 6, matched_id: nil)
 
     visit edit_match_path(match_6)
@@ -170,11 +174,11 @@ RSpec.describe 'Director', type: :system do
   
   it 'starts matching and a new match average turns out to be better than a previous one' do
     director_login()
-    u_6 = User.create(id: 6, email: 'u6@gmail.com', role: 'Chair', approved: true)
-    u_7 = User.create(id: 7, email: 'u7@gmail.com', role: 'Chair', approved: true)
+    u_6 = User.create(id: 6, email: 'u6@gmail.com', name: 'User 6', approved: true)
+    u_7 = User.create(id: 7, email: 'u7@gmail.com', name: 'User 7', approved: true)
 
-    Profile.create(id: 6, user_id: u_6.id, name: 'User 6', email: 'u6@gmail.com')
-    Profile.create(id: 7, user_id: u_7.id, name: 'User 7', email: 'u7@gmail.com')
+    Profile.create(id: 6, user_id: u_6.id, name: u_6.name, email: 'u6@gmail.com')
+    Profile.create(id: 7, user_id: u_7.id, name: u_7.name, email: 'u7@gmail.com')
 
     Preference.create(id: 7, selector_id: 5, selected_id: 6, preference_form_id: 1, pref_type: 'Preference', rating: 3)
     Preference.create(id: 8, selector_id: 6, selected_id: 5, preference_form_id: 1, pref_type: 'Preference', rating: 3)
@@ -192,28 +196,4 @@ RSpec.describe 'Director', type: :system do
   after(:all) do
     DatabaseCleaner.clean_with(:truncation)
   end
-end
-
-# Helper function to login a user and make them a Director (in order to access matches pages)
-def director_login
-  # Sign up with a new account.
-  visit root_path
-  click_link 'Sign up'
-  fill_in 'user[email]', with: 'director@gmail.com'
-  fill_in 'Password', with: '12345'
-  click_button 'Sign up'
-
-  # Approve user
-  @user = User.last
-  @user.approved = TRUE
-  @user.save
-
-  # Make the last account that signed up a Director in order to access the matches pages.
-  @director_user = User.last
-  @director_user.remove_role :chair
-  @director_user.add_role :director
-
-  # Confirm the email.
-  open_email 'director@gmail.com'
-  click_first_link_in_email
 end

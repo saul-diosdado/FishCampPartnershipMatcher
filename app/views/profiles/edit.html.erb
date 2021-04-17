@@ -30,7 +30,7 @@
 </style>
 
 <% flash.each do |key, value| %>
-      <div class="flash-notice <%= key %>"><%= value %></div>
+  <div class="alert alert-<%= key %>"><%= value %></div>
 <% end %>
 &emsp;
 <div class = "my-4">
@@ -48,12 +48,11 @@
     <p class="card-text">Update your information.</p>
     <%= form_for(@profile) do |f| %>
       <%= render(:partial => "form", :locals => {:f => f}) %>
-      <%= f.hidden_field(:approvedchair, value: false) %>
-      <%= f.hidden_field(:user_id, value: current_user.id) %>
       <br>
       <%= f.submit("Save Changes", class: "btn btn-sm", id: "create-button", style: "background-color: Peru; color: SeaShell;") %>
     <% end %>
   </div>
 </div>
 <br>
+
 

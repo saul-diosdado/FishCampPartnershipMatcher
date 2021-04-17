@@ -18,7 +18,7 @@ class UsersController < Clearance::UsersController
 
   def remove_all
     User.destroy_all
-    redirect_to(sign_in_path, { flash: { success: 'You have wiped all the data on the website!' } })
+    redirect_to(admin_users_path, { flash: { success: 'You have wiped all the data on the website!' } })
   end
 
   private

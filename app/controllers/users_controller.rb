@@ -15,11 +15,14 @@ class UsersController < Clearance::UsersController
       render('new')
     end
   end
-
+  
   def remove_all
-    User.destroy_all
-    redirect_to(root_path, { flash: { success: 'You have wiped all the date on the website!' } })
+
+      User.where.not(id: current_user.id).destroy_all
+      redirect_to(admin_users_path, { flash: { success: 'You have wiped all the date on the website!' } })
   end
+
+ 
 
   private
 

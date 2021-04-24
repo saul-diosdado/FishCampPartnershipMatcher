@@ -1,10 +1,24 @@
 module Helpers
+  def admin_login
+    # Sign up with a new account.
+    visit root_path
+    click_link 'Sign up'
+    fill_in 'user[name]', with: 'Admin Name'
+    fill_in 'user[email]', with: 'fcpartner123@gmail.com'
+    fill_in 'Password', with: '12345'
+    click_button 'Sign up'
+
+    # Confirm the email.
+    open_email 'fcpartner123@gmail.com'
+    click_first_link_in_email
+  end
+
   # Helper function to login a user and make them a Director (in order to access matches pages)
   def director_login
     # Sign up with a new account.
     visit root_path
     click_link 'Sign up'
-    fill_in 'Name', with: 'Director Name'
+    fill_in 'user[name]', with: 'Director Name'
     fill_in 'user[email]', with: 'director@gmail.com'
     fill_in 'Password', with: '12345'
     click_button 'Sign up'

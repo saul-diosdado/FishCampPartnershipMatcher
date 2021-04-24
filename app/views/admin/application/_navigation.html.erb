@@ -18,9 +18,6 @@ as defined by the routes in the `admin/` namespace
     ) if valid_action?(:index, resource) && show_action?(:index, model_from_resource(resource)) %>
   <% end %>
   
-  
-  
-  <%= link_to "Nuke Button", remove_all_users_path, :method => :get %>
-  
+  <%= link_to("Delete All Users", remove_all_users_path, :method => :get, class: "btn btn-danger", data: { confirm: "Warning, all users (except for administrators) will be deleted. This action cannot be reversed." }) %>
   
 </nav>

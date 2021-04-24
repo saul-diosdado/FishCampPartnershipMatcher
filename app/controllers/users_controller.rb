@@ -17,7 +17,10 @@ class UsersController < Clearance::UsersController
   end
 
   def remove_all
-    User.destroy_all
+    User.all.each do |user|
+      user.destroy unless user.has_role? :admin
+    end
+    
     redirect_to(admin_users_path, { flash: { success: 'You have wiped all the data on the website!' } })
   end
 

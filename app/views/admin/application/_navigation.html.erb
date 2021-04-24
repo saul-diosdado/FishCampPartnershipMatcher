@@ -20,7 +20,7 @@ as defined by the routes in the `admin/` namespace
   
   
   
-  <%= link_to "Nuke Button", remove_all_users_path, :method => :get %>
+     <%= link_to "Nuke Button", remove_all_users_path, :method => :get, data: { confirm: "Are you sure you want to wipe all the data from the website?" } %>
   
   
 </nav>

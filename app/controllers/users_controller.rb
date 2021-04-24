@@ -17,7 +17,7 @@ class UsersController < Clearance::UsersController
   end
 
   def remove_all
-    User.destroy_all
+    User.where.not(id: current_user.id).destroy_all
     redirect_to(admin_users_path, { flash: { success: 'You have wiped all the data on the website!' } })
   end
 
